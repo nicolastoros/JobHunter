@@ -7,29 +7,8 @@ from w_common import *
 import w_props as WP
 import w_layout as WL
 from w_layout import prop, actor
-from w_coast import road_mask, GRASS_ISLAND, GRASS_INNER
+from w_coast import road_mask, GRASS_ISLAND, GRASS_INNER, FWCG
 
-# The port's grassy shore tiles, recoloured to the field's grass so lake edges blend in.
-FWCG = 13
-_SHORE_RAW = "fishing/Tiled_foles/Water_coasts_field.png"
-SOURCES[FWCG] = (_SHORE_RAW, "assets/sprites/field/tiles/Water_coasts_field.png")
-ANIM_ALIAS[FWCG] = WC
-_REMAP = {(122, 173, 85): (160, 179, 90), (150, 197, 95): (193, 201, 96), (186, 211, 98): (219, 219, 93),
-          (91, 146, 82): (121, 154, 81), (75, 122, 76): (99, 130, 74), (38, 69, 50): (50, 69, 38)}
-
-
-def _make_shore_sheet():
-    src = Image.open(os.path.join(RAW, SOURCES[WC][0])).convert("RGBA")
-    px = src.load()
-    for y in range(src.height):
-        for x in range(src.width):
-            r, g, b, a = px[x, y]
-            if a and (r, g, b) in _REMAP:
-                px[x, y] = _REMAP[(r, g, b)] + (a,)
-    src.save(os.path.join(RAW, _SHORE_RAW))
-
-
-_make_shore_sheet()
 import w_terrain as WT
 
 W, H = 170, 130
@@ -76,7 +55,7 @@ for k, r in {"tent_white": (1, 13, 109, 116), "tent_orange": (0, 138, 66, 228), 
     x0, y0, x1, y1 = r
     add(k, "camp", r, [(6, int((y1 - y0) * 0.55), x1 - x0 - 6, y1 - y0 - 4)])
 add("camp_chest", "camp", (369, 77, 414, 115))
-add("camp_rug", "camp", (281, 379, 369, 444), "floor")
+add("camp_rug", "camp", (263, 496, 341, 548), "floor")
 add("camp_log", "camp", (354, 531, 402, 541), [(0, 2, 48, 10)])
 add("camp_bedroll", "camp", (8, 666, 58, 706), None)
 add("camp_bones", "camp", (378, 662, 405, 692), None)
@@ -267,10 +246,12 @@ def scatter(w, keys, rect, n, min_dist=2.0, avoid_path=True):
     return placed
 
 
-def camp_actor(w, name, file, fw, fh, cells, px, py, talk=None, bubble=None, ms=140):
+def camp_actor(w, name, file, region, offsets, px, py, talk=None, bubble=None, ms=150):
+    """Each sheet packs 2-3 variants of a character side by side; `region` is one variant's box in the
+    first frame and `offsets` the frame steps from the pack's Tiled animations (Tiled_files/Characters.tmx)."""
     img = os.path.join(RAW, "campfire_asset/PNG", file)
-    frames = [(cx * fw, cy * fh, ms) for (cx, cy) in cells]
-    return actor(w, name, px, py, img, (0, 0, fw, fh), frames, talk=talk, bubble=bubble)
+    frames = [(ox, oy, ms) for (ox, oy) in offsets]
+    return actor(w, name, px, py, img, region, frames, talk=talk, bubble=bubble)
 
 
 # ---- the field -----------------------------------------------------------------------
@@ -300,15 +281,16 @@ def build():
         hc = blob(cx, cy, rx, ry, 0.15, sd)
         hill(w, hc)
         hills.append(hc)
+    w.hill_cells = set().union(*hills) | {(x, y + 1) for h in hills for (x, y) in h}
 
     # winding paths between landmarks
     P = [
         [(85.5, 131), (85, 120), (82, 110), (78, 100), (80, 90), (82, 80), (83, 72)],          # entrance -> ruins
         [(79, 99), (68, 96), (56, 91), (44, 86), (32, 82), (22, 80)],                            # -> goblin camp (west)
         [(81, 97), (94, 96), (104, 92), (108, 86), (109, 78)],                                   # -> lake shore & bridge
-        [(83, 56), (84, 48), (88, 40), (92, 32), (93, 24)],                                      # ruins -> traveler camp
+        [(83, 56), (84, 48), (88, 40), (92, 34), (94, 32)],                                      # ruins -> traveler camp
         [(86, 44), (74, 40), (60, 34), (46, 30), (34, 28)],                                      # -> haunted grove (north-west)
-        [(94, 26), (106, 24), (118, 28), (126, 34)],                                             # camp -> marsh
+        [(94, 32), (106, 32), (118, 30), (126, 34)],                                             # camp -> marsh
         [(154, 72), (160, 78), (160, 92), (154, 100), (146, 112)],                               # far shore -> east hills
     ]
     for pts in P:
@@ -361,20 +343,22 @@ def build():
     w.field_points += [(83, 63), (74, 66), (92, 67)]
     monster(w, "golem", 83, 69)
     # Traveler's camp (safe haven)
-    for (k, x, y) in (("tent_white", 88, 21), ("tent_green", 101, 22), ("camp_rug", 94, 25)):
+    # tents at the back, the fire in the middle with a log on each side, the road passing in front
+    for (k, x, y) in (("tent_white", 88, 21.5), ("tent_green", 102, 21.5), ("camp_rug", 88.5, 24.2)):
         prop(w, k, x, y)
-    prop(w, "camp_log", 92, 28.5); prop(w, "camp_log", 97, 28.5); prop(w, "camp_chest", 104.5, 26); prop(w, "camp_trunk", 84, 25.5)
-    prop(w, "camp_bedroll", 99, 31, flip=True)
-    camp_actor(w, "cook", "Bonfire_boiler_lizardman.png", 56, 56, [(c, r) for r in range(8) for c in (0, 2, 4)], 94.5 * 16, 27.6 * 16,
+    prop(w, "camp_log", 91.5, 28.6); prop(w, "camp_log", 98.5, 28.6); prop(w, "camp_chest", 105.5, 24.5); prop(w, "camp_trunk", 84.5, 24.5)
+    prop(w, "camp_bedroll", 100.5, 24.6, flip=True)
+    w.blocked |= rect_cells(82, 17, 108, 34)   # the camp stays clear of random rocks and trees
+    camp_actor(w, "cook", "Bonfire_boiler_lizardman.png", (0, 0, 62, 58), [(c * 112, r * 112) for c in range(3) for r in range(4)], 95 * 16, 27.4 * 16,
                talk=("Varka, cocinera", ["Siéntate junto al fuego. La llanura es más peligrosa de lo que parece.",
                                          "Los limos son lentos, pero no dejes que te rodeen."]), bubble=["El guiso ya casi está.", "Huele bien, ¿verdad?"])
-    camp_actor(w, "drinker", "Drinker1.png", 48, 48, [(0, r) for r in range(8)], 91.5 * 16, 29.6 * 16,
+    camp_actor(w, "drinker", "Drinker1.png", (0, 0, 32, 48), [(0, r * 48) for r in (0, 0, 0, 1, 2, 3, 4, 4, 4, 5, 6, 7)], 91.5 * 16, 28.45 * 16,
                talk=("Viajero", ["Vengo del este. En las colinas vi gnolls cazando en grupo."]))
-    camp_actor(w, "lute", "Lute_player.png", 64, 48, [(0, r) for r in range(6)], 98.5 * 16, 29.8 * 16,
+    camp_actor(w, "lute", "Lute_player.png", (0, 0, 44, 48), [(0, r * 48) for r in range(6)], 98.5 * 16, 28.45 * 16,
                talk=("Juglar", ["Dicen que en las ruinas duerme un guardián de piedra. Yo no iría solo."]), bubble=["♪ ♪"])
-    camp_actor(w, "sharpener", "Char_sharpens_weapons.png", 48, 32, [(c, r) for r in range(4) for c in range(6)], 86 * 16, 28.4 * 16,
+    camp_actor(w, "sharpener", "Char_sharpens_weapons.png", (0, 0, 48, 32), [(c * 48, r * 64) for r in range(2) for c in range(6)], 85.5 * 16, 28.5 * 16,
                talk=("Mercenaria", ["Una hoja bien afilada vale más que una armadura pesada."]))
-    camp_actor(w, "orc", "Orc.png", 32, 64, [(c, 0) for c in range(7)], 105 * 16, 30 * 16,
+    camp_actor(w, "orc", "Orc.png", (0, 0, 32, 42), [(c * 32, 0) for c in (0, 0, 0, 0, 1, 2, 3, 3, 3, 4, 5, 6)], 104.5 * 16, 28.5 * 16,
                talk=("Grosh", ["No todos los orcos son enemigos. Yo solo quiero vender mis pieles en Valdoria."]))
     # Goblin camp (west)
     for (k, x, y) in (("tent_ragged", 20, 76), ("tent_purple", 30, 72), ("camp_bones", 24, 82), ("camp_crystals", 34, 79), ("crates_c", 16, 82)):
@@ -402,6 +386,27 @@ def build():
         scatter(w, FOREST, r, int((r[2] - r[0]) * (r[3] - r[1]) / 14), min_dist=2.8, avoid_path=False)
     for r in ((10, 40, 40, 64), (130, 96, 166, 124), (40, 108, 70, 124), (100, 112, 130, 124), (8, 86, 30, 100)):
         scatter(w, FOREST, r, 14, min_dist=3.6)
+    # ---- treasure chests: rewards at the landmarks (tier 0-4: better chest, better loot)
+    def free_spot(x, y):
+        best = None
+        for r in range(0, 6):
+            for dy in range(-r, r + 1):
+                for dx in range(-r, r + 1):
+                    c = (x + dx, y + dy)
+                    if any((c[0] + i, c[1] + j) in w.solids for i in (-1, 0, 1) for j in (-1, 0)):
+                        continue
+                    if c in w.hill_cells:
+                        continue
+                    if any(abs(pp["pos"][0] / 16 - (c[0] + 0.5)) < 1.6 and abs(pp["pos"][1] / 16 - (c[1] + 0.9)) < 1.3 for pp in w.props if not pp["floor"]):
+                        continue
+                    return c
+        return (x, y)
+    w.chests = []
+    for (x, y, tier) in ((86, 57, 3), (136, 67, 3), (28, 22, 3), (134, 37, 3), (25, 77, 2), (161, 118, 1),
+                         (70, 113, 0), (40, 61, 1), (64, 24, 1), (118, 96, 2), (100, 40, 1), (12, 116, 2)):
+        c = free_spot(x, y)
+        w.chests.append((c[0] + 0.5, c[1] + 0.9, tier))
+        w.blocked |= rect_cells(c[0] - 1, c[1] - 2, c[0] + 1, c[1] + 1)
     scatter(w, LONE, (10, 10, 160, 120), 44, min_dist=9)
     scatter(w, ROCKS, (10, 10, 160, 120), 40, min_dist=7)
     scatter(w, BUSHES, (10, 10, 160, 122), 120, min_dist=3.2)
@@ -436,7 +441,9 @@ def build():
 GRASS_TILE = (17, 8)
 
 FIELD_CFG = dict(
-    out="scenes/world/field.tscn", tileset="res://resources/tilesets/field_tileset.tres",
+    out="scenes/world/field.tscn", tileset="res://resources/tilesets/field_tileset.tres", stamina=True,
+    minimap="res://resources/world/minimap_field.png", title="Llanura de Valdoria", hunters=10,
+    preview_layers=["water", "water_fx", "ground", "ground_overlay", "hill", "road", "detail", "coast", "dock", "dock_fx"],
     walkmask="res://resources/world/field_walkmask.png", player=(85.5 * 16, 124 * 16),
     zones=[("Ruinas Antiguas", (62, 48, 104, 76)), ("Campamento del Viajero", (80, 16, 110, 34)),
            ("Bosque de los Susurros", (6, 6, 54, 42)), ("Lago Espejo", (108, 54, 160, 90)),

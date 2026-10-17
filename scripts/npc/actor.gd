@@ -21,6 +21,8 @@ extends Node2D
 @export var shouts: PackedStringArray = []
 ## Stall keepers answer nearby shoppers.
 @export var seller := false
+## Opens a service window instead of talking ("forge" = the blacksmith).
+@export var opens := ""
 
 var _shout_timer := 0.0
 
@@ -79,6 +81,10 @@ func set_focused(value: bool) -> void:
 
 
 func interact(_player: Node) -> void:
+	if opens == "forge":
+		$Bubble.hide_now()
+		Game.forge_requested.emit()
+		return
 	if lines.is_empty():
 		return
 	$Bubble.hide_now()

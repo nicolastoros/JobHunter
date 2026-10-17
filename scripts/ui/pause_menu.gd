@@ -12,6 +12,7 @@ func _ready() -> void:
 	root.hide()
 	options.hide()
 	resume_button.pressed.connect(resume)
+	$Root/Panel/VBox/Save.pressed.connect(_save)
 	$Root/Panel/VBox/Options.pressed.connect(_open_options)
 	$Root/Panel/VBox/MainMenu.pressed.connect(Game.go_to_main_menu)
 	$Root/Panel/VBox/Quit.pressed.connect(Game.quit_game)
@@ -19,7 +20,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed("pause") or Game.editing:
+	if not event.is_action_pressed("pause") or Game.editing or Game.menu_open:
 		return
 	get_viewport().set_input_as_handled()
 	if not root.visible:
@@ -52,3 +53,9 @@ func _open_options() -> void:
 func _on_options_closed() -> void:
 	panel.show()
 	$Root/Panel/VBox/Options.grab_focus()
+
+
+func _save() -> void:
+	# saving needs the game running for a moment (the toast shows over the world)
+	resume()
+	Game.save_game()

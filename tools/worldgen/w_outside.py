@@ -10,7 +10,13 @@ TX0, TY0, TX1, TY1 = 10, 40, 44, 72     # training compound (inclusive)
 
 def build_roads(w, g):
     import w_coast as WC
-    north = WC.road_mask([(89.5, 26), (89.2, 19), (91.2, 12.5), (90.6, 6), (89.5, -1)], 5.2)
+    # cobbles end a little past the gate; from there a dirt track runs on to the plain,
+    # the same kind of path that greets you on the other side
+    north = WC.road_mask([(89.5, 26), (89.2, 19), (90.4, 15)], 5.2)
+    track = WC.road_mask([(89.6, 19), (91.2, 12.5), (90.6, 6), (89.5, -1)], 3.8)   # runs under the cobbles' rounded end
+    track = {c for c in track if c[1] >= 0}
+    autotile(w, "ground_overlay", track, FG, nine_at(19, 1), {"se": (22, 1), "sw": (23, 1), "ne": (22, 2), "nw": (23, 2)}, center_variants=[(20, 2)])
+    w.blocked |= track
     westr = WC.road_mask([(52, 56.5), (49, 57.4), (45.5, 56.6)], 5.2)
     eastr = WC.road_mask([(127, 56.5), (131, 57.6), (136, 56.8), (139, 56.5)], 5.2)
     road = north | westr | eastr | rect_cells(87, 22, 92, 25)

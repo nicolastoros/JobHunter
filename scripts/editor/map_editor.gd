@@ -17,10 +17,26 @@ const TERRAINS := {
 	"Pasto": {"layer": "Ground", "src": 2, "single": [17, 8], "clears": ["GroundOverlay", "Road", "Detail"]},
 	"Agua": {"layer": "Water", "src": 6, "single": [36, 0], "clears": ["Ground", "GroundOverlay", "Road", "Detail"], "solid": true},
 }
+## Ready-made tile stamps (layer, atlas source, rect in tiles). Dragging repeats the pattern.
+const STAMPS := {
+	"Muelle · tablones (horizontal)": {"layer": "Dock", "src": 7, "rect": [0, 0, 7, 4]},
+	"Muelle · pasarela (vertical)": {"layer": "Dock", "src": 7, "rect": [7, 1, 2, 2]},
+	"Muelle · punta de pasarela": {"layer": "Dock", "src": 7, "rect": [7, 3, 2, 1]},
+	"Muelle · poste de amarre": {"layer": "DockFx", "src": 7, "rect": [4, 9, 1, 2]},
+	"Muelle · poste de esquina": {"layer": "DockFx", "src": 7, "rect": [3, 9, 1, 2]},
+	"Muelle · pilote en el agua": {"layer": "DockFx", "src": 8, "rect": [0, 0, 1, 2]},
+	"Valla de madera · horizontal": {"layer": "Fence", "src": 9, "rect": [9, 10, 2, 1], "solid": true},
+	"Valla de madera · lado izquierdo": {"layer": "Fence", "src": 9, "rect": [11, 9, 1, 3], "solid": true},
+	"Valla de madera · lado derecho": {"layer": "Fence", "src": 9, "rect": [12, 9, 1, 3], "solid": true},
+	"Valla de madera · esquinas inferiores": {"layer": "Fence", "src": 9, "rect": [18, 11, 3, 1], "solid": true},
+	"Cerca de granja · corral 3×3": {"layer": "Fence", "src": 2, "rect": [20, 15, 3, 3], "solid": true},
+	"Cerca de granja · tramo horizontal": {"layer": "Fence", "src": 2, "rect": [21, 15, 1, 1], "solid": true},
+	"Cerca de granja · tramo vertical": {"layer": "Fence", "src": 2, "rect": [20, 16, 1, 1], "solid": true},
+}
 const TOOL_INFO := {
 	"select": ["Seleccionar [V]", "Clic: seleccionar · Arrastrar: mover · F: voltear · Ctrl+D: duplicar · Supr: eliminar"],
 	"object": ["Objetos [O]", "Elige un objeto en la paleta y haz clic en el mapa para colocarlo. Clic derecho: soltar."],
-	"paint": ["Pintar tiles [B]", "Elige capa y tile. Clic: pintar · Clic derecho: borrar."],
+	"paint": ["Pintar tiles [B]", "Elige una plantilla, o una capa y un tile. Mantén el clic y arrastra sobre la paleta para tomar varios tiles juntos. Clic: pintar (arrastrando se repite el patrón) · Clic derecho: borrar."],
 	"terrain": ["Terreno [T]", "Pinceles con bordes automáticos. Clic: pintar · Clic derecho: borrar."],
 	"erase": ["Goma [E]", "Borra tiles de la capa elegida."],
 }
@@ -42,6 +58,11 @@ var _ghost_tex: Texture2D
 var paint_layer: TileMapLayer
 var paint_source := -1
 var paint_coords := Vector2i.ZERO
+var paint_size := Vector2i.ONE      # stamp size in tiles (drag on the palette to pick several)
+var _stamp_anchor := Vector2i.ZERO   # cell where the current stroke started; the pattern repeats from here
+var _atlas_drag := false
+var _atlas_from := Vector2i.ZERO
+var _empty_cache := {}               # "src|x|y" -> tile is fully transparent
 var paint_texture: Texture2D
 var terrain_name := "Camino empedrado"
 
@@ -70,6 +91,7 @@ var _obj_search: LineEdit
 var _paint_layer_opt: OptionButton
 var _paint_src_opt: OptionButton
 var _paint_collision: CheckBox
+var _stamp_opt: OptionButton
 var _atlas_rect: TextureRect
 var _atlas_sel: ColorRect
 var _erase_layer_opt: OptionButton
@@ -319,6 +341,13 @@ func _fill_objects() -> void:
 func _build_paint_panel() -> Control:
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 6)
+	_stamp_opt = OptionButton.new()
+	_stamp_opt.focus_mode = Control.FOCUS_NONE
+	_stamp_opt.add_item("Plantillas: muelle y vallas...")
+	for k in STAMPS:
+		_stamp_opt.add_item(k)
+	_stamp_opt.item_selected.connect(_on_stamp_selected)
+	v.add_child(_stamp_opt)
 	_paint_layer_opt = _layer_option()
 	_paint_layer_opt.item_selected.connect(func(_i): paint_layer = _layer_from(_paint_layer_opt))
 	v.add_child(_paint_layer_opt)
@@ -331,7 +360,10 @@ func _build_paint_panel() -> Control:
 			var src := ts.get_source(sid) as TileSetAtlasSource
 			if src and src.texture:
 				_paint_src_opt.add_item(src.texture.resource_path.get_file().get_basename(), sid)
-	_paint_src_opt.item_selected.connect(func(_i): _show_atlas())
+	_paint_src_opt.item_selected.connect(func(_i):
+		paint_coords = Vector2i.ZERO
+		paint_size = Vector2i.ONE
+		_show_atlas())
 	v.add_child(_paint_src_opt)
 	_paint_collision = CheckBox.new()
 	_paint_collision.text = "Tile con colisión (sólido)"
@@ -425,15 +457,88 @@ func _show_atlas() -> void:
 	paint_texture = src.texture
 	_atlas_rect.texture = src.texture
 	_atlas_rect.custom_minimum_size = src.texture.get_size() * 2.0
-	_atlas_sel.size = Vector2(32, 32)
+	_update_atlas_sel()
+
+
+func _update_atlas_sel() -> void:
+	_atlas_sel.size = Vector2(paint_size) * 32.0
 	_atlas_sel.position = Vector2(paint_coords) * 32.0
 
 
+## Click a tile, or hold and drag to pick a block of tiles (RPG Maker style).
 func _on_atlas_input(ev: InputEvent) -> void:
-	if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT:
-		paint_coords = Vector2i((ev as InputEventMouseButton).position / 32.0)
-		_atlas_sel.position = Vector2(paint_coords) * 32.0
-		_flash("Tile %s elegido" % paint_coords)
+	var grid := Vector2i.ONE
+	if paint_texture:
+		grid = Vector2i(paint_texture.get_size() / 16.0)
+	if ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT:
+		var c := Vector2i((ev as InputEventMouseButton).position / 32.0).clamp(Vector2i.ZERO, grid - Vector2i.ONE)
+		if ev.pressed:
+			_atlas_drag = true
+			_atlas_from = c
+			_set_atlas_rect(c, c)
+		elif _atlas_drag:
+			_atlas_drag = false
+			if paint_size == Vector2i.ONE:
+				_flash("Tile %s elegido" % paint_coords)
+			else:
+				_flash("Bloque de %d×%d tiles elegido" % [paint_size.x, paint_size.y])
+	elif ev is InputEventMouseMotion and _atlas_drag:
+		var c := Vector2i((ev as InputEventMouseMotion).position / 32.0).clamp(Vector2i.ZERO, grid - Vector2i.ONE)
+		_set_atlas_rect(_atlas_from, c)
+
+
+func _set_atlas_rect(a: Vector2i, b: Vector2i) -> void:
+	paint_coords = Vector2i(mini(a.x, b.x), mini(a.y, b.y))
+	paint_size = Vector2i(absi(a.x - b.x) + 1, absi(a.y - b.y) + 1)
+	_update_atlas_sel()
+
+
+func _on_stamp_selected(i: int) -> void:
+	if i == 0:
+		return
+	var st: Dictionary = STAMPS[_stamp_opt.get_item_text(i)]
+	var found := false
+	for j in _paint_layer_opt.item_count:
+		var l := _paint_layer_opt.get_item_metadata(j) as TileMapLayer
+		if l and String(l.name) == st["layer"]:
+			_paint_layer_opt.select(j)
+			paint_layer = l
+			found = true
+	if not found:
+		_flash("Este mapa no tiene la capa %s." % st["layer"])
+		return
+	var idx := _paint_src_opt.get_item_index(int(st["src"]))
+	if idx < 0:
+		_flash("Este mapa no tiene esa hoja de tiles.")
+		return
+	_paint_src_opt.select(idx)
+	_show_atlas()
+	var r: Array = st["rect"]
+	paint_coords = Vector2i(r[0], r[1])
+	paint_size = Vector2i(r[2], r[3])
+	_paint_collision.button_pressed = st.get("solid", false)
+	_update_atlas_sel()
+	_flash("Plantilla: %s" % _stamp_opt.get_item_text(i))
+
+
+## Top-left cell of the stamp block containing `c` (blocks repeat from the stroke's first cell).
+func stamp_origin_for(c: Vector2i) -> Vector2i:
+	var d := c - _stamp_anchor
+	return c - Vector2i(posmod(d.x, paint_size.x), posmod(d.y, paint_size.y))
+
+
+func _tile_is_empty(source_id: int, coords: Vector2i) -> bool:
+	var key := "%d|%d|%d" % [source_id, coords.x, coords.y]
+	if _empty_cache.has(key):
+		return _empty_cache[key]
+	var empty := false
+	var src := _first_tileset().get_source(source_id) as TileSetAtlasSource
+	if src and src.texture:
+		var img := src.texture.get_image()
+		if img:
+			empty = img.get_region(Rect2i(coords * 16, Vector2i(16, 16))).is_invisible()
+	_empty_cache[key] = empty
+	return empty
 
 
 func _set_tool(t: String) -> void:
@@ -578,6 +683,7 @@ func _on_left_down() -> void:
 			else:
 				_flash("Elige primero un objeto en la paleta.")
 		"paint", "terrain", "erase":
+			_stamp_anchor = Vector2i(floor(m.x / 16.0), floor(m.y / 16.0))
 			_paint_at(m, false)
 
 
@@ -595,7 +701,9 @@ func _on_right_down() -> void:
 			place_item = {}
 			_flash("Colocación cancelada.")
 		"paint", "terrain":
-			_paint_at(_mouse_world(), true)
+			var m := _mouse_world()
+			_stamp_anchor = Vector2i(floor(m.x / 16.0), floor(m.y / 16.0))
+			_paint_at(m, true)
 		"select":
 			selected = null
 			_update_inspector()
@@ -889,12 +997,26 @@ func _paint_at(p: Vector2, erase: bool) -> void:
 			if paint_layer == null:
 				_flash("Este mapa no tiene capas de tiles para pintar.")
 				return
-			if erase:
-				_set_cell(paint_layer, c, -1, Vector2i.ZERO)
-			elif _ensure_tile(paint_source, paint_coords, _paint_collision.button_pressed):
-				_set_cell(paint_layer, c, paint_source, paint_coords)
-			else:
-				_flash("Ese tile no se puede usar (es parte de una animación o está vacío).")
+			# paint (or erase) the whole stamp block that contains c
+			var o := stamp_origin_for(c)
+			var bad := false
+			for dy in paint_size.y:
+				for dx in paint_size.x:
+					var cell := o + Vector2i(dx, dy)
+					if erase:
+						if paint_layer.get_cell_source_id(cell) != -1:
+							_set_cell(paint_layer, cell, -1, Vector2i.ZERO)
+						continue
+					var at := paint_coords + Vector2i(dx, dy)
+					if _tile_is_empty(paint_source, at):
+						continue   # transparent parts of a stamp keep what is underneath
+					if _ensure_tile(paint_source, at, _paint_collision.button_pressed):
+						if paint_layer.get_cell_source_id(cell) != paint_source or paint_layer.get_cell_atlas_coords(cell) != at:
+							_set_cell(paint_layer, cell, paint_source, at)
+					else:
+						bad = true
+			if bad:
+				_flash("Algunos tiles no se pueden usar (son parte de una animación).")
 		"erase":
 			var l := _layer_from(_erase_layer_opt)
 			if l:

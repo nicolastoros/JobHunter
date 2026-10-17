@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_hud"]
 [ext_resource type="Script" path="res://scripts/ui/quest_board.gd" id="2_qb"]
 [ext_resource type="Script" path="res://scripts/ui/player_hud.gd" id="3_ph"]
+[ext_resource type="Script" path="res://scripts/ui/game_menu.gd" id="4_gm"]
+[ext_resource type="Script" path="res://scripts/ui/forge.gd" id="5_forge"]
+[ext_resource type="Script" path="res://scripts/ui/minimap.gd" id="6_map"]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 10
@@ -82,7 +85,7 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.95, 0.9, 0.8, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
-text = "WASD: mover   Shift: correr   J/Espacio: atacar   Q: poción   E: hablar   Esc: pausa"
+text = "WASD: mover   Shift: correr   J: atacar   1-6: habilidades   Q: poción   E: hablar   C / I / K / L: menú   Esc: pausa"
 
 [node name="DialogueBox" type="PanelContainer" parent="."]
 anchors_preset = 12
@@ -121,5 +124,19 @@ text = "E ▶"
 horizontal_alignment = 2
 vertical_alignment = 2
 
+[node name="Minimap" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("6_map")
+
 [node name="QuestBoard" type="CanvasLayer" parent="."]
 script = ExtResource("2_qb")
+
+[node name="GameMenu" type="CanvasLayer" parent="."]
+script = ExtResource("4_gm")
+
+[node name="Forge" type="CanvasLayer" parent="."]
+script = ExtResource("5_forge")

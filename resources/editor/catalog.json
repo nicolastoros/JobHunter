@@ -5220,7 +5220,7 @@
    "category": "Personajes"
   },
   {
-   "name": "Kara la armera",
+   "name": "Kara la herrera",
    "frames": "res://resources/sprite_frames/world/actor_5fe1c31bff.tres",
    "offset_y": -11.0,
    "collide": true,

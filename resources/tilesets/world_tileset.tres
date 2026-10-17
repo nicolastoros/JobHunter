@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/farm/tiles/ground_grass_bricks.png" id="tex_2"]
 [ext_resource type="Texture2D" path="res://assets/sprites/farm/tiles/Road.png" id="tex_3"]
 [ext_resource type="Texture2D" path="res://assets/sprites/farm/tiles/Ground_grass_details.png" id="tex_4"]
-[ext_resource type="Texture2D" path="res://assets/sprites/port/tiles/Water_coasts.png" id="tex_5"]
 [ext_resource type="Texture2D" path="res://assets/sprites/port/tiles/water_detilazation_v2.png" id="tex_6"]
 [ext_resource type="Texture2D" path="res://assets/sprites/port/tiles/Exterior_tiles.png" id="tex_7"]
 [ext_resource type="Texture2D" path="res://assets/sprites/port/tiles/piles.png" id="tex_8"]
 [ext_resource type="Texture2D" path="res://assets/sprites/training/tiles/Walls_street.png" id="tex_9"]
 [ext_resource type="Texture2D" path="res://assets/sprites/port/tiles/Water_detailization1.png" id="tex_10"]
 [ext_resource type="Texture2D" path="res://assets/sprites/farm/tiles/Water_coasts.png" id="tex_12"]
+[ext_resource type="Texture2D" path="res://assets/sprites/field/tiles/Water_coasts_field.png" id="tex_13"]
 
 [sub_resource type="TileSetAtlasSource" id="atlas_0"]
 texture = ExtResource("tex_0")
@@ -262,99 +262,6 @@ texture = ExtResource("tex_4")
 18:8/0 = 0
 19:8/0 = 0
 20:8/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="atlas_5"]
-texture = ExtResource("tex_5")
-0:5/animation_columns = 1
-0:5/animation_separation = Vector2i(0, 7)
-0:5/animation_frame_0/duration = 0.15
-0:5/animation_frame_1/duration = 0.15
-0:5/animation_frame_2/duration = 0.15
-0:5/animation_frame_3/duration = 0.15
-0:5/animation_frame_4/duration = 0.15
-0:5/animation_frame_5/duration = 0.15
-0:5/0 = 0
-1:5/animation_columns = 1
-1:5/animation_separation = Vector2i(0, 7)
-1:5/animation_frame_0/duration = 0.15
-1:5/animation_frame_1/duration = 0.15
-1:5/animation_frame_2/duration = 0.15
-1:5/animation_frame_3/duration = 0.15
-1:5/animation_frame_4/duration = 0.15
-1:5/animation_frame_5/duration = 0.15
-1:5/0 = 0
-2:5/animation_columns = 1
-2:5/animation_separation = Vector2i(0, 7)
-2:5/animation_frame_0/duration = 0.15
-2:5/animation_frame_1/duration = 0.15
-2:5/animation_frame_2/duration = 0.15
-2:5/animation_frame_3/duration = 0.15
-2:5/animation_frame_4/duration = 0.15
-2:5/animation_frame_5/duration = 0.15
-2:5/0 = 0
-3:5/animation_columns = 1
-3:5/animation_separation = Vector2i(0, 7)
-3:5/animation_frame_0/duration = 0.15
-3:5/animation_frame_1/duration = 0.15
-3:5/animation_frame_2/duration = 0.15
-3:5/animation_frame_3/duration = 0.15
-3:5/animation_frame_4/duration = 0.15
-3:5/animation_frame_5/duration = 0.15
-3:5/0 = 0
-4:5/animation_columns = 1
-4:5/animation_separation = Vector2i(0, 7)
-4:5/animation_frame_0/duration = 0.15
-4:5/animation_frame_1/duration = 0.15
-4:5/animation_frame_2/duration = 0.15
-4:5/animation_frame_3/duration = 0.15
-4:5/animation_frame_4/duration = 0.15
-4:5/animation_frame_5/duration = 0.15
-4:5/0 = 0
-0:6/animation_columns = 1
-0:6/animation_separation = Vector2i(0, 7)
-0:6/animation_frame_0/duration = 0.15
-0:6/animation_frame_1/duration = 0.15
-0:6/animation_frame_2/duration = 0.15
-0:6/animation_frame_3/duration = 0.15
-0:6/animation_frame_4/duration = 0.15
-0:6/animation_frame_5/duration = 0.15
-0:6/0 = 0
-2:6/animation_columns = 1
-2:6/animation_separation = Vector2i(0, 7)
-2:6/animation_frame_0/duration = 0.15
-2:6/animation_frame_1/duration = 0.15
-2:6/animation_frame_2/duration = 0.15
-2:6/animation_frame_3/duration = 0.15
-2:6/animation_frame_4/duration = 0.15
-2:6/animation_frame_5/duration = 0.15
-2:6/0 = 0
-0:7/animation_columns = 1
-0:7/animation_separation = Vector2i(0, 7)
-0:7/animation_frame_0/duration = 0.15
-0:7/animation_frame_1/duration = 0.15
-0:7/animation_frame_2/duration = 0.15
-0:7/animation_frame_3/duration = 0.15
-0:7/animation_frame_4/duration = 0.15
-0:7/animation_frame_5/duration = 0.15
-0:7/0 = 0
-1:7/animation_columns = 1
-1:7/animation_separation = Vector2i(0, 7)
-1:7/animation_frame_0/duration = 0.15
-1:7/animation_frame_1/duration = 0.15
-1:7/animation_frame_2/duration = 0.15
-1:7/animation_frame_3/duration = 0.15
-1:7/animation_frame_4/duration = 0.15
-1:7/animation_frame_5/duration = 0.15
-1:7/0 = 0
-2:7/animation_columns = 1
-2:7/animation_separation = Vector2i(0, 7)
-2:7/animation_frame_0/duration = 0.15
-2:7/animation_frame_1/duration = 0.15
-2:7/animation_frame_2/duration = 0.15
-2:7/animation_frame_3/duration = 0.15
-2:7/animation_frame_4/duration = 0.15
-2:7/animation_frame_5/duration = 0.15
-2:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="atlas_6"]
 texture = ExtResource("tex_6")
@@ -1606,6 +1513,63 @@ texture = ExtResource("tex_12")
 7:3/0 = 0
 7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="atlas_13"]
+texture = ExtResource("tex_13")
+3:5/animation_columns = 1
+3:5/animation_separation = Vector2i(0, 7)
+3:5/animation_frame_0/duration = 0.15
+3:5/animation_frame_1/duration = 0.15
+3:5/animation_frame_2/duration = 0.15
+3:5/animation_frame_3/duration = 0.15
+3:5/animation_frame_4/duration = 0.15
+3:5/animation_frame_5/duration = 0.15
+3:5/0 = 0
+4:5/animation_columns = 1
+4:5/animation_separation = Vector2i(0, 7)
+4:5/animation_frame_0/duration = 0.15
+4:5/animation_frame_1/duration = 0.15
+4:5/animation_frame_2/duration = 0.15
+4:5/animation_frame_3/duration = 0.15
+4:5/animation_frame_4/duration = 0.15
+4:5/animation_frame_5/duration = 0.15
+4:5/0 = 0
+2:6/animation_columns = 1
+2:6/animation_separation = Vector2i(0, 7)
+2:6/animation_frame_0/duration = 0.15
+2:6/animation_frame_1/duration = 0.15
+2:6/animation_frame_2/duration = 0.15
+2:6/animation_frame_3/duration = 0.15
+2:6/animation_frame_4/duration = 0.15
+2:6/animation_frame_5/duration = 0.15
+2:6/0 = 0
+0:7/animation_columns = 1
+0:7/animation_separation = Vector2i(0, 7)
+0:7/animation_frame_0/duration = 0.15
+0:7/animation_frame_1/duration = 0.15
+0:7/animation_frame_2/duration = 0.15
+0:7/animation_frame_3/duration = 0.15
+0:7/animation_frame_4/duration = 0.15
+0:7/animation_frame_5/duration = 0.15
+0:7/0 = 0
+1:7/animation_columns = 1
+1:7/animation_separation = Vector2i(0, 7)
+1:7/animation_frame_0/duration = 0.15
+1:7/animation_frame_1/duration = 0.15
+1:7/animation_frame_2/duration = 0.15
+1:7/animation_frame_3/duration = 0.15
+1:7/animation_frame_4/duration = 0.15
+1:7/animation_frame_5/duration = 0.15
+1:7/0 = 0
+2:7/animation_columns = 1
+2:7/animation_separation = Vector2i(0, 7)
+2:7/animation_frame_0/duration = 0.15
+2:7/animation_frame_1/duration = 0.15
+2:7/animation_frame_2/duration = 0.15
+2:7/animation_frame_3/duration = 0.15
+2:7/animation_frame_4/duration = 0.15
+2:7/animation_frame_5/duration = 0.15
+2:7/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
@@ -1614,10 +1578,10 @@ sources/1 = SubResource("atlas_1")
 sources/2 = SubResource("atlas_2")
 sources/3 = SubResource("atlas_3")
 sources/4 = SubResource("atlas_4")
-sources/5 = SubResource("atlas_5")
 sources/6 = SubResource("atlas_6")
 sources/7 = SubResource("atlas_7")
 sources/8 = SubResource("atlas_8")
 sources/9 = SubResource("atlas_9")
 sources/10 = SubResource("atlas_10")
 sources/12 = SubResource("atlas_12")
+sources/13 = SubResource("atlas_13")

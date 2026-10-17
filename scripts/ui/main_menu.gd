@@ -16,11 +16,20 @@ func _ready() -> void:
 	Game.input_locked = false
 	options.hide()
 	new_game_button.pressed.connect(Game.start_new_game)
+	var cont := $Menu/Buttons/Continue as Button
+	cont.disabled = not Game.has_save()
+	cont.pressed.connect(func(): Game.load_game())
+	if Game.has_save():
+		var info := Game.save_info()
+		cont.tooltip_text = "Nivel %d  ·  %s" % [int(info.get("level", 1)), String(info.get("saved_at", "")).replace("T", " ")]
 	$Menu/Buttons/Options.pressed.connect(_open_options)
 	$Menu/Buttons/Quit.pressed.connect(Game.quit_game)
 	$Menu/Buttons/Dev.pressed.connect(_open_password)
 	options.closed.connect(_on_options_closed)
-	new_game_button.grab_focus()
+	if Game.has_save():
+		cont.grab_focus()
+	else:
+		new_game_button.grab_focus()
 	# Intro: fade the menu in.
 	title_block.modulate.a = 0.0
 	create_tween().tween_property(title_block, "modulate:a", 1.0, 0.9).set_delay(0.2)

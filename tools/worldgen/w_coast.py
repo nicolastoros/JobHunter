@@ -8,6 +8,28 @@ HX0, HX1 = 30, 152          # harbour quay extent (inclusive)
 GRASS_ISLAND = nine_at(0, 5)
 GRASS_INNER = {"se": (3, 5), "sw": (4, 5), "ne": (3, 6), "nw": (4, 6)}
 
+# The port's grassy shore tiles, recoloured to the farm grass used on land so every shore blends in.
+FWCG = 13
+_SHORE_RAW = "fishing/Tiled_foles/Water_coasts_field.png"
+SOURCES[FWCG] = (_SHORE_RAW, "assets/sprites/field/tiles/Water_coasts_field.png")
+ANIM_ALIAS[FWCG] = WC
+_REMAP = {(122, 173, 85): (160, 179, 90), (150, 197, 95): (193, 201, 96), (186, 211, 98): (219, 219, 93),
+          (91, 146, 82): (121, 154, 81), (75, 122, 76): (99, 130, 74), (38, 69, 50): (50, 69, 38)}
+
+
+def _make_shore_sheet():
+    src = Image.open(os.path.join(RAW, SOURCES[WC][0])).convert("RGBA")
+    px = src.load()
+    for y in range(src.height):
+        for x in range(src.width):
+            r, g, b, a = px[x, y]
+            if a and (r, g, b) in _REMAP:
+                px[x, y] = _REMAP[(r, g, b)] + (a,)
+    src.save(os.path.join(RAW, _SHORE_RAW))
+
+
+_make_shore_sheet()
+
 
 def coast_y(x):
     """Row where the sea begins for column x."""
@@ -53,11 +75,16 @@ def build_coast(w):
                 w.solids.add((x, y))
     # natural coast (outside the harbour) via grass-island autotile on land border cells
     natural = {(x, y) for (x, y) in land if not (HX0 <= x <= HX1 and y >= QY - 1)}
+    def inb(x, y):
+        return 0 <= x < WT.W and 0 <= y < WT.H
+
     border = set()
     for (x, y) in natural:
-        if any((x + dx, y + dy) not in land for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
+        if any(inb(x + dx, y + dy) and (x + dx, y + dy) not in land for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
             border.add((x, y))
-    shore = {(x, y) for (x, y) in land}
+    # outside the map counts as land so edge cells keep a straight shore
+    shore = {(x, y) for (x, y) in land} | {(x, y) for x in range(-1, WT.W + 1) for y in (-1,)} \
+        | {(x, y) for x in (-1, WT.W) for y in range(-1, WT.H + 1) if y < coast_y(0 if x < 0 else WT.W - 1)}
     for (x, y) in border:
         n = (x, y - 1) in shore; s = (x, y + 1) in shore; we = (x - 1, y) in shore; e = (x + 1, y) in shore
         if not s and not we: k = "bl"
@@ -75,7 +102,7 @@ def build_coast(w):
         at = GRASS_INNER[k] if k in GRASS_INNER else GRASS_ISLAND[k]
         w.erase("ground", x, y)
         w.put("water", x, y, WD, (36, 0))
-        w.put("coast", x, y, WC, at)
+        w.put("coast", x, y, FWCG, at)
         w.solids.add((x, y))
     w.land = land
     # rocks along the natural shore & in shallow water
@@ -106,10 +133,23 @@ def build_harbour(w, g):
     quay_road = rect_cells(HX0 + 1, QY - 5, HX1 - 1, QY)
     autotile(w, "road", quay_road, RD, WT.ROAD_NINE, WT.ROAD_INNER, center_variants=[(2, 2)])
     w.blocked |= quay_road
-    west = [(HX0 + 2, QY - 3.5)] + [(x, coast_y(x) - 4.5) for x in range(HX0 - 2, -2, -4)]
-    east = [(HX1 - 2, QY - 3.5)] + [(x, coast_y(x) - 4.5) for x in range(HX1 + 2, WT.W + 3, 4)]
+    WEST_END, EAST_END = 9, WT.W - 10
+    west = [(HX0 + 2, QY - 3.5)] + [(x, coast_y(x) - 4.5) for x in range(HX0 - 2, WEST_END - 1, -4)]
+    east = [(HX1 - 2, QY - 3.5)] + [(x, coast_y(x) - 4.5) for x in range(HX1 + 2, EAST_END + 1, 4)]
     path = (road_mask(west, 3.2) | road_mask(east, 3.2)) - quay_road
     path = {c for c in path if c in w.land and c not in w.solids}
+    # lookouts where the walks end: a bench facing the sea, fishing gear, and a thicket closing the way
+    for (ex, flip) in ((west[-1][0], False), (east[-1][0], True)):
+        ey = coast_y(int(ex)) - 4.5
+        prop(w, "bench", ex + (1.5 if flip else -1.5), ey + 0.6, flip=flip)
+        prop(w, "fish_rack" if flip else "fish_rack2", ex + (-2.5 if flip else 2.5), ey - 1.8)
+        prop(w, "barrel_fish", ex + (3.5 if flip else -3.5), ey + 1.2)
+        side = range(int(ex) + 4, WT.W) if flip else range(0, int(ex) - 3)
+        for x in side:
+            for y in range(int(ey) - 7, coast_y(x) - 1):
+                if rng.random() < 0.16 and (x, y) in w.land and (x, y + 2) in w.land and (x, y) not in w.blocked:
+                    prop(w, rng.choice(["tree_big", "pine_big", "tree_oak", "tree_bushy", "pine_mid", "tree_round"]), x + 0.5, y + 0.9)
+                    w.blocked |= rect_cells(x - 1, y - 1, x + 1, y + 1)
     autotile(w, "ground_overlay", path, FG, nine_at(19, 1), {"se": (22, 1), "sw": (23, 1), "ne": (22, 2), "nw": (23, 2)}, center_variants=[(20, 2)])
     w.blocked |= path
     # south road from the city gate down to the quay, gently curving

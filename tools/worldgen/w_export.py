@@ -269,13 +269,47 @@ def walk_mask(w, out_path="resources/world/walkmask.png"):
 WORLD_CFG = dict(
     out="scenes/world/world.tscn", tileset="res://resources/tilesets/world_tileset.tres",
     walkmask="res://resources/world/walkmask.png", player=(89.5 * 16, 66 * 16),
+    minimap="res://resources/world/minimap_world.png", title="Valdoria",
+    preview_layers=["water", "water_fx", "ground", "ground_overlay", "road", "detail", "water_city", "rim", "coast", "dock", "dock_fx", "fence", "walls", "towers"],
     zones=[("Cuartel de la Guardia", (8, 34, 47, 74)), ("Granjas del Este", (132, 14, 180, 96)),
            ("Puerto de Valdoria", (30, 92, 156, 140)), ("Ciudadela de Valdoria", (52, 24, 128, 89)),
-           ("Pradera del Norte", (0, 0, 180, 24))],
+           ("Pradera del Norte", (0, 0, 180, 24)), ("Costa del Oeste", (0, 88, 30, 140)), ("Costa del Este", (156, 88, 180, 140)),
+           ("Alrededores de Valdoria", (0, 0, 180, 140))],
     exits=[dict(name="NorthExit", pos=(89.5 * 16, 18), size=(6 * 16, 24), scene="res://scenes/world/field.tscn", spawn="south", dir="up")],
     spawns={"north_gate": (89.5 * 16, 3 * 16)},
     top_gap=(86, 93),
 )
+
+
+def _map_extras(w, cfg):
+    """Root properties for the minimap picture, map title and treasure chests."""
+    out = ""
+    if cfg.get("minimap"):
+        render_minimap(w, cfg)
+        out += 'minimap_path = "%s"\n' % cfg["minimap"]
+    if cfg.get("hunters"):
+        out += "hunter_count = %d\n" % cfg["hunters"]
+    if cfg.get("title"):
+        out += 'map_title = "%s"\n' % esc(cfg["title"])
+    chests = cfg.get("chests") or getattr(w, "chests", [])
+    if chests:
+        out += "chest_points = PackedVector2Array(%s)\n" % ", ".join("%s, %s" % (fmt(x * 16), fmt(y * 16)) for x, y, _t in chests)
+        out += "chest_tiers = PackedInt32Array(%s)\n" % ", ".join(str(t) for _x, _y, t in chests)
+    return out
+
+
+def render_minimap(w, cfg):
+    """Renders the whole map and shrinks it to 2 px per tile for the in-game minimap."""
+    import w_preview as PV
+    order = cfg.get("preview_layers")
+    if order:
+        PV.LAYER_ORDER[:] = order
+    tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "_minimap_full.png")
+    PV.render(w, tmp, 1)
+    img = Image.open(tmp).convert("RGB").resize((w.W * 2, w.H * 2), Image.LANCZOS)
+    dst = os.path.join(ROOT, cfg["minimap"].replace("res://", ""))
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    img.save(dst)
 
 
 def scene(w, cfg=None):
@@ -310,8 +344,9 @@ def scene(w, cfg=None):
         if a.get("seller"):
             shops.append((a["pos"][0], a["pos"][1] + 22))
     vec = lambda pts: ", ".join("%s, %s" % (fmt(x), fmt(y)) for x, y in pts)
-    nodes.append('[node name="World" type="Node2D"]\nscript = ExtResource("%s")\nmap_size = Vector2i(%d, %d)\nwalk_nodes = PackedVector2Array(%s)\nwalk_edges = PackedInt32Array(%s)\nhome_points = PackedVector2Array(%s)\nshop_points = PackedVector2Array(%s)\nzones = {%s}\nwalkmask_path = "%s"\n' % (
-        script, w.W, w.H, vec(g.nodes), ", ".join("%d, %d" % e for e in sorted(g.edges)), vec(homes), vec(shops), zt, cfg["walkmask"]))
+    nodes.append('[node name="World" type="Node2D"]\nscript = ExtResource("%s")\nmap_size = Vector2i(%d, %d)\nwalk_nodes = PackedVector2Array(%s)\nwalk_edges = PackedInt32Array(%s)\nhome_points = PackedVector2Array(%s)\nshop_points = PackedVector2Array(%s)\nzones = {%s}\nwalkmask_path = "%s"\n%s' % (
+        script, w.W, w.H, vec(g.nodes), ", ".join("%d, %d" % e for e in sorted(g.edges)), vec(homes), vec(shops), zt, cfg["walkmask"],
+        ("run_uses_stamina = true\n" if cfg.get("stamina") else "") + _map_extras(w, cfg)))
     # solids layer
     w.layers["solids"] = {c: (SOLID[0], SOLID[1], 0) for c in w.solids}
     for name, col in LAYERS:
@@ -375,7 +410,8 @@ def scene(w, cfg=None):
             shouts = "shouts = PackedStringArray(%s)\n" % ", ".join('"%s"' % esc(l) for l in a["bubble"])
         nodes.append('[node name="%s" parent="Entities/Actors" instance=ExtResource("%s")]\nposition = Vector2(%s, %s)\nframes = ExtResource("%s")\nsprite_offset = Vector2(0, %s)\n%s%s%s%s%s' % (
             name, actor_scene, fmt(a["pos"][0]), fmt(a["pos"][1]), fr, fmt(off_y), "flip = true\n" if a.get("flip") else "",
-            "" if a.get("collide", True) else "collide = false\n", lines, shouts, "seller = true\n" if a.get("seller") else ""))
+            "" if a.get("collide", True) else "collide = false\n", lines, shouts,
+            ("seller = true\n" if a.get("seller") else "") + ('opens = "%s"\n' % a["opens"] if a.get("opens") else "")))
 
     walker_scene = eid("PackedScene", "res://scenes/npc/walker.tscn")
     import math

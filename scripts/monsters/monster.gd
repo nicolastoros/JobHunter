@@ -23,6 +23,13 @@ enum State { IDLE, WANDER, CHASE, ATTACK, HURT, DEAD, RETURN }
 
 var state := State.IDLE
 var hp := 3
+## Level chosen from the hero's level each time the monster (re)appears.
+var monster_level := 1
+var xp_reward := 1
+var _base_hp := 3
+var _base_damage := 1
+var _base_gold := 2
+var _last_hitter: Node2D = null
 var _home := Vector2.ZERO
 var _target := Vector2.ZERO
 var _wait := 0.0
@@ -41,7 +48,10 @@ var _bar_timer := 0.0
 func _ready() -> void:
 	add_to_group("monsters")
 	_home = global_position
-	hp = max_hp
+	_base_hp = max_hp
+	_base_damage = damage
+	_base_gold = gold
+	_apply_level()
 	sprite.sprite_frames = frames
 	sprite.offset.y = sprite_offset_y
 	(shape.shape as RectangleShape2D).size = body_size
@@ -60,7 +70,7 @@ func _physics_process(delta: float) -> void:
 		return
 	_cool -= delta
 	_bar_timer -= delta
-	var player := _player()
+	var player := _pick_target()
 	match state:
 		State.DEAD:
 			return
@@ -80,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	var dist := to_player.length() if player else INF
 	var alive_player: bool = player != null and not player.is_dead()
 	if alive_player and dist < aggro_radius and global_position.distance_to(_home) < territory * 2.5:
-		if state != State.CHASE and boss:
+		if state != State.CHASE and boss and player.is_in_group("player"):
 			Game.boss_engaged.emit(self)
 		state = State.CHASE
 	elif state == State.CHASE:
@@ -97,6 +107,8 @@ func _physics_process(delta: float) -> void:
 				state = State.IDLE
 				hp = max_hp
 				_wait = randf_range(1.0, 3.0)
+				if monster_level < Game.level - 1:
+					_apply_level()
 		State.WANDER:
 			if _move_toward(_target, speed, "walk"):
 				state = State.IDLE
@@ -135,12 +147,16 @@ func _start_attack(to_player: Vector2) -> void:
 
 
 ## Called by the hurtbox when the player's sword connects.
-func take_hit(amount: int, source: Node2D) -> void:
+func take_hit(amount: int, source: Node2D, crit := false) -> void:
 	if state == State.DEAD:
 		return
+	_last_hitter = source
 	hp -= amount
 	_bar_timer = 3.0
-	Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), str(amount), Color(1, 1, 1))
+	if crit:
+		Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), "%d!" % amount, Color(1, 0.82, 0.25))
+	else:
+		Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), str(amount), Color(1, 1, 1))
 	var t := create_tween()
 	sprite.modulate = Color(3, 3, 3)
 	t.tween_property(sprite, "modulate", Color.WHITE, 0.18)
@@ -161,9 +177,10 @@ func _die() -> void:
 	shape.set_deferred("disabled", true)
 	hurt_shape.set_deferred("disabled", true)
 	_play("death", true)
-	Game.add_gold(gold)
-	Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 2.0), "+%d oro" % gold, Color(1, 0.85, 0.3))
-	Game.monster_killed.emit(self)
+	if _last_hitter and is_instance_valid(_last_hitter) and _last_hitter.is_in_group("hunters"):
+		Game.on_hunter_kill(String(_last_hitter.get("hunter_name")), self)
+	else:
+		Game.on_monster_killed(self)
 
 
 func _on_anim_finished() -> void:
@@ -179,9 +196,21 @@ func _on_anim_finished() -> void:
 			t.tween_callback(_respawn)
 
 
+## Monsters adapt to the hero: around the hero's level (bosses a little above).
+func _apply_level() -> void:
+	var lv := Game.level + (2 if boss else randi_range(-1, 1))
+	monster_level = clampi(lv, 1, GameData.MAX_LEVEL)
+	max_hp = maxi(1, int(round(_base_hp * GameData.mon_hp_mult(monster_level))))
+	damage = maxi(1, int(round(_base_damage * GameData.mon_dmg_mult(monster_level))))
+	gold = int(round(_base_gold * (1.0 + 0.1 * (monster_level - 1))))
+	xp_reward = int(round((_base_hp * 2 + (30 if boss else 0)) * (1.0 + 0.25 * (monster_level - 1))))
+	hp = max_hp
+
+
 func _respawn() -> void:
 	global_position = _home
-	hp = max_hp
+	_last_hitter = null
+	_apply_level()
 	shape.set_deferred("disabled", false)
 	hurt_shape.set_deferred("disabled", false)
 	state = State.IDLE
@@ -214,6 +243,23 @@ func _player() -> Node2D:
 	return get_tree().get_first_node_in_group("player") as Node2D
 
 
+## The hero if close, otherwise the nearest hunter of the Guild that wanders into its territory.
+func _pick_target() -> Node2D:
+	var p := _player()
+	if p and not p.is_dead() and p.global_position.distance_to(global_position) < aggro_radius:
+		return p
+	var best: Node2D = null
+	var bd := aggro_radius * 0.8
+	for h in get_tree().get_nodes_in_group("hunters"):
+		if h.call("is_dead"):
+			continue
+		var d := (h as Node2D).global_position.distance_to(global_position)
+		if d < bd:
+			best = h
+			bd = d
+	return best if best else p
+
+
 func _process(_delta: float) -> void:
 	queue_redraw()
 
@@ -225,3 +271,4 @@ func _draw() -> void:
 	var y := sprite_offset_y * 2.0 - 4.0
 	draw_rect(Rect2(-w / 2 - 1, y - 1, w + 2, 4), Color(0.1, 0.06, 0.05, 0.85))
 	draw_rect(Rect2(-w / 2, y, w * float(hp) / max_hp, 2), Color(0.85, 0.2, 0.15))
+	draw_string(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), "Nv %d" % monster_level, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, Color(1, 0.95, 0.85))

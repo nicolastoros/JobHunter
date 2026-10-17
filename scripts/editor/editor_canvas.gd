@@ -37,14 +37,20 @@ func _draw() -> void:
 	var tool: String = editor.tool
 	if editor.mouse_over_world:
 		if tool in ["paint", "terrain", "erase"]:
-			var size: int = editor.brush_size if tool != "paint" else 1
 			var c := Vector2i(floor(m.x / 16.0), floor(m.y / 16.0))
-			var off := (size - 1) / 2
 			var col := Color(1, 0.85, 0.3, 0.9) if tool != "erase" else Color(1, 0.35, 0.3, 0.9)
-			draw_rect(Rect2(Vector2(c - Vector2i(off, off)) * 16, Vector2(size, size) * 16), col, false, 2.0 * lw)
-			if tool == "paint" and editor.paint_texture:
-				draw_texture_rect_region(editor.paint_texture, Rect2(Vector2(c) * 16, Vector2(16, 16)),
-					Rect2(Vector2(editor.paint_coords) * 16, Vector2(16, 16)), Color(1, 1, 1, 0.65))
+			if tool == "paint":
+				# preview the whole stamp block a click here would paint
+				var ps: Vector2i = editor.paint_size
+				var o: Vector2i = editor.stamp_origin_for(c) if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) else c
+				if editor.paint_texture:
+					draw_texture_rect_region(editor.paint_texture, Rect2(Vector2(o) * 16, Vector2(ps) * 16),
+						Rect2(Vector2(editor.paint_coords) * 16, Vector2(ps) * 16), Color(1, 1, 1, 0.65))
+				draw_rect(Rect2(Vector2(o) * 16, Vector2(ps) * 16), col, false, 2.0 * lw)
+			else:
+				var size: int = editor.brush_size
+				var off := (size - 1) / 2
+				draw_rect(Rect2(Vector2(c - Vector2i(off, off)) * 16, Vector2(size, size) * 16), col, false, 2.0 * lw)
 		elif tool == "object" and editor.place_item:
 			editor.draw_ghost(self, editor.snapped_mouse())
 	var sel: Node2D = editor.selected

@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/chest.gd" id="1_chest"]
+[ext_resource type="Texture2D" path="res://assets/sprites/field/chests.png" id="2_tex"]
+[ext_resource type="Script" path="res://scripts/ui/talk_prompt.gd" id="3_prompt"]
+
+[sub_resource type="RectangleShape2D" id="Body"]
+size = Vector2(22, 8)
+
+[sub_resource type="CircleShape2D" id="Open"]
+radius = 16.0
+
+[node name="Chest" type="Node2D"]
+script = ExtResource("1_chest")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+offset = Vector2(0, -12)
+
+[node name="Body" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(0, -3)
+shape = SubResource("Body")
+
+[node name="TalkArea" type="Area2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea"]
+shape = SubResource("Open")
+
+[node name="Prompt" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -28)
+z_index = 10
+script = ExtResource("3_prompt")

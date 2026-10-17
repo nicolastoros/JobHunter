@@ -1,19 +1,25 @@
 extends Control
 ## Player status HUD built from the UI pack: portrait panel with health/mana/stamina bars,
-## gold & potions, action bar, and a boss health bar.
+## level & experience, gold & potions, action bar with the six skills (cooldowns), and a boss health bar.
 
 const PANEL := "res://assets/ui/pack/character_panel.png"
 const ACTION := "res://assets/ui/pack/Action_panel.png"
 # bar rows inside the 84x30 portrait panel (from the full-bars variant at x=98)
 const BARS := {"hp": [28, 8, 52], "mana": [30, 13, 43], "stamina": [29, 18, 38]}
+const SLOT_PITCH := 16.0
 
 var _clips := {}
 var _gold: Label
 var _potions: Label
+var _level: Label
+var _xp_fill: ColorRect
+var _skill_icons: Array[TextureRect] = []
+var _skill_cd: Array[ColorRect] = []
 var _boss_root: Control
 var _boss_fill: ColorRect
 var _boss_name: Label
 var _boss: Node = null
+var _streak: Label
 
 
 func _ready() -> void:
@@ -35,9 +41,23 @@ func _ready() -> void:
 		strip.texture = _atlas(panel_tex, Rect2(98 + b[0], 2 + b[1], b[2], 2))
 		clip.add_child(strip)
 		_clips[k] = clip
+	# experience: a thin bar under the portrait panel
+	var xp_back := ColorRect.new()
+	xp_back.color = Color(0.1, 0.07, 0.05, 0.85)
+	xp_back.position = Vector2(31, 29)
+	xp_back.size = Vector2(46, 2)
+	add_child(xp_back)
+	_xp_fill = ColorRect.new()
+	_xp_fill.color = Color(0.95, 0.8, 0.35)
+	_xp_fill.position = xp_back.position
+	_xp_fill.size = Vector2(0, 2)
+	add_child(_xp_fill)
+	_level = _label(Vector2(6, 33), Color(0.95, 0.9, 0.75))
 	_gold = _label(Vector2(31, 33), Color(1, 0.86, 0.4))
 	_potions = _label(Vector2(66, 33), Color(1, 0.6, 0.6))
-	# action bar
+	_streak = _label(Vector2(6, 43), Color(1, 0.6, 0.25))
+	_streak.add_theme_font_size_override("font_size", 8)
+	# action bar: sword (J), potion (Q), skills 1-4
 	var act := load(ACTION) as Texture2D
 	var bar := TextureRect.new()
 	bar.texture = _atlas(act, Rect2(12, 44, 168, 20))
@@ -51,7 +71,24 @@ func _ready() -> void:
 	potion.texture = _atlas(act, Rect2(179, 82, 9, 12))
 	potion.position = Vector2(23, 4)
 	bar.add_child(potion)
-	for pair in [[Vector2(11, 11), "J"], [Vector2(28, 11), "Q"]]:
+	for i in GameData.SKILLS.size():
+		var t := TextureRect.new()
+		t.texture = Game.icon_texture(GameData.SKILLS[i]["icon"])
+		t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		t.size = Vector2(14, 14)
+		t.position = Vector2(4 + SLOT_PITCH * (i + 2), 3)
+		bar.add_child(t)
+		_skill_icons.append(t)
+		var cd := ColorRect.new()
+		cd.color = Color(0.05, 0.03, 0.03, 0.65)
+		cd.position = t.position
+		cd.size = Vector2(14, 0)
+		bar.add_child(cd)
+		_skill_cd.append(cd)
+	var keys := [[Vector2(11, 11), "J"], [Vector2(28, 11), "Q"]]
+	for i in GameData.SKILLS.size():
+		keys.append([Vector2(12 + SLOT_PITCH * (i + 2), 11), str(i + 1)])
+	for pair in keys:
 		var l := Label.new()
 		l.text = pair[1]
 		l.position = pair[0]
@@ -104,8 +141,10 @@ func _label(p: Vector2, c: Color) -> Label:
 
 func _refresh() -> void:
 	_set_bar("hp", float(Game.player_hp) / Game.max_hp)
-	_set_bar("mana", 1.0)
+	_set_bar("mana", Game.mana / Game.max_mana)
 	_set_bar("stamina", Game.stamina / Game.max_stamina)
+	_xp_fill.size.x = roundf(46.0 * float(Game.xp) / float(Game.xp_to_next()))
+	_level.text = "Nv %d" % Game.level
 	_gold.text = "%d oro" % Game.gold
 	_potions.text = "x%d" % Game.potions
 
@@ -118,10 +157,21 @@ func _set_bar(k: String, frac: float) -> void:
 func _on_boss(m: Node) -> void:
 	_boss = m
 	_boss_root.visible = true
-	_boss_name.text = m.get("monster_name")
+	_boss_name.text = "%s  ·  Nv %d" % [m.get("monster_name"), m.get("monster_level")]
 
 
 func _process(_delta: float) -> void:
+	var st := Game.streak()
+	_streak.visible = st >= 2
+	if st >= 2:
+		_streak.text = "Racha x%d  (+%d %% renombre)" % [st, int(round((Game.streak_mult() - 1.0) * 100))]
+	for i in GameData.SKILLS.size():
+		var s: Dictionary = GameData.SKILLS[i]
+		var known := Game.has_skill(s["id"])
+		_skill_icons[i].modulate = Color(1, 1, 1, 1) if known and Game.mana >= float(s["mana"]) else Color(0.55, 0.55, 0.6, 0.55 if known else 0.22)
+		var frac := Game.skill_cooldown_left(s["id"]) / Game.skill_cooldown(s["id"]) if known else 0.0
+		_skill_cd[i].size.y = roundf(14.0 * frac)
+		_skill_cd[i].position.y = 3.0 + 14.0 - _skill_cd[i].size.y
 	if _boss == null:
 		return
 	if not is_instance_valid(_boss) or _boss.get("hp") <= 0 or _boss.get("state") == 6:

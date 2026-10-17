@@ -45,8 +45,9 @@ def build_city(w, g):
     P("melons", 5.2, 12.2)
 
     P("weapon_stall", 37, 14)
-    trader(w, "weapon", *[v * T for v in o(31.5, 13.4)], talk=("Kara la armera", ["Lanzas, espadas y escudos, todo forjado aquí. Fuera de las murallas no conviene ir desarmado."]),
-           bubble=["Acero de calidad.", "Armaduras a medida."])
+    kara = trader(w, "weapon", *[v * T for v in o(31.5, 13.4)], talk=("Kara la herrera", ["Tráeme lo que sueltan las bestias y te mejoro el equipo."]),
+           bubble=["Acero de calidad.", "Mejoro armas y armaduras.", "¿Traes materiales?"])
+    kara["opens"] = "forge"
     P("sword_table", 31.5, 9.5)
     P("armor_flag", 29.5, 11)
     P("armor_c", 43, 9)
