@@ -20,6 +20,8 @@ var _boss_fill: ColorRect
 var _boss_name: Label
 var _boss: Node = null
 var _streak: Label
+## The action bar (sword, potion, skills 1-6); touch controls tap its slots.
+var action_bar: Control
 
 
 func _ready() -> void:
@@ -61,8 +63,11 @@ func _ready() -> void:
 	var act := load(ACTION) as Texture2D
 	var bar := TextureRect.new()
 	bar.texture = _atlas(act, Rect2(12, 44, 168, 20))
-	bar.position = Vector2(240 - 84, 270 - 24)
+	bar.size = Vector2(168, 20)
 	add_child(bar)
+	bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM, Control.PRESET_MODE_KEEP_SIZE)
+	bar.position.y -= 4
+	action_bar = bar
 	var sword := TextureRect.new()
 	sword.texture = _atlas(act, Rect2(129, 65, 14, 14))
 	sword.position = Vector2(4, 3)
@@ -97,9 +102,11 @@ func _ready() -> void:
 		bar.add_child(l)
 	# boss bar
 	_boss_root = Control.new()
-	_boss_root.position = Vector2(140, 216)
+	_boss_root.size = Vector2(200, 20)
 	_boss_root.visible = false
 	add_child(_boss_root)
+	_boss_root.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM, Control.PRESET_MODE_KEEP_SIZE)
+	_boss_root.position.y -= 54
 	var back := ColorRect.new()
 	back.color = Color(0.08, 0.05, 0.04, 0.85)
 	back.size = Vector2(200, 7)

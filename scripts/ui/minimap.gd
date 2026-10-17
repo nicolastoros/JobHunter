@@ -37,7 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_big = not _big
 		Game.input_locked = _big
 		get_tree().paused = _big
-	elif _big and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")):
+	elif _big and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause") or (event is InputEventMouseButton and event.pressed)):
 		get_viewport().set_input_as_handled()
 		_big = false
 		Game.input_locked = false
@@ -78,7 +78,8 @@ func _draw() -> void:
 	var pp: Vector2 = to_screen.call(p.global_position)
 	_hero(pp, 1.0)
 	var f := get_theme_default_font()
-	draw_string(f, area.position + Vector2(2, SIZE.y - 2), "M: mapa", HORIZONTAL_ALIGNMENT_LEFT, -1, 6, Color(1, 0.95, 0.8, 0.85))
+	var hint := "Mapa" if DisplayServer.is_touchscreen_available() else "M: mapa"
+	draw_string(f, area.position + Vector2(2, SIZE.y - 2), hint, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, Color(1, 0.95, 0.8, 0.85))
 
 
 func _draw_big(p: Node2D) -> void:

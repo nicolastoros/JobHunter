@@ -109,6 +109,8 @@ func _ready() -> void:
 	if f:
 		catalog = JSON.parse_string(f.get_as_text())
 	_prev_scale_mode = get_tree().root.content_scale_mode
+	# objects are dragged and the camera moves outside physics ticks: no smoothing lag in the editor
+	get_tree().physics_interpolation = false
 	get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 	cam = Camera2D.new()
 	cam.zoom = Vector2(3, 3)
@@ -1302,6 +1304,7 @@ func _exit() -> void:
 
 func _do_exit() -> void:
 	get_tree().root.content_scale_mode = _prev_scale_mode
+	get_tree().physics_interpolation = ProjectSettings.get_setting("physics/common/physics_interpolation", false)
 	Game.stop_editing()
 	Game.go_to_main_menu()
 	queue_free()

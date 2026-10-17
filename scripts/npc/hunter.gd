@@ -224,6 +224,7 @@ func _retreat() -> void:
 	t.tween_interval(25.0)
 	t.tween_callback(func():
 		global_position = home
+		reset_physics_interpolation()
 		hp = max_hp
 		$CollisionShape2D.set_deferred("disabled", false)
 		state = State.IDLE

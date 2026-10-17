@@ -92,7 +92,32 @@ body {
 		</style>
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
-
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+html, body { margin: 0; background: #120c08; overflow: hidden; touch-action: none; }
+#rotate-hint { display: none; position: fixed; inset: 0; z-index: 9999; background: #1a120c; color: #f3dfb0;
+  font: 600 20px sans-serif; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+@media (orientation: portrait) and (pointer: coarse) { #rotate-hint { display: flex; } }
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var d = document.createElement('div');
+  d.id = 'rotate-hint';
+  d.innerHTML = 'Crónicas del Cazador<br><br>Gira el teléfono para jugar en horizontal';
+  document.body.appendChild(d);
+});
+function goFullscreen() {
+  var el = document.documentElement;
+  if (document.fullscreenElement || !el.requestFullscreen) return;
+  el.requestFullscreen().then(function () {
+    if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(function () {});
+  }).catch(function () {});
+}
+if (window.matchMedia('(pointer: coarse)').matches) {
+  window.addEventListener('touchend', goFullscreen);
+}
+</script>
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -111,7 +136,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":5576576,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":5584548,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

@@ -995,6 +995,7 @@ func spawn_popup(pos: Vector2, text: String, color: Color) -> void:
 	p.set("color", color)
 	p.position = pos
 	p.z_index = 70
+	p.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	scene.add_child(p)
 
 

@@ -75,10 +75,9 @@ func _open_password() -> void:
 
 func _build_password_dialog() -> void:
 	_pw_panel = PanelContainer.new()
-	_pw_panel.set_anchors_preset(Control.PRESET_TOP_LEFT)
-	_pw_panel.position = Vector2(140, 80)
 	_pw_panel.size = Vector2(200, 100)
 	add_child(_pw_panel)
+	_pw_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER, Control.PRESET_MODE_KEEP_SIZE)
 	var vb := VBoxContainer.new()
 	vb.add_theme_constant_override("separation", 6)
 	_pw_panel.add_child(vb)

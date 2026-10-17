@@ -77,6 +77,7 @@ func _build() -> void:
 	board.size = Vector2(420, 234)
 	board.custom_minimum_size = board.size
 	_root.add_child(board)
+	board.set_anchors_and_offsets_preset(Control.PRESET_CENTER, Control.PRESET_MODE_KEEP_SIZE)
 	var vb := VBoxContainer.new()
 	vb.add_theme_constant_override("separation", 4)
 	board.add_child(vb)

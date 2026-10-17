@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/ui/game_menu.gd" id="4_gm"]
 [ext_resource type="Script" path="res://scripts/ui/forge.gd" id="5_forge"]
 [ext_resource type="Script" path="res://scripts/ui/minimap.gd" id="6_map"]
+[ext_resource type="Script" path="res://scripts/ui/touch_controls.gd" id="7_touch"]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 10
@@ -140,3 +141,6 @@ script = ExtResource("4_gm")
 
 [node name="Forge" type="CanvasLayer" parent="."]
 script = ExtResource("5_forge")
+
+[node name="TouchControls" type="CanvasLayer" parent="."]
+script = ExtResource("7_touch")

@@ -209,6 +209,7 @@ func _apply_level() -> void:
 
 func _respawn() -> void:
 	global_position = _home
+	reset_physics_interpolation()
 	_last_hitter = null
 	_apply_level()
 	shape.set_deferred("disabled", false)

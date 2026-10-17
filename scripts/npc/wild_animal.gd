@@ -15,6 +15,8 @@ var _fleeing := false
 
 
 func _ready() -> void:
+	# moves every rendered frame already, so physics interpolation would only add lag
+	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	sprite.sprite_frames = frames
 	_wait = randf_range(0.5, 4.0)
 	_play("idle")

@@ -23,7 +23,8 @@ func _ready() -> void:
 		player.facing = "up" if Game.pending_spawn != "stairs" else "down"
 	Game.pending_spawn = ""
 	Game.take_pending_position(player)
-	var vp := Vector2(480, 270)
+	player.reset_physics_interpolation()
+	var vp := get_viewport().get_visible_rect().size
 	var r := Rect2(Vector2.ZERO, Vector2(room_size))
 	if r.size.x < vp.x:
 		r = r.grow_individual((vp.x - r.size.x) / 2.0, 0, (vp.x - r.size.x) / 2.0, 0)

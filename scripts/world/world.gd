@@ -54,6 +54,7 @@ func _ready() -> void:
 		player.facing = "down"
 	Game.pending_spawn = ""
 	Game.take_pending_position(player)
+	player.reset_physics_interpolation()
 	player.set_camera_limits(Rect2i(Vector2i.ZERO, map_size * 16))
 	_spawn_chests()
 	_spawn_hunters.call_deferred()
