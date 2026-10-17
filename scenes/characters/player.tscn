@@ -1,0 +1,52 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_player"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/swordsman_lvl1.tres" id="2_frames"]
+
+[sub_resource type="RectangleShape2D" id="Body"]
+size = Vector2(12, 6)
+
+[sub_resource type="CircleShape2D" id="Interact"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="Hit"]
+size = Vector2(22, 18)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_frames")
+animation = &"idle_down"
+autoplay = "idle_down"
+offset = Vector2(0, -14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("Body")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("Interact")
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+shape = SubResource("Hit")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -12)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0

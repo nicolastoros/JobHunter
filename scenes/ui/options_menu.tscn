@@ -1,0 +1,59 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/options_menu.gd" id="1_opts"]
+
+[node name="OptionsMenu" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -60.0
+offset_right = 110.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_opts")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.48, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "Opciones"
+horizontal_alignment = 1
+
+[node name="Volume" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="VBox/Volume"]
+layout_mode = 2
+text = "Volumen"
+
+[node name="Slider" type="HSlider" parent="VBox/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 5.0
+value = 80.0
+
+[node name="Value" type="Label" parent="VBox/Volume"]
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+text = "80%"
+horizontal_alignment = 2
+
+[node name="Fullscreen" type="CheckButton" parent="VBox"]
+layout_mode = 2
+text = "Pantalla completa"
+
+[node name="Back" type="Button" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Volver"

@@ -1,0 +1,152 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_bg.png" id="2_bg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/options_menu.tscn" id="3_opts"]
+
+[sub_resource type="Gradient" id="ShadeGradient"]
+offsets = PackedFloat32Array(0, 0.45, 1)
+colors = PackedColorArray(0.05, 0.03, 0.03, 0.9, 0.05, 0.03, 0.03, 0.55, 0.05, 0.03, 0.03, 0.1)
+
+[sub_resource type="GradientTexture2D" id="Shade"]
+gradient = SubResource("ShadeGradient")
+width = 64
+height = 4
+
+[sub_resource type="Gradient" id="VignetteGradient"]
+offsets = PackedFloat32Array(0.55, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.03, 0.02, 0.02, 0.6)
+
+[sub_resource type="GradientTexture2D" id="Vignette"]
+gradient = SubResource("VignetteGradient")
+width = 96
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -170.0
+offset_right = 768.0
+offset_bottom = 406.0
+mouse_filter = 2
+texture = ExtResource("2_bg")
+stretch_mode = 2
+
+[node name="Shade" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("Shade")
+expand_mode = 1
+
+[node name="Vignette" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("Vignette")
+expand_mode = 1
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = -100.0
+offset_right = 216.0
+offset_bottom = 100.0
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.46, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.08, 0.04, 1)
+theme_override_constants/outline_size = 6
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 30
+text = "CRÓNICAS"
+
+[node name="Title2" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.9, 0.78, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.08, 0.04, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 17
+text = "DEL CAZADOR"
+
+[node name="Subtitle" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 8
+text = "Monstruos, acero y gloria"
+
+[node name="Spacer" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Menu"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 5
+
+[node name="NewGame" type="Button" parent="Menu/Buttons"]
+layout_mode = 2
+text = "Nueva partida"
+
+[node name="Continue" type="Button" parent="Menu/Buttons"]
+layout_mode = 2
+disabled = true
+text = "Continuar"
+
+[node name="Options" type="Button" parent="Menu/Buttons"]
+layout_mode = 2
+text = "Opciones"
+
+[node name="Quit" type="Button" parent="Menu/Buttons"]
+layout_mode = 2
+text = "Salir"
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -14.0
+offset_right = -6.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8, 0.72, 0.6, 0.8)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 7
+text = "v0.1.0  ·  Godot 4.7"
+horizontal_alignment = 2
+
+[node name="OptionsMenu" parent="." instance=ExtResource("3_opts")]
+layout_mode = 1

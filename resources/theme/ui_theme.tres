@@ -1,0 +1,125 @@
+[gd_resource type="Theme" format=3]
+
+[sub_resource type="StyleBoxFlat" id="BtnNormal"]
+content_margin_left = 10.0
+content_margin_top = 3.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.165, 0.11, 0.09, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.42, 0.29, 0.17, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="BtnHover"]
+content_margin_left = 10.0
+content_margin_top = 3.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.29, 0.18, 0.11, 0.97)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.87, 0.65, 0.27, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="BtnPressed"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 3.0
+bg_color = Color(0.12, 0.075, 0.06, 1)
+border_width_left = 1
+border_width_top = 2
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.87, 0.65, 0.27, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="BtnDisabled"]
+content_margin_left = 10.0
+content_margin_top = 3.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.12, 0.09, 0.08, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.25, 0.2, 0.16, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="BtnFocus"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.86, 0.5, 0.9)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="Panel"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.11, 0.075, 0.065, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.62, 0.45, 0.22, 1)
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="SliderTrack"]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.07, 0.05, 0.04, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.42, 0.29, 0.17, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="SliderFill"]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.85, 0.62, 0.25, 1)
+anti_aliasing = false
+
+[resource]
+default_font_size = 10
+Button/colors/font_color = Color(0.93, 0.86, 0.72, 1)
+Button/colors/font_disabled_color = Color(0.45, 0.4, 0.35, 1)
+Button/colors/font_focus_color = Color(1, 0.9, 0.6, 1)
+Button/colors/font_hover_color = Color(1, 0.88, 0.55, 1)
+Button/colors/font_pressed_color = Color(0.95, 0.75, 0.4, 1)
+Button/styles/disabled = SubResource("BtnDisabled")
+Button/styles/focus = SubResource("BtnFocus")
+Button/styles/hover = SubResource("BtnHover")
+Button/styles/normal = SubResource("BtnNormal")
+Button/styles/pressed = SubResource("BtnPressed")
+CheckButton/colors/font_color = Color(0.93, 0.86, 0.72, 1)
+CheckButton/colors/font_hover_color = Color(1, 0.88, 0.55, 1)
+CheckButton/colors/font_focus_color = Color(1, 0.9, 0.6, 1)
+CheckButton/colors/font_pressed_color = Color(0.93, 0.86, 0.72, 1)
+CheckButton/styles/focus = SubResource("BtnFocus")
+HSlider/styles/slider = SubResource("SliderTrack")
+HSlider/styles/grabber_area = SubResource("SliderFill")
+HSlider/styles/grabber_area_highlight = SubResource("SliderFill")
+HSlider/styles/focus = SubResource("BtnFocus")
+Label/colors/font_color = Color(0.93, 0.86, 0.72, 1)
+Label/colors/font_outline_color = Color(0.06, 0.04, 0.03, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.5)
+PanelContainer/styles/panel = SubResource("Panel")
+Panel/styles/panel = SubResource("Panel")
