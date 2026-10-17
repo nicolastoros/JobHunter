@@ -1,0 +1,21812 @@
+[
+{
+"map": "Farm.tmx",
+"layer": "Walls_under_water",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\water_detilazation.png",
+"region": [
+496,
+16,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+-20,
+9
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Walls_under_water",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\water_detilazation.png",
+"region": [
+496,
+128,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+-7,
+7
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Water_details2",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\water_detilazation.png",
+"region": [
+256,
+64,
+144,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+-20,
+7
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Ground",
+"tileset": "Water_coasts",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Water_coasts.png",
+"region": [
+80,
+16,
+112,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+320,
+150
+]
+],
+"cell": [
+-19,
+6
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Fish",
+"tileset": "fishes",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\fishes.png",
+"region": [
+16,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+240,
+32,
+150
+],
+[
+240,
+32,
+150
+],
+[
+240,
+32,
+150
+]
+],
+"cell": [
+-18,
+7
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Fish",
+"tileset": "fishes",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\fishes.png",
+"region": [
+0,
+32,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+256,
+0,
+150
+]
+],
+"cell": [
+-16,
+9
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "beds",
+"tileset": "wicket_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\wicket_animation.png",
+"region": [
+0,
+64,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+-16,
+4
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "beds",
+"tileset": "wicket_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\wicket_animation.png",
+"region": [
+0,
+128,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+-10,
+10
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "beds",
+"tileset": "wicket_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\wicket_animation.png",
+"region": [
+0,
+128,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+11,
+3
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Barn/door",
+"tileset": "door1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\door1.png",
+"region": [
+0,
+0,
+96,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+-12,
+-7
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Barn/Window",
+"tileset": "window1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\window1.png",
+"region": [
+0,
+0,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+-11,
+-8
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Windmill/Door",
+"tileset": "Doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Doors.png",
+"region": [
+96,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+-16,
+-4
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Windmill/Sails",
+"tileset": "Sails_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Sails_animation.png",
+"region": [
+0,
+0,
+160,
+144
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+432,
+150
+],
+[
+0,
+576,
+150
+],
+[
+0,
+720,
+150
+]
+],
+"cell": [
+-20,
+-12
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Farmer_house/Door",
+"tileset": "Doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Doors.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+11,
+-7
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Farmer_house/Windows",
+"tileset": "house_windows",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\house_windows.png",
+"region": [
+64,
+-32,
+128,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+8,
+-9
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Chicken_coop/door",
+"tileset": "small_door",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\small_door.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+-10,
+7
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Animals",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+128,
+-16,
+64,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+]
+],
+"cell": [
+-17,
+1
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Animals",
+"tileset": "Chicken_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Chicken_animation.png",
+"region": [
+128,
+-16,
+64,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-10,
+7
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Animals",
+"tileset": "Cow_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Cow_animation.png",
+"region": [
+384,
+16,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+192,
+150
+]
+],
+"cell": [
+10,
+1
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Animals2",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+160,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+]
+],
+"cell": [
+-18,
+1
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Animals2",
+"tileset": "Chicken_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Chicken_animation.png",
+"region": [
+160,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-9,
+6
+]
+},
+{
+"map": "Farm.tmx",
+"layer": "Animals2",
+"tileset": "Cow_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Cow_animation.png",
+"region": [
+272,
+16,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+192,
+150
+]
+],
+"cell": [
+13,
+0
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Cow_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Cow_animation.png",
+"region": [
+0,
+0,
+512,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+320,
+150
+]
+],
+"cell": [
+-16,
+-16
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-15,
+-12
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Chicken_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Chicken_animation.png",
+"region": [
+0,
+0,
+256,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-15,
+-9
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+32,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-12,
+-12
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+64,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-9,
+-12
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+96,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-6,
+-12
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+128,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+]
+],
+"cell": [
+-3,
+-12
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+160,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+]
+],
+"cell": [
+0,
+-12
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+192,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+]
+],
+"cell": [
+3,
+-12
+]
+},
+{
+"map": "Plants_animals.tmx",
+"layer": "Tile Layer 1",
+"tileset": "Pig_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Pig_animation.png",
+"region": [
+224,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+]
+],
+"cell": [
+6,
+-12
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation1",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\water_detilazation_v2.png",
+"region": [
+256,
+80,
+128,
+80
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+2,
+9
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation1",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\water_detilazation_v2.png",
+"region": [
+256,
+64,
+160,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+10,
+5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation1",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\water_detilazation_v2.png",
+"region": [
+0,
+80,
+240,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+13,
+-2
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation1",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\water_detilazation_v2.png",
+"region": [
+448,
+64,
+80,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+16,
+-4
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation2",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\water_detilazation_v2.png",
+"region": [
+96,
+0,
+448,
+112
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+-3,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation2",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\water_detilazation_v2.png",
+"region": [
+304,
+-16,
+320,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+8,
+-5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation2",
+"tileset": "Water_detilazation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\water_detilazation_v2.png",
+"region": [
+272,
+128,
+144,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+208,
+150
+],
+[
+0,
+416,
+150
+],
+[
+0,
+624,
+150
+],
+[
+0,
+832,
+150
+],
+[
+0,
+1040,
+150
+]
+],
+"cell": [
+18,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation3",
+"tileset": "Water_detailization1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Water_detailization1.png",
+"region": [
+256,
+0,
+416,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+336,
+150
+],
+[
+0,
+448,
+150
+],
+[
+0,
+560,
+150
+]
+],
+"cell": [
+-2,
+3
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation3",
+"tileset": "Water_detailization1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Water_detailization1.png",
+"region": [
+176,
+48,
+80,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+336,
+150
+],
+[
+0,
+448,
+150
+],
+[
+0,
+560,
+150
+]
+],
+"cell": [
+2,
+11
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation4",
+"tileset": "Water_detailization1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Water_detailization1.png",
+"region": [
+128,
+80,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+336,
+150
+],
+[
+0,
+448,
+150
+],
+[
+0,
+560,
+150
+]
+],
+"cell": [
+7,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation5",
+"tileset": "Water_detailization1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Water_detailization1.png",
+"region": [
+224,
+80,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+336,
+150
+],
+[
+0,
+448,
+150
+],
+[
+0,
+560,
+150
+]
+],
+"cell": [
+5,
+10
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation5",
+"tileset": "Water_detailization1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Water_detailization1.png",
+"region": [
+192,
+80,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+336,
+150
+],
+[
+0,
+448,
+150
+],
+[
+0,
+560,
+150
+]
+],
+"cell": [
+10,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "water_detailsation5",
+"tileset": "Water_detailization1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Water_detailization1.png",
+"region": [
+192,
+80,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+336,
+150
+],
+[
+0,
+448,
+150
+],
+[
+0,
+560,
+150
+]
+],
+"cell": [
+14,
+5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Ground",
+"tileset": "Water_coasts",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Water_coasts.png",
+"region": [
+208,
+-80,
+352,
+240
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+384,
+150
+],
+[
+0,
+512,
+150
+],
+[
+0,
+640,
+150
+]
+],
+"cell": [
+-3,
+-5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+16,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-1,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+16,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+1,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+8,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+10,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+12,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+14,
+6
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+16,
+4
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+18,
+4
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+20,
+4
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "piles_bottom",
+"tileset": "piles",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\piles.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+22,
+4
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Big_boat1",
+"tileset": "Boat1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boat1.png",
+"region": [
+0,
+0,
+176,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+176,
+0,
+150
+],
+[
+352,
+0,
+150
+],
+[
+528,
+0,
+150
+],
+[
+0,
+128,
+150
+],
+[
+176,
+128,
+150
+],
+[
+352,
+128,
+150
+],
+[
+528,
+128,
+150
+],
+[
+0,
+256,
+150
+],
+[
+176,
+256,
+150
+],
+[
+352,
+256,
+150
+],
+[
+528,
+256,
+150
+]
+],
+"cell": [
+15,
+-5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Big_boat2",
+"tileset": "Boat2",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boat2.png",
+"region": [
+0,
+0,
+160,
+112
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+160,
+112,
+150
+],
+[
+320,
+112,
+150
+],
+[
+480,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+160,
+224,
+150
+],
+[
+320,
+224,
+150
+],
+[
+480,
+224,
+150
+]
+],
+"cell": [
+5,
+7
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Fish",
+"tileset": "Fish3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish4_animation.png",
+"region": [
+32,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+-32,
+0,
+150
+],
+[
+-32,
+0,
+150
+],
+[
+-32,
+0,
+150
+]
+],
+"cell": [
+-2,
+11
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Fish",
+"tileset": "Fish1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish1_animation.png",
+"region": [
+16,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+-16,
+0,
+150
+],
+[
+-16,
+0,
+150
+],
+[
+-16,
+0,
+150
+]
+],
+"cell": [
+16,
+9
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Fish",
+"tileset": "Fish1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish1_animation.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+18,
+-4
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Fish",
+"tileset": "Fish3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish3_animation.png",
+"region": [
+0,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+20,
+11
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Fish",
+"tileset": "Fish1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish2_animation.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+24,
+3
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Objects1",
+"tileset": "Windows_doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Windows_doors.png",
+"region": [
+0,
+0,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+1,
+1
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Characters",
+"tileset": "Old_man_idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Old_man_idle.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+]
+],
+"cell": [
+4,
+9
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Characters",
+"tileset": "Boy_amazed",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boy_amazed.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+7,
+0
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Characters",
+"tileset": "Boy_weaves",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boy_weaves.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+9,
+7
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Characters",
+"tileset": "Cobold_on_shark",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Cobold_on_shark.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+10,
+-1
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Characters",
+"tileset": "Fisherman_boat1_throws",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fisherman_boat1_throws.png",
+"region": [
+0,
+0,
+80,
+80
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+80,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+0,
+80,
+150
+],
+[
+80,
+80,
+150
+],
+[
+160,
+80,
+150
+],
+[
+240,
+80,
+150
+],
+[
+0,
+160,
+150
+],
+[
+80,
+160,
+150
+],
+[
+160,
+160,
+150
+],
+[
+240,
+160,
+150
+]
+],
+"cell": [
+18,
+-2
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Small_boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_2.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+-2,
+5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Small_boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_1.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+11,
+5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Small_boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_5.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+15,
+3
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Small_boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_3.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+21,
+3
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Small_boats2",
+"tileset": "Small_boat_v2_1-Sheet",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v2_1-Sheet.png",
+"region": [
+0,
+0,
+48,
+112
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+0,
+5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Small_boats2",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_7.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+13,
+5
+]
+},
+{
+"map": "Fishing_dock.tmx",
+"layer": "Small_boats2",
+"tileset": "Small_boat_v2_1-Sheet",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v2_2.png",
+"region": [
+0,
+0,
+48,
+112
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+17,
+3
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Fish",
+"tileset": "Fish1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish1_animation.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+2,
+-7
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Fish",
+"tileset": "Fish3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish3_animation.png",
+"region": [
+0,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+5,
+-7
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Fish",
+"tileset": "Fish3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish4_animation.png",
+"region": [
+0,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+8,
+-7
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Fish",
+"tileset": "Fish1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fish2_animation.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+11,
+-7
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Boat2",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boat2.png",
+"region": [
+0,
+0,
+160,
+112
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+0,
+112,
+150
+],
+[
+160,
+112,
+150
+],
+[
+320,
+112,
+150
+],
+[
+480,
+112,
+150
+],
+[
+0,
+224,
+150
+],
+[
+160,
+224,
+150
+],
+[
+320,
+224,
+150
+],
+[
+480,
+224,
+150
+]
+],
+"cell": [
+0,
+2
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_1.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+1,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_2.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+4,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_3.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+7,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_4.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+10,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Boat1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boat1.png",
+"region": [
+0,
+0,
+176,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+176,
+0,
+150
+],
+[
+352,
+0,
+150
+],
+[
+528,
+0,
+150
+],
+[
+0,
+128,
+150
+],
+[
+176,
+128,
+150
+],
+[
+352,
+128,
+150
+],
+[
+528,
+128,
+150
+],
+[
+0,
+256,
+150
+],
+[
+176,
+256,
+150
+],
+[
+352,
+256,
+150
+],
+[
+528,
+256,
+150
+]
+],
+"cell": [
+10,
+2
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_5.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+13,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_6.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+16,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_7.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+19,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v1_1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v1_8.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+22,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v2_1-Sheet",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v2_1-Sheet.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+25,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Boats",
+"tileset": "Small_boat_v2_1-Sheet",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Small_boat_v2_2.png",
+"region": [
+0,
+0,
+48,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+28,
+-4
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_no_shadow",
+"tileset": "Boy_weaves",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boy_weaves.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+0,
+10
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_no_shadow",
+"tileset": "Boy_looking",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boy_looking.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+3,
+10
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_no_shadow",
+"tileset": "Fisherman_boat1_idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fisherman_boat1_idle.png",
+"region": [
+0,
+0,
+80,
+80
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+80,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+0,
+80,
+150
+],
+[
+80,
+80,
+150
+],
+[
+160,
+80,
+150
+],
+[
+240,
+80,
+150
+],
+[
+0,
+160,
+150
+],
+[
+80,
+160,
+150
+],
+[
+160,
+160,
+150
+],
+[
+240,
+160,
+150
+]
+],
+"cell": [
+7,
+9
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_no_shadow",
+"tileset": "Fisherman_boat1_throws",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Fisherman_boat1_throws.png",
+"region": [
+0,
+0,
+80,
+80
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+80,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+0,
+80,
+150
+],
+[
+80,
+80,
+150
+],
+[
+160,
+80,
+150
+],
+[
+240,
+80,
+150
+],
+[
+0,
+160,
+150
+],
+[
+80,
+160,
+150
+],
+[
+160,
+160,
+150
+],
+[
+240,
+160,
+150
+]
+],
+"cell": [
+12,
+9
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_no_shadow",
+"tileset": "Cobold_on_shark",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Cobold_on_shark.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+15,
+12
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_no_shadow",
+"tileset": "Seller_gramma",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Seller_gramma.png",
+"region": [
+0,
+0,
+16,
+80
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+16,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+80,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+112,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+176,
+0,
+150
+]
+],
+"cell": [
+24,
+8
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_full",
+"tileset": "Cobold_on_floor",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Cobold_on_floor.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+17,
+13
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_full",
+"tileset": "Old_man_orders",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Old_man_orders.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+]
+],
+"cell": [
+18,
+10
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_full",
+"tileset": "Boy_amazed",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boy_amazed.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+19,
+12
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_full",
+"tileset": "Old_man_idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Old_man_idle.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+]
+],
+"cell": [
+20,
+10
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Cobold_on_floor",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Cobold_on_floor_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+17,
+13
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Old_man_orders",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Old_man_orders_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+]
+],
+"cell": [
+18,
+10
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Boy_amazed",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Boy_amazed_without_shadow.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+19,
+12
+]
+},
+{
+"map": "Boats_fish_characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Old_man_idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Old_man_idle_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+]
+],
+"cell": [
+20,
+10
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Arrow",
+"tileset": "Arrow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Arrow.png",
+"region": [
+0,
+0,
+96,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+160,
+48,
+150
+],
+[
+160,
+48,
+150
+],
+[
+160,
+48,
+150
+]
+],
+"cell": [
+24,
+0
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Archers",
+"tileset": "Archer1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer1_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+24,
+4
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Archers",
+"tileset": "Archer2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer2_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+26,
+4
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Archers",
+"tileset": "Archer3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer3_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+28,
+4
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Mannequins",
+"tileset": "Attacked_Manequin1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin1_with_shadow.png",
+"region": [
+0,
+32,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+22,
+7
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Mannequins",
+"tileset": "Attacked_Manequin3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin3_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+25,
+7
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Mannequins",
+"tileset": "Attacked_Manequin5_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin5_with_shadow.png",
+"region": [
+0,
+64,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+27,
+10
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Sword_fighters",
+"tileset": "Fighter_sword5_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_with_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+21,
+7
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Sword_fighters",
+"tileset": "Fighter_sword2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+22,
+9
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Sword_fighters",
+"tileset": "Fighter_sword3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_with_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+24,
+8
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Sword_fighters",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+27,
+6
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Sword_fighters",
+"tileset": "Fighter_sword4_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_with_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+28,
+10
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Fighters_sit",
+"tileset": "Fighter_sit2",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sit2.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+31,
+10
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Fighters_sit",
+"tileset": "Fighter_sit1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sit1.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+35,
+9
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Trainer",
+"tileset": "Trainer_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Trainer_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+31,
+3
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Fighter_shield_sword",
+"tileset": "Fighter_sword_shield_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword_shield_with_shadow.png",
+"region": [
+0,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+320,
+150
+],
+[
+0,
+352,
+150
+]
+],
+"cell": [
+32,
+5
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Fighter_halebard",
+"tileset": "Fighter_halberd_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_halberd_with_shadow.png",
+"region": [
+0,
+0,
+80,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+320,
+150
+],
+[
+0,
+352,
+150
+]
+],
+"cell": [
+33,
+5
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Mannequins_front",
+"tileset": "Attacked_Manequin4_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin4_with_shadow.png",
+"region": [
+0,
+96,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+23,
+10
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Mannequins_front",
+"tileset": "Attacked_Manequin2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin2_with_shadow.png",
+"region": [
+0,
+96,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+28,
+7
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Aristocrates_man_woman",
+"tileset": "Aristocrat_man",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Aristocrat_woman.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+]
+],
+"cell": [
+32,
+0
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Aristocrates_man_woman",
+"tileset": "Aristocrat_man",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Aristocrat_man.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+]
+],
+"cell": [
+35,
+0
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Aristocrates_old_man_servant",
+"tileset": "Aristocrat_old_man",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Aristocrat_old_man.png",
+"region": [
+16,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+]
+],
+"cell": [
+34,
+0
+]
+},
+{
+"map": "Training_ground.tmx",
+"layer": "Aristocrates_old_man_servant",
+"tileset": "Servant_girl_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Servant_girl_with_shadow.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+]
+],
+"cell": [
+36,
+1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword4_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword5_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Servant_girl_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Servant_girl_with_shadow.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+]
+],
+"cell": [
+-15,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Trainer_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Trainer_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-15,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword_shield_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword_shield_with_shadow.png",
+"region": [
+0,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+320,
+150
+],
+[
+0,
+352,
+150
+]
+],
+"cell": [
+-12,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_with_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_with_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_with_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword4_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_with_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword5_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_with_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_with_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_with_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_with_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword4_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_with_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword5_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_with_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_halberd_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_halberd_with_shadow.png",
+"region": [
+0,
+0,
+80,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+320,
+150
+],
+[
+0,
+352,
+150
+]
+],
+"cell": [
+-7,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_with_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_with_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_with_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword4_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_with_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword5_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_with_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin1_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin2_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin3_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin4_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin4_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin5_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin5_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Archer3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer3_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+1,
+0
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Archer2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer2_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+3,
+0
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Archer1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer1_with_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+5,
+0
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_without_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword2_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_without_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword3_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_without_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword4_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_without_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword5_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_without_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-16,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Servant_girl_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Servant_girl_without_shadow.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+]
+],
+"cell": [
+-15,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Trainer_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Trainer_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-15,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Aristocrat_man",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Aristocrat_man.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+]
+],
+"cell": [
+-13,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword_shield_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword_shield_without1_shadow.png",
+"region": [
+0,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+320,
+150
+],
+[
+0,
+352,
+150
+]
+],
+"cell": [
+-12,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_without_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword2_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_without_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword3_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_without_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword4_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_without_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword5_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_without_shadow.png",
+"region": [
+16,
+80,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-11,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Aristocrat_man",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Aristocrat_woman.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+]
+],
+"cell": [
+-11,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Aristocrat_old_man",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Aristocrat_old_man.png",
+"region": [
+16,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+]
+],
+"cell": [
+-9,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_without_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword2_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_without_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword3_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_without_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword4_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_without_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword5_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_without_shadow.png",
+"region": [
+16,
+144,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-7,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_halberd_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_halberd_without_shadow.png",
+"region": [
+0,
+0,
+80,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+224,
+150
+],
+[
+0,
+256,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+320,
+150
+],
+[
+0,
+352,
+150
+]
+],
+"cell": [
+-7,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sit1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sit1.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+]
+],
+"cell": [
+-6,
+0
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword1_without_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword2_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword2_without_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword3_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword3_without_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword4_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword4_without_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sword5_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sword5_without_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Fighter_sit2",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Fighter_sit2.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-4,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Attacked_Manequin1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin1_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Attacked_Manequin2_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin2_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-13
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Attacked_Manequin3_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin3_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-10
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Attacked_Manequin4_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin4_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Attacked_Manequin5_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Attacked_Manequin5_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Archer3_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer3_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+1,
+0
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Archer2_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer2_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+3,
+0
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Archer1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Archer1_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+5,
+0
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_without_shadow",
+"tileset": "Arrow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\training\\Tiled_files\\Arrow.png",
+"region": [
+0,
+0,
+32,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+160,
+48,
+150
+],
+[
+160,
+48,
+150
+],
+[
+160,
+48,
+150
+]
+],
+"cell": [
+8,
+-4
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Boar_Attack",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Attack_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+]
+],
+"cell": [
+-9,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Black_grouse_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Death_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-9,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Fox_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Death_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-9,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Deer_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Death_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+]
+],
+"cell": [
+-9,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Hare_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Death_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-9,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Boar_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Death_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-7,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Black_grouse_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Hurt_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Fox_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Hurt_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Deer_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Hurt_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Hare_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Hurt_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Boar_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Hurt_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Black_grouse_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Idle_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Fox_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Idle_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Deer_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Idle_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Hare_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Idle_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Boar_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Idle_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-3,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Black_grouse_Flight",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Flight_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Fox_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Run_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Deer_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Run_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Hare_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Run_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Boar_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Run_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+]
+],
+"cell": [
+-1,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Black_grouse_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Walk_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-1,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Fox_walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_walk_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-1,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Deer_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Walk_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-1,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Hare_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Walk_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+]
+],
+"cell": [
+-1,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Full",
+"tileset": "Boar_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Walk_with_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+1,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Shadow",
+"tileset": "Boar_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_shadow.png",
+"region": [
+32,
+32,
+192,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+-32,
+0,
+150
+],
+[
+-64,
+0,
+150
+],
+[
+-64,
+0,
+150
+],
+[
+-64,
+0,
+150
+]
+],
+"cell": [
+-9,
+0
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Shadow",
+"tileset": "Boar_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_shadow.png",
+"region": [
+-32,
+16,
+192,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+]
+],
+"cell": [
+-9,
+2
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Shadow",
+"tileset": "Deer_Shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Shadow.png",
+"region": [
+0,
+32,
+160,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+]
+],
+"cell": [
+-9,
+24
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Shadow",
+"tileset": "Deer_Shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Shadow.png",
+"region": [
+0,
+16,
+160,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+]
+],
+"cell": [
+-9,
+26
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Shadow",
+"tileset": "Hare_Shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Shadow.png",
+"region": [
+0,
+16,
+160,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+]
+],
+"cell": [
+-9,
+32
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Shadow",
+"tileset": "Hare_Shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Shadow.png",
+"region": [
+0,
+32,
+160,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+]
+],
+"cell": [
+-9,
+34
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Boar_Attack",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Attack.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+]
+],
+"cell": [
+-9,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Black_grouse_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Death.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-9,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Fox_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Death.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-9,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Deer_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Death.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+]
+],
+"cell": [
+-9,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Hare_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Death.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-9,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Boar_Death",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Death.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-7,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Black_grouse_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Hurt.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Fox_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Hurt.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Deer_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Hurt.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Hare_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Hurt.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-7,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Boar_Hurt",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Hurt.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Black_grouse_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Fox_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Deer_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Hare_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-5,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Boar_Idle",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+]
+],
+"cell": [
+-3,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Black_grouse_Flight",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Flight.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Fox_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_Run.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Deer_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Run.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Hare_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Run.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Boar_Run",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Run.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+]
+],
+"cell": [
+-1,
+-5
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Black_grouse_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Black_grouse_Walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-1,
+3
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Fox_walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Fox_walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-1,
+11
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Deer_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Deer_Walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-1,
+19
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Hare_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Hare_Walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+]
+],
+"cell": [
+-1,
+27
+]
+},
+{
+"map": "Animals.tmx",
+"layer": "Animals",
+"tileset": "Boar_Walk",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\animals\\Tiled\\Boar_Walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+1,
+-5
+]
+},
+{
+"map": "Exterior.tmx",
+"layer": "House",
+"tileset": "Windows_doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Windows_doors.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+48,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+240,
+150
+]
+],
+"cell": [
+-3,
+-1
+]
+},
+{
+"map": "Exterior.tmx",
+"layer": "House",
+"tileset": "Windows_doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Windows_doors.png",
+"region": [
+128,
+0,
+32,
+96
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+48,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+240,
+150
+]
+],
+"cell": [
+0,
+-3
+]
+},
+{
+"map": "Exterior.tmx",
+"layer": "House",
+"tileset": "Windows_doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Windows_doors.png",
+"region": [
+32,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+48,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+240,
+150
+]
+],
+"cell": [
+3,
+-1
+]
+},
+{
+"map": "Exterior.tmx",
+"layer": "Flags",
+"tileset": "Flags_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Flags_animation.png",
+"region": [
+0,
+0,
+96,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+48,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+240,
+150
+],
+[
+0,
+288,
+150
+],
+[
+0,
+336,
+150
+],
+[
+0,
+384,
+150
+],
+[
+0,
+432,
+150
+],
+[
+0,
+480,
+150
+],
+[
+0,
+528,
+150
+]
+],
+"cell": [
+-2,
+-3
+]
+},
+{
+"map": "Interior_1st_floor.tmx",
+"layer": "Walls",
+"tileset": "Windows_doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Windows_doors.png",
+"region": [
+224,
+16,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+48,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+144,
+150
+],
+[
+0,
+192,
+150
+],
+[
+0,
+240,
+150
+]
+],
+"cell": [
+1,
+-5
+]
+},
+{
+"map": "Interior_1st_floor.tmx",
+"layer": "Guildmaster",
+"tileset": "Guildmaster",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Guildmaster.png",
+"region": [
+0,
+0,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+240,
+0,
+150
+]
+],
+"cell": [
+-4,
+-3
+]
+},
+{
+"map": "Interior_1st_floor.tmx",
+"layer": "Various_characters",
+"tileset": "Talking_people",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Talking_people.png",
+"region": [
+0,
+0,
+48,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+-10,
+-1
+]
+},
+{
+"map": "Interior_1st_floor.tmx",
+"layer": "Various_characters",
+"tileset": "Citizen4_Walk_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen2_Walk.png",
+"region": [
+0,
+32,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-6,
+2
+]
+},
+{
+"map": "Interior_1st_floor.tmx",
+"layer": "Various_characters",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen1_Idle.png",
+"region": [
+0,
+96,
+32,
+32
+],
+"frames": [
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-3,
+-1
+]
+},
+{
+"map": "Interior_1st_floor.tmx",
+"layer": "Various_characters",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter2_Idle.png",
+"region": [
+0,
+96,
+32,
+32
+],
+"frames": [
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+4,
+-1
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Reader",
+"tileset": "Reader2",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Reader2.png",
+"region": [
+0,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+16,
+0,
+150
+],
+[
+16,
+0,
+150
+],
+[
+16,
+0,
+150
+],
+[
+16,
+0,
+150
+],
+[
+16,
+0,
+150
+],
+[
+16,
+0,
+150
+]
+],
+"cell": [
+-9,
+0
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Reader2",
+"tileset": "Reader1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Reader1.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-8,
+-5
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Manequins",
+"tileset": "Attacked_Manequin2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Attacked_Manequin2_with_shadow.png",
+"region": [
+0,
+32,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-5,
+0
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Fighter",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_with_shadow.png",
+"region": [
+16,
+128,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-6,
+-1
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Mage1",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage4.png",
+"region": [
+0,
+0,
+48,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-3
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Mage2",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage2.png",
+"region": [
+0,
+64,
+48,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+1
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Mage3",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage3.png",
+"region": [
+0,
+112,
+64,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+1,
+-1
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Mage4",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage1.png",
+"region": [
+0,
+160,
+64,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-2,
+-1
+]
+},
+{
+"map": "Interior_2nd_floor.tmx",
+"layer": "Fire",
+"tileset": "Fire",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fire.png",
+"region": [
+0,
+0,
+48,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+0,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen1_Idle_without_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+-8,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen2_Idle_without_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+-8,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter2_Idle_without_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+-8,
+11
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Citizen4_Walk_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen1_Walk_without_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-6,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Citizen4_Walk_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen2_Walk_without_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-6,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Citizen4_Walk_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter2_Walk_without_shadow.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-6,
+11
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_without_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Attacked_Manequin1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Attacked_Manequin1_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Attacked_Manequin2_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Attacked_Manequin2_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Attacked_Manequin3_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Attacked_Manequin3_without_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage1_without_shadow.png",
+"region": [
+0,
+0,
+208,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage2_without_shadow.png",
+"region": [
+0,
+0,
+208,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+8
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage3_without_shadow.png",
+"region": [
+0,
+0,
+224,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+12
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage4_without_shadow.png",
+"region": [
+0,
+-16,
+224,
+80
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+15
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_without_shadow.png",
+"region": [
+16,
+64,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+1,
+-8
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_without_shadow.png",
+"region": [
+16,
+128,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+5,
+-8
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Talking_people",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Talking_people_without_shadow.png",
+"region": [
+0,
+0,
+48,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+5,
+-5
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Talking_person2",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Talking_person2_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+5,
+-2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Talking_person1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Talking_person1_without_shadow.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+7,
+-2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Fighter_sword1_without_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_without_shadow.png",
+"region": [
+0,
+208,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+8,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Character_without_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage3_without_shadow.png",
+"region": [
+48,
+176,
+16,
+16
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+9,
+9
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen1_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+-8,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen2_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+-8,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Citizen4_Idle_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter2_Idle.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+-8,
+11
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Citizen4_Walk_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen1_Walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-6,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Citizen4_Walk_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Citizen2_Walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-6,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Citizen4_Walk_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter2_Walk.png",
+"region": [
+0,
+0,
+32,
+128
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-6,
+11
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_with_shadow.png",
+"region": [
+0,
+16,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+-4,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Attacked_Manequin1_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+-4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin2_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Attacked_Manequin2_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+-1
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Attacked_Manequin3_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Attacked_Manequin3_with_shadow.png",
+"region": [
+0,
+0,
+128,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage1.png",
+"region": [
+0,
+0,
+208,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+4
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage2.png",
+"region": [
+0,
+0,
+208,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+8
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage3.png",
+"region": [
+0,
+0,
+208,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+12
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Mage3",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Mage4.png",
+"region": [
+0,
+0,
+192,
+64
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+-4,
+16
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_with_shadow.png",
+"region": [
+16,
+64,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+1,
+-8
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_with_shadow.png",
+"region": [
+16,
+128,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+5,
+-8
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Talking_people",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Talking_people.png",
+"region": [
+0,
+0,
+48,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+384,
+0,
+150
+],
+[
+432,
+0,
+150
+],
+[
+480,
+0,
+150
+],
+[
+528,
+0,
+150
+]
+],
+"cell": [
+5,
+-5
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Talking_person2",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Talking_person2.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+5,
+-2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Talking_person1",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Talking_person1.png",
+"region": [
+0,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+224,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+320,
+0,
+150
+],
+[
+352,
+0,
+150
+]
+],
+"cell": [
+7,
+-2
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Characters_with_shadow",
+"tileset": "Fighter_sword1_with_shadow",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fighter_sword_with_shadow.png",
+"region": [
+0,
+208,
+48,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+256,
+0,
+150
+],
+[
+320,
+0,
+150
+]
+],
+"cell": [
+8,
+-7
+]
+},
+{
+"map": "Characters.tmx",
+"layer": "Fire",
+"tileset": "Fire",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\guild\\Tiled_files\\Fire.png",
+"region": [
+0,
+0,
+48,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+192,
+0,
+150
+],
+[
+240,
+0,
+150
+],
+[
+288,
+0,
+150
+],
+[
+336,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+]
+],
+"cell": [
+5,
+1
+]
+},
+{
+"map": "Interior1.tmx",
+"layer": "Walls",
+"tileset": "Doors_windows_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\house\\Tiled_files\\Doors_windows_animation.png",
+"region": [
+32,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+600
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+600
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-11,
+2
+]
+},
+{
+"map": "Interior1.tmx",
+"layer": "Windows",
+"tileset": "Doors_windows_animation",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\house\\Tiled_files\\Doors_windows_animation.png",
+"region": [
+240,
+0,
+64,
+32
+],
+"frames": [
+[
+0,
+0,
+600
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+600
+],
+[
+0,
+128,
+150
+],
+[
+0,
+160,
+150
+]
+],
+"cell": [
+-7,
+-4
+]
+},
+{
+"map": "House_interior.tmx",
+"layer": "Walls",
+"tileset": "Doors",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\Doors.png",
+"region": [
+64,
+0,
+32,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+4,
+0
+]
+},
+{
+"map": "House_interior.tmx",
+"layer": "Windows",
+"tileset": "house_windows",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\house_windows.png",
+"region": [
+160,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+-2,
+-5
+]
+},
+{
+"map": "House_interior.tmx",
+"layer": "Windows",
+"tileset": "house_windows",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\house_windows.png",
+"region": [
+160,
+0,
+16,
+32
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+0,
+150
+],
+[
+0,
+32,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+96,
+150
+],
+[
+0,
+64,
+150
+],
+[
+0,
+32,
+150
+]
+],
+"cell": [
+0,
+-5
+]
+},
+{
+"map": "House_interior.tmx",
+"layer": "furniture2",
+"tileset": "fire",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\farm\\Tiled_files\\fire.png",
+"region": [
+0,
+0,
+32,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+160,
+0,
+150
+]
+],
+"cell": [
+-5,
+-4
+]
+},
+{
+"map": "Interior.tmx",
+"layer": "Seller_gramma",
+"tileset": "Seller_gramma",
+"image": "C:\\Users\\nicol\\AppData\\Local\\Temp\\claude\\c--Users-nicol-OneDrive-Documentos-JobHunter\\7f39b642-3aaa-4323-9d53-2b420a1d2380\\scratchpad\\raw\\fishing\\Tiled_foles\\Seller_gramma.png",
+"region": [
+0,
+0,
+16,
+48
+],
+"frames": [
+[
+0,
+0,
+150
+],
+[
+16,
+0,
+150
+],
+[
+32,
+0,
+150
+],
+[
+48,
+0,
+150
+],
+[
+64,
+0,
+150
+],
+[
+80,
+0,
+150
+],
+[
+96,
+0,
+150
+],
+[
+112,
+0,
+150
+],
+[
+128,
+0,
+150
+],
+[
+144,
+0,
+150
+],
+[
+160,
+0,
+150
+],
+[
+176,
+0,
+150
+]
+],
+"cell": [
+-4,
+3
+]
+}
+]

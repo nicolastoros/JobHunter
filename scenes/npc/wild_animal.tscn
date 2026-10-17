@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/wild_animal.gd" id="1_animal"]
+
+[node name="WildAnimal" type="Node2D"]
+script = ExtResource("1_animal")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+offset = Vector2(0, -12)

@@ -100,7 +100,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 8
-text = "Monstruos, acero y gloria"
+text = "Una historia de Valdoria"
 
 [node name="Spacer" type="Control" parent="Menu"]
 custom_minimum_size = Vector2(0, 16)
@@ -124,6 +124,11 @@ text = "Continuar"
 [node name="Options" type="Button" parent="Menu/Buttons"]
 layout_mode = 2
 text = "Opciones"
+
+[node name="Dev" type="Button" parent="Menu/Buttons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.08, 0.17, 0.36, 1)
+text = "Modo desarrollador"
 
 [node name="Quit" type="Button" parent="Menu/Buttons"]
 layout_mode = 2

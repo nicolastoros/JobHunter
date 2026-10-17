@@ -1,0 +1,5781 @@
+{
+ "items": [
+  {
+   "key": "weapon_stall",
+   "name": "Armería",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    14,
+    0,
+    126,
+    135
+   ],
+   "origin": [
+    63.0,
+    131
+   ],
+   "feet": [
+    [
+     -49.0,
+     -39,
+     61.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "blue_tent",
+   "name": "Toldo azul",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    159,
+    32,
+    109,
+    112
+   ],
+   "origin": [
+    54.5,
+    112
+   ],
+   "feet": [
+    [
+     -50.5,
+     -16,
+     -42.5,
+     -8
+    ],
+    [
+     5.5,
+     -8,
+     13.5,
+     0
+    ],
+    [
+     33.5,
+     -24,
+     41.5,
+     -16
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "fruit_stall",
+   "name": "Puesto de frutas",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    11,
+    152,
+    111,
+    97
+   ],
+   "origin": [
+    55.5,
+    96
+   ],
+   "feet": [
+    [
+     -53.5,
+     -56,
+     53.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "fruit_small",
+   "name": "Fruit small",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    137,
+    160,
+    86,
+    62
+   ],
+   "origin": [
+    43.0,
+    62
+   ],
+   "feet": [
+    [
+     -41.0,
+     -38,
+     41.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "fruit_crates",
+   "name": "Fruit crates",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    235,
+    158,
+    111,
+    59
+   ],
+   "origin": [
+    55.5,
+    58
+   ],
+   "feet": [
+    [
+     -47.5,
+     -36,
+     52.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bread_stall",
+   "name": "Panadería",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    105,
+    260,
+    78,
+    65
+   ],
+   "origin": [
+    39.0,
+    64
+   ],
+   "feet": [
+    [
+     -37.0,
+     -34,
+     37.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pastry_stall",
+   "name": "Pastry stall",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    201,
+    276,
+    78,
+    49
+   ],
+   "origin": [
+    39.0,
+    49
+   ],
+   "feet": [
+    [
+     -37.0,
+     -29,
+     37.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "cloth_stall",
+   "name": "Cloth stall",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    290,
+    276,
+    65,
+    42
+   ],
+   "origin": [
+    32.5,
+    41
+   ],
+   "feet": [
+    [
+     -32.5,
+     -23,
+     32.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "empty_stall",
+   "name": "Empty stall",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    9,
+    264,
+    86,
+    70
+   ],
+   "origin": [
+    43.0,
+    69
+   ],
+   "feet": [
+    [
+     -39.0,
+     -35,
+     41.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "magic_tent",
+   "name": "Carpa mística",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    8,
+    393,
+    98,
+    119
+   ],
+   "origin": [
+    49.0,
+    116
+   ],
+   "feet": [
+    [
+     -45.0,
+     -46,
+     49.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "magic_table",
+   "name": "Magic table",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    175,
+    516,
+    58,
+    35
+   ],
+   "origin": [
+    29.0,
+    34
+   ],
+   "feet": [
+    [
+     -29.0,
+     -24,
+     29.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "magic_stall",
+   "name": "Magic stall",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    343,
+    434,
+    70,
+    69
+   ],
+   "origin": [
+    35.0,
+    68
+   ],
+   "feet": [
+    [
+     -35.0,
+     -34,
+     35.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "sword_table",
+   "name": "Sword table",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    238,
+    6,
+    44,
+    26
+   ],
+   "origin": [
+    22.0,
+    25
+   ],
+   "feet": [
+    [
+     -22.0,
+     -19,
+     22.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "red_table",
+   "name": "Red table",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    158,
+    6,
+    44,
+    26
+   ],
+   "origin": [
+    22.0,
+    25
+   ],
+   "feet": [
+    [
+     -22.0,
+     -19,
+     22.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "potion_cart",
+   "name": "Carro de pociones",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    0,
+    519,
+    73,
+    56
+   ],
+   "origin": [
+    36.5,
+    54
+   ],
+   "feet": [
+    [
+     -22.5,
+     -24,
+     36.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "cart",
+   "name": "Carreta",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    80,
+    530,
+    71,
+    45
+   ],
+   "origin": [
+    35.5,
+    44
+   ],
+   "feet": [
+    [
+     -33.5,
+     -26,
+     35.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "green_canopy",
+   "name": "Green canopy",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    8,
+    339,
+    97,
+    31
+   ],
+   "origin": [
+    48.5,
+    31
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "table_a",
+   "name": "Table a",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    171,
+    345,
+    27,
+    27
+   ],
+   "origin": [
+    13.5,
+    26
+   ],
+   "feet": [
+    [
+     -11.5,
+     -14,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "table_b",
+   "name": "Table b",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    267,
+    345,
+    27,
+    27
+   ],
+   "origin": [
+    13.5,
+    26
+   ],
+   "feet": [
+    [
+     -11.5,
+     -14,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "table_c",
+   "name": "Table c",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    123,
+    358,
+    27,
+    27
+   ],
+   "origin": [
+    13.5,
+    26
+   ],
+   "feet": [
+    [
+     -11.5,
+     -14,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "table_d",
+   "name": "Table d",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    219,
+    358,
+    27,
+    27
+   ],
+   "origin": [
+    13.5,
+    26
+   ],
+   "feet": [
+    [
+     -11.5,
+     -14,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "stool",
+   "name": "Stool",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    161,
+    356,
+    9,
+    13
+   ],
+   "origin": [
+    4.5,
+    13
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "orb",
+   "name": "Orb",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    333,
+    322,
+    27,
+    30
+   ],
+   "origin": [
+    13.5,
+    29
+   ],
+   "feet": [
+    [
+     -10.5,
+     -11,
+     10.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crates_a",
+   "name": "Crates a",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    289,
+    1,
+    58,
+    39
+   ],
+   "origin": [
+    29.0,
+    39
+   ],
+   "feet": [
+    [
+     -29.0,
+     -27,
+     29.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crates_b",
+   "name": "Crates b",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    424,
+    7,
+    52,
+    48
+   ],
+   "origin": [
+    26.0,
+    47
+   ],
+   "feet": [
+    [
+     -26.0,
+     -29,
+     26.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crates_c",
+   "name": "Crates c",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    385,
+    145,
+    66,
+    40
+   ],
+   "origin": [
+    33.0,
+    39
+   ],
+   "feet": [
+    [
+     -33.0,
+     -27,
+     33.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crates_d",
+   "name": "Crates d",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    378,
+    257,
+    38,
+    53
+   ],
+   "origin": [
+    19.0,
+    52
+   ],
+   "feet": [
+    [
+     -19.0,
+     -30,
+     19.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrels_a",
+   "name": "Barrels a",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    421,
+    298,
+    41,
+    34
+   ],
+   "origin": [
+    20.5,
+    33
+   ],
+   "feet": [
+    [
+     -20.5,
+     -19,
+     20.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crates_e",
+   "name": "Crates e",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    368,
+    344,
+    56,
+    30
+   ],
+   "origin": [
+    28.0,
+    29
+   ],
+   "feet": [
+    [
+     -28.0,
+     -19,
+     28.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crates_f",
+   "name": "Crates f",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    336,
+    370,
+    45,
+    47
+   ],
+   "origin": [
+    22.5,
+    46
+   ],
+   "feet": [
+    [
+     -22.5,
+     -28,
+     22.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_big",
+   "name": "Barrel big",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    321,
+    517,
+    36,
+    48
+   ],
+   "origin": [
+    18.0,
+    47
+   ],
+   "feet": [
+    [
+     -16.0,
+     -25,
+     16.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "banner",
+   "name": "Banner",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    446,
+    92,
+    23,
+    46
+   ],
+   "origin": [
+    11.5,
+    46
+   ],
+   "feet": [
+    [
+     -4.5,
+     -6,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "armor_a",
+   "name": "Armor a",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    370,
+    13,
+    17,
+    28
+   ],
+   "origin": [
+    8.5,
+    28
+   ],
+   "feet": [
+    [
+     -6.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "armor_b",
+   "name": "Armor b",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    388,
+    13,
+    19,
+    28
+   ],
+   "origin": [
+    9.5,
+    28
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     7.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "armor_c",
+   "name": "Armor c",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    375,
+    109,
+    17,
+    28
+   ],
+   "origin": [
+    8.5,
+    28
+   ],
+   "feet": [
+    [
+     -6.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "armor_flag",
+   "name": "Armor flag",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    367,
+    54,
+    25,
+    31
+   ],
+   "origin": [
+    12.5,
+    31
+   ],
+   "feet": [
+    [
+     -8.5,
+     -9,
+     8.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "weapon_rack",
+   "name": "Weapon rack",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    285,
+    97,
+    68,
+    38
+   ],
+   "origin": [
+    34.0,
+    38
+   ],
+   "feet": [
+    [
+     -34.0,
+     -14,
+     34.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bench",
+   "name": "Bench",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    288,
+    60,
+    63,
+    25
+   ],
+   "origin": [
+    31.5,
+    25
+   ],
+   "feet": [
+    [
+     -31.5,
+     -13,
+     31.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "rug",
+   "name": "Rug",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects.png",
+   "region": [
+    415,
+    394,
+    50,
+    61
+   ],
+   "origin": [
+    25.0,
+    30.5
+   ],
+   "feet": [],
+   "floor": true
+  },
+  {
+   "key": "sack",
+   "name": "Sack",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    97,
+    33,
+    15,
+    14
+   ],
+   "origin": [
+    7.5,
+    14
+   ],
+   "feet": [
+    [
+     -6.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "sack2",
+   "name": "Sack2",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    113,
+    33,
+    15,
+    14
+   ],
+   "origin": [
+    7.5,
+    14
+   ],
+   "feet": [
+    [
+     -6.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel",
+   "name": "Barrel",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    99,
+    116,
+    13,
+    23
+   ],
+   "origin": [
+    6.5,
+    24
+   ],
+   "feet": [
+    [
+     -6.5,
+     -12,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel2",
+   "name": "Barrel2",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    130,
+    116,
+    13,
+    23
+   ],
+   "origin": [
+    6.5,
+    24
+   ],
+   "feet": [
+    [
+     -6.5,
+     -12,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crate",
+   "name": "Crate",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    3,
+    48,
+    25,
+    32
+   ],
+   "origin": [
+    12.5,
+    32
+   ],
+   "feet": [
+    [
+     -12.5,
+     -18,
+     12.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crate2",
+   "name": "Crate2",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    35,
+    48,
+    25,
+    32
+   ],
+   "origin": [
+    12.5,
+    32
+   ],
+   "feet": [
+    [
+     -12.5,
+     -18,
+     12.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pot",
+   "name": "Pot",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    149,
+    116,
+    19,
+    21
+   ],
+   "origin": [
+    9.5,
+    21
+   ],
+   "feet": [
+    [
+     -7.5,
+     -11,
+     7.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "jar",
+   "name": "Jar",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    181,
+    120,
+    8,
+    17
+   ],
+   "origin": [
+    4.0,
+    17
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "big_barrel",
+   "name": "Big barrel",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    1,
+    2,
+    29,
+    41
+   ],
+   "origin": [
+    14.5,
+    41
+   ],
+   "feet": [
+    [
+     -13.5,
+     -21,
+     13.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "melons",
+   "name": "Melons",
+   "category": "Mercado",
+   "texture": "res://assets/sprites/market/props/Objects_single.png",
+   "region": [
+    214,
+    4,
+    19,
+    23
+   ],
+   "origin": [
+    9.5,
+    22
+   ],
+   "feet": [
+    [
+     -8.5,
+     -12,
+     8.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "house_red",
+   "name": "Casa de piedra",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    14,
+    0,
+    133,
+    125
+   ],
+   "origin": [
+    66.5,
+    124
+   ],
+   "feet": [
+    [
+     -64.5,
+     -40,
+     64.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "well",
+   "name": "Pozo",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    1,
+    498,
+    35,
+    41
+   ],
+   "origin": [
+    17.5,
+    40
+   ],
+   "feet": [
+    [
+     -16.5,
+     -22,
+     17.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "well_grass",
+   "name": "Well grass",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    48,
+    498,
+    38,
+    38
+   ],
+   "origin": [
+    19.0,
+    36
+   ],
+   "feet": [
+    [
+     -16.0,
+     -20,
+     16.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_apple",
+   "name": "Tree apple",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    1,
+    324,
+    61,
+    73
+   ],
+   "origin": [
+    30.5,
+    67
+   ],
+   "feet": [
+    [
+     -9.5,
+     -8,
+     8.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_round",
+   "name": "Tree round",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    65,
+    320,
+    62,
+    78
+   ],
+   "origin": [
+    31.0,
+    72
+   ],
+   "feet": [
+    [
+     -9.0,
+     -8,
+     8.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_apple2",
+   "name": "Tree apple2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    135,
+    336,
+    51,
+    64
+   ],
+   "origin": [
+    25.5,
+    58
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_oak",
+   "name": "Tree oak",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    155,
+    467,
+    72,
+    77
+   ],
+   "origin": [
+    36.0,
+    71
+   ],
+   "feet": [
+    [
+     -11.0,
+     -8,
+     10.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_oak2",
+   "name": "Tree oak2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    179,
+    558,
+    57,
+    65
+   ],
+   "origin": [
+    28.5,
+    59
+   ],
+   "feet": [
+    [
+     -8.5,
+     -8,
+     7.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_small",
+   "name": "Tree small",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    164,
+    192,
+    53,
+    64
+   ],
+   "origin": [
+    26.5,
+    58
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_young",
+   "name": "Tree young",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    198,
+    272,
+    39,
+    47
+   ],
+   "origin": [
+    19.5,
+    41
+   ],
+   "feet": [
+    [
+     -5.5,
+     -8,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pine",
+   "name": "Pine",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    3,
+    610,
+    43,
+    43
+   ],
+   "origin": [
+    21.5,
+    37
+   ],
+   "feet": [
+    [
+     -6.5,
+     -8,
+     5.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pine_small",
+   "name": "Pine small",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    49,
+    626,
+    29,
+    27
+   ],
+   "origin": [
+    14.5,
+    21
+   ],
+   "feet": [
+    [
+     -4.5,
+     -8,
+     3.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bush",
+   "name": "Bush",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    198,
+    358,
+    36,
+    37
+   ],
+   "origin": [
+    18.0,
+    35
+   ],
+   "feet": [
+    [
+     -14.0,
+     -19,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bush_berry",
+   "name": "Bush berry",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    209,
+    134,
+    30,
+    40
+   ],
+   "origin": [
+    15.0,
+    38
+   ],
+   "feet": [
+    [
+     -12.0,
+     -20,
+     11.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bush_round",
+   "name": "Bush round",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    194,
+    322,
+    27,
+    27
+   ],
+   "origin": [
+    13.5,
+    25
+   ],
+   "feet": [
+    [
+     -10.5,
+     -13,
+     9.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bush_a",
+   "name": "Bush a",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    2,
+    178,
+    45,
+    45
+   ],
+   "origin": [
+    22.5,
+    43
+   ],
+   "feet": [
+    [
+     -17.5,
+     -23,
+     16.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bush_b",
+   "name": "Bush b",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    3,
+    227,
+    43,
+    44
+   ],
+   "origin": [
+    21.5,
+    42
+   ],
+   "feet": [
+    [
+     -16.5,
+     -23,
+     15.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "bush_c",
+   "name": "Bush c",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    124,
+    545,
+    41,
+    42
+   ],
+   "origin": [
+    20.5,
+    40
+   ],
+   "feet": [
+    [
+     -16.5,
+     -22,
+     15.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "rock_big",
+   "name": "Rock big",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    1,
+    656,
+    53,
+    63
+   ],
+   "origin": [
+    26.5,
+    60
+   ],
+   "feet": [
+    [
+     -22.5,
+     -26,
+     23.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "rock_big2",
+   "name": "Rock big2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    69,
+    656,
+    53,
+    60
+   ],
+   "origin": [
+    26.5,
+    57
+   ],
+   "feet": [
+    [
+     -22.5,
+     -25,
+     22.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "rock_tall",
+   "name": "Rock tall",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    132,
+    672,
+    38,
+    45
+   ],
+   "origin": [
+    19.0,
+    43
+   ],
+   "feet": [
+    [
+     -16.0,
+     -19,
+     16.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "rock_tall2",
+   "name": "Rock tall2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    179,
+    672,
+    40,
+    47
+   ],
+   "origin": [
+    20.0,
+    45
+   ],
+   "feet": [
+    [
+     -17.0,
+     -20,
+     17.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "rock_s1",
+   "name": "Rock s1",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    7,
+    726,
+    32,
+    34
+   ],
+   "origin": [
+    16.0,
+    32
+   ],
+   "feet": [
+    [
+     -13.0,
+     -16,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "rock_s2",
+   "name": "Rock s2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    56,
+    726,
+    30,
+    32
+   ],
+   "origin": [
+    15.0,
+    30
+   ],
+   "feet": [
+    [
+     -12.0,
+     -14,
+     12.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "stump",
+   "name": "Stump",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    101,
+    731,
+    37,
+    28
+   ],
+   "origin": [
+    18.5,
+    26
+   ],
+   "feet": [
+    [
+     -13.5,
+     -14,
+     13.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "stump2",
+   "name": "Stump2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    161,
+    288,
+    31,
+    31
+   ],
+   "origin": [
+    15.5,
+    29
+   ],
+   "feet": [
+    [
+     -11.5,
+     -15,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "log",
+   "name": "Log",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    85,
+    630,
+    39,
+    22
+   ],
+   "origin": [
+    19.5,
+    20
+   ],
+   "feet": [
+    [
+     -17.5,
+     -14,
+     16.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "mushrooms",
+   "name": "Mushrooms",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    138,
+    595,
+    20,
+    28
+   ],
+   "origin": [
+    10.0,
+    28
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "mushroom_big",
+   "name": "Mushroom big",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    64,
+    548,
+    32,
+    41
+   ],
+   "origin": [
+    16.0,
+    39
+   ],
+   "feet": [
+    [
+     -6.0,
+     -11,
+     6.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "scarecrow",
+   "name": "Scarecrow",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    4,
+    547,
+    52,
+    56
+   ],
+   "origin": [
+    26.0,
+    55
+   ],
+   "feet": [
+    [
+     -6.0,
+     -9,
+     6.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "stone_blue",
+   "name": "Stone blue",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    213,
+    729,
+    26,
+    30
+   ],
+   "origin": [
+    13.0,
+    28
+   ],
+   "feet": [
+    [
+     -10.0,
+     -14,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "stone_blue2",
+   "name": "Stone blue2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    178,
+    729,
+    29,
+    30
+   ],
+   "origin": [
+    14.5,
+    28
+   ],
+   "feet": [
+    [
+     -11.5,
+     -14,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pebbles0",
+   "name": "Pebbles0",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    149,
+    408,
+    19,
+    16
+   ],
+   "origin": [
+    9.5,
+    16
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "pebbles1",
+   "name": "Pebbles1",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    185,
+    409,
+    18,
+    17
+   ],
+   "origin": [
+    9.0,
+    17
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "pebbles2",
+   "name": "Pebbles2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    213,
+    406,
+    20,
+    19
+   ],
+   "origin": [
+    10.0,
+    19
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "pebbles3",
+   "name": "Pebbles3",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    115,
+    409,
+    26,
+    20
+   ],
+   "origin": [
+    13.0,
+    20
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "pebbles4",
+   "name": "Pebbles4",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    84,
+    406,
+    22,
+    20
+   ],
+   "origin": [
+    11.0,
+    20
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "flower0",
+   "name": "Flower0",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    128,
+    775,
+    16,
+    23
+   ],
+   "origin": [
+    8.0,
+    23
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "flower1",
+   "name": "Flower1",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    160,
+    771,
+    16,
+    11
+   ],
+   "origin": [
+    8.0,
+    11
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "flower2",
+   "name": "Flower2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    192,
+    768,
+    16,
+    16
+   ],
+   "origin": [
+    8.0,
+    16
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "flower3",
+   "name": "Flower3",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    182,
+    784,
+    19,
+    16
+   ],
+   "origin": [
+    9.5,
+    16
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "flower4",
+   "name": "Flower4",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    212,
+    770,
+    8,
+    13
+   ],
+   "origin": [
+    4.0,
+    13
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "flower5",
+   "name": "Flower5",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/nature/exterior.png",
+   "region": [
+    149,
+    774,
+    9,
+    18
+   ],
+   "origin": [
+    4.5,
+    18
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "farmhouse",
+   "name": "Casa de campo",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    277,
+    16,
+    125,
+    125
+   ],
+   "origin": [
+    62.5,
+    124
+   ],
+   "feet": [
+    [
+     -58.5,
+     -50,
+     58.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barn",
+   "name": "Granero",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    403,
+    12,
+    91,
+    83
+   ],
+   "origin": [
+    45.5,
+    82
+   ],
+   "feet": [
+    [
+     -43.5,
+     -44,
+     43.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shed",
+   "name": "Cobertizo",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    128,
+    6,
+    80,
+    74
+   ],
+   "origin": [
+    40.0,
+    73
+   ],
+   "feet": [
+    [
+     -40.0,
+     -47,
+     40.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "longshed",
+   "name": "Almacén",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    133,
+    96,
+    71,
+    48
+   ],
+   "origin": [
+    35.5,
+    46
+   ],
+   "feet": [
+    [
+     -32.5,
+     -32,
+     32.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "coop",
+   "name": "Gallinero",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    229,
+    16,
+    36,
+    60
+   ],
+   "origin": [
+    18.0,
+    59
+   ],
+   "feet": [
+    [
+     -16.0,
+     -29,
+     16.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "coop2",
+   "name": "Coop2",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    421,
+    208,
+    36,
+    60
+   ],
+   "origin": [
+    18.0,
+    59
+   ],
+   "feet": [
+    [
+     -16.0,
+     -29,
+     16.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "mill",
+   "name": "Molino",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    83,
+    158,
+    65,
+    130
+   ],
+   "origin": [
+    32.5,
+    129
+   ],
+   "feet": [
+    [
+     -26.5,
+     -41,
+     26.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "flowerbox",
+   "name": "Flowerbox",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    240,
+    123,
+    17,
+    14
+   ],
+   "origin": [
+    8.5,
+    14
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "waterbox",
+   "name": "Waterbox",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    240,
+    91,
+    17,
+    14
+   ],
+   "origin": [
+    8.5,
+    14
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "porch",
+   "name": "Porch",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    15,
+    256,
+    65,
+    32
+   ],
+   "origin": [
+    32.5,
+    31
+   ],
+   "feet": [
+    [
+     -32.5,
+     -23,
+     32.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "doors_big",
+   "name": "Doors big",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/farm/props/Houses.png",
+   "region": [
+    8,
+    307,
+    49,
+    25
+   ],
+   "origin": [
+    24.5,
+    25
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "tree_big",
+   "name": "Tree big",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    17,
+    18,
+    63,
+    78
+   ],
+   "origin": [
+    31.5,
+    72
+   ],
+   "feet": [
+    [
+     -9.5,
+     -8,
+     8.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_mid",
+   "name": "Tree mid",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    80,
+    30,
+    48,
+    66
+   ],
+   "origin": [
+    24.0,
+    60
+   ],
+   "feet": [
+    [
+     -7.0,
+     -8,
+     6.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_sm",
+   "name": "Tree sm",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    129,
+    64,
+    30,
+    32
+   ],
+   "origin": [
+    15.0,
+    26
+   ],
+   "feet": [
+    [
+     -5.0,
+     -8,
+     4.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pine_big",
+   "name": "Pine big",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    181,
+    21,
+    71,
+    74
+   ],
+   "origin": [
+    35.5,
+    68
+   ],
+   "feet": [
+    [
+     -10.5,
+     -8,
+     9.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pine_mid",
+   "name": "Pine mid",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    258,
+    32,
+    59,
+    62
+   ],
+   "origin": [
+    29.5,
+    56
+   ],
+   "feet": [
+    [
+     -8.5,
+     -8,
+     7.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "pine_sm",
+   "name": "Pine sm",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    324,
+    54,
+    39,
+    39
+   ],
+   "origin": [
+    19.5,
+    33
+   ],
+   "feet": [
+    [
+     -5.5,
+     -8,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_light",
+   "name": "Tree light",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    385,
+    16,
+    61,
+    80
+   ],
+   "origin": [
+    30.5,
+    74
+   ],
+   "feet": [
+    [
+     -9.5,
+     -8,
+     8.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_light2",
+   "name": "Tree light2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    451,
+    22,
+    53,
+    69
+   ],
+   "origin": [
+    26.5,
+    63
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_light3",
+   "name": "Tree light3",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    517,
+    48,
+    39,
+    48
+   ],
+   "origin": [
+    19.5,
+    42
+   ],
+   "feet": [
+    [
+     -5.5,
+     -8,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_bushy",
+   "name": "Tree bushy",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    19,
+    101,
+    58,
+    70
+   ],
+   "origin": [
+    29.0,
+    64
+   ],
+   "feet": [
+    [
+     -9.0,
+     -8,
+     8.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_bushy2",
+   "name": "Tree bushy2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    87,
+    116,
+    52,
+    58
+   ],
+   "origin": [
+    26.0,
+    52
+   ],
+   "feet": [
+    [
+     -8.0,
+     -8,
+     7.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "tree_bushy3",
+   "name": "Tree bushy3",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    153,
+    136,
+    31,
+    35
+   ],
+   "origin": [
+    15.5,
+    29
+   ],
+   "feet": [
+    [
+     -4.5,
+     -8,
+     3.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub0",
+   "name": "Shrub0",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    198,
+    115,
+    36,
+    37
+   ],
+   "origin": [
+    18.0,
+    35
+   ],
+   "feet": [
+    [
+     -14.0,
+     -19,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub1",
+   "name": "Shrub1",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    245,
+    116,
+    37,
+    38
+   ],
+   "origin": [
+    18.5,
+    36
+   ],
+   "feet": [
+    [
+     -14.5,
+     -19,
+     13.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub2",
+   "name": "Shrub2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    294,
+    118,
+    36,
+    34
+   ],
+   "origin": [
+    18.0,
+    32
+   ],
+   "feet": [
+    [
+     -14.0,
+     -17,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub3",
+   "name": "Shrub3",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    340,
+    119,
+    40,
+    36
+   ],
+   "origin": [
+    20.0,
+    34
+   ],
+   "feet": [
+    [
+     -16.0,
+     -18,
+     15.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub4",
+   "name": "Shrub4",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    385,
+    98,
+    29,
+    28
+   ],
+   "origin": [
+    14.5,
+    26
+   ],
+   "feet": [
+    [
+     -11.5,
+     -14,
+     10.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub5",
+   "name": "Shrub5",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    419,
+    101,
+    25,
+    24
+   ],
+   "origin": [
+    12.5,
+    22
+   ],
+   "feet": [
+    [
+     -9.5,
+     -12,
+     9.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub6",
+   "name": "Shrub6",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    448,
+    96,
+    31,
+    32
+   ],
+   "origin": [
+    15.5,
+    30
+   ],
+   "feet": [
+    [
+     -12.5,
+     -16,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub7",
+   "name": "Shrub7",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    483,
+    100,
+    26,
+    25
+   ],
+   "origin": [
+    13.0,
+    23
+   ],
+   "feet": [
+    [
+     -10.0,
+     -12,
+     9.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub8",
+   "name": "Shrub8",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    517,
+    100,
+    24,
+    25
+   ],
+   "origin": [
+    12.0,
+    23
+   ],
+   "feet": [
+    [
+     -10.0,
+     -12,
+     9.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub9",
+   "name": "Shrub9",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    406,
+    128,
+    35,
+    32
+   ],
+   "origin": [
+    17.5,
+    30
+   ],
+   "feet": [
+    [
+     -13.5,
+     -16,
+     12.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub10",
+   "name": "Shrub10",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    450,
+    130,
+    27,
+    27
+   ],
+   "origin": [
+    13.5,
+    25
+   ],
+   "feet": [
+    [
+     -10.5,
+     -13,
+     9.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shrub11",
+   "name": "Shrub11",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    485,
+    131,
+    22,
+    25
+   ],
+   "origin": [
+    11.0,
+    23
+   ],
+   "feet": [
+    [
+     -9.0,
+     -12,
+     8.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "weed0",
+   "name": "Weed0",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    544,
+    97,
+    16,
+    15
+   ],
+   "origin": [
+    8.0,
+    15
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "weed1",
+   "name": "Weed1",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    545,
+    113,
+    15,
+    31
+   ],
+   "origin": [
+    7.5,
+    31
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "weed2",
+   "name": "Weed2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    517,
+    135,
+    21,
+    19
+   ],
+   "origin": [
+    10.5,
+    19
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "weed3",
+   "name": "Weed3",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/Objects_outside.png",
+   "region": [
+    544,
+    144,
+    14,
+    16
+   ],
+   "origin": [
+    7.0,
+    16
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "orchard_green",
+   "name": "Orchard green",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    133,
+    14,
+    51,
+    64
+   ],
+   "origin": [
+    25.5,
+    58
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "orchard_apple",
+   "name": "Orchard apple",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    197,
+    14,
+    51,
+    64
+   ],
+   "origin": [
+    25.5,
+    58
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "orchard_green2",
+   "name": "Orchard green2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    131,
+    94,
+    53,
+    66
+   ],
+   "origin": [
+    26.5,
+    60
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "orchard_orange",
+   "name": "Orchard orange",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    195,
+    94,
+    53,
+    66
+   ],
+   "origin": [
+    26.5,
+    60
+   ],
+   "feet": [
+    [
+     -7.5,
+     -8,
+     6.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "orchard_dense",
+   "name": "Orchard dense",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    131,
+    174,
+    56,
+    65
+   ],
+   "origin": [
+    28.0,
+    59
+   ],
+   "feet": [
+    [
+     -8.0,
+     -8,
+     7.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "orchard_lemon",
+   "name": "Orchard lemon",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    195,
+    174,
+    56,
+    65
+   ],
+   "origin": [
+    28.0,
+    59
+   ],
+   "feet": [
+    [
+     -8.0,
+     -8,
+     7.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "orchard_bush",
+   "name": "Orchard bush",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    133,
+    254,
+    52,
+    64
+   ],
+   "origin": [
+    26.0,
+    58
+   ],
+   "feet": [
+    [
+     -8.0,
+     -8,
+     7.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "orchard_cherry",
+   "name": "Orchard cherry",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    197,
+    254,
+    52,
+    64
+   ],
+   "origin": [
+    26.0,
+    58
+   ],
+   "feet": [
+    [
+     -8.0,
+     -8,
+     7.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "sapling",
+   "name": "Sapling",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    78,
+    27,
+    36,
+    51
+   ],
+   "origin": [
+    18.0,
+    45
+   ],
+   "feet": [
+    [
+     -6.0,
+     -8,
+     5.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "sapling2",
+   "name": "Sapling2",
+   "category": "Naturaleza",
+   "texture": "res://assets/sprites/farm/props/trees.png",
+   "region": [
+    77,
+    109,
+    39,
+    49
+   ],
+   "origin": [
+    19.5,
+    43
+   ],
+   "feet": [
+    [
+     -5.5,
+     -8,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crop_cabbage",
+   "name": "Crop cabbage",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    69,
+    57,
+    20,
+    18
+   ],
+   "origin": [
+    10.0,
+    18
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_cabbage2",
+   "name": "Crop cabbage2",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    101,
+    57,
+    20,
+    18
+   ],
+   "origin": [
+    10.0,
+    18
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_pumpkin",
+   "name": "Crop pumpkin",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    194,
+    55,
+    27,
+    22
+   ],
+   "origin": [
+    13.5,
+    22
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_melon",
+   "name": "Crop melon",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    324,
+    54,
+    26,
+    24
+   ],
+   "origin": [
+    13.0,
+    24
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_eggplant",
+   "name": "Crop eggplant",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    452,
+    54,
+    23,
+    23
+   ],
+   "origin": [
+    11.5,
+    23
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_tomato",
+   "name": "Crop tomato",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    354,
+    10,
+    25,
+    36
+   ],
+   "origin": [
+    12.5,
+    36
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_corn",
+   "name": "Crop corn",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    483,
+    11,
+    24,
+    36
+   ],
+   "origin": [
+    12.0,
+    36
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_corn_young",
+   "name": "Crop corn young",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    451,
+    11,
+    24,
+    36
+   ],
+   "origin": [
+    12.0,
+    36
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_carrot",
+   "name": "Crop carrot",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    32,
+    89,
+    14,
+    20
+   ],
+   "origin": [
+    7.0,
+    20
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_beet",
+   "name": "Crop beet",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    97,
+    89,
+    14,
+    20
+   ],
+   "origin": [
+    7.0,
+    20
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_leek",
+   "name": "Crop leek",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    162,
+    89,
+    12,
+    20
+   ],
+   "origin": [
+    6.0,
+    20
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_pepper",
+   "name": "Crop pepper",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    454,
+    87,
+    18,
+    23
+   ],
+   "origin": [
+    9.0,
+    23
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_sprout",
+   "name": "Crop sprout",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    266,
+    32,
+    14,
+    14
+   ],
+   "origin": [
+    7.0,
+    14
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_berry",
+   "name": "Crop berry",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    192,
+    7,
+    31,
+    38
+   ],
+   "origin": [
+    15.5,
+    38
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crop_leafy",
+   "name": "Crop leafy",
+   "category": "Cultivos",
+   "texture": "res://assets/sprites/farm/props/Plants.png",
+   "region": [
+    224,
+    7,
+    31,
+    38
+   ],
+   "origin": [
+    15.5,
+    38
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "fish_house",
+   "name": "Casa de madera",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    12,
+    12,
+    103,
+    100
+   ],
+   "origin": [
+    51.5,
+    97
+   ],
+   "feet": [
+    [
+     -49.5,
+     -51,
+     49.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "fish_house2",
+   "name": "Casa de madera 2",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    132,
+    7,
+    103,
+    100
+   ],
+   "origin": [
+    51.5,
+    97
+   ],
+   "feet": [
+    [
+     -49.5,
+     -51,
+     49.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "fish_sign",
+   "name": "Fish sign",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    123,
+    122,
+    27,
+    17
+   ],
+   "origin": [
+    13.5,
+    17
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "fish_sign2",
+   "name": "Fish sign2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    211,
+    127,
+    27,
+    17
+   ],
+   "origin": [
+    13.5,
+    17
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "fish_rack",
+   "name": "Fish rack",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    70,
+    276,
+    66,
+    40
+   ],
+   "origin": [
+    33.0,
+    40
+   ],
+   "feet": [
+    [
+     -29.0,
+     -10,
+     -23.0,
+     0
+    ],
+    [
+     23.0,
+     -10,
+     29.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "fish_rack2",
+   "name": "Fish rack2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    155,
+    278,
+    66,
+    40
+   ],
+   "origin": [
+    33.0,
+    40
+   ],
+   "feet": [
+    [
+     -29.0,
+     -10,
+     -23.0,
+     0
+    ],
+    [
+     23.0,
+     -10,
+     29.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "cargo_pile",
+   "name": "Cargo pile",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    8,
+    287,
+    49,
+    54
+   ],
+   "origin": [
+    24.5,
+    53
+   ],
+   "feet": [
+    [
+     -23.5,
+     -29,
+     23.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "cargo_pile2",
+   "name": "Cargo pile2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    5,
+    453,
+    49,
+    54
+   ],
+   "origin": [
+    24.5,
+    53
+   ],
+   "feet": [
+    [
+     -23.5,
+     -29,
+     23.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "cargo_fish",
+   "name": "Cargo fish",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    3,
+    357,
+    47,
+    42
+   ],
+   "origin": [
+    23.5,
+    41
+   ],
+   "feet": [
+    [
+     -22.5,
+     -23,
+     22.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_fish",
+   "name": "Barrel fish",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    68,
+    363,
+    39,
+    32
+   ],
+   "origin": [
+    19.5,
+    31
+   ],
+   "feet": [
+    [
+     -18.5,
+     -17,
+     18.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "shark",
+   "name": "Shark",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    116,
+    362,
+    72,
+    31
+   ],
+   "origin": [
+    36.0,
+    30
+   ],
+   "feet": [
+    [
+     -30.0,
+     -16,
+     30.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_crate",
+   "name": "Barrel crate",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    201,
+    352,
+    28,
+    38
+   ],
+   "origin": [
+    14.0,
+    37
+   ],
+   "feet": [
+    [
+     -13.0,
+     -20,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "fish_pile",
+   "name": "Fish pile",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    3,
+    403,
+    41,
+    39
+   ],
+   "origin": [
+    20.5,
+    38
+   ],
+   "feet": [
+    [
+     -19.5,
+     -21,
+     19.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crate_fish",
+   "name": "Crate fish",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    48,
+    413,
+    35,
+    28
+   ],
+   "origin": [
+    17.5,
+    27
+   ],
+   "feet": [
+    [
+     -16.5,
+     -15,
+     16.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crate_fish2",
+   "name": "Crate fish2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    110,
+    412,
+    34,
+    29
+   ],
+   "origin": [
+    17.0,
+    28
+   ],
+   "feet": [
+    [
+     -16.0,
+     -15,
+     16.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crate_fish3",
+   "name": "Crate fish3",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    145,
+    415,
+    31,
+    26
+   ],
+   "origin": [
+    15.5,
+    25
+   ],
+   "feet": [
+    [
+     -14.5,
+     -14,
+     14.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "sacks_fish",
+   "name": "Sacks fish",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    189,
+    412,
+    42,
+    31
+   ],
+   "origin": [
+    21.0,
+    30
+   ],
+   "feet": [
+    [
+     -20.0,
+     -17,
+     20.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "net_frame",
+   "name": "Net frame",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    70,
+    454,
+    54,
+    51
+   ],
+   "origin": [
+    27.0,
+    51
+   ],
+   "feet": [
+    [
+     -25.0,
+     -7,
+     -19.0,
+     0
+    ],
+    [
+     19.0,
+     -7,
+     25.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crate_fish4",
+   "name": "Crate fish4",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    130,
+    460,
+    31,
+    29
+   ],
+   "origin": [
+    15.5,
+    28
+   ],
+   "feet": [
+    [
+     -14.5,
+     -15,
+     14.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_f1",
+   "name": "Barrel f1",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    180,
+    460,
+    26,
+    28
+   ],
+   "origin": [
+    13.0,
+    27
+   ],
+   "feet": [
+    [
+     -12.0,
+     -15,
+     12.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_f2",
+   "name": "Barrel f2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    212,
+    450,
+    26,
+    28
+   ],
+   "origin": [
+    13.0,
+    27
+   ],
+   "feet": [
+    [
+     -12.0,
+     -15,
+     12.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_f3",
+   "name": "Barrel f3",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    211,
+    488,
+    28,
+    33
+   ],
+   "origin": [
+    14.0,
+    32
+   ],
+   "feet": [
+    [
+     -13.0,
+     -18,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_open",
+   "name": "Barrel open",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    7,
+    515,
+    18,
+    26
+   ],
+   "origin": [
+    9.0,
+    25
+   ],
+   "feet": [
+    [
+     -8.0,
+     -14,
+     8.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "barrel_open2",
+   "name": "Barrel open2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    39,
+    515,
+    18,
+    26
+   ],
+   "origin": [
+    9.0,
+    25
+   ],
+   "feet": [
+    [
+     -8.0,
+     -14,
+     8.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "sack_f",
+   "name": "Sack f",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    16,
+    552,
+    16,
+    18
+   ],
+   "origin": [
+    8.0,
+    18
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "sack_f2",
+   "name": "Sack f2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    39,
+    550,
+    18,
+    22
+   ],
+   "origin": [
+    9.0,
+    22
+   ],
+   "feet": [],
+   "floor": false
+  },
+  {
+   "key": "crate_f",
+   "name": "Crate f",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    72,
+    325,
+    16,
+    21
+   ],
+   "origin": [
+    8.0,
+    20
+   ],
+   "feet": [
+    [
+     -7.0,
+     -11,
+     7.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "crate_f2",
+   "name": "Crate f2",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    134,
+    322,
+    22,
+    29
+   ],
+   "origin": [
+    11.0,
+    28
+   ],
+   "feet": [
+    [
+     -10.0,
+     -15,
+     10.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "table_dark",
+   "name": "Table dark",
+   "category": "Puerto",
+   "texture": "res://assets/sprites/port/props/Exterior_objetcs.png",
+   "region": [
+    195,
+    324,
+    28,
+    23
+   ],
+   "origin": [
+    14.0,
+    22
+   ],
+   "feet": [
+    [
+     -13.0,
+     -12,
+     13.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_banner_big",
+   "name": "T banner big",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    10,
+    8,
+    30,
+    76
+   ],
+   "origin": [
+    15.0,
+    76
+   ],
+   "feet": [
+    [
+     -3.0,
+     -6,
+     3.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_vip_tent",
+   "name": "T vip tent",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    60,
+    9,
+    89,
+    71
+   ],
+   "origin": [
+    44.5,
+    70
+   ],
+   "feet": [
+    [
+     -42.5,
+     -40,
+     42.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_awning",
+   "name": "T awning",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    172,
+    9,
+    89,
+    68
+   ],
+   "origin": [
+    44.5,
+    68
+   ],
+   "feet": [
+    [
+     -42.5,
+     -6,
+     -36.5,
+     0
+    ],
+    [
+     36.5,
+     -6,
+     42.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_target",
+   "name": "T target",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    194,
+    50,
+    24,
+    25
+   ],
+   "origin": [
+    12.0,
+    25
+   ],
+   "feet": [
+    [
+     -6.0,
+     -9,
+     6.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_target2",
+   "name": "T target2",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    231,
+    53,
+    19,
+    22
+   ],
+   "origin": [
+    9.5,
+    22
+   ],
+   "feet": [
+    [
+     -5.5,
+     -8,
+     5.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_crates",
+   "name": "T crates",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    59,
+    88,
+    35,
+    51
+   ],
+   "origin": [
+    17.5,
+    50
+   ],
+   "feet": [
+    [
+     -16.5,
+     -28,
+     16.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_armor_crate",
+   "name": "T armor crate",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    104,
+    87,
+    40,
+    52
+   ],
+   "origin": [
+    20.0,
+    51
+   ],
+   "feet": [
+    [
+     -19.0,
+     -28,
+     19.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_supplies",
+   "name": "T supplies",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    144,
+    94,
+    59,
+    45
+   ],
+   "origin": [
+    29.5,
+    44
+   ],
+   "feet": [
+    [
+     -28.5,
+     -24,
+     28.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_carpet",
+   "name": "T carpet",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    210,
+    84,
+    45,
+    42
+   ],
+   "origin": [
+    22.5,
+    21.0
+   ],
+   "feet": [],
+   "floor": true
+  },
+  {
+   "key": "t_carpet_long",
+   "name": "T carpet long",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    242,
+    132,
+    77,
+    26
+   ],
+   "origin": [
+    38.5,
+    13.0
+   ],
+   "feet": [],
+   "floor": true
+  },
+  {
+   "key": "t_banner_s",
+   "name": "T banner s",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    1,
+    97,
+    9,
+    42
+   ],
+   "origin": [
+    4.5,
+    42
+   ],
+   "feet": [
+    [
+     -2.5,
+     -6,
+     3.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_rack_tall",
+   "name": "T rack tall",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    321,
+    136,
+    23,
+    104
+   ],
+   "origin": [
+    11.5,
+    104
+   ],
+   "feet": [
+    [
+     -7.5,
+     -98,
+     8.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_rack_swords",
+   "name": "T rack swords",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    0,
+    153,
+    48,
+    32
+   ],
+   "origin": [
+    24.0,
+    31
+   ],
+   "feet": [
+    [
+     -23.0,
+     -17,
+     23.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_rack_axes",
+   "name": "T rack axes",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    64,
+    151,
+    48,
+    34
+   ],
+   "origin": [
+    24.0,
+    33
+   ],
+   "feet": [
+    [
+     -23.0,
+     -18,
+     23.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_rack_spear",
+   "name": "T rack spear",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    128,
+    153,
+    48,
+    32
+   ],
+   "origin": [
+    24.0,
+    31
+   ],
+   "feet": [
+    [
+     -23.0,
+     -17,
+     23.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_rack_empty",
+   "name": "T rack empty",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    192,
+    160,
+    48,
+    25
+   ],
+   "origin": [
+    24.0,
+    24
+   ],
+   "feet": [
+    [
+     -23.0,
+     -13,
+     23.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_dummy",
+   "name": "T dummy",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    267,
+    165,
+    17,
+    25
+   ],
+   "origin": [
+    8.5,
+    25
+   ],
+   "feet": [
+    [
+     -4.5,
+     -7,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_shields",
+   "name": "T shields",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    5,
+    195,
+    39,
+    28
+   ],
+   "origin": [
+    19.5,
+    27
+   ],
+   "feet": [
+    [
+     -18.5,
+     -15,
+     18.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_shields2",
+   "name": "T shields2",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    53,
+    195,
+    37,
+    28
+   ],
+   "origin": [
+    18.5,
+    27
+   ],
+   "feet": [
+    [
+     -17.5,
+     -15,
+     17.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_hurdle",
+   "name": "T hurdle",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    101,
+    195,
+    37,
+    28
+   ],
+   "origin": [
+    18.5,
+    27
+   ],
+   "feet": [
+    [
+     -17.5,
+     -15,
+     17.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_straw0",
+   "name": "T straw0",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    171,
+    196,
+    17,
+    26
+   ],
+   "origin": [
+    8.5,
+    26
+   ],
+   "feet": [
+    [
+     -4.5,
+     -8,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_straw1",
+   "name": "T straw1",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    203,
+    196,
+    16,
+    26
+   ],
+   "origin": [
+    8.0,
+    26
+   ],
+   "feet": [
+    [
+     -4.0,
+     -8,
+     5.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_straw2",
+   "name": "T straw2",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    235,
+    196,
+    17,
+    26
+   ],
+   "origin": [
+    8.5,
+    26
+   ],
+   "feet": [
+    [
+     -4.5,
+     -8,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_straw3",
+   "name": "T straw3",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    267,
+    196,
+    17,
+    26
+   ],
+   "origin": [
+    8.5,
+    26
+   ],
+   "feet": [
+    [
+     -4.5,
+     -8,
+     4.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_crate1",
+   "name": "T crate1",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    3,
+    231,
+    25,
+    33
+   ],
+   "origin": [
+    12.5,
+    32
+   ],
+   "feet": [
+    [
+     -11.5,
+     -18,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_crate2",
+   "name": "T crate2",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    35,
+    231,
+    25,
+    33
+   ],
+   "origin": [
+    12.5,
+    32
+   ],
+   "feet": [
+    [
+     -11.5,
+     -18,
+     11.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_bench",
+   "name": "T bench",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    246,
+    236,
+    36,
+    15
+   ],
+   "origin": [
+    18.0,
+    15
+   ],
+   "feet": [
+    [
+     -18.0,
+     -9,
+     18.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_crate3",
+   "name": "T crate3",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    293,
+    245,
+    22,
+    24
+   ],
+   "origin": [
+    11.0,
+    23
+   ],
+   "feet": [
+    [
+     -10.0,
+     -13,
+     10.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_crate4",
+   "name": "T crate4",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    325,
+    245,
+    22,
+    24
+   ],
+   "origin": [
+    11.0,
+    23
+   ],
+   "feet": [
+    [
+     -10.0,
+     -13,
+     10.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_sacks",
+   "name": "T sacks",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    32,
+    276,
+    31,
+    23
+   ],
+   "origin": [
+    15.5,
+    22
+   ],
+   "feet": [
+    [
+     -14.5,
+     -12,
+     14.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_throne",
+   "name": "T throne",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    301,
+    10,
+    23,
+    29
+   ],
+   "origin": [
+    11.5,
+    28
+   ],
+   "feet": [
+    [
+     -10.5,
+     -15,
+     10.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "t_armchair",
+   "name": "T armchair",
+   "category": "Cuartel",
+   "texture": "res://assets/sprites/training/props/Objects.png",
+   "region": [
+    278,
+    17,
+    19,
+    22
+   ],
+   "origin": [
+    9.5,
+    21
+   ],
+   "feet": [
+    [
+     -8.5,
+     -12,
+     8.5,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "guild_hall",
+   "name": "Gremio",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/city/guild_hall.png",
+   "region": [
+    0,
+    0,
+    144,
+    135
+   ],
+   "origin": [
+    72.0,
+    133
+   ],
+   "feet": [
+    [
+     -66.0,
+     -41,
+     66.0,
+     -5
+    ],
+    [
+     -20.0,
+     -9,
+     20.0,
+     0
+    ]
+   ],
+   "floor": false
+  },
+  {
+   "key": "stone_hall",
+   "name": "Stone hall",
+   "category": "Edificios",
+   "texture": "res://assets/sprites/city/baked_buildings.png",
+   "region": [
+    2,
+    2,
+    117,
+    115
+   ],
+   "origin": [
+    58.5,
+    114
+   ],
+   "feet": [
+    [
+     -56.5,
+     -38,
+     56.5,
+     0
+    ]
+   ],
+   "floor": false
+  }
+ ],
+ "characters": [
+  {
+   "name": "Tomás el frutero",
+   "frames": "res://resources/sprite_frames/world/actor_b8761e70f8.tres",
+   "offset_y": -4.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Kara la armera",
+   "frames": "res://resources/sprite_frames/world/actor_5fe1c31bff.tres",
+   "offset_y": -11.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Morga la vidente",
+   "frames": "res://resources/sprite_frames/world/actor_b2d662f689.tres",
+   "offset_y": -7.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Rosa la panadera",
+   "frames": "res://resources/sprite_frames/world/actor_6df85b3e03.tres",
+   "offset_y": -11.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Ezra el alquimista",
+   "frames": "res://resources/sprite_frames/world/actor_22e446c5b0.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Viajero hambriento",
+   "frames": "res://resources/sprite_frames/world/actor_3f48fda63d.tres",
+   "offset_y": -7.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Bardo Anselmo",
+   "frames": "res://resources/sprite_frames/world/actor_421d9f7fb7.tres",
+   "offset_y": -9.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Nell la flautista",
+   "frames": "res://resources/sprite_frames/world/actor_5dd3701c23.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Guild flags",
+   "frames": "res://resources/sprite_frames/world/actor_b711d43439.tres",
+   "offset_y": -71.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_8d08ace19c.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_8dde4e5136.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_9440e27b43.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_66ca6df7b7.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_92224257ea.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_bf538034a1.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_0facac4361.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_8a8cc6ae7a.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_ca5fd2d2d9.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vecino",
+   "frames": "res://resources/sprite_frames/world/actor_b19fc38ba7.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Arquero",
+   "frames": "res://resources/sprite_frames/world/actor_ca232cd504.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Arquero",
+   "frames": "res://resources/sprite_frames/world/actor_32839a4cc9.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Arquero",
+   "frames": "res://resources/sprite_frames/world/actor_afecc7f20f.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Lord Halvar",
+   "frames": "res://resources/sprite_frames/world/actor_046daba910.tres",
+   "offset_y": -10.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Barón Orsic",
+   "frames": "res://resources/sprite_frames/world/actor_ea3b7160bf.tres",
+   "offset_y": -9.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Sirvienta",
+   "frames": "res://resources/sprite_frames/world/actor_c395131db0.tres",
+   "offset_y": -10.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Recluta agotado",
+   "frames": "res://resources/sprite_frames/world/actor_bd73857c18.tres",
+   "offset_y": -5.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Fighter sit2",
+   "frames": "res://resources/sprite_frames/world/actor_b1202c948c.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Capitana Brenna",
+   "frames": "res://resources/sprite_frames/world/actor_92775a7661.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Duel a",
+   "frames": "res://resources/sprite_frames/world/actor_0ffa6092ff.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Duel b",
+   "frames": "res://resources/sprite_frames/world/actor_147374dcaf.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Shield fighter",
+   "frames": "res://resources/sprite_frames/world/actor_7a336a8789.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Halberd",
+   "frames": "res://resources/sprite_frames/world/actor_a6ac6801d3.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Mannequin",
+   "frames": "res://resources/sprite_frames/world/actor_e575c4340e.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Mannequin",
+   "frames": "res://resources/sprite_frames/world/actor_b1e69ef506.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Mannequin",
+   "frames": "res://resources/sprite_frames/world/actor_f445261101.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Mannequin",
+   "frames": "res://resources/sprite_frames/world/actor_cc1b9243af.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Mannequin",
+   "frames": "res://resources/sprite_frames/world/actor_4837242b80.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Recluta",
+   "frames": "res://resources/sprite_frames/world/actor_614dfbff0b.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Recluta",
+   "frames": "res://resources/sprite_frames/world/actor_dba56b9baa.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Recluta",
+   "frames": "res://resources/sprite_frames/world/actor_2038ff15d1.tres",
+   "offset_y": -13.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Sails",
+   "frames": "res://resources/sprite_frames/world/actor_2da9a2e2e5.tres",
+   "offset_y": -86.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vaca",
+   "frames": "res://resources/sprite_frames/world/actor_4d2fcdf64e.tres",
+   "offset_y": -11.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Vaca",
+   "frames": "res://resources/sprite_frames/world/actor_885d4a5caf.tres",
+   "offset_y": -12.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Cerdo",
+   "frames": "res://resources/sprite_frames/world/actor_8b49c16b10.tres",
+   "offset_y": -10.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Cerdo",
+   "frames": "res://resources/sprite_frames/world/actor_cded3caf87.tres",
+   "offset_y": -10.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Cerdo",
+   "frames": "res://resources/sprite_frames/world/actor_b9a5de6185.tres",
+   "offset_y": -10.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Chicken",
+   "frames": "res://resources/sprite_frames/world/actor_3b03862a46.tres",
+   "offset_y": -10.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Ship",
+   "frames": "res://resources/sprite_frames/world/actor_ae7da4663a.tres",
+   "offset_y": -42.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Ship2",
+   "frames": "res://resources/sprite_frames/world/actor_5263212204.tres",
+   "offset_y": -41.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Boat",
+   "frames": "res://resources/sprite_frames/world/actor_27544ada2e.tres",
+   "offset_y": -32.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Boat",
+   "frames": "res://resources/sprite_frames/world/actor_c709c1a2cb.tres",
+   "offset_y": -38.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Fish",
+   "frames": "res://resources/sprite_frames/world/actor_a4a9eccae6.tres",
+   "offset_y": 1.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Fish",
+   "frames": "res://resources/sprite_frames/world/actor_00c9fd86aa.tres",
+   "offset_y": -4.0,
+   "collide": false,
+   "talk": false,
+   "category": "Personajes"
+  },
+  {
+   "name": "Capitán Brask",
+   "frames": "res://resources/sprite_frames/world/actor_c85ef9dc13.tres",
+   "offset_y": -9.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Pescador Ulrik",
+   "frames": "res://resources/sprite_frames/world/actor_46a3e0bef1.tres",
+   "offset_y": -9.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Jory",
+   "frames": "res://resources/sprite_frames/world/actor_a30a344e42.tres",
+   "offset_y": -10.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Pip",
+   "frames": "res://resources/sprite_frames/world/actor_7f412e3974.tres",
+   "offset_y": -4.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Tim",
+   "frames": "res://resources/sprite_frames/world/actor_9f8bdea637.tres",
+   "offset_y": -4.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Kobold mercader",
+   "frames": "res://resources/sprite_frames/world/actor_7d918aa545.tres",
+   "offset_y": -10.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
+   "name": "Ciudadano 1",
+   "frames": "res://resources/sprite_frames/npc_citizen1.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": false,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Ciudadano 2",
+   "frames": "res://resources/sprite_frames/npc_citizen2.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": false,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Ciudadano 3",
+   "frames": "res://resources/sprite_frames/npc_citizen3.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": false,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Ciudadano 4",
+   "frames": "res://resources/sprite_frames/npc_citizen4.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": false,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Ciudadano 5",
+   "frames": "res://resources/sprite_frames/npc_citizen5.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": false,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Ciudadano 6",
+   "frames": "res://resources/sprite_frames/npc_citizen6.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": false,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Ciudadano 7",
+   "frames": "res://resources/sprite_frames/npc_citizen7.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": false,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Guardia",
+   "frames": "res://resources/sprite_frames/npc_citizen8.tres",
+   "offset_y": -13,
+   "walker": true,
+   "guard": true,
+   "category": "Ciudadanos"
+  },
+  {
+   "name": "Ciervo",
+   "frames": "res://resources/sprite_frames/world/animal_deer.tres",
+   "animal": true,
+   "category": "Animales"
+  },
+  {
+   "name": "Liebre",
+   "frames": "res://resources/sprite_frames/world/animal_hare.tres",
+   "animal": true,
+   "category": "Animales"
+  },
+  {
+   "name": "Zorro",
+   "frames": "res://resources/sprite_frames/world/animal_fox.tres",
+   "animal": true,
+   "category": "Animales"
+  },
+  {
+   "name": "Urogallo",
+   "frames": "res://resources/sprite_frames/world/animal_black_grouse.tres",
+   "animal": true,
+   "category": "Animales"
+  },
+  {
+   "name": "Jabalí",
+   "frames": "res://resources/sprite_frames/world/animal_boar.tres",
+   "animal": true,
+   "category": "Animales"
+  }
+ ]
+}

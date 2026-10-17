@@ -1,0 +1,44 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/walker.gd" id="1_walker"]
+[ext_resource type="Script" path="res://scripts/ui/talk_prompt.gd" id="2_prompt"]
+[ext_resource type="Script" path="res://scripts/ui/speech_bubble.gd" id="3_bubble"]
+
+[sub_resource type="RectangleShape2D" id="Body"]
+size = Vector2(10, 5)
+
+[sub_resource type="CircleShape2D" id="Talk"]
+radius = 11.0
+
+[node name="Walker" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_walker")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+offset = Vector2(0, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("Body")
+
+[node name="TalkArea" type="Area2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea"]
+shape = SubResource("Talk")
+
+[node name="Prompt" type="Node2D" parent="."]
+visible = false
+z_index = 10
+script = ExtResource("2_prompt")
+
+[node name="Bubble" type="Node2D" parent="."]
+script = ExtResource("3_bubble")
+
+[node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-12, -30, 24, 32)

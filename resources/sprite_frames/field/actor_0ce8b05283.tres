@@ -1,0 +1,179 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/field/camp/Bonfire_boiler_lizardman.png" id="t0"]
+
+[sub_resource type="AtlasTexture" id="a0"]
+atlas = ExtResource("t0")
+region = Rect2(0, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a1"]
+atlas = ExtResource("t0")
+region = Rect2(112, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a2"]
+atlas = ExtResource("t0")
+region = Rect2(224, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a3"]
+atlas = ExtResource("t0")
+region = Rect2(0, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a4"]
+atlas = ExtResource("t0")
+region = Rect2(112, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a5"]
+atlas = ExtResource("t0")
+region = Rect2(224, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a6"]
+atlas = ExtResource("t0")
+region = Rect2(0, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a7"]
+atlas = ExtResource("t0")
+region = Rect2(112, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a8"]
+atlas = ExtResource("t0")
+region = Rect2(224, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a9"]
+atlas = ExtResource("t0")
+region = Rect2(0, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a10"]
+atlas = ExtResource("t0")
+region = Rect2(112, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a11"]
+atlas = ExtResource("t0")
+region = Rect2(224, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a12"]
+atlas = ExtResource("t0")
+region = Rect2(0, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a13"]
+atlas = ExtResource("t0")
+region = Rect2(112, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a14"]
+atlas = ExtResource("t0")
+region = Rect2(224, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a15"]
+atlas = ExtResource("t0")
+region = Rect2(0, 280, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a16"]
+atlas = ExtResource("t0")
+region = Rect2(112, 280, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a17"]
+atlas = ExtResource("t0")
+region = Rect2(224, 280, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a18"]
+atlas = ExtResource("t0")
+region = Rect2(0, 336, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a19"]
+atlas = ExtResource("t0")
+region = Rect2(112, 336, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a20"]
+atlas = ExtResource("t0")
+region = Rect2(224, 336, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a21"]
+atlas = ExtResource("t0")
+region = Rect2(0, 392, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a22"]
+atlas = ExtResource("t0")
+region = Rect2(112, 392, 56, 56)
+
+[sub_resource type="AtlasTexture" id="a23"]
+atlas = ExtResource("t0")
+region = Rect2(224, 392, 56, 56)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1,
+"texture": SubResource("a0")
+}, {
+"duration": 1,
+"texture": SubResource("a1")
+}, {
+"duration": 1,
+"texture": SubResource("a2")
+}, {
+"duration": 1,
+"texture": SubResource("a3")
+}, {
+"duration": 1,
+"texture": SubResource("a4")
+}, {
+"duration": 1,
+"texture": SubResource("a5")
+}, {
+"duration": 1,
+"texture": SubResource("a6")
+}, {
+"duration": 1,
+"texture": SubResource("a7")
+}, {
+"duration": 1,
+"texture": SubResource("a8")
+}, {
+"duration": 1,
+"texture": SubResource("a9")
+}, {
+"duration": 1,
+"texture": SubResource("a10")
+}, {
+"duration": 1,
+"texture": SubResource("a11")
+}, {
+"duration": 1,
+"texture": SubResource("a12")
+}, {
+"duration": 1,
+"texture": SubResource("a13")
+}, {
+"duration": 1,
+"texture": SubResource("a14")
+}, {
+"duration": 1,
+"texture": SubResource("a15")
+}, {
+"duration": 1,
+"texture": SubResource("a16")
+}, {
+"duration": 1,
+"texture": SubResource("a17")
+}, {
+"duration": 1,
+"texture": SubResource("a18")
+}, {
+"duration": 1,
+"texture": SubResource("a19")
+}, {
+"duration": 1,
+"texture": SubResource("a20")
+}, {
+"duration": 1,
+"texture": SubResource("a21")
+}, {
+"duration": 1,
+"texture": SubResource("a22")
+}, {
+"duration": 1,
+"texture": SubResource("a23")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.143
+}]

@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/farm/actors/Pig_animation.png" id="t0"]
+
+[sub_resource type="AtlasTexture" id="a0"]
+atlas = ExtResource("t0")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="a1"]
+atlas = ExtResource("t0")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="a2"]
+atlas = ExtResource("t0")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="a3"]
+atlas = ExtResource("t0")
+region = Rect2(160, 96, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1,
+"texture": SubResource("a0")
+}, {
+"duration": 1,
+"texture": SubResource("a1")
+}, {
+"duration": 1,
+"texture": SubResource("a2")
+}, {
+"duration": 1,
+"texture": SubResource("a3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.667
+}]

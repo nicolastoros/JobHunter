@@ -1,5 +1,8 @@
 [gd_resource type="Theme" format=3]
 
+[ext_resource type="Texture2D" path="res://assets/ui/pack/Buttons.png" id="1_btn"]
+[ext_resource type="Texture2D" path="res://assets/ui/pack/Action_panel.png" id="2_wood"]
+
 [sub_resource type="StyleBoxFlat" id="BtnNormal"]
 content_margin_left = 10.0
 content_margin_top = 3.0
@@ -97,18 +100,78 @@ content_margin_bottom = 2.0
 bg_color = Color(0.85, 0.62, 0.25, 1)
 anti_aliasing = false
 
+[sub_resource type="StyleBoxTexture" id="TexBtnNormal"]
+content_margin_left = 9.0
+content_margin_top = 3.0
+content_margin_right = 9.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_btn")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(212, 142, 42, 13)
+
+[sub_resource type="StyleBoxTexture" id="TexBtnPressed"]
+content_margin_left = 9.0
+content_margin_top = 3.0
+content_margin_right = 9.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_btn")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(260, 143, 42, 12)
+
+[sub_resource type="StyleBoxTexture" id="TexBtnHover"]
+content_margin_left = 9.0
+content_margin_top = 3.0
+content_margin_right = 9.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_btn")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(308, 142, 42, 13)
+
+[sub_resource type="StyleBoxTexture" id="TexBtnDisabled"]
+content_margin_left = 9.0
+content_margin_top = 3.0
+content_margin_right = 9.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_btn")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(260, 143, 42, 12)
+
+[sub_resource type="StyleBoxTexture" id="TexPanel"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+texture = ExtResource("2_wood")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(13, 13, 166, 19)
+
 [resource]
 default_font_size = 10
-Button/colors/font_color = Color(0.93, 0.86, 0.72, 1)
-Button/colors/font_disabled_color = Color(0.45, 0.4, 0.35, 1)
-Button/colors/font_focus_color = Color(1, 0.9, 0.6, 1)
-Button/colors/font_hover_color = Color(1, 0.88, 0.55, 1)
-Button/colors/font_pressed_color = Color(0.95, 0.75, 0.4, 1)
-Button/styles/disabled = SubResource("BtnDisabled")
+Button/colors/font_color = Color(0.1, 0.2, 0.12, 1)
+Button/colors/font_disabled_color = Color(0.25, 0.32, 0.26, 1)
+Button/colors/font_focus_color = Color(0.05, 0.12, 0.06, 1)
+Button/colors/font_hover_color = Color(0.05, 0.12, 0.06, 1)
+Button/colors/font_pressed_color = Color(0.1, 0.18, 0.1, 1)
+Button/styles/disabled = SubResource("TexBtnDisabled")
 Button/styles/focus = SubResource("BtnFocus")
-Button/styles/hover = SubResource("BtnHover")
-Button/styles/normal = SubResource("BtnNormal")
-Button/styles/pressed = SubResource("BtnPressed")
+Button/styles/hover = SubResource("TexBtnHover")
+Button/styles/normal = SubResource("TexBtnNormal")
+Button/styles/pressed = SubResource("TexBtnPressed")
 CheckButton/colors/font_color = Color(0.93, 0.86, 0.72, 1)
 CheckButton/colors/font_hover_color = Color(1, 0.88, 0.55, 1)
 CheckButton/colors/font_focus_color = Color(1, 0.9, 0.6, 1)
@@ -121,5 +184,5 @@ HSlider/styles/focus = SubResource("BtnFocus")
 Label/colors/font_color = Color(0.93, 0.86, 0.72, 1)
 Label/colors/font_outline_color = Color(0.06, 0.04, 0.03, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0.5)
-PanelContainer/styles/panel = SubResource("Panel")
-Panel/styles/panel = SubResource("Panel")
+PanelContainer/styles/panel = SubResource("TexPanel")
+Panel/styles/panel = SubResource("TexPanel")

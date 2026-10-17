@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/interactable.gd" id="1_int"]
+[ext_resource type="Script" path="res://scripts/ui/talk_prompt.gd" id="2_prompt"]
+
+[node name="Interactable" type="Node2D"]
+script = ExtResource("1_int")
+
+[node name="Prompt" type="Node2D" parent="."]
+visible = false
+z_index = 30
+position = Vector2(0, -14)
+script = ExtResource("2_prompt")

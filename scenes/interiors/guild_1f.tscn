@@ -1,0 +1,390 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/interior.gd" id="1_interior"]
+[ext_resource type="Texture2D" path="res://assets/interiors/guild_1f/floor.png" id="2_floor"]
+[ext_resource type="Texture2D" path="res://assets/interiors/guild_1f/objects.png" id="3_objects"]
+[ext_resource type="PackedScene" path="res://scenes/npc/actor.tscn" id="4_actor"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/interiors/actor_72fb24c94e.tres" id="5_actor_72fb"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/interiors/actor_c3bed4c02b.tres" id="6_actor_c3be"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/interiors/actor_ef7ed54236.tres" id="7_actor_ef7e"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/interiors/actor_95ac5d9735.tres" id="8_actor_95ac"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/interiors/actor_b5d77c3815.tres" id="9_actor_b5d7"]
+[ext_resource type="PackedScene" path="res://scenes/world/interactable.tscn" id="10_interactab"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="11_player"]
+[ext_resource type="Texture2D" path="res://assets/interiors/guild_1f/top.png" id="12_top"]
+[ext_resource type="Script" path="res://scripts/world/door.gd" id="13_door"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="14_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="15_pause_menu"]
+
+[sub_resource type="RectangleShape2D" id="R0"]
+size = Vector2(28, 13)
+
+[sub_resource type="RectangleShape2D" id="R1"]
+size = Vector2(43, 13)
+
+[sub_resource type="RectangleShape2D" id="R2"]
+size = Vector2(41, 13)
+
+[sub_resource type="RectangleShape2D" id="R3"]
+size = Vector2(11, 9)
+
+[sub_resource type="RectangleShape2D" id="R4"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="R5"]
+size = Vector2(37, 13)
+
+[sub_resource type="RectangleShape2D" id="R6"]
+size = Vector2(13, 13)
+
+[sub_resource type="RectangleShape2D" id="R7"]
+size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="R8"]
+size = Vector2(48, 13)
+
+[sub_resource type="RectangleShape2D" id="R9"]
+size = Vector2(368, 96)
+
+[sub_resource type="RectangleShape2D" id="R10"]
+size = Vector2(84, 12)
+
+[sub_resource type="RectangleShape2D" id="R11"]
+size = Vector2(88, 16)
+
+[sub_resource type="RectangleShape2D" id="R12"]
+size = Vector2(84, 4)
+
+[sub_resource type="RectangleShape2D" id="R13"]
+size = Vector2(36, 44)
+
+[sub_resource type="RectangleShape2D" id="R14"]
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="R15"]
+size = Vector2(84, 32)
+
+[sub_resource type="RectangleShape2D" id="R16"]
+size = Vector2(144, 36)
+
+[sub_resource type="RectangleShape2D" id="R17"]
+size = Vector2(192, 36)
+
+[sub_resource type="RectangleShape2D" id="R18"]
+size = Vector2(368, 32)
+
+[sub_resource type="RectangleShape2D" id="R19"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="R20"]
+size = Vector2(32, 16)
+
+[node name="Guild1f" type="Node2D"]
+script = ExtResource("1_interior")
+title = "Gremio de Cazadores"
+room_size = Vector2i(368, 272)
+
+[node name="Floor" type="Sprite2D" parent="."]
+texture = ExtResource("2_floor")
+centered = false
+
+[node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Prop0" type="StaticBody2D" parent="Entities"]
+position = Vector2(224, 84)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop0"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-16, -35)
+region_enabled = true
+region_rect = Rect2(208, 49, 32, 35)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop0"]
+position = Vector2(0, -7.5)
+shape = SubResource("R0")
+
+[node name="Prop1" type="StaticBody2D" parent="Entities"]
+position = Vector2(110.5, 110)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop1"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-23.5, -58)
+region_enabled = true
+region_rect = Rect2(87, 52, 47, 58)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop1"]
+position = Vector2(0, -7.5)
+shape = SubResource("R1")
+
+[node name="Prop2" type="StaticBody2D" parent="Entities"]
+position = Vector2(184.5, 95)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop2"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-22.5, -42)
+region_enabled = true
+region_rect = Rect2(162, 53, 45, 42)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop2"]
+position = Vector2(0, -7.5)
+shape = SubResource("R2")
+
+[node name="Prop3" type="StaticBody2D" parent="Entities"]
+position = Vector2(274.5, 78)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop3"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-7.5, -23)
+region_enabled = true
+region_rect = Rect2(267, 55, 15, 23)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop3"]
+position = Vector2(0, -5.5)
+shape = SubResource("R3")
+
+[node name="Prop4" type="StaticBody2D" parent="Entities"]
+position = Vector2(150, 82)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop4"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-12, -25)
+region_enabled = true
+region_rect = Rect2(138, 57, 24, 25)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop4"]
+position = Vector2(0, -6)
+shape = SubResource("R4")
+
+[node name="Prop5" type="StaticBody2D" parent="Entities"]
+position = Vector2(58.5, 141)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop5"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-20.5, -49)
+region_enabled = true
+region_rect = Rect2(38, 92, 41, 49)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop5"]
+position = Vector2(0, -7.5)
+shape = SubResource("R5")
+
+[node name="Prop6" type="StaticBody2D" parent="Entities"]
+position = Vector2(309.5, 141)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop6"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-20.5, -49)
+region_enabled = true
+region_rect = Rect2(289, 92, 41, 49)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop6"]
+position = Vector2(0, -7.5)
+shape = SubResource("R5")
+
+[node name="Prop7" type="StaticBody2D" parent="Entities"]
+position = Vector2(323.5, 182)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop7"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-8.5, -34)
+region_enabled = true
+region_rect = Rect2(315, 148, 17, 34)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop7"]
+position = Vector2(0, -7.5)
+shape = SubResource("R6")
+
+[node name="Prop8" type="StaticBody2D" parent="Entities"]
+position = Vector2(45, 182)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop8"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-9, -33)
+region_enabled = true
+region_rect = Rect2(36, 149, 18, 33)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop8"]
+position = Vector2(0, -7.5)
+shape = SubResource("R7")
+
+[node name="Prop9" type="StaticBody2D" parent="Entities"]
+position = Vector2(260, 208)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop9"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-26, -41)
+region_enabled = true
+region_rect = Rect2(234, 167, 52, 41)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop9"]
+position = Vector2(0, -7.5)
+shape = SubResource("R8")
+
+[node name="Actor0" parent="Entities" instance=ExtResource("4_actor")]
+position = Vector2(184, 120)
+frames = ExtResource("5_actor_72fb")
+sprite_offset = Vector2(0, -8)
+npc_name = "Maestra del Gremio Ysolde"
+lines = PackedStringArray("Bienvenido al Gremio de Cazadores de Valdoria.", "Los pedidos están en los tablones a ambos lados del salón. Elige uno según tu rango.", "El dragón lo cazó mi abuelo. Por favor, no lo toques.")
+
+[node name="Actor1" parent="Entities" instance=ExtResource("4_actor")]
+position = Vector2(88, 167)
+frames = ExtResource("6_actor_c3be")
+sprite_offset = Vector2(0, -15)
+npc_name = "Cazador"
+lines = PackedStringArray("¿Viste el pedido urgente? Nadie quiere ir al norte.", "Dicen que la bestia del norte mide tres metros.", "Arriba entrenan los magos. Ten cuidado al subir.")
+
+[node name="Actor2" parent="Entities" instance=ExtResource("4_actor")]
+position = Vector2(144, 205)
+frames = ExtResource("7_actor_ef7e")
+sprite_offset = Vector2(0, -13)
+npc_name = "Cazador"
+lines = PackedStringArray("¿Viste el pedido urgente? Nadie quiere ir al norte.", "Dicen que la bestia del norte mide tres metros.", "Arriba entrenan los magos. Ten cuidado al subir.")
+
+[node name="Actor3" parent="Entities" instance=ExtResource("4_actor")]
+position = Vector2(192, 157)
+frames = ExtResource("8_actor_95ac")
+sprite_offset = Vector2(0, -13)
+npc_name = "Cazador"
+lines = PackedStringArray("¿Viste el pedido urgente? Nadie quiere ir al norte.", "Dicen que la bestia del norte mide tres metros.", "Arriba entrenan los magos. Ten cuidado al subir.")
+
+[node name="Actor4" parent="Entities" instance=ExtResource("4_actor")]
+position = Vector2(304, 157)
+frames = ExtResource("9_actor_b5d7")
+sprite_offset = Vector2(0, -13)
+npc_name = "Cazador"
+lines = PackedStringArray("¿Viste el pedido urgente? Nadie quiere ir al norte.", "Dicen que la bestia del norte mide tres metros.", "Arriba entrenan los magos. Ten cuidado al subir.")
+
+[node name="QuestBoard0" parent="Entities" instance=ExtResource("10_interactab")]
+position = Vector2(56, 155.2)
+
+[node name="QuestBoard1" parent="Entities" instance=ExtResource("10_interactab")]
+position = Vector2(312, 155.2)
+
+[node name="Player" parent="Entities" instance=ExtResource("11_player")]
+position = Vector2(160, 182.4)
+
+[node name="Top" type="Sprite2D" parent="."]
+z_index = 20
+texture = ExtResource("12_top")
+centered = false
+
+[node name="Solids" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="S0" type="CollisionShape2D" parent="Solids"]
+position = Vector2(184, 48)
+shape = SubResource("R9")
+
+[node name="S1" type="CollisionShape2D" parent="Solids"]
+position = Vector2(42, 102)
+shape = SubResource("R10")
+
+[node name="S2" type="CollisionShape2D" parent="Solids"]
+position = Vector2(326, 102)
+shape = SubResource("R10")
+
+[node name="S3" type="CollisionShape2D" parent="Solids"]
+position = Vector2(44, 116)
+shape = SubResource("R11")
+
+[node name="S4" type="CollisionShape2D" parent="Solids"]
+position = Vector2(324, 116)
+shape = SubResource("R11")
+
+[node name="S5" type="CollisionShape2D" parent="Solids"]
+position = Vector2(42, 126)
+shape = SubResource("R12")
+
+[node name="S6" type="CollisionShape2D" parent="Solids"]
+position = Vector2(326, 126)
+shape = SubResource("R12")
+
+[node name="S7" type="CollisionShape2D" parent="Solids"]
+position = Vector2(18, 150)
+shape = SubResource("R13")
+
+[node name="S8" type="CollisionShape2D" parent="Solids"]
+position = Vector2(350, 150)
+shape = SubResource("R13")
+
+[node name="S9" type="CollisionShape2D" parent="Solids"]
+position = Vector2(42, 174)
+shape = SubResource("R12")
+
+[node name="S10" type="CollisionShape2D" parent="Solids"]
+position = Vector2(40, 184)
+shape = SubResource("R14")
+
+[node name="S11" type="CollisionShape2D" parent="Solids"]
+position = Vector2(42, 198)
+shape = SubResource("R10")
+
+[node name="S12" type="CollisionShape2D" parent="Solids"]
+position = Vector2(326, 188)
+shape = SubResource("R15")
+
+[node name="S13" type="CollisionShape2D" parent="Solids"]
+position = Vector2(72, 222)
+shape = SubResource("R16")
+
+[node name="S14" type="CollisionShape2D" parent="Solids"]
+position = Vector2(272, 222)
+shape = SubResource("R17")
+
+[node name="S15" type="CollisionShape2D" parent="Solids"]
+position = Vector2(184, 256)
+shape = SubResource("R18")
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="door" type="Marker2D" parent="Spawns"]
+position = Vector2(160, 182.4)
+
+[node name="stairs" type="Marker2D" parent="Spawns"]
+position = Vector2(128, 185.6)
+
+[node name="Door0" type="Area2D" parent="."]
+position = Vector2(160, 216)
+script = ExtResource("13_door")
+target_scene = "res://scenes/world/world.tscn"
+target_spawn = ""
+direction = "down"
+
+[node name="Shape" type="CollisionShape2D" parent="Door0"]
+shape = SubResource("R19")
+
+[node name="Door1" type="Area2D" parent="."]
+position = Vector2(96, 184)
+script = ExtResource("13_door")
+target_scene = "res://scenes/interiors/guild_2f.tscn"
+target_spawn = "stairs"
+direction = "left"
+
+[node name="Shape" type="CollisionShape2D" parent="Door1"]
+shape = SubResource("R20")
+
+[node name="HUD" parent="." instance=ExtResource("14_hud")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("15_pause_menu")]

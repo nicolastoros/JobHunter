@@ -22,6 +22,8 @@ var facing := "down"
 @onready var attack_shape: CollisionShape2D = $AttackHitbox/CollisionShape2D
 
 var _focused: Node = null
+var _invulnerable := 0.0
+var _knockback := Vector2.ZERO
 
 const HITBOX_OFFSETS := {
 	"down": Vector2(0, 2),
@@ -38,10 +40,19 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if _invulnerable > 0.0:
+		_invulnerable -= delta
+		sprite.visible = state == State.DEAD or int(_invulnerable * 20.0) % 2 == 0
+		if _invulnerable <= 0.0:
+			sprite.visible = true
 	match state:
 		State.MOVE:
 			_move_state(delta)
-		State.ATTACK, State.HURT:
+		State.HURT:
+			velocity = _knockback
+			_knockback = _knockback.move_toward(Vector2.ZERO, 700 * delta)
+			move_and_slide()
+		State.ATTACK:
 			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 			move_and_slide()
 		State.DEAD:
@@ -55,6 +66,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
 		_start_attack()
 		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("use_potion"):
+		get_viewport().set_input_as_handled()
+		Game.use_potion()
 	elif event.is_action_pressed("interact") and _focused:
 		get_viewport().set_input_as_handled()
 		velocity = Vector2.ZERO
@@ -66,7 +80,11 @@ func _move_state(delta: float) -> void:
 	var input := Vector2.ZERO
 	if not Game.input_locked:
 		input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var running := Input.is_action_pressed("run") and not Game.input_locked
+	var running := Input.is_action_pressed("run") and not Game.input_locked and input != Vector2.ZERO and Game.stamina > 0.5
+	if running:
+		Game.set_stamina(Game.stamina - 22.0 * delta)
+	elif Game.stamina < Game.max_stamina:
+		Game.set_stamina(Game.stamina + 14.0 * delta)
 	if input != Vector2.ZERO:
 		facing = _dir_name(input)
 		velocity = velocity.move_toward(input * (run_speed if running else walk_speed), acceleration * delta)
@@ -91,11 +109,34 @@ func _start_attack() -> void:
 				area.take_hit(attack_damage, self)
 
 
-func take_damage(_amount: int) -> void:
-	if state == State.DEAD:
+func is_dead() -> bool:
+	return state == State.DEAD
+
+
+## Called by monsters. `from` is the attacker position, used for knockback.
+func take_damage(amount: int, from := Vector2.INF) -> void:
+	if state == State.DEAD or _invulnerable > 0.0 or Game.editing:
+		return
+	Game.damage_player(amount)
+	Game.spawn_popup(global_position + Vector2(0, -30), "-%d" % amount, Color(1, 0.35, 0.3))
+	attack_shape.set_deferred("disabled", true)
+	if Game.player_hp <= 0:
+		_die()
 		return
 	state = State.HURT
+	_invulnerable = 1.0
+	if from != Vector2.INF:
+		_knockback = (global_position - from).normalized() * 170.0
 	_play("hurt")
+
+
+func _die() -> void:
+	state = State.DEAD
+	velocity = Vector2.ZERO
+	_play("death")
+	Game.input_locked = true
+	await get_tree().create_timer(1.6).timeout
+	Game.player_died()
 
 
 func _on_animation_finished() -> void:

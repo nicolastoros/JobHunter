@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/monsters/monster.gd" id="1_mon"]
+[ext_resource type="Script" path="res://scripts/monsters/hurtbox.gd" id="2_hurt"]
+
+[sub_resource type="RectangleShape2D" id="Body"]
+size = Vector2(12, 6)
+
+[sub_resource type="RectangleShape2D" id="Hurt"]
+size = Vector2(18, 20)
+
+[node name="Monster" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_mon")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+offset = Vector2(0, -18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("Body")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_hurt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -10)
+shape = SubResource("Hurt")
