@@ -75,6 +75,7 @@ func _draw() -> void:
 	var to_screen := func(world: Vector2) -> Vector2:
 		return area.position + world * scale - src.position
 	_markers(to_screen, area, 1.0)
+	_pois(to_screen, area, false)
 	var pp: Vector2 = to_screen.call(p.global_position)
 	_hero(pp, 1.0)
 	var f := get_theme_default_font()
@@ -95,6 +96,7 @@ func _draw_big(p: Node2D) -> void:
 	var to_screen := func(world: Vector2) -> Vector2:
 		return area.position + world * scale
 	_markers(to_screen, area, 1.3)
+	_pois(to_screen, area, true)
 	_hero(to_screen.call(p.global_position), 1.5)
 	var f := get_theme_default_font()
 	var title := String(get_tree().current_scene.get("map_title")) if get_tree().current_scene.get("map_title") else "Mapa"
@@ -127,6 +129,33 @@ func _markers(to_screen: Callable, area: Rect2, k: float) -> void:
 			var ep: Vector2 = to_screen.call((e as Node2D).global_position)
 			ep = ep.clamp(area.position + Vector2(3, 3), area.end - Vector2(3, 3))
 			draw_rect(Rect2(ep - Vector2(2, 2) * k, Vector2(4, 4) * k), Color(0.3, 0.95, 0.4))
+
+
+## Important characters and places: icon on a plate (and the name on the full map).
+func _pois(to_screen: Callable, area: Rect2, big: bool) -> void:
+	var items: Array = []
+	for n in get_tree().get_nodes_in_group("poi"):
+		items.append([(n as Node2D).global_position, String(n.get_meta("poi_kind", ""))])
+	for e in get_tree().current_scene.get_children():
+		if e is Area2D and e.get("label") != null and GameData.POI_DOORS.has(String(e.get("label"))):
+			items.append([(e as Node2D).global_position, GameData.POI_DOORS[String(e.get("label"))]])
+	var f := get_theme_default_font()
+	for it in items:
+		var d: Dictionary = GameData.POI.get(it[1], {})
+		if d.is_empty():
+			continue
+		var p: Vector2 = to_screen.call(it[0])
+		if not area.has_point(p):
+			continue
+		var r := 6.0 if big else 4.5
+		draw_circle(p, r + 1.0, Color(0.2, 0.12, 0.06))
+		draw_circle(p, r, Color(0.96, 0.88, 0.66))
+		draw_texture_rect(Game.icon_texture(d["icon"]), Rect2(p - Vector2(r, r) * 0.8, Vector2(r, r) * 1.6), false)
+		if big:
+			var title: String = d.get("short", d["title"])
+			var w := f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, 7).x
+			draw_string_outline(f, p + Vector2(-w / 2.0, 15), title, HORIZONTAL_ALIGNMENT_LEFT, -1, 7, 3, Color(0.1, 0.06, 0.03))
+			draw_string(f, p + Vector2(-w / 2.0, 15), title, HORIZONTAL_ALIGNMENT_LEFT, -1, 7, Color(1, 0.9, 0.6))
 
 
 func _hero(pp: Vector2, k: float) -> void:

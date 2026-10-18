@@ -18,6 +18,12 @@ func _ready() -> void:
 	area.add_child(shape)
 	add_child(area)
 	$Prompt.visible = false
+	if action == "quest_board":
+		var badge := Node2D.new()
+		badge.set_script(load("res://scripts/ui/poi_badge.gd"))
+		badge.set("kind", "board")
+		badge.position = Vector2(0, -34)
+		add_child(badge)
 
 
 func set_focused(value: bool) -> void:

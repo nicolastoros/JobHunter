@@ -44,6 +44,17 @@ func _ready() -> void:
 	$Prompt.position.y = top + 2.0
 	$Bubble.position.y = top - 1.0
 	_shout_timer = randf_range(3.0, 15.0)
+	var kind := opens
+	if npc_name.contains("Ysolde"):
+		kind = "master"
+	if GameData.POI.has(kind):
+		add_to_group("poi")
+		set_meta("poi_kind", kind)
+		var badge := Node2D.new()
+		badge.set_script(load("res://scripts/ui/poi_badge.gd"))
+		badge.set("kind", kind)
+		badge.position = Vector2(0, top - 16.0)
+		add_child(badge)
 
 
 func _apply() -> void:

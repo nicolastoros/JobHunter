@@ -62,6 +62,8 @@ func _open_door() -> void:
 	var player := get_tree().get_first_node_in_group("player") as Node2D
 	await get_tree().create_timer(0.2).timeout
 	if player:
+		# the hero stays in front of the dark doorway while stepping in
+		player.z_index = 2
 		player.set("velocity", Vector2.ZERO)
 		var sp := player.get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
 		if sp and sp.sprite_frames.has_animation(&"walk_up"):

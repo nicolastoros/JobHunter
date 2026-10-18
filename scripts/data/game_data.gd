@@ -233,6 +233,18 @@ const PETS := {
 }
 const RANK_ORDER := ["E", "D", "C", "B", "A", "S"]
 
+# --- Points of interest (badge over the head and icon on the maps) ---------------------------------
+const POI := {
+	"forge": {"icon": [0, 96], "title": "Herrera"},
+	"stable": {"icon": [32, 16], "title": "Establo"},
+	"master": {"icon": [16, 48], "title": "Maestra del Gremio"},
+	"guild": {"icon": [16, 48], "title": "Gremio de Cazadores", "short": "Gremio"},
+	"home": {"icon": [64, 0], "title": "Tu casa", "short": "Casa"},
+	"board": {"icon": [16, 16], "title": "Pedidos"},
+}
+## Doors that show on the maps, by their label.
+const POI_DOORS := {"Gremio de Cazadores": "guild", "Tu casa": "home"}
+
 # --- World events -------------------------------------------------------------------------------
 ## Colossal versions of the bosses appear on the plain from time to time.
 const EVENT_FIRST := Vector2(80.0, 140.0)      # seconds until the first event
