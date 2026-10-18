@@ -3,6 +3,8 @@ extends Node2D
 
 @export var title := ""
 @export var room_size := Vector2i(320, 240)
+## Your bed at home: rest (E) to recover and save.
+@export var rest_point := Vector2.INF
 
 @onready var player: Player = $Entities/Player
 
@@ -31,5 +33,10 @@ func _ready() -> void:
 	if r.size.y < vp.y:
 		r = r.grow_individual(0, (vp.y - r.size.y) / 2.0, 0, (vp.y - r.size.y) / 2.0)
 	player.set_camera_limits(Rect2i(r))
+	if rest_point != Vector2.INF:
+		var bed := Node2D.new()
+		bed.set_script(load("res://scripts/objects/rest_spot.gd"))
+		bed.position = rest_point
+		$Entities.add_child(bed)
 	if title != "":
 		Game.location_entered.emit(title)

@@ -35,7 +35,7 @@ ENTERABLE = [
     # (approx tile position of the door, interior scene, label)
     ((98.6, 42), "guild_1f", "Gremio de Cazadores"),
     ((60, 71), "house_red", "Casa"),
-    ((68, 42), "farmhouse", "Casa"),
+    ((68, 42), "home", "Tu casa"),
     ((112, 83), "house_red", "Casa"),
     ((50.5, 102), "house_red", "Taberna La Gaviota"),
     ((71.5, 102), "port_house", "Pescadería"),
@@ -54,7 +54,7 @@ def assign_doors(w):
             dist = dx * dx + dy * dy
             if (interior == "guild_1f") != (d["key"] == "guild_hall"):
                 continue
-            if interior == "farmhouse" and d["key"] != "farmhouse":
+            if interior in ("farmhouse", "home") and d["key"] != "farmhouse":
                 continue
             if interior == "house_red" and d["key"] != "house_red":
                 continue
@@ -65,7 +65,7 @@ def assign_doors(w):
         if best and best[0] < 120:
             used.add(best[1])
             d = w.house_doors[best[1]]
-            w.doors.append(dict(pos=d["pos"], interior=interior, label=label, name="door_%d" % len(w.doors)))
+            w.doors.append(dict(pos=d["pos"], interior=interior, label=label, name="door_%d" % len(w.doors), key=d["key"], prop=d.get("prop")))
 
 
 def scatter(w, keys, rect, n, avoid=None, min_dist=1.6):

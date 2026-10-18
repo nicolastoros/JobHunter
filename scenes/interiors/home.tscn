@@ -1,0 +1,327 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/interior.gd" id="1_interior"]
+[ext_resource type="Texture2D" path="res://assets/interiors/home/floor.png" id="2_floor"]
+[ext_resource type="Texture2D" path="res://assets/interiors/home/objects.png" id="3_objects"]
+[ext_resource type="PackedScene" path="res://scenes/npc/actor.tscn" id="4_actor"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/interiors/actor_cd84aa815b.tres" id="5_actor_cd84"]
+[ext_resource type="PackedScene" path="res://scenes/world/interactable.tscn" id="6_interactab"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="7_player"]
+[ext_resource type="Texture2D" path="res://assets/interiors/home/top.png" id="8_top"]
+[ext_resource type="Script" path="res://scripts/world/door.gd" id="9_door"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="10_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="11_pause_menu"]
+
+[sub_resource type="RectangleShape2D" id="R0"]
+size = Vector2(4, 8)
+
+[sub_resource type="RectangleShape2D" id="R1"]
+size = Vector2(32, 13)
+
+[sub_resource type="RectangleShape2D" id="R2"]
+size = Vector2(36, 13)
+
+[sub_resource type="RectangleShape2D" id="R3"]
+size = Vector2(40, 11)
+
+[sub_resource type="RectangleShape2D" id="R4"]
+size = Vector2(9, 7)
+
+[sub_resource type="RectangleShape2D" id="R5"]
+size = Vector2(28, 13)
+
+[sub_resource type="RectangleShape2D" id="R6"]
+size = Vector2(7, 8)
+
+[sub_resource type="RectangleShape2D" id="R7"]
+size = Vector2(37, 13)
+
+[sub_resource type="RectangleShape2D" id="R8"]
+size = Vector2(18, 13)
+
+[sub_resource type="RectangleShape2D" id="R9"]
+size = Vector2(448, 144)
+
+[sub_resource type="RectangleShape2D" id="R10"]
+size = Vector2(148, 16)
+
+[sub_resource type="RectangleShape2D" id="R11"]
+size = Vector2(8, 28)
+
+[sub_resource type="RectangleShape2D" id="R12"]
+size = Vector2(116, 28)
+
+[sub_resource type="RectangleShape2D" id="R13"]
+size = Vector2(196, 52)
+
+[sub_resource type="RectangleShape2D" id="R14"]
+size = Vector2(116, 76)
+
+[sub_resource type="RectangleShape2D" id="R15"]
+size = Vector2(116, 12)
+
+[sub_resource type="RectangleShape2D" id="R16"]
+size = Vector2(208, 20)
+
+[sub_resource type="RectangleShape2D" id="R17"]
+size = Vector2(448, 112)
+
+[sub_resource type="RectangleShape2D" id="R18"]
+size = Vector2(32, 32)
+
+[node name="Home" type="Node2D"]
+script = ExtResource("1_interior")
+title = "Tu casa"
+room_size = Vector2i(448, 368)
+rest_point = Vector2(270.4, 228.8)
+
+[node name="Floor" type="Sprite2D" parent="."]
+texture = ExtResource("2_floor")
+centered = false
+
+[node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Prop0" type="StaticBody2D" parent="Entities"]
+position = Vector2(212, 126)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop0"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-4, -22)
+region_enabled = true
+region_rect = Rect2(208, 104, 8, 22)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop0"]
+position = Vector2(0, -5)
+shape = SubResource("R0")
+
+[node name="Prop1" type="StaticBody2D" parent="Entities"]
+position = Vector2(236, 153)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop1"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-18, -49)
+region_enabled = true
+region_rect = Rect2(218, 104, 36, 49)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop1"]
+position = Vector2(0, -7.5)
+shape = SubResource("R1")
+
+[node name="Prop2" type="StaticBody2D" parent="Entities"]
+position = Vector2(296, 169)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop2"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-20, -42)
+region_enabled = true
+region_rect = Rect2(276, 127, 40, 42)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop2"]
+position = Vector2(0, -7.5)
+shape = SubResource("R2")
+
+[node name="Prop3" type="StaticBody2D" parent="Entities"]
+position = Vector2(200, 155)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop3"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-22, -27)
+region_enabled = true
+region_rect = Rect2(178, 128, 44, 27)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop3"]
+position = Vector2(0, -6.5)
+shape = SubResource("R3")
+
+[node name="Prop4" type="StaticBody2D" parent="Entities"]
+position = Vector2(265.5, 152)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop4"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-6.5, -19)
+region_enabled = true
+region_rect = Rect2(259, 133, 13, 19)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop4"]
+position = Vector2(0, -4.5)
+shape = SubResource("R4")
+
+[node name="Prop5" type="StaticBody2D" parent="Entities"]
+position = Vector2(326.5, 152)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop5"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-6.5, -19)
+region_enabled = true
+region_rect = Rect2(320, 133, 13, 19)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop5"]
+position = Vector2(0, -4.5)
+shape = SubResource("R4")
+
+[node name="Prop6" type="StaticBody2D" parent="Entities"]
+position = Vector2(184, 199)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop6"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-16, -34)
+region_enabled = true
+region_rect = Rect2(168, 165, 32, 34)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop6"]
+position = Vector2(0, -7.5)
+shape = SubResource("R5")
+
+[node name="Prop7" type="StaticBody2D" parent="Entities"]
+position = Vector2(161.5, 190)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop7"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-5.5, -21)
+region_enabled = true
+region_rect = Rect2(156, 169, 11, 21)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop7"]
+position = Vector2(0, -5)
+shape = SubResource("R6")
+
+[node name="Prop8" type="StaticBody2D" parent="Entities"]
+position = Vector2(206.5, 190)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop8"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-5.5, -21)
+region_enabled = true
+region_rect = Rect2(201, 169, 11, 21)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop8"]
+position = Vector2(0, -5)
+shape = SubResource("R6")
+
+[node name="Prop9" type="StaticBody2D" parent="Entities"]
+position = Vector2(136.5, 237)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop9"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-20.5, -55)
+region_enabled = true
+region_rect = Rect2(116, 182, 41, 55)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop9"]
+position = Vector2(0, -7.5)
+shape = SubResource("R7")
+
+[node name="Prop10" type="StaticBody2D" parent="Entities"]
+position = Vector2(321, 226)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop10"]
+texture = ExtResource("3_objects")
+centered = false
+offset = Vector2(-11, -39)
+region_enabled = true
+region_rect = Rect2(310, 187, 22, 39)
+
+[node name="Shape" type="CollisionShape2D" parent="Entities/Prop10"]
+position = Vector2(0, -7.5)
+shape = SubResource("R8")
+
+[node name="Actor0" parent="Entities" instance=ExtResource("4_actor")]
+position = Vector2(128, 161)
+frames = ExtResource("5_actor_cd84")
+sprite_offset = Vector2(0, -9)
+collide = false
+
+[node name="Player" parent="Entities" instance=ExtResource("7_player")]
+position = Vector2(224, 211.2)
+
+[node name="Top" type="Sprite2D" parent="."]
+z_index = 20
+texture = ExtResource("8_top")
+centered = false
+
+[node name="Solids" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="S0" type="CollisionShape2D" parent="Solids"]
+position = Vector2(224, 72)
+shape = SubResource("R9")
+
+[node name="S1" type="CollisionShape2D" parent="Solids"]
+position = Vector2(74, 152)
+shape = SubResource("R10")
+
+[node name="S2" type="CollisionShape2D" parent="Solids"]
+position = Vector2(256, 158)
+shape = SubResource("R11")
+
+[node name="S3" type="CollisionShape2D" parent="Solids"]
+position = Vector2(390, 158)
+shape = SubResource("R12")
+
+[node name="S4" type="CollisionShape2D" parent="Solids"]
+position = Vector2(350, 198)
+shape = SubResource("R13")
+
+[node name="S5" type="CollisionShape2D" parent="Solids"]
+position = Vector2(58, 198)
+shape = SubResource("R14")
+
+[node name="S6" type="CollisionShape2D" parent="Solids"]
+position = Vector2(390, 230)
+shape = SubResource("R15")
+
+[node name="S7" type="CollisionShape2D" parent="Solids"]
+position = Vector2(104, 246)
+shape = SubResource("R16")
+
+[node name="S8" type="CollisionShape2D" parent="Solids"]
+position = Vector2(344, 246)
+shape = SubResource("R16")
+
+[node name="S9" type="CollisionShape2D" parent="Solids"]
+position = Vector2(224, 312)
+shape = SubResource("R17")
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="door" type="Marker2D" parent="Spawns"]
+position = Vector2(224, 211.2)
+
+[node name="bed" type="Marker2D" parent="Spawns"]
+position = Vector2(249.6, 233.6)
+
+[node name="Door0" type="Area2D" parent="."]
+position = Vector2(224, 240)
+script = ExtResource("9_door")
+target_scene = "res://scenes/world/world.tscn"
+target_spawn = ""
+direction = "down"
+
+[node name="Shape" type="CollisionShape2D" parent="Door0"]
+shape = SubResource("R18")
+
+[node name="HUD" parent="." instance=ExtResource("10_hud")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_pause_menu")]

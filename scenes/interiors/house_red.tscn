@@ -87,7 +87,7 @@ size = Vector2(112, 20)
 size = Vector2(448, 112)
 
 [sub_resource type="RectangleShape2D" id="R25"]
-size = Vector2(32, 48)
+size = Vector2(32, 32)
 
 [node name="HouseRed" type="Node2D"]
 script = ExtResource("1_interior")
@@ -336,7 +336,7 @@ shape = SubResource("R24")
 position = Vector2(315.2, 233.6)
 
 [node name="Door0" type="Area2D" parent="."]
-position = Vector2(320, 264)
+position = Vector2(320, 272)
 script = ExtResource("8_door")
 target_scene = "res://scenes/world/world.tscn"
 target_spawn = ""

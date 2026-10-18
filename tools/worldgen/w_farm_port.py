@@ -59,6 +59,15 @@ def build_farm(w, g):
     # buildings
     prop(w, "farmhouse", 164, 52.6)
     prop(w, "barn", 152, 31)
+    # the stable: its keeper in front of the barn and a paddock with the animals for sale
+    keeper = tmx_actor(w, "stable_keeper", "Old_man_idle", (0, 0, 32, 32), 149.2 * T, 33.6 * T,
+                       talk=("Bruno, mozo de cuadra", ["Ciervos de monta y compañeros de caza. No son baratos, pero valen lo que cuestan."]),
+                       bubble=["¡Ciervos de monta!", "Compañeros de caza fieles.", "Cuido a cada animal como a un hijo."])
+    keeper["opens"] = "stable"
+    pen(w, 133, 19, 143, 28, gate_x=138)
+    import w_outside as WO
+    for kind, x, y in (("Deer", 136, 22.5), ("Fox", 140, 24), ("Boar", 137, 26)):
+        WO.animal(w, kind, x * T, y * T, (134 * T, 20.5 * T, 8 * T, 6 * T))
     prop(w, "shed", 166, 31)
     prop(w, "longshed", 137.5, 52.3)
     prop(w, "coop", 170.5, 42)

@@ -40,37 +40,34 @@ size = Vector2(37, 13)
 size = Vector2(18, 13)
 
 [sub_resource type="RectangleShape2D" id="R9"]
-size = Vector2(12, 6)
-
-[sub_resource type="RectangleShape2D" id="R10"]
 size = Vector2(448, 144)
 
-[sub_resource type="RectangleShape2D" id="R11"]
+[sub_resource type="RectangleShape2D" id="R10"]
 size = Vector2(148, 16)
 
-[sub_resource type="RectangleShape2D" id="R12"]
+[sub_resource type="RectangleShape2D" id="R11"]
 size = Vector2(8, 28)
 
-[sub_resource type="RectangleShape2D" id="R13"]
+[sub_resource type="RectangleShape2D" id="R12"]
 size = Vector2(116, 28)
 
-[sub_resource type="RectangleShape2D" id="R14"]
+[sub_resource type="RectangleShape2D" id="R13"]
 size = Vector2(196, 52)
 
-[sub_resource type="RectangleShape2D" id="R15"]
+[sub_resource type="RectangleShape2D" id="R14"]
 size = Vector2(116, 76)
 
-[sub_resource type="RectangleShape2D" id="R16"]
+[sub_resource type="RectangleShape2D" id="R15"]
 size = Vector2(116, 12)
 
-[sub_resource type="RectangleShape2D" id="R17"]
+[sub_resource type="RectangleShape2D" id="R16"]
 size = Vector2(208, 20)
 
-[sub_resource type="RectangleShape2D" id="R18"]
+[sub_resource type="RectangleShape2D" id="R17"]
 size = Vector2(448, 112)
 
-[sub_resource type="RectangleShape2D" id="R19"]
-size = Vector2(32, 48)
+[sub_resource type="RectangleShape2D" id="R18"]
+size = Vector2(32, 32)
 
 [node name="Farmhouse" type="Node2D"]
 script = ExtResource("1_interior")
@@ -249,21 +246,6 @@ region_rect = Rect2(310, 187, 22, 39)
 position = Vector2(0, -7.5)
 shape = SubResource("R8")
 
-[node name="Prop11" type="StaticBody2D" parent="Entities"]
-position = Vector2(216, 208)
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Entities/Prop11"]
-texture = ExtResource("3_objects")
-centered = false
-offset = Vector2(-8, -16)
-region_enabled = true
-region_rect = Rect2(208, 192, 16, 16)
-
-[node name="Shape" type="CollisionShape2D" parent="Entities/Prop11"]
-position = Vector2(0, -4)
-shape = SubResource("R9")
-
 [node name="Actor0" parent="Entities" instance=ExtResource("4_actor")]
 position = Vector2(128, 161)
 frames = ExtResource("5_actor_cd84")
@@ -271,7 +253,7 @@ sprite_offset = Vector2(0, -9)
 collide = false
 
 [node name="Player" parent="Entities" instance=ExtResource("7_player")]
-position = Vector2(224, 200)
+position = Vector2(224, 211.2)
 
 [node name="Top" type="Sprite2D" parent="."]
 z_index = 20
@@ -283,58 +265,58 @@ collision_mask = 0
 
 [node name="S0" type="CollisionShape2D" parent="Solids"]
 position = Vector2(224, 72)
-shape = SubResource("R10")
+shape = SubResource("R9")
 
 [node name="S1" type="CollisionShape2D" parent="Solids"]
 position = Vector2(74, 152)
-shape = SubResource("R11")
+shape = SubResource("R10")
 
 [node name="S2" type="CollisionShape2D" parent="Solids"]
 position = Vector2(256, 158)
-shape = SubResource("R12")
+shape = SubResource("R11")
 
 [node name="S3" type="CollisionShape2D" parent="Solids"]
 position = Vector2(390, 158)
-shape = SubResource("R13")
+shape = SubResource("R12")
 
 [node name="S4" type="CollisionShape2D" parent="Solids"]
 position = Vector2(350, 198)
-shape = SubResource("R14")
+shape = SubResource("R13")
 
 [node name="S5" type="CollisionShape2D" parent="Solids"]
 position = Vector2(58, 198)
-shape = SubResource("R15")
+shape = SubResource("R14")
 
 [node name="S6" type="CollisionShape2D" parent="Solids"]
 position = Vector2(390, 230)
-shape = SubResource("R16")
+shape = SubResource("R15")
 
 [node name="S7" type="CollisionShape2D" parent="Solids"]
 position = Vector2(104, 246)
-shape = SubResource("R17")
+shape = SubResource("R16")
 
 [node name="S8" type="CollisionShape2D" parent="Solids"]
 position = Vector2(344, 246)
-shape = SubResource("R17")
+shape = SubResource("R16")
 
 [node name="S9" type="CollisionShape2D" parent="Solids"]
 position = Vector2(224, 312)
-shape = SubResource("R18")
+shape = SubResource("R17")
 
 [node name="Spawns" type="Node2D" parent="."]
 
 [node name="door" type="Marker2D" parent="Spawns"]
-position = Vector2(224, 200)
+position = Vector2(224, 211.2)
 
 [node name="Door0" type="Area2D" parent="."]
-position = Vector2(224, 232)
+position = Vector2(224, 240)
 script = ExtResource("9_door")
 target_scene = "res://scenes/world/world.tscn"
 target_spawn = ""
 direction = "down"
 
 [node name="Shape" type="CollisionShape2D" parent="Door0"]
-shape = SubResource("R19")
+shape = SubResource("R18")
 
 [node name="HUD" parent="." instance=ExtResource("10_hud")]
 

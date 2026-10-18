@@ -22,6 +22,10 @@ var _boss: Node = null
 var _streak: Label
 ## The action bar (sword, potion, skills 1-6); touch controls tap its slots.
 var action_bar: Control
+var _tg_root: Control
+var _tg_name: Label
+var _tg_fill: ColorRect
+var _objective: Label
 
 
 func _ready() -> void:
@@ -124,6 +128,41 @@ func _ready() -> void:
 	_boss_name.size = Vector2(200, 12)
 	_boss_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_boss_root.add_child(_boss_name)
+	# locked target (Tab): name, level and health at the top centre
+	_tg_root = Control.new()
+	_tg_root.size = Vector2(130, 20)
+	_tg_root.visible = false
+	add_child(_tg_root)
+	_tg_root.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM, Control.PRESET_MODE_KEEP_SIZE)
+	_tg_root.position.y -= 28
+	var tbg := ColorRect.new()
+	tbg.color = Color(0.1, 0.06, 0.05, 0.8)
+	tbg.position = Vector2(0, 11)
+	tbg.size = Vector2(130, 5)
+	_tg_root.add_child(tbg)
+	_tg_fill = ColorRect.new()
+	_tg_fill.color = Color(0.85, 0.22, 0.16)
+	_tg_fill.position = Vector2(1, 12)
+	_tg_fill.size = Vector2(128, 3)
+	_tg_root.add_child(_tg_fill)
+	_tg_name = Label.new()
+	_tg_name.size = Vector2(130, 11)
+	_tg_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_tg_name.add_theme_font_size_override("font_size", 7)
+	_tg_name.add_theme_constant_override("outline_size", 3)
+	_tg_name.add_theme_color_override("font_color", Color(1, 0.75, 0.65))
+	_tg_root.add_child(_tg_name)
+	# current objective / world event, under the minimap
+	_objective = Label.new()
+	_objective.size = Vector2(150, 30)
+	_objective.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_objective.add_theme_font_size_override("font_size", 7)
+	_objective.add_theme_constant_override("outline_size", 3)
+	_objective.add_theme_constant_override("line_spacing", -2)
+	add_child(_objective)
+	_objective.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT, Control.PRESET_MODE_KEEP_SIZE)
+	_objective.position = Vector2(_objective.position.x - 5, 72)
 	Game.stats_changed.connect(_refresh)
 	Game.boss_engaged.connect(_on_boss)
 	_refresh()
@@ -168,6 +207,23 @@ func _on_boss(m: Node) -> void:
 
 
 func _process(_delta: float) -> void:
+	var tg := Game.target
+	_tg_root.visible = tg != null and is_instance_valid(tg)
+	if _tg_root.visible:
+		_tg_name.text = "%s  ·  Nv %d" % [tg.get("monster_name"), tg.get("monster_level")]
+		_tg_fill.size.x = 128.0 * clampf(float(tg.get("hp")) / float(tg.get("max_hp")), 0.0, 1.0)
+	var lines: Array[String] = []
+	var dir := get_tree().current_scene.get_node_or_null("EventDirector") if get_tree().current_scene else null
+	if dir and float(dir.call("time_left")) > 0.0:
+		var tl := int(dir.call("time_left"))
+		var b = get_tree().get_first_node_in_group("event_boss")
+		if b:
+			lines.append("Evento: %s  %d:%02d" % [b.get("monster_name"), tl / 60, tl % 60])
+	var obj := Game.objective_text()
+	if obj != "":
+		lines.append("» " + obj)
+	_objective.text = "\n".join(lines)
+	_objective.add_theme_color_override("font_color", Color(1, 0.6, 0.35) if lines.size() > 0 and lines[0].begins_with("Evento") else Color(1, 0.92, 0.7))
 	var st := Game.streak()
 	_streak.visible = st >= 2
 	if st >= 2:

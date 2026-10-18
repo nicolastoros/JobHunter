@@ -13,8 +13,11 @@ Abre Godot 4.7.2 → **Importar** → selecciona `project.godot`. Pulsa F5 para 
 | Atacar | Espacio / J / Clic | X |
 | Poción de vida (30 %) | Q | Y |
 | Habilidades | 1 a 6 | — |
-| Personaje / Inventario / Habilidades / Talentos | C / I (o Tab) / K / L | Select |
+| Personaje / Inventario / Habilidades / Talentos | C / I / K / L | Select |
 | Mapa | M | — |
+| Fijar / soltar objetivo · cambiar objetivo | Tab · rueda del ratón | — |
+| Montar / desmontar | H | — |
+| Ranking del Gremio (en cualquier lugar) | R | — |
 | Hablar | E / Enter | A |
 | Pausa | Esc | Start |
 
@@ -81,6 +84,22 @@ Mapa abierto de 170×130 tiles al norte de la ciudad, con senderos que unen sus 
 - **Rangos del Gremio** E → D → C → B → A → S; cada ascenso da oro, pociones y una pieza de equipo.
 - **Tablón del Gremio** (E en el Gremio): pestañas **Pedidos**, **Contratos** (3 encargos repetibles que se renuevan al cobrarlos; se pueden cambiar pagando oro) y **Ranking** (los cazadores de Valdoria; también suben con el tiempo y avisa cuando superas a alguien).
 - Datos en `GameData.HUNTERS`, `GUILD_RANKS` y `CONTRACT_POOL`.
+
+### Inicio, casa y primeros pasos
+- La partida empieza en **tu casa** (`scenes/interiors/home.tscn`, una casa de la ciudad). Frente al dormitorio puedes **descansar** (E): recuperas todo y se guarda la partida.
+- Al salir por primera vez: "Bienvenido a Valdoria" y dos líneas de la mensajera del Gremio. Después solo hay un **objetivo** discreto bajo el minimapa (Gremio → licencia con la maestra Ysolde → aceptar un pedido → salir a la Llanura) y algún consejo puntual. Nada bloquea al jugador.
+
+### Combate: objetivo y ataque en movimiento
+- **Tab** fija la presa más cercana (anillo y flecha sobre ella, y su ficha encima de la barra de acciones); **rueda del ratón** cambia de presa; Tab otra vez la suelta. Con objetivo, el golpe, la Embestida y el Tajo de luz apuntan hacia él.
+- Se puede **atacar caminando o corriendo** (animaciones `walk_attack` / `run_attack`).
+
+### Eventos: jefes colosales
+- En la Llanura, cada 4–7 minutos aparece un **jefe colosal** (Gólem, Ent o Rey Limo, más grande y con 5× de vida) en una zona. Aviso en pantalla, temporizador bajo el minimapa y marca en el mapa.
+- Los cazadores del Gremio acuden a pelear. Si lo golpeaste y sigues en pie cuando cae, te llevas el **botín**: oro, materiales del jefe, una pieza de equipo mejorada, renombre y experiencia. Si nadie lo vence en 5 minutos, se retira. (`scripts/world/event_director.gd`)
+
+### Establo
+- En las Granjas del Este, **Bruno, el mozo de cuadra** (junto al granero), vende el **ciervo de monta** (3000 oro, licencia D; H para montar, más rápido y sin estamina) y **compañeros**: Zorro rojo (2000, licencia D) y Jabalí de guerra (5000, licencia C). El compañero te sigue y ataca a tu objetivo o a lo que te ataque. En el potrero se ven los animales.
+- No hay sprites de caballo en los packs: el ciervo hace de montura hasta tener uno.
 
 ### Guardado
 - **Guardar partida** en el menú de pausa y **guardado automático cada 3 minutos** (`Game.AUTOSAVE_INTERVAL`).

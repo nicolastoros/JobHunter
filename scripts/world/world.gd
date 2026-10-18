@@ -58,12 +58,48 @@ func _ready() -> void:
 	player.set_camera_limits(Rect2i(Vector2i.ZERO, map_size * 16))
 	_spawn_chests()
 	_spawn_hunters.call_deferred()
+	if hunter_count > 0:
+		var director := Node.new()
+		director.name = "EventDirector"
+		director.set_script(load("res://scripts/world/event_director.gd"))
+		add_child(director)
+		Game.advance_tutorial(4)
+		Game.tip("target", "Consejo: Tab fija una presa y la rueda del ratón cambia de presa.")
+	_spawn_pet.call_deferred()
+	Game.pet_changed.connect(_spawn_pet)
+	if Game.tutorial_step == 0 and scene_file_path == Game.FIRST_LEVEL:
+		_welcome.call_deferred()
 	var t := Timer.new()
 	t.wait_time = 0.5
 	t.autostart = true
 	t.timeout.connect(_check_zone)
 	add_child(t)
 	_check_zone()
+
+
+## The companion travels with the hero on outdoor maps.
+func _spawn_pet() -> void:
+	for p in get_tree().get_nodes_in_group("pets"):
+		p.queue_free()
+	if Game.active_pet == "":
+		return
+	var pet := Node2D.new()
+	pet.set_script(load("res://scripts/npc/pet.gd"))
+	pet.set("pet_id", Game.active_pet)
+	pet.position = player.global_position + Vector2(-16, 6)
+	$Entities.add_child(pet)
+
+
+## First time out of the house: a short welcome and a nudge toward the Guild. No tutorials.
+func _welcome() -> void:
+	await get_tree().create_timer(0.8).timeout
+	Game.world_event.emit("Bienvenido a Valdoria")
+	await get_tree().create_timer(2.6).timeout
+	Game.advance_tutorial(1)
+	Game.show_dialogue("Mensajera del Gremio", PackedStringArray([
+		"¡Por fin despiertas! Eres el cazador nuevo del que habla la maestra Ysolde.",
+		"Pásate por el Gremio, en el centro de la ciudad, y recoge tu licencia. Sin ella no te darán trabajo.",
+	]))
 
 
 func _spawn_chests() -> void:

@@ -31,6 +31,7 @@ var _chatter := 0.0
 var _greet_cd := 0.0
 var _rank := "E"
 var _rest := 0.0   # breather after each fight
+var _repath := 0.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var bubble: Node2D = $Bubble
@@ -78,8 +79,9 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 			if not _hit_done and sprite.frame >= 3:
 				_hit_done = true
-				if _alive(_target) and _target.global_position.distance_to(global_position) < 30.0:
-					var dmg := maxi(1, int(ceil(int(_target.get("max_hp")) / randf_range(6.0, 8.0))))
+				if _alive(_target) and _target.global_position.distance_to(global_position) < 44.0:
+					var div := 70.0 if _is_event(_target) else randf_range(6.0, 8.0)
+					var dmg := maxi(1, int(ceil(int(_target.get("max_hp")) / div)))
 					_target.call("take_hit", dmg, self, false)
 			return
 		State.IDLE:
@@ -88,12 +90,12 @@ func _physics_process(delta: float) -> void:
 			hp = mini(hp + 1, max_hp) if randf() < 0.05 else hp
 			_wait -= delta
 			_rest -= delta
-			if role == "fighter" and _rest <= 0.0 and _look_for_prey():
+			if _rest <= 0.0 and _look_for_prey():
 				return
 			if _wait <= 0.0:
 				_decide()
 		State.MOVE:
-			if role == "fighter" and _look_for_prey():
+			if _look_for_prey():
 				return
 			_follow(delta)
 		State.CHASE:
@@ -118,6 +120,17 @@ func _decide() -> void:
 
 
 func _look_for_prey() -> bool:
+	# a colossus on the loose: every hunter on the map answers the call
+	for e in get_tree().get_nodes_in_group("event_boss"):
+		if _alive(e):
+			if _target != e:
+				_say(["¡Un colosal! ¡Vamos!", "¡Todos al colosal!", "¡Por el Gremio!"].pick_random())
+			_target = e
+			state = State.CHASE
+			_path = PackedVector2Array()
+			return true
+	if role != "fighter":
+		return false
 	var best: Node2D = null
 	var bd := 95.0
 	for m in get_tree().get_nodes_in_group("monsters"):
@@ -163,8 +176,13 @@ func _follow(delta: float) -> void:
 		_stuck = 0.0
 
 
+func _is_event(n) -> bool:
+	return n != null and is_instance_valid(n) and n.get("event_boss") == true
+
+
 func _chase(delta: float) -> void:
-	if not _alive(_target) or global_position.distance_to(home) > 260.0:
+	var event := _is_event(_target)
+	if not _alive(_target) or (not event and global_position.distance_to(home) > 260.0):
 		if _target and not _alive(_target) and randf() < 0.6:
 			_say(GameData.HUNTER_CHATTER.slice(0, 4).pick_random())
 		_target = null
@@ -174,7 +192,25 @@ func _chase(delta: float) -> void:
 		return
 	var to := _target.global_position - global_position
 	_facing = _dir(to)
-	if to.length() < 22.0:
+	var reach := 34.0 if event else 22.0
+	if event and to.length() >= reach:
+		# long way to the colossus: follow a real path
+		_repath -= delta
+		if _path.is_empty() or _repath <= 0.0:
+			_repath = 1.5
+			if _world and _world.has_method("find_path"):
+				_path = _world.call("find_path", global_position, _target.global_position)
+		if not _path.is_empty():
+			var step := _path[0] - global_position
+			if step.length() < 5.0:
+				_path.remove_at(0)
+			else:
+				velocity = step.normalized() * 80.0
+				move_and_slide()
+				_facing = _dir(step)
+				_play("run")
+			return
+	if to.length() < reach:
 		velocity = Vector2.ZERO
 		if _cool <= 0.0:
 			state = State.ATTACK

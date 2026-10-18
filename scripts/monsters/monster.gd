@@ -20,6 +20,10 @@ enum State { IDLE, WANDER, CHASE, ATTACK, HURT, DEAD, RETURN }
 @export var sprite_offset_y := -18.0
 @export var body_size := Vector2(12, 6)
 @export var respawn_time := 45.0
+## Colossus of a world event: tougher, never respawns, and pays everyone who fought it.
+@export var event_boss := false
+## Name used for the loot table (the colossus keeps the name of the boss it is based on).
+@export var base_name := ""
 
 var state := State.IDLE
 var hp := 3
@@ -30,6 +34,8 @@ var _base_hp := 3
 var _base_damage := 1
 var _base_gold := 2
 var _last_hitter: Node2D = null
+var _player_damage := 0
+var _hunters_hit := {}
 var _home := Vector2.ZERO
 var _target := Vector2.ZERO
 var _wait := 0.0
@@ -51,6 +57,10 @@ func _ready() -> void:
 	_base_hp = max_hp
 	_base_damage = damage
 	_base_gold = gold
+	if base_name == "":
+		base_name = monster_name
+	if event_boss:
+		add_to_group("event_boss")
 	_apply_level()
 	sprite.sprite_frames = frames
 	sprite.offset.y = sprite_offset_y
@@ -151,6 +161,10 @@ func take_hit(amount: int, source: Node2D, crit := false) -> void:
 	if state == State.DEAD:
 		return
 	_last_hitter = source
+	if source and source.is_in_group("player"):
+		_player_damage += amount
+	elif source and source.is_in_group("hunters"):
+		_hunters_hit[String(source.get("hunter_name"))] = true
 	hp -= amount
 	_bar_timer = 3.0
 	if crit:
@@ -177,7 +191,9 @@ func _die() -> void:
 	shape.set_deferred("disabled", true)
 	hurt_shape.set_deferred("disabled", true)
 	_play("death", true)
-	if _last_hitter and is_instance_valid(_last_hitter) and _last_hitter.is_in_group("hunters"):
+	if event_boss:
+		Game.on_event_boss_killed(self, _player_damage > 0, _hunters_hit.keys())
+	elif _last_hitter and is_instance_valid(_last_hitter) and _last_hitter.is_in_group("hunters"):
 		Game.on_hunter_kill(String(_last_hitter.get("hunter_name")), self)
 	else:
 		Game.on_monster_killed(self)
@@ -192,6 +208,9 @@ func _on_anim_finished() -> void:
 		State.DEAD:
 			var t := create_tween()
 			t.tween_property(sprite, "modulate:a", 0.0, 0.8)
+			if event_boss:
+				t.tween_callback(queue_free)
+				return
 			t.tween_interval(respawn_time)
 			t.tween_callback(_respawn)
 
@@ -204,6 +223,9 @@ func _apply_level() -> void:
 	damage = maxi(1, int(round(_base_damage * GameData.mon_dmg_mult(monster_level))))
 	gold = int(round(_base_gold * (1.0 + 0.1 * (monster_level - 1))))
 	xp_reward = int(round((_base_hp * 2 + (30 if boss else 0)) * (1.0 + 0.25 * (monster_level - 1))))
+	if event_boss:
+		max_hp = int(max_hp * GameData.EVENT_HP_MULT)
+		damage = int(ceil(damage * GameData.EVENT_DMG_MULT))
 	hp = max_hp
 
 

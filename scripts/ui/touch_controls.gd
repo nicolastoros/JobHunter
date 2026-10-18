@@ -56,7 +56,10 @@ func _buttons() -> Dictionary:
 		"menu": [Vector2(18, 64), 11.0],
 		"map": [Vector2(44, 64), 11.0],
 		"pause": [Vector2(70, 64), 11.0],
+		"target": [Vector2(v.x - 86, v.y - 64), 11.0],
 	}
+	if Game.has_mount:
+		b["mount"] = [Vector2(v.x - 124, v.y - 22), 11.0]
 	return b
 
 
@@ -144,7 +147,7 @@ func _bar_slot(pos: Vector2) -> int:
 
 
 func _fire(action: String) -> void:
-	var a: String = {"menu": "character", "map": "map", "pause": "pause"}.get(action, action)
+	var a: String = {"menu": "character", "map": "map", "pause": "pause", "target": "target_next"}.get(action, action)
 	var e := InputEventAction.new()
 	e.action = a
 	e.pressed = true
@@ -219,6 +222,12 @@ func _draw_controls() -> void:
 				_text(c + Vector2(0, 2), "Mapa", 5, Color(1, 0.92, 0.7))
 			"pause":
 				_text(c + Vector2(0, 2), "II", 7, Color(1, 0.92, 0.7))
+			"target":
+				_root.draw_arc(c, 5.0, 0, TAU, 16, Color(1, 0.45, 0.35), 1.5)
+				_root.draw_line(c - Vector2(8, 0), c + Vector2(8, 0), Color(1, 0.45, 0.35), 1.0)
+				_root.draw_line(c - Vector2(0, 8), c + Vector2(0, 8), Color(1, 0.45, 0.35), 1.0)
+			"mount":
+				_text(c + Vector2(0, 2), "Montar" if not Game.mounted else "Bajar", 5, Color(1, 0.92, 0.7))
 	for k in _flash:
 		if String(k).begins_with("slot"):
 			var hud := get_parent().get_node_or_null("PlayerHud")

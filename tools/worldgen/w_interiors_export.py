@@ -28,14 +28,17 @@ INTERIORS = {
                                                   "Estoy leyendo."]),
                            "Fighter": ("Espadachín veterano", ["Golpea, retrocede, golpea. Así de simple."])}),
     "house_red": dict(map="house/Tiled_files/Interior1.tmx", title="Casa de piedra",
-                      exits=[dict(cells=[(19, 15), (20, 15), (19, 16), (19, 17), (20, 16), (20, 17)], dir="down", scene=WORLD, spawn="")],
+                      exits=[dict(cells=[(19, 16), (20, 16), (19, 17), (20, 17)], dir="down", scene=WORLD, spawn="")],
                       stairs=[], decals=[], spawns={"door": (19.7, 14.6)}, boards=[], talk={}),
     "farmhouse": dict(map="farm/Tiled_files/House_interior.tmx", title="Casa de campo",
-                      exits=[dict(cells=[(13, 13), (14, 13), (13, 14), (14, 14), (13, 15), (14, 15)], dir="down", scene=WORLD, spawn="")],
-                      stairs=[], decals=[], spawns={"door": (14, 12.5)}, boards=[], talk={}),
+                      exits=[dict(cells=[(13, 14), (14, 14), (13, 15), (14, 15)], dir="down", scene=WORLD, spawn="")],
+                      stairs=[], decals=[(13, 12, 14, 13)], spawns={"door": (14, 13.2)}, boards=[], talk={}),
+    "home": dict(map="farm/Tiled_files/House_interior.tmx", title="Tu casa",
+                 exits=[dict(cells=[(13, 14), (14, 14), (13, 15), (14, 15)], dir="down", scene=WORLD, spawn="")],
+                 stairs=[], decals=[(13, 12, 14, 13)], spawns={"door": (14, 13.2), "bed": (15.6, 14.6)}, boards=[], talk={}, rest=(16.9, 14.3)),
     "port_house": dict(map="fishing/Tiled_foles/Interior.tmx", title="Pescadería de la abuela Nilda",
-                       exits=[dict(cells=[(13, 12), (14, 12), (13, 13), (13, 14), (14, 13), (14, 14)], dir="down", scene=WORLD, spawn="")],
-                       stairs=[], decals=[], spawns={"door": (13.6, 11.5)}, boards=[],
+                       exits=[dict(cells=[(13, 13), (14, 13), (13, 14), (14, 14)], dir="down", scene=WORLD, spawn="")],
+                       stairs=[], decals=[], spawns={"door": (14.6, 13.0)}, boards=[],
                        talk={"Seller_gramma": ("Abuela Nilda", ["Pescado fresco. Lo trajo mi nieto esta mañana.",
                                                                 "Si algún día eres un cazador famoso, vuelve a visitarme."])}),
 }
@@ -135,8 +138,9 @@ def write_scene(name, cfg, info):
 
     base = "res://assets/interiors/%s/" % name
     W, H = info["size"]
-    nodes.append('[node name="%s" type="Node2D"]\nscript = ExtResource("%s")\ntitle = "%s"\nroom_size = Vector2i(%d, %d)\n' % (
-        "".join(s.capitalize() for s in name.split("_")), eid("Script", "res://scripts/world/interior.gd"), WE.esc(cfg["title"]), W, H))
+    nodes.append('[node name="%s" type="Node2D"]\nscript = ExtResource("%s")\ntitle = "%s"\nroom_size = Vector2i(%d, %d)\n%s' % (
+        "".join(s.capitalize() for s in name.split("_")), eid("Script", "res://scripts/world/interior.gd"), WE.esc(cfg["title"]), W, H,
+        ("rest_point = Vector2(%s, %s)\n" % (fmt(cfg["rest"][0] * 16), fmt(cfg["rest"][1] * 16))) if cfg.get("rest") else ""))
     nodes.append('[node name="Floor" type="Sprite2D" parent="."]\ntexture = ExtResource("%s")\ncentered = false\n' % eid("Texture2D", base + "floor.png"))
     nodes.append('[node name="Entities" type="Node2D" parent="."]\ny_sort_enabled = true\n')
     objtex = eid("Texture2D", base + "objects.png")

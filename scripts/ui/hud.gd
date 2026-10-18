@@ -17,6 +17,8 @@ var _lines: PackedStringArray = []
 var _index := 0
 var _typing_tween: Tween
 var _toast_tween: Tween
+var _event_label: Label
+var _event_tween: Tween
 
 
 func _ready() -> void:
@@ -26,6 +28,20 @@ func _ready() -> void:
 	Game.location_entered.connect(_on_location_entered)
 	Game.toast_requested.connect(_on_toast)
 	Game.dialogue_requested.connect(_on_dialogue_requested)
+	Game.world_event.connect(_on_world_event)
+	_event_label = Label.new()
+	_event_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_event_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_event_label.add_theme_font_size_override("font_size", 13)
+	_event_label.add_theme_constant_override("outline_size", 6)
+	_event_label.add_theme_color_override("font_color", Color(1, 0.82, 0.4))
+	_event_label.add_theme_color_override("font_outline_color", Color(0.15, 0.05, 0.02))
+	_event_label.size = Vector2(380, 40)
+	_event_label.modulate.a = 0.0
+	_event_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_event_label)
+	_event_label.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP, Control.PRESET_MODE_KEEP_SIZE)
+	_event_label.position.y = 78
 	var t := create_tween()
 	t.tween_interval(9.0)
 	t.tween_property(controls_hint, "modulate:a", 0.0, 1.5)
@@ -108,3 +124,14 @@ func _close_dialogue() -> void:
 	await get_tree().process_frame
 	Game.input_locked = false
 	Game.dialogue_finished.emit()
+
+
+## Big announcement in the middle of the screen (world events, welcome).
+func _on_world_event(text: String) -> void:
+	_event_label.text = text
+	if _event_tween:
+		_event_tween.kill()
+	_event_tween = create_tween()
+	_event_tween.tween_property(_event_label, "modulate:a", 1.0, 0.4)
+	_event_tween.tween_interval(3.6)
+	_event_tween.tween_property(_event_label, "modulate:a", 0.0, 0.8)

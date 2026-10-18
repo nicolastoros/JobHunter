@@ -85,6 +85,15 @@ func interact(_player: Node) -> void:
 		$Bubble.hide_now()
 		Game.forge_requested.emit()
 		return
+	if opens == "stable":
+		$Bubble.hide_now()
+		Game.stable_requested.emit()
+		return
+	var special := Game.npc_override(npc_name)
+	if not special.is_empty():
+		$Bubble.hide_now()
+		Game.show_dialogue(npc_name, special)
+		return
 	if lines.is_empty():
 		return
 	$Bubble.hide_now()

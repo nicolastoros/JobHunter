@@ -477,10 +477,20 @@ def scene(w, cfg=None):
         x, y = d["pos"]
         nodes.append('[node name="%s" type="Marker2D" parent="Spawns"]\nposition = Vector2(%s, %s)\n' % (d["name"], fmt(x), fmt(y + 12)))
     door_scr = eid("Script", "res://scripts/world/door.gd")
+    import w_doors
+
     for d in w.doors:
         x, y = d["pos"]
-        nodes.append('[node name="Door_%s" type="Area2D" parent="."]\nposition = Vector2(%s, %s)\nscript = ExtResource("%s")\ntarget_scene = "res://scenes/interiors/%s.tscn"\ntarget_spawn = "door"\nreturn_marker = "%s"\ndirection = "up"\nlabel = "%s"\n' % (
-            d["name"], fmt(x), fmt(y + 2), door_scr, d["interior"], d["name"], esc(d["label"])))
+        leaf = w_doors.door_leaf(d)
+        extra = ""
+        if leaf:
+            img, (lx, ly, lw, lh), (wx, wy, ww, wh), flip = leaf
+            extra = 'leaf_texture = ExtResource("%s")\nleaf_region = Rect2(%d, %d, %d, %d)\ndoor_rect = Rect2(%s, %s, %d, %d)\n%s' % (
+                eid("Texture2D", res_for_image(img)), lx, ly, lw, lh, fmt(wx), fmt(wy), ww, wh, "leaf_flip = true\n" if flip else "")
+        else:
+            print("  no door leaf for", d["name"], d.get("key"))
+        nodes.append('[node name="Door_%s" type="Area2D" parent="."]\nposition = Vector2(%s, %s)\nscript = ExtResource("%s")\ntarget_scene = "res://scenes/interiors/%s.tscn"\ntarget_spawn = "door"\nreturn_marker = "%s"\ndirection = "up"\nlabel = "%s"\n%s' % (
+            d["name"], fmt(x), fmt(y + 2), door_scr, d["interior"], d["name"], esc(d["label"]), extra))
         nodes.append('[node name="Shape" type="CollisionShape2D" parent="Door_%s"]\nshape = SubResource("%s")\n' % (d["name"], rect_shape(18, 10)))
     nodes.append('[node name="HUD" parent="." instance=ExtResource("%s")]\n' % eid("PackedScene", "res://scenes/ui/hud.tscn"))
     nodes.append('[node name="PauseMenu" parent="." instance=ExtResource("%s")]\n' % eid("PackedScene", "res://scenes/ui/pause_menu.tscn"))

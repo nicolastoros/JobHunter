@@ -5540,6 +5540,14 @@
    "category": "Personajes"
   },
   {
+   "name": "Bruno, mozo de cuadra",
+   "frames": "res://resources/sprite_frames/world/actor_46a3e0bef1.tres",
+   "offset_y": -9.0,
+   "collide": true,
+   "talk": true,
+   "category": "Personajes"
+  },
+  {
    "name": "Vaca",
    "frames": "res://resources/sprite_frames/world/actor_4d2fcdf64e.tres",
    "offset_y": -11.0,
@@ -5638,14 +5646,6 @@
   {
    "name": "Capitán Brask",
    "frames": "res://resources/sprite_frames/world/actor_c85ef9dc13.tres",
-   "offset_y": -9.0,
-   "collide": true,
-   "talk": true,
-   "category": "Personajes"
-  },
-  {
-   "name": "Pescador Ulrik",
-   "frames": "res://resources/sprite_frames/world/actor_46a3e0bef1.tres",
    "offset_y": -9.0,
    "collide": true,
    "talk": true,

@@ -219,6 +219,28 @@ static func guild_rank_index(renown: int) -> int:
 	return idx
 
 
+# --- Stable: mount and companions -----------------------------------------------------------
+const CF := "res://resources/sprite_frames/companions/"
+## The mount (H to ride): faster than running and no stamina. `rank` = guild rank needed to buy.
+const MOUNT := {"id": "ciervo", "name": "Ciervo de monta", "price": 3000, "rank": "D", "speed": 1.8, "frames": CF + "deer.tres",
+	"desc": "Un ciervo criado en las granjas del este. Dócil, rápido y valiente. Con él cruzas la llanura en un suspiro."}
+## Companions follow you and fight your target (or whatever attacks you). `power` = share of your attack per bite.
+const PETS := {
+	"zorro": {"name": "Zorro rojo", "price": 2000, "rank": "D", "power": 0.45, "rate": 0.9, "speed": 92.0, "frames": CF + "fox.tres",
+		"desc": "Rápido y astuto. Muerde a menudo, pero no muy fuerte."},
+	"jabali": {"name": "Jabalí de guerra", "price": 5000, "rank": "C", "power": 0.9, "rate": 1.6, "speed": 74.0, "frames": CF + "boar.tres",
+		"desc": "Lento y terco, pero cada embestida duele de verdad."},
+}
+const RANK_ORDER := ["E", "D", "C", "B", "A", "S"]
+
+# --- World events -------------------------------------------------------------------------------
+## Colossal versions of the bosses appear on the plain from time to time.
+const EVENT_FIRST := Vector2(80.0, 140.0)      # seconds until the first event
+const EVENT_EVERY := Vector2(240.0, 420.0)     # seconds between events
+const EVENT_DURATION := 300.0                  # seconds before the colossus leaves
+const EVENT_HP_MULT := 5.0
+const EVENT_DMG_MULT := 1.4
+
 # --- Looks ------------------------------------------------------------------------------
 ## [hero level, swordsman sprite tier, title]: the hero's appearance improves at these levels.
 const LOOKS := [[1, 1, "Aprendiz"], [10, 2, "Espadachín"], [20, 3, "Veterano"], [30, 4, "Caballero"],

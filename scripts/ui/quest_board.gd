@@ -310,9 +310,20 @@ func show_tab(t: String) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _root.visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")):
+	if _root.visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause") or event.is_action_pressed("ranking")):
 		get_viewport().set_input_as_handled()
 		close_board()
+	elif not _root.visible and event.is_action_pressed("ranking") and not Game.input_locked and not get_tree().paused and not Game.editing:
+		# the ranking (and the contracts' progress) can be checked anywhere; cashing in is at the Guild
+		get_viewport().set_input_as_handled()
+		_tab = "ranking"
+		open()
+
+
+## Requests and contracts are taken and cashed in at the Guild hall.
+func _at_guild() -> bool:
+	var sc := get_tree().current_scene
+	return sc != null and sc.scene_file_path.contains("guild_")
 
 
 func _refresh() -> void:
@@ -370,6 +381,9 @@ func _select(i: int) -> void:
 			_accept.text = "Completado"; _accept.disabled = true
 		_:
 			_accept.text = "Próximamente"; _accept.disabled = true
+	if not _at_guild() and q["state"] in ["open", "done"]:
+		_accept.text = "Ve al Gremio"
+		_accept.disabled = true
 
 
 func _on_accept() -> void:
@@ -443,12 +457,13 @@ func _refresh_contracts() -> void:
 		var grow := Control.new()
 		grow.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		v.add_child(grow)
-		var b := _button("Cobrar" if done else "En curso", func():
+		var b := _button(("Cobrar" if _at_guild() else "Cóbralo en el Gremio") if done else "En curso", func():
 			Game.claim_contract(i)
 			_refresh())
-		b.disabled = not done
+		b.disabled = not done or not _at_guild()
 		v.add_child(b)
 	_reroll.text = "Otros contratos (%d oro)" % Game.reroll_cost()
+	_reroll.disabled = not _at_guild()
 
 
 # =============================================================================

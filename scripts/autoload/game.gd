@@ -11,12 +11,20 @@ signal quest_board_requested
 signal quests_changed
 signal stats_changed
 signal forge_requested
+signal stable_requested
+signal world_event(text: String)
+signal objective_changed
+signal target_changed
 signal look_changed
 signal boss_engaged(monster: Node)
 signal monster_killed(monster: Node)
 
 const MAIN_MENU := "res://scenes/ui/main_menu.tscn"
 const FIRST_LEVEL := "res://scenes/world/world.tscn"
+## A new game starts at home.
+const HOME_SCENE := "res://scenes/interiors/home.tscn"
+## Door marker of the hero's house in the city (where you appear when you step out).
+const HOME_DOOR := "door_2"
 const SETTINGS_PATH := "user://settings.cfg"
 const SAVE_PATH := "user://partida.json"
 const SAVE_VERSION := 2
@@ -62,6 +70,16 @@ var opened_chests := {}
 ## and the three repeatable contracts.
 var renown := 0
 var ranks_rewarded := 0
+## Stable: mount bought, riding right now, companions bought and the one travelling with you.
+var has_mount := false
+var mounted := false
+var pets: Array[String] = []
+var active_pet := ""
+## Gentle first steps: 0 leave home, 1 find the guild master, 2 take a request, 3 go hunting, 4 done.
+var tutorial_step := 0
+var _tips_shown := {}
+## Monster the hero has targeted (Tab), or null.
+var target: Node2D = null
 var npc_renown := {}
 var contracts: Array = []
 var _streak := 0
@@ -172,10 +190,10 @@ func change_scene(path: String, duration := 0.35) -> void:
 
 func start_new_game() -> void:
 	reset_progress()
-	pending_spawn = ""
-	return_spawn = ""
+	pending_spawn = "bed"
+	return_spawn = HOME_DOOR
 	pending_position = Vector2.INF
-	change_scene(FIRST_LEVEL)
+	change_scene(HOME_SCENE)
 
 
 ## Moves to another scene and places the player at the named spawn marker.
@@ -210,6 +228,13 @@ func reset_progress() -> void:
 	opened_chests = {}
 	renown = 0
 	ranks_rewarded = 0
+	has_mount = false
+	mounted = false
+	pets = []
+	active_pet = ""
+	tutorial_step = 0
+	_tips_shown = {}
+	target = null
 	npc_renown = {}
 	_streak = 0
 	contracts = []
@@ -306,6 +331,35 @@ func on_monster_killed(m: Node2D) -> void:
 	add_renown(2 + int(m.get("monster_level")) / 4 + (25 if boss else 0))
 	add_xp(gain)
 	monster_killed.emit(m)
+
+
+## A colossus fell. Everyone who fought it and is still standing gets a share of the spoils.
+func on_event_boss_killed(m: Node2D, player_fought: bool, hunters: Array) -> void:
+	for h in hunters:
+		npc_renown[h] = int(npc_renown.get(h, 0)) + 40
+	var p := _player()
+	var name_: String = m.get("monster_name")
+	if not player_fought or p == null or p.call("is_dead"):
+		world_event.emit("Los cazadores derrotaron al %s." % name_)
+		return
+	var top: Vector2 = m.global_position + Vector2(0, float(m.get("sprite_offset_y")) * 2.0)
+	var g := int(round((150 + 25 * level) * gold_mult()))
+	add_gold(g)
+	skill_xp += 60 + level * 3
+	var got: Array[String] = ["%d de oro" % g]
+	for d in GameData.LOOT.get(String(m.get("base_name")), []):
+		add_item(d[0], int(d[2]) + 1)
+		got.append(GameData.ITEMS[d[0]]["name"])
+	var piece := _roll_equipment(level + 4)
+	if piece != "":
+		piece = "%s+%d" % [piece, randi_range(1, 3)]
+		bag.append(piece)
+		got.append(eq(piece)["name"])
+	spawn_popup(top, "¡Botín del %s!" % name_, Color(1, 0.85, 0.35))
+	world_event.emit("¡%s derrotado! Botín: %s." % [name_, ", ".join(got)])
+	_bump_streak(top)
+	add_renown(80)
+	add_xp(int(m.get("xp_reward")))
 
 
 ## Another hunter finished off a monster: it counts for their place in the ranking.
@@ -1029,6 +1083,7 @@ func save_game(auto := false) -> bool:
 		"hp": player_hp, "mana": mana, "stamina": stamina,
 		"inventory": inventory, "bag": Array(bag), "equipped": equipped, "chests": opened_chests.keys(),
 		"renown": renown, "ranks_rewarded": ranks_rewarded, "npc_renown": npc_renown, "contracts": contracts,
+		"has_mount": has_mount, "pets": Array(pets), "active_pet": active_pet, "tutorial_step": tutorial_step,
 		"skill_ranks": skill_ranks, "talents": talents, "attributes": attributes, "kills": kills, "quests": quest_states,
 		"play_time": play_time,
 	}
@@ -1071,6 +1126,15 @@ func load_game() -> bool:
 	for c in d.get("chests", []):
 		opened_chests[String(c)] = true
 	renown = int(d.get("renown", 0))
+	has_mount = bool(d.get("has_mount", false))
+	pets.clear()
+	for p in d.get("pets", []):
+		if GameData.PETS.has(p):
+			pets.append(String(p))
+	active_pet = String(d.get("active_pet", ""))
+	if not active_pet in pets:
+		active_pet = ""
+	tutorial_step = int(d.get("tutorial_step", 4))
 	ranks_rewarded = int(d.get("ranks_rewarded", GameData.guild_rank_index(renown)))
 	npc_renown = _int_dict(d.get("npc_renown", {}))
 	var cs: Array = d.get("contracts", [])
@@ -1168,7 +1232,91 @@ func stop_editing() -> void:
 	input_locked = false
 
 
+# --- Stable -----------------------------------------------------------------------------------
+
+func rank_at_least(letter: String) -> bool:
+	return GameData.RANK_ORDER.find(guild_rank()[1]) >= GameData.RANK_ORDER.find(letter)
+
+
+## "" if it can be bought, otherwise the reason.
+func stable_block_reason(price: int, rank_letter: String) -> String:
+	if not rank_at_least(rank_letter):
+		return "Requiere licencia de rango %s." % rank_letter
+	if gold < price:
+		return "Te falta oro."
+	return ""
+
+
+func buy_mount() -> bool:
+	var m := GameData.MOUNT
+	if has_mount or stable_block_reason(int(m["price"]), m["rank"]) != "":
+		return false
+	gold -= int(m["price"])
+	has_mount = true
+	toast("¡Ahora tienes un %s! Pulsa H para montar." % m["name"])
+	stats_changed.emit()
+	return true
+
+
+func buy_pet(id: String) -> bool:
+	var p: Dictionary = GameData.PETS[id]
+	if id in pets or stable_block_reason(int(p["price"]), p["rank"]) != "":
+		return false
+	gold -= int(p["price"])
+	pets.append(id)
+	set_active_pet(id)
+	toast("%s te acompañará en tus cacerías." % p["name"])
+	return true
+
+
+signal pet_changed
+
+
+func set_active_pet(id: String) -> void:
+	active_pet = id if id in pets else ""
+	pet_changed.emit()
+	stats_changed.emit()
+
+
+# --- First steps (no tutorials, just a nudge) -------------------------------------------------
+
+func objective_text() -> String:
+	match tutorial_step:
+		1: return "Ve al Gremio de Cazadores, en el centro de la ciudad"
+		2: return "Acepta un pedido en el tablón del Gremio"
+		3: return "Sal a cazar a la Llanura por la puerta norte"
+	return ""
+
+
+func advance_tutorial(to_step: int) -> void:
+	if tutorial_step < to_step:
+		tutorial_step = to_step
+		objective_changed.emit()
+
+
+## One-time hint shown as a short toast.
+func tip(id: String, text: String) -> void:
+	if _tips_shown.has(id):
+		return
+	_tips_shown[id] = true
+	toast(text)
+
+
+## Lines an NPC says instead of its usual ones (story moments). Empty = default.
+func npc_override(npc_name: String) -> PackedStringArray:
+	if npc_name.contains("Ysolde") and tutorial_step <= 1:
+		advance_tutorial(2)
+		toast("Obtienes: Licencia de cazador (rango E)")
+		return PackedStringArray([
+			"Así que tú eres el nuevo cazador. Toma, tu licencia: rango E, como todos al empezar.",
+			"Cumple pedidos y contratos, caza y gana renombre. Con renombre tu licencia sube: D, C, B, A... y cada rango trae su recompensa.",
+			"Y con la experiencia también cambia tu porte: en el nivel 10, 20, 30... Los veteranos se reconocen de lejos. El tablón está a ambos lados del salón.",
+		])
+	return PackedStringArray()
+
+
 func accept_quest(id: String) -> void:
+	advance_tutorial(3)
 	for q in quests:
 		if q["id"] == id and q["state"] == "open":
 			q["state"] = "accepted"
