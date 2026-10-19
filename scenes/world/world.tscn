@@ -412,6 +412,7 @@ shop_points = PackedVector2Array(1368, 1593.6, 1481.6, 1587.2, 1536, 1593.6, 126
 zones = {"Cuartel de la Guardia": Rect2(128, 544, 624, 640), "Granjas del Este": Rect2(2112, 224, 768, 1312), "Puerto de Valdoria": Rect2(480, 1472, 2016, 768), "Ciudadela de Valdoria": Rect2(832, 384, 1216, 1040), "Pradera del Norte": Rect2(0, 0, 2880, 384), "Costa del Oeste": Rect2(0, 1408, 480, 832), "Costa del Este": Rect2(2496, 1408, 384, 832), "Alrededores de Valdoria": Rect2(0, 0, 2880, 2240)}
 walkmask_path = "res://resources/world/walkmask.png"
 minimap_path = "res://resources/world/minimap_world.png"
+hunter_count = 7
 map_title = "Valdoria"
 
 [node name="Water" type="TileMapLayer" parent="."]
@@ -15227,7 +15228,7 @@ position = Vector2(1635.2, 870.4)
 frames = ExtResource("15_actor_5fe1")
 sprite_offset = Vector2(0, -11)
 npc_name = "Kara la herrera"
-lines = PackedStringArray("Tráeme lo que sueltan las bestias y te mejoro el equipo.")
+lines = PackedStringArray("Tráeme lo que sueltan las bestias y te mejoro el equipo. Y si te sobra algo, te lo compro.")
 shouts = PackedStringArray("Acero de calidad.", "Mejoro armas y armaduras.", "¿Traes materiales?")
 seller = true
 opens = "forge"
@@ -16364,87 +16365,177 @@ position = Vector2(2192, 416)
 frames = ExtResource("85_animal_boa")
 wander_rect = Rect2(2144, 328.0, 128, 96)
 
-[node name="Deer4" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Hare4" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2321.908, 1042.464)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2256, 928, 320, 288)
+
+[node name="Hare5" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2516.794, 996.17)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2256, 928, 320, 288)
+
+[node name="Hare6" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2500.15, 1011.293)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2256, 928, 320, 288)
+
+[node name="Hare7" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2376.047, 1213.857)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2256, 928, 320, 288)
+
+[node name="Hare8" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2420.531, 996.261)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2256, 928, 320, 288)
+
+[node name="Hare9" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2454.395, 1158.731)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2256, 928, 320, 288)
+
+[node name="Blackgrouse10" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2660.338, 712.217)
+frames = ExtResource("87_animal_bla")
+wander_rect = Rect2(2208, 704, 480, 128)
+
+[node name="Blackgrouse11" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2500.97, 753.832)
+frames = ExtResource("87_animal_bla")
+wander_rect = Rect2(2208, 704, 480, 128)
+
+[node name="Blackgrouse12" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2320.493, 804.38)
+frames = ExtResource("87_animal_bla")
+wander_rect = Rect2(2208, 704, 480, 128)
+
+[node name="Blackgrouse13" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2461.156, 709.785)
+frames = ExtResource("87_animal_bla")
+wander_rect = Rect2(2208, 704, 480, 128)
+
+[node name="Fox14" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2711.222, 828.53)
+frames = ExtResource("84_animal_fox")
+wander_rect = Rect2(2560, 736, 160, 160)
+
+[node name="Fox15" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2618.622, 757.06)
+frames = ExtResource("84_animal_fox")
+wander_rect = Rect2(2560, 736, 160, 160)
+
+[node name="Deer16" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2719.466, 1275.811)
+frames = ExtResource("83_animal_dee")
+wander_rect = Rect2(2560, 1216, 176, 224)
+
+[node name="Deer17" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2593.736, 1367.672)
+frames = ExtResource("83_animal_dee")
+wander_rect = Rect2(2560, 1216, 176, 224)
+
+[node name="Deer18" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2584.038, 1281.312)
+frames = ExtResource("83_animal_dee")
+wander_rect = Rect2(2560, 1216, 176, 224)
+
+[node name="Hare19" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2219.77, 1275.032)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2144, 1216, 96, 224)
+
+[node name="Hare20" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2145.634, 1331.77)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2144, 1216, 96, 224)
+
+[node name="Hare21" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+position = Vector2(2207.613, 1248.72)
+frames = ExtResource("86_animal_har")
+wander_rect = Rect2(2144, 1216, 96, 224)
+
+[node name="Deer22" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(2084.301, 248.516)
 frames = ExtResource("83_animal_dee")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Deer5" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Deer23" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(1028.303, 199.407)
 frames = ExtResource("83_animal_dee")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Deer6" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Deer24" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(686.462, 195.364)
 frames = ExtResource("83_animal_dee")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Deer7" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Deer25" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(1062.076, 260.004)
 frames = ExtResource("83_animal_dee")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Deer8" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Deer26" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(2507.206, 222.421)
 frames = ExtResource("83_animal_dee")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Hare9" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Hare27" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(2497.036, 314.826)
 frames = ExtResource("86_animal_har")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Hare10" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Hare28" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(847.623, 198.125)
 frames = ExtResource("86_animal_har")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Hare11" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Hare29" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(2221.927, 180.987)
 frames = ExtResource("86_animal_har")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Hare12" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Hare30" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(620.805, 169.535)
 frames = ExtResource("86_animal_har")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Hare13" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Hare31" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(2030.437, 317.78)
 frames = ExtResource("86_animal_har")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Hare14" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Hare32" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(756.814, 153.9)
 frames = ExtResource("86_animal_har")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Fox15" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Fox33" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(1783.321, 202.76)
 frames = ExtResource("84_animal_fox")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Fox16" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Fox34" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(2561.015, 261.05)
 frames = ExtResource("84_animal_fox")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Blackgrouse17" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Blackgrouse35" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(1606.826, 231.572)
 frames = ExtResource("87_animal_bla")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Blackgrouse18" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Blackgrouse36" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(2522.081, 222.369)
 frames = ExtResource("87_animal_bla")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Blackgrouse19" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Blackgrouse37" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(893.838, 284.99)
 frames = ExtResource("87_animal_bla")
 wander_rect = Rect2(160, 128, 2560, 224)
 
-[node name="Blackgrouse20" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
+[node name="Blackgrouse38" parent="Entities/Animals" instance=ExtResource("82_wild_anima")]
 position = Vector2(1799.68, 187.22)
 frames = ExtResource("87_animal_bla")
 wander_rect = Rect2(160, 128, 2560, 224)

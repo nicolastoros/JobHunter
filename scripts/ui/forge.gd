@@ -1,6 +1,6 @@
 extends CanvasLayer
 ## Kara's forge: improve the equipment you are wearing (+1 ... +10) with gold and the materials
-## that monsters drop.
+## that monsters drop, or sell her what you don't need.
 
 const PAPER := Color(0.93, 0.87, 0.72)
 const INK := Color(0.25, 0.16, 0.1)
@@ -18,6 +18,19 @@ var _stats: Label
 var _cost_box: VBoxContainer
 var _upgrade: Button
 var _note: Label
+var _upgrade_view: Control
+var _sell_view: Control
+var _tab_buttons: Array[Button] = []
+var _selling := false
+var _sell_list: VBoxContainer
+var _sell_key := ""      # "bag:<index>" or "inv:<id>"
+var _s_icon: TextureRect
+var _s_name: Label
+var _s_desc: Label
+var _s_price: Label
+var _sell_one: Button
+var _sell_all: Button
+var _gold_label: Label
 
 
 func _ready() -> void:
@@ -82,16 +95,37 @@ func _build() -> void:
 	vb.add_theme_constant_override("separation", 4)
 	board.add_child(vb)
 	var head := Label.new()
-	head.text = "FORJA DE KARA — Mejora de equipo"
+	head.text = "FORJA DE KARA"
 	head.add_theme_font_size_override("font_size", 10)
 	head.add_theme_color_override("font_color", Color(1, 0.86, 0.5))
 	head.add_theme_constant_override("outline_size", 4)
 	head.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	vb.add_child(head)
+	var tabs := HBoxContainer.new()
+	tabs.add_theme_constant_override("separation", 3)
+	vb.add_child(tabs)
+	for i in 2:
+		var tb := Button.new()
+		tb.text = ["Mejorar equipo", "Vender"][i]
+		tb.toggle_mode = true
+		tb.focus_mode = Control.FOCUS_NONE
+		tb.add_theme_font_size_override("font_size", 8)
+		tb.pressed.connect(func():
+			_selling = i == 1
+			_refresh())
+		tabs.add_child(tb)
+		_tab_buttons.append(tb)
+	var tgrow := Control.new()
+	tgrow.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tabs.add_child(tgrow)
+	_gold_label = _ink("", 8, Color(1, 0.86, 0.45))
+	tabs.add_child(_gold_label)
 	var hb := HBoxContainer.new()
 	hb.add_theme_constant_override("separation", 5)
 	hb.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	vb.add_child(hb)
+	_upgrade_view = hb
+	_build_sell(vb)
 	var left := PanelContainer.new()
 	left.add_theme_stylebox_override("panel", _box(PAPER, Color(0.55, 0.42, 0.28)))
 	left.custom_minimum_size = Vector2(150, 0)
@@ -154,6 +188,164 @@ func _build() -> void:
 	bb.add_child(close)
 
 
+func _build_sell(vb: VBoxContainer) -> void:
+	var hb := HBoxContainer.new()
+	hb.add_theme_constant_override("separation", 5)
+	hb.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	vb.add_child(hb)
+	_sell_view = hb
+	var left := PanelContainer.new()
+	left.add_theme_stylebox_override("panel", _box(PAPER, Color(0.55, 0.42, 0.28), 1, 3))
+	left.custom_minimum_size = Vector2(190, 0)
+	hb.add_child(left)
+	var scroll := ScrollContainer.new()
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	left.add_child(scroll)
+	_sell_list = VBoxContainer.new()
+	_sell_list.add_theme_constant_override("separation", 2)
+	_sell_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(_sell_list)
+	var right := PanelContainer.new()
+	right.add_theme_stylebox_override("panel", _box(PAPER, Color(0.55, 0.42, 0.28)))
+	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	hb.add_child(right)
+	var rv := VBoxContainer.new()
+	rv.add_theme_constant_override("separation", 3)
+	right.add_child(rv)
+	var top := HBoxContainer.new()
+	top.add_theme_constant_override("separation", 6)
+	rv.add_child(top)
+	var frame := PanelContainer.new()
+	frame.add_theme_stylebox_override("panel", _box(Color(0.8, 0.66, 0.47), Color(0.6, 0.45, 0.3), 1, 3))
+	top.add_child(frame)
+	_s_icon = _tex([0, 0], 32)
+	frame.add_child(_s_icon)
+	_s_name = _ink("", 9)
+	_s_name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_s_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(_s_name)
+	_s_desc = _ink("", 7, INK_SOFT)
+	_s_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_s_desc.custom_minimum_size = Vector2(150, 0)
+	rv.add_child(_s_desc)
+	_s_price = _ink("", 8, GOOD)
+	_s_price.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_s_price.custom_minimum_size = Vector2(150, 0)
+	rv.add_child(_s_price)
+	var grow := Control.new()
+	grow.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	rv.add_child(grow)
+	var bb := HBoxContainer.new()
+	bb.alignment = BoxContainer.ALIGNMENT_END
+	bb.add_theme_constant_override("separation", 4)
+	rv.add_child(bb)
+	_sell_one = Button.new()
+	_sell_one.text = "Vender 1"
+	_sell_one.focus_mode = Control.FOCUS_NONE
+	_sell_one.pressed.connect(func(): _sell(false))
+	bb.add_child(_sell_one)
+	_sell_all = Button.new()
+	_sell_all.text = "Vender todo"
+	_sell_all.focus_mode = Control.FOCUS_NONE
+	_sell_all.pressed.connect(func(): _sell(true))
+	bb.add_child(_sell_all)
+	var close := Button.new()
+	close.text = "Cerrar"
+	close.focus_mode = Control.FOCUS_NONE
+	close.pressed.connect(close_forge)
+	bb.add_child(close)
+
+
+## What Kara buys: unworn equipment from the bag and materials/consumables with a price.
+func _sellables() -> Array:
+	var out := []
+	for i in Game.bag.size():
+		out.append("bag:%d" % i)
+	for id in GameData.ITEMS:
+		if Game.item_count(id) > 0 and Game.sell_value(id, false) > 0:
+			out.append("inv:" + id)
+	return out
+
+
+func _sell(all: bool) -> void:
+	var keys := _sellables()
+	var at := keys.find(_sell_key)
+	if _sell_key.begins_with("bag:"):
+		Game.sell_equipment(int(_sell_key.substr(4)))
+	elif _sell_key.begins_with("inv:"):
+		var id := _sell_key.substr(4)
+		Game.sell_item(id, Game.item_count(id) if all else 1)
+	keys = _sellables()
+	if not _sell_key in keys or _sell_key.begins_with("bag:"):
+		_sell_key = keys[clampi(at, 0, keys.size() - 1)] if keys.size() > 0 else ""
+	_refresh()
+
+
+func _refresh_sell() -> void:
+	for c in _sell_list.get_children():
+		c.queue_free()
+	var keys := _sellables()
+	if not _sell_key in keys:
+		_sell_key = keys[0] if keys.size() > 0 else ""
+	for key in keys:
+		var is_eq: bool = key.begins_with("bag:")
+		var id: String = Game.bag[int(key.substr(4))] if is_eq else key.substr(4)
+		var b := Button.new()
+		b.focus_mode = Control.FOCUS_NONE
+		b.custom_minimum_size = Vector2(0, 21)
+		var sel: bool = key == _sell_key
+		var st := _box(Color(0.96, 0.9, 0.76) if sel else Color(0.88, 0.8, 0.63), Color(0.95, 0.72, 0.2) if sel else Color(0.65, 0.5, 0.34), 2 if sel else 1, 0)
+		for k in ["normal", "pressed", "focus", "disabled"]:
+			b.add_theme_stylebox_override(k, st)
+		b.add_theme_stylebox_override("hover", _box(Color(0.95, 0.88, 0.72), st.border_color, st.border_width_left, 0))
+		var ic := _tex(Game.eq_icon(id) if is_eq else GameData.ITEMS[id]["icon"], 16)
+		ic.position = Vector2(3, 2)
+		b.add_child(ic)
+		var label: String = Game.eq(id)["name"] if is_eq else "%s x%d" % [GameData.ITEMS[id]["name"], Game.item_count(id)]
+		var nm := _ink(label, 7)
+		nm.position = Vector2(23, 5)
+		nm.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		b.add_child(nm)
+		var pr := _ink("%d" % Game.sell_value(id, is_eq), 7, Color(0.62, 0.42, 0.08))
+		pr.position = Vector2(152, 5)
+		pr.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		b.add_child(pr)
+		b.pressed.connect(func():
+			_sell_key = key
+			_refresh())
+		_sell_list.add_child(b)
+	if keys.is_empty():
+		_sell_list.add_child(_ink("No llevas nada que vender.", 7, INK_SOFT))
+	if _sell_key == "":
+		_s_icon.visible = false
+		_s_name.text = "Nada que vender"
+		_s_desc.text = "Kara: \"Tráeme lo que sueltan las bestias, o el equipo que ya no uses. Pago bien.\""
+		_s_price.text = ""
+		_sell_one.disabled = true
+		_sell_all.visible = false
+		return
+	var is_eq := _sell_key.begins_with("bag:")
+	var id: String = Game.bag[int(_sell_key.substr(4))] if is_eq else _sell_key.substr(4)
+	_s_icon.visible = true
+	_s_icon.texture = Game.icon_texture(Game.eq_icon(id) if is_eq else GameData.ITEMS[id]["icon"])
+	var v := Game.sell_value(id, is_eq)
+	if is_eq:
+		var e := Game.eq(id)
+		_s_name.text = e["name"]
+		_s_desc.text = "%s · nivel %d   %s\n%s" % [GameData.SLOT_NAMES.get(e.get("slot", ""), ""), int(e.get("level", 1)), _stat_line(e), e.get("desc", "")]
+		_s_price.text = "Kara te paga: %d de oro" % v
+		_sell_one.text = "Vender"
+		_sell_all.visible = false
+	else:
+		var n := Game.item_count(id)
+		_s_name.text = GameData.ITEMS[id]["name"]
+		_s_desc.text = GameData.ITEMS[id]["desc"]
+		_s_price.text = "%d de oro cada uno · tienes %d (todo: %d)" % [v, n, v * n]
+		_sell_one.text = "Vender 1"
+		_sell_all.visible = n > 1
+	_sell_one.disabled = false
+
+
 func open() -> void:
 	Game.input_locked = true
 	Game.menu_open = true
@@ -187,6 +379,14 @@ static func _stat_line(e: Dictionary) -> String:
 
 
 func _refresh() -> void:
+	_tab_buttons[0].button_pressed = not _selling
+	_tab_buttons[1].button_pressed = _selling
+	_upgrade_view.visible = not _selling
+	_sell_view.visible = _selling
+	_gold_label.text = "Oro: %d" % Game.gold
+	if _selling:
+		_refresh_sell()
+		return
 	for c in _list.get_children():
 		c.queue_free()
 	for slot in GameData.SLOTS:

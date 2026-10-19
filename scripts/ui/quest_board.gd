@@ -41,6 +41,8 @@ var _rank_info: Label
 var _rank_bar: ColorRect
 var _rank_bar_bg: ColorRect
 var _table: VBoxContainer
+var _rank_scroll: ScrollContainer
+var _rank_count: Label
 
 
 func _ready() -> void:
@@ -261,15 +263,22 @@ func _build_ranking() -> Control:
 	var tv := VBoxContainer.new()
 	tv.add_theme_constant_override("separation", 1)
 	tp.add_child(tv)
+	_rank_count = _ink("", 7, INK_SOFT)
+	tv.add_child(_rank_count)
 	var hdr := HBoxContainer.new()
 	for pair in [["#", 18], ["", 20], ["Cazador", 92], ["Rango", 36], ["Nivel", 34], ["Renombre", 60]]:
 		var l := _ink(pair[0], 7, INK_SOFT)
 		l.custom_minimum_size = Vector2(pair[1], 0)
 		hdr.add_child(l)
 	tv.add_child(hdr)
+	_rank_scroll = ScrollContainer.new()
+	_rank_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_rank_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	tv.add_child(_rank_scroll)
 	_table = VBoxContainer.new()
 	_table.add_theme_constant_override("separation", 1)
-	tv.add_child(_table)
+	_table.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_rank_scroll.add_child(_table)
 	return hb
 
 
@@ -483,19 +492,24 @@ func _refresh_ranking() -> void:
 		var a := float(rk[0])
 		var frac := (Game.renown - a) / (float(nxt[0]) - a)
 		_rank_bar.size.x = roundf(136.0 * clampf(frac, 0.0, 1.0))
-		_rank_info.text = "Renombre: %d / %d\nPuesto %d en el ranking.\n\nAl llegar a rango %s: oro, pociones y una pieza de equipo.\n\nSe gana renombre cazando (más en racha), con pedidos, contratos y cofres." % [
+		_rank_info.text = "Renombre: %d / %d\nPuesto %d en el ranking.\n\nAl llegar a rango %s: oro, pociones de maná y una pieza de equipo.\n\nSe gana renombre cazando (más en racha), con pedidos, contratos y cofres." % [
 			Game.renown, nxt[0], Game.player_place(), nxt[1]]
 	for c in _table.get_children():
 		c.queue_free()
 	var r := Game.ranking()
 	var place := Game.player_place()
+	_rank_count.text = "%d cazadores · usa la rueda para ver todo el ranking" % r.size()
+	var mine: Control = null
 	for i in r.size():
-		if i >= 10 and i + 1 != place:
-			continue
-		if i >= 10 and i + 1 == place:
-			var dots := _ink("   ···", 7, INK_SOFT)
-			_table.add_child(dots)
-		_table.add_child(_rank_row(i + 1, r[i]))
+		var row := _rank_row(i + 1, r[i])
+		_table.add_child(row)
+		if i + 1 == place:
+			mine = row
+	# open the list around your own place
+	await get_tree().process_frame
+	await get_tree().process_frame
+	if mine and is_instance_valid(mine):
+		_rank_scroll.scroll_vertical = int(maxf(0.0, mine.position.y - _rank_scroll.size.y * 0.4))
 
 
 func _rank_row(place: int, e: Dictionary) -> Control:

@@ -760,7 +760,7 @@ func _refresh_inventory() -> void:
 		_item_icon.visible = false
 		_item_name.text = "Bolsa vacía"
 		_item_kind.text = ""
-		_item_desc.text = "Los monstruos de la llanura sueltan materiales y, a veces, pociones."
+		_item_desc.text = "Los monstruos de la llanura sueltan materiales; Kara, la herrera, te los compra."
 		_use_btn.visible = false
 	else:
 		var it: Dictionary = GameData.ITEMS[_sel_item]

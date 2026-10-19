@@ -13,6 +13,7 @@ import w_terrain as WT
 
 W, H = 170, 130
 ENTRY_X = (82, 89)
+NORTH_GAP = (27, 33)   # trail to the Deep Forest
 
 # ---- extra sheets for the field ---------------------------------------------------
 WP.SHEETS["gl"] = ("grassland_01/Tiled_files/Trees_rocks.png", "assets/sprites/field/Trees_rocks.png")
@@ -80,6 +81,12 @@ MON = {
     "gnoll":   dict(pack="mon_gnolls_mobs01", kinds=["Gnoll1", "Gnoll2", "Gnoll3"], name="Gnoll", props=dict(max_hp=8, damage=2, speed=24, chase_speed=52, aggro_radius=110, attack_range=20, gold=6, territory=110)),
     "golem":   dict(pack="mon_golem_bosses01", kinds=["Golem1"], name="Gólem de las Ruinas", props=dict(max_hp=40, damage=3, speed=12, chase_speed=22, aggro_radius=120, attack_range=30, gold=60, territory=90, boss="true", respawn_time=180, body_size="Vector2(30, 10)")),
     "ent":     dict(pack="mon_ent_bosses_01", kinds=["Ent1"], name="Ent Ancestral", props=dict(max_hp=50, damage=3, speed=10, chase_speed=20, aggro_radius=120, attack_range=32, gold=80, territory=80, boss="true", respawn_time=180, body_size="Vector2(30, 10)")),
+    # forest dwellers: smaller versions of the bosses' kin
+    "sapling": dict(pack="mon_ent_bosses_01", kinds=["Ent2"], name="Retoño del bosque", props=dict(max_hp=9, damage=2, speed=12, chase_speed=30, aggro_radius=84, attack_range=18, gold=5, territory=80, sprite_scale=0.55, body_size="Vector2(14, 6)")),
+    "treant": dict(pack="mon_ent_bosses_01", kinds=["Ent3"], name="Ent frondoso", props=dict(max_hp=16, damage=3, speed=11, chase_speed=26, aggro_radius=96, attack_range=22, gold=9, territory=80, sprite_scale=0.72, body_size="Vector2(18, 7)")),
+    "mossy": dict(pack="mon_slimes02", kinds=["Slime_boss2"], name="Limo musgoso", props=dict(max_hp=7, damage=1, speed=15, chase_speed=30, aggro_radius=76, attack_range=16, gold=4, territory=80, sprite_scale=0.5, body_size="Vector2(14, 6)")),
+    "mist": dict(pack="mon_slimes02", kinds=["Slime_boss3"], name="Limo de bruma", props=dict(max_hp=8, damage=2, speed=16, chase_speed=32, aggro_radius=80, attack_range=16, gold=5, territory=80, sprite_scale=0.5, body_size="Vector2(14, 6)")),
+    "crystal": dict(pack="mon_golem_bosses01", kinds=["Golem2"], name="Gólem de cristal", props=dict(max_hp=14, damage=3, speed=12, chase_speed=24, aggro_radius=90, attack_range=20, gold=8, territory=70, sprite_scale=0.55, body_size="Vector2(16, 7)")),
     "slimeking": dict(pack="mon_slimes02", kinds=["Slime_boss1"], name="Rey Limo", props=dict(max_hp=35, damage=2, speed=14, chase_speed=26, aggro_radius=110, attack_range=30, gold=50, territory=80, boss="true", respawn_time=180, body_size="Vector2(32, 12)")),
 }
 _mon_frames = {}
@@ -136,11 +143,27 @@ def monster(w, mtype, tx, ty, variant=0, name_override=None):
     w.monsters.append(dict(name=mtype.capitalize() + "_" + kind, frames=path, pos=(tx * 16, ty * 16), props=props))
 
 
-def pack_monsters(w, mtype, cx, cy, n, spread=3.5):
+def pack_monsters(w, mtype, cx, cy, n, spread=3.5, own=False):
+    """`own`: roll the monsters' own dice (newer packs), so adding them never reshuffles trees and flowers."""
+    if not own:
+        for i in range(n):
+            a = w.rng.random() * math.tau
+            r = w.rng.uniform(0.5, spread)
+            monster(w, mtype, cx + math.cos(a) * r, cy + math.sin(a) * r, variant=w.rng.randrange(3))
+        return
+    if not hasattr(w, "mrng"):
+        import random
+        w.mrng = random.Random(4242)
+    rng = w.mrng
     for i in range(n):
-        a = w.rng.random() * math.tau
-        r = w.rng.uniform(0.5, spread)
-        monster(w, mtype, cx + math.cos(a) * r, cy + math.sin(a) * r, variant=w.rng.randrange(3))
+        for _try in range(12):
+            a = rng.random() * math.tau
+            r = rng.uniform(0.5, spread)
+            x, y = cx + math.cos(a) * r, cy + math.sin(a) * r
+            c = (int(x), int(y))
+            if c not in w.solids and c not in getattr(w, "hill_cells", set()):
+                break
+        monster(w, mtype, x, y, variant=rng.randrange(3))
 
 
 # ---- terrain helpers ---------------------------------------------------------------
@@ -379,6 +402,27 @@ def build():
         pack_monsters(w, "slime", cx, cy, 3, 3)
     pack_monsters(w, "goblin", 46, 60, 3, 3)
     pack_monsters(w, "slime_x", 120, 54, 3, 3)
+    # more life on the meadow
+    for (cx, cy) in ((112, 100), (64, 46), (148, 50), (100, 76), (58, 116), (124, 118)):
+        pack_monsters(w, "slime", cx, cy, 3, 3, own=True)
+    for (cx, cy) in ((72, 30), (116, 20), (40, 96)):
+        pack_monsters(w, "slime_x", cx, cy, 3, 3, own=True)
+    for (cx, cy, n) in ((52, 92, 4), (104, 84, 3), (66, 78, 3), (116, 40, 3)):
+        pack_monsters(w, "goblin", cx, cy, n, 3.5, own=True)
+    for (cx, cy, n) in ((148, 96, 3), (160, 64, 3), (128, 106, 4)):
+        pack_monsters(w, "gnoll", cx, cy, n, 4, own=True)
+    # the forests: saplings, treants and mossy slimes under the trees
+    pack_monsters(w, "sapling", 18, 16, 3, 3, own=True); pack_monsters(w, "sapling", 42, 14, 3, 3, own=True)
+    pack_monsters(w, "treant", 16, 34, 2, 3, own=True); pack_monsters(w, "treant", 44, 34, 2, 3, own=True)
+    pack_monsters(w, "mossy", 26, 12, 3, 3, own=True); pack_monsters(w, "mossy", 36, 36, 3, 3, own=True)
+    pack_monsters(w, "sapling", 22, 48, 3, 4, own=True); pack_monsters(w, "mossy", 30, 58, 3, 3, own=True); pack_monsters(w, "treant", 14, 56, 2, 3, own=True)
+    pack_monsters(w, "sapling", 20, 94, 3, 3, own=True); pack_monsters(w, "mossy", 48, 112, 3, 3, own=True); pack_monsters(w, "treant", 64, 118, 2, 3, own=True)
+    pack_monsters(w, "sapling", 108, 116, 3, 3, own=True); pack_monsters(w, "treant", 140, 118, 2, 3, own=True); pack_monsters(w, "mossy", 156, 116, 3, 3, own=True)
+    # crystal golems around the ruins, mist slimes in the marsh
+    for (cx, cy) in ((70, 48), (98, 50), (62, 76), (104, 70)):
+        pack_monsters(w, "crystal", cx, cy, 2, 2.5, own=True)
+    for (cx, cy) in ((126, 22), (156, 24), (142, 44)):
+        pack_monsters(w, "mist", cx, cy, 3, 3, own=True)
 
     # ---- vegetation: dense forest walls, groves, lone trees, flowers --------------------
     border_rects = [(0, 0, 8, H), (W - 8, 0, W, H), (0, 0, W, 8), (0, H - 8, ENTRY_X[0] - 3, H), (ENTRY_X[1] + 3, H - 8, W, H)]
@@ -430,10 +474,22 @@ def build():
             w.put("detail", x, y, GD, rng.choice(tufts))
     # animals grazing far from the monsters
     import w_outside as WO
-    for kind, n in (("Deer", 4), ("Hare", 6), ("Fox", 2), ("Black_grouse", 3)):
+    # (only a few: the wild animals live on the farms and the meadow by the city)
+    for kind, n in (("Deer", 1), ("Hare", 2)):
         for _ in range(n):
             x, y = rng.uniform(56, 114), rng.uniform(78, 118)
             WO.animal(w, kind, x * 16, y * 16, (52 * 16, 76 * 16, 66 * 16, 44 * 16))
+    # trail from the Whispering Woods up to the Deep Forest (north gap). Carved last, so the rest of the
+    # field keeps its layout: clear the trees on the way and repaint the dirt paths.
+    trail = {c for c in road_mask([(34, 28), (31, 20), (30, 10), (30, -1)], 3.4) if 0 <= c[0] < W and 0 <= c[1] < H}
+    trail = {c for c in trail if c not in w.solids}
+    near = {(x + dx, y + dy) for (x, y) in trail for dx in (-2, -1, 0, 1, 2) for dy in (-1, 0, 1, 2)}
+    near |= set(rect_cells(NORTH_GAP[0] - 1, 0, NORTH_GAP[1] + 1, 9))
+    w.props = [pp for pp in w.props if pp["floor"] or (int(pp["pos"][0] // 16), int((pp["pos"][1] - 1) // 16)) not in near]
+    w.field_path |= trail
+    autotile(w, "ground_overlay", w.field_path, FG, nine_at(19, 1), {"se": (22, 1), "sw": (23, 1), "ne": (22, 2), "nw": (23, 2)}, center_variants=[(20, 2)])
+    for c in trail:
+        w.layers.get("detail", {}).pop(c, None)
     w.graph = WL.Graph()
     return w
 
@@ -449,9 +505,10 @@ FIELD_CFG = dict(
            ("Bosque de los Susurros", (6, 6, 54, 42)), ("Lago Espejo", (108, 54, 160, 90)),
            ("Pantano del Norte", (118, 14, 166, 44)), ("Campamento goblin", (10, 66, 40, 88)),
            ("Colinas del Este", (128, 94, 170, 130)), ("Llanura de Valdoria", (0, 0, 170, 130))],
-    exits=[dict(name="SouthExit", pos=(85.5 * 16, 130 * 16 - 18), size=(8 * 16, 24), scene="res://scenes/world/world.tscn", spawn="north_gate", dir="down")],
-    spawns={"south": (85.5 * 16, 124 * 16), "respawn": (85.5 * 16, 124 * 16), "start": (85.5 * 16, 124 * 16)},
-    bottom_gap=ENTRY_X,
+    exits=[dict(name="SouthExit", pos=(85.5 * 16, 130 * 16 - 18), size=(8 * 16, 24), scene="res://scenes/world/world.tscn", spawn="north_gate", dir="down"),
+           dict(name="NorthExit", pos=(30 * 16, 18), size=(6 * 16, 24), scene="res://scenes/world/forest.tscn", spawn="south", dir="up")],
+    spawns={"south": (85.5 * 16, 124 * 16), "respawn": (85.5 * 16, 124 * 16), "start": (85.5 * 16, 124 * 16), "north": (30 * 16, 5 * 16)},
+    bottom_gap=ENTRY_X, top_gap=NORTH_GAP,
 )
 
 

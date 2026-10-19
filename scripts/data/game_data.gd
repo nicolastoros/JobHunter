@@ -7,18 +7,29 @@ const UI_ICONS := "res://assets/ui/pack/Icons.png"
 const EQ := "res://assets/ui/icons/equip/"
 const SK := "res://assets/ui/icons/skills/"
 const MAX_LEVEL := 99
+## Healing potions: the hero carries a few and they refill in town and at safe havens.
+const POTION_MAX := 3
+## Safe havens in the wild (by scene file): [center px, radius px, name]. Potions refill there.
+const SAFE_SPOTS := {
+	"field.tscn": [[Vector2(1520, 410), 170.0, "el Campamento de viajeros"]],
+	"forest.tscn": [[Vector2(1288, 1728), 170.0, "el Puesto del Guardabosques"]],
+}
 
 # --- Consumables & materials --------------------------------------------------------
 const ITEMS := {
-	"pocion": {"name": "Poción de vida", "desc": "Recupera 30 % de la vida.", "icon": [48, 272], "use": "hp", "amount": 0.3},
-	"eter": {"name": "Poción de maná", "desc": "Recupera 40 % del maná.", "icon": [32, 272], "use": "mana", "amount": 0.4},
-	"manzana": {"name": "Manzana", "desc": "Fresca y crujiente. Recupera 15 % de la vida.", "icon": [80, 80], "use": "hp", "amount": 0.15},
-	"gel": {"name": "Gel de limo", "desc": "Material. Pegajoso y algo tibio. Los alquimistas lo aprecian.", "icon": [48, 144]},
-	"abalorio": {"name": "Abalorio goblin", "desc": "Material. Los goblins los cuelgan de sus lanzas como trofeo.", "icon": [0, 144]},
-	"piel": {"name": "Piel de gnoll", "desc": "Material. Gruesa y resistente; buena para curtir.", "icon": [64, 144]},
-	"nucleo": {"name": "Núcleo de piedra", "desc": "El corazón del Gólem de las Ruinas. Todavía brilla con una luz tenue.", "icon": [80, 160]},
-	"corteza": {"name": "Corteza antigua", "desc": "Un trozo del Ent Ancestral. Huele a lluvia y a siglos.", "icon": [64, 80]},
-	"corona": {"name": "Corona de gel", "desc": "Lo único que quedó del Rey Limo. Tiembla si la tocas.", "icon": [64, 128]},
+	"pocion": {"name": "Poción de vida", "desc": "Recupera 30 % de la vida. Llevas un máximo de 3; se rellenan en la ciudad y en los refugios.", "icon": [48, 272], "use": "hp", "amount": 0.3},
+	"eter": {"name": "Poción de maná", "desc": "Recupera 40 % del maná.", "icon": [32, 272], "value": 15, "use": "mana", "amount": 0.4},
+	"manzana": {"name": "Manzana", "desc": "Fresca y crujiente. Recupera 15 % de la vida.", "icon": [80, 80], "value": 2, "use": "hp", "amount": 0.15},
+	"gel": {"name": "Gel de limo", "desc": "Material. Pegajoso y algo tibio. Los alquimistas lo aprecian.", "icon": [48, 144], "value": 4},
+	"abalorio": {"name": "Abalorio goblin", "desc": "Material. Los goblins los cuelgan de sus lanzas como trofeo.", "icon": [0, 144], "value": 7},
+	"piel": {"name": "Piel de gnoll", "desc": "Material. Gruesa y resistente; buena para curtir.", "icon": [64, 144], "value": 10},
+	"nucleo": {"name": "Núcleo de piedra", "desc": "El corazón del Gólem de las Ruinas. Todavía brilla con una luz tenue.", "icon": [80, 160], "value": 150},
+	"corteza": {"name": "Corteza antigua", "desc": "Un trozo del Ent Ancestral. Huele a lluvia y a siglos.", "icon": [64, 80], "value": 150},
+	"musgo": {"name": "Musgo vivo", "desc": "Material. Se arrastra solo si lo dejas en el suelo.", "icon": [80, 144], "value": 6},
+	"savia": {"name": "Savia del bosque", "desc": "Material. Espesa y dulce; los curanderos pagan bien por ella.", "icon": [32, 112], "value": 12},
+	"bruma": {"name": "Esencia de bruma", "desc": "Material. Un frasco de niebla del pantano que nunca se disipa.", "icon": [64, 112], "value": 10},
+	"cristal": {"name": "Fragmento de cristal", "desc": "Material. Vibra con un zumbido suave. Kara lo usa para templar el acero.", "icon": [80, 112], "value": 16},
+	"corona": {"name": "Corona de gel", "desc": "Lo único que quedó del Rey Limo. Tiembla si la tocas.", "icon": [64, 128], "value": 150},
 }
 
 # --- Equipment ------------------------------------------------------------------------
@@ -64,10 +75,10 @@ const FORGE_COSTS := [
 	{"gold": 140, "items": {"gel": 4, "abalorio": 1}},
 	{"gold": 220, "items": {"abalorio": 2, "piel": 1}},
 	{"gold": 320, "items": {"abalorio": 3, "piel": 2}},
-	{"gold": 450, "items": {"piel": 3, "gel": 6}},
-	{"gold": 600, "items": {"piel": 4, "nucleo": 1}},
-	{"gold": 800, "items": {"piel": 5, "corteza": 1}},
-	{"gold": 1000, "items": {"abalorio": 5, "corona": 1}},
+	{"gold": 450, "items": {"piel": 3, "gel": 6, "savia": 2}},
+	{"gold": 600, "items": {"piel": 4, "cristal": 2, "nucleo": 1}},
+	{"gold": 800, "items": {"piel": 5, "bruma": 2, "corteza": 1}},
+	{"gold": 1000, "items": {"abalorio": 5, "musgo": 4, "corona": 1}},
 	{"gold": 1500, "items": {"nucleo": 1, "corteza": 1, "corona": 1}},
 ]
 
@@ -76,7 +87,11 @@ const FORGE_COSTS := [
 const LOOT := {
 	"Limo": [["gel", 0.6, 1]], "Limo extraño": [["gel", 0.8, 2]],
 	"Goblin": [["abalorio", 0.45, 1], ["manzana", 0.2, 1]], "Gnoll": [["piel", 0.5, 1]],
-	"Gólem de las Ruinas": [["nucleo", 1.0, 1], ["pocion", 1.0, 2]],
+	"Retoño del bosque": [["savia", 0.4, 1], ["musgo", 0.3, 1]], "Ent frondoso": [["savia", 0.6, 1], ["corteza", 0.04, 1]],
+	"Limo musgoso": [["musgo", 0.6, 1], ["gel", 0.3, 1]], "Limo de bruma": [["bruma", 0.5, 1], ["gel", 0.3, 1]],
+	"Gólem de cristal": [["cristal", 0.5, 1], ["nucleo", 0.02, 1]],
+	"Gólem de Obsidiana": [["cristal", 1.0, 3], ["nucleo", 1.0, 1], ["eter", 1.0, 2]],
+	"Gólem de las Ruinas": [["nucleo", 1.0, 1], ["eter", 1.0, 2]],
 	"Ent Ancestral": [["corteza", 1.0, 1], ["eter", 1.0, 2]],
 	"Rey Limo": [["corona", 1.0, 1], ["gel", 1.0, 3]],
 }
@@ -203,12 +218,105 @@ const HUNTERS := [
 	{"name": "Wynn", "tier": 1, "level": 6, "base": 60, "rate": 1.4, "line": "Es mi primera semana en el Gremio."},
 	{"name": "Pip", "tier": 1, "level": 4, "base": 30, "rate": 1.2, "line": "¿Cómo se usa la embestida?"},
 	{"name": "Oswin", "tier": 1, "level": 3, "base": 15, "rate": 1.0, "line": "Los limos no son tan blandos como parecen..."},
+	{"name": "Alaric", "tier": 2, "level": 13, "base": 235, "rate": 1.2, "line": "¡Buena caza!"},
+	{"name": "Beatriz", "tier": 5, "level": 52, "base": 2185, "rate": 4.6, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Cedric", "tier": 2, "level": 16, "base": 347, "rate": 1.5, "line": "No salgas sin pociones."},
+	{"name": "Daria", "tier": 4, "level": 38, "base": 1353, "rate": 3.0, "line": "Los gólems de cristal pegan más fuerte de lo que parece."},
+	{"name": "Elian", "tier": 2, "level": 19, "base": 486, "rate": 2.1, "line": "Cuidado con los gnolls de las colinas."},
+	{"name": "Fiona", "tier": 3, "level": 28, "base": 681, "rate": 2.6, "line": "¡Buena caza!"},
+	{"name": "Gaspar", "tier": 5, "level": 56, "base": 2816, "rate": 4.3, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Helga", "tier": 2, "level": 15, "base": 343, "rate": 1.5, "line": "Estoy juntando oro para un ciervo de monta."},
+	{"name": "Ivo", "tier": 5, "level": 51, "base": 2109, "rate": 3.5, "line": "Los limos de bruma salen del pantano al anochecer."},
+	{"name": "Jana", "tier": 5, "level": 58, "base": 1902, "rate": 4.5, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Kael", "tier": 2, "level": 12, "base": 263, "rate": 1.4, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Lucia", "tier": 4, "level": 36, "base": 1314, "rate": 2.8, "line": "Los gólems de cristal pegan más fuerte de lo que parece."},
+	{"name": "Marek", "tier": 2, "level": 11, "base": 199, "rate": 1.3, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Nadia", "tier": 3, "level": 27, "base": 741, "rate": 2.2, "line": "Vendo savia a buen precio en la forja."},
+	{"name": "Orin", "tier": 3, "level": 21, "base": 537, "rate": 2.0, "line": "Los gólems de cristal pegan más fuerte de lo que parece."},
+	{"name": "Petra", "tier": 4, "level": 34, "base": 1110, "rate": 2.5, "line": "¿Ya probaste el campamento? Ahí se rellenan las pociones."},
+	{"name": "Quinn", "tier": 3, "level": 23, "base": 439, "rate": 1.8, "line": "La herrera Kara es la mejor de Valdoria."},
+	{"name": "Rhea", "tier": 3, "level": 23, "base": 543, "rate": 2.0, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Silas", "tier": 5, "level": 54, "base": 2139, "rate": 4.8, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Tamsin", "tier": 3, "level": 29, "base": 998, "rate": 2.3, "line": "Quiero comprar el lobo gris del establo."},
+	{"name": "Ulric", "tier": 1, "level": 7, "base": 101, "rate": 0.9, "line": "La herrera Kara es la mejor de Valdoria."},
+	{"name": "Vera", "tier": 4, "level": 42, "base": 1519, "rate": 3.1, "line": "Estoy juntando oro para un ciervo de monta."},
+	{"name": "Wilma", "tier": 4, "level": 42, "base": 1278, "rate": 3.8, "line": "Necesito más pieles para la forja."},
+	{"name": "Yorick", "tier": 4, "level": 31, "base": 756, "rate": 2.5, "line": "Estoy juntando oro para un ciervo de monta."},
+	{"name": "Zora", "tier": 6, "level": 75, "base": 4510, "rate": 6.2, "line": "El lago esconde algo, estoy seguro."},
+	{"name": "Anselm", "tier": 3, "level": 20, "base": 434, "rate": 2.1, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Brisa", "tier": 3, "level": 27, "base": 802, "rate": 2.7, "line": "Estoy juntando oro para un ciervo de monta."},
+	{"name": "Corvin", "tier": 2, "level": 17, "base": 298, "rate": 1.8, "line": "Necesito más pieles para la forja."},
+	{"name": "Delia", "tier": 5, "level": 58, "base": 2010, "rate": 4.7, "line": "Los limos de bruma salen del pantano al anochecer."},
+	{"name": "Edmund", "tier": 2, "level": 19, "base": 510, "rate": 1.7, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Freya", "tier": 2, "level": 19, "base": 387, "rate": 1.7, "line": "Vendo savia a buen precio en la forja."},
+	{"name": "Gideon", "tier": 2, "level": 12, "base": 186, "rate": 1.2, "line": "Entreno cada mañana en el patio del cuartel."},
+	{"name": "Hilda", "tier": 1, "level": 8, "base": 127, "rate": 1.0, "line": "No salgas sin pociones."},
+	{"name": "Isolde", "tier": 4, "level": 36, "base": 1052, "rate": 3.4, "line": "Un colosal apareció la semana pasada. Casi no lo cuento."},
+	{"name": "Joran", "tier": 3, "level": 26, "base": 757, "rate": 2.4, "line": "El lago esconde algo, estoy seguro."},
+	{"name": "Katia", "tier": 2, "level": 19, "base": 339, "rate": 1.7, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Leoric", "tier": 4, "level": 33, "base": 921, "rate": 2.5, "line": "Los gólems de cristal pegan más fuerte de lo que parece."},
+	{"name": "Maren", "tier": 4, "level": 39, "base": 1419, "rate": 3.7, "line": "El lago esconde algo, estoy seguro."},
+	{"name": "Nilo", "tier": 3, "level": 25, "base": 781, "rate": 2.4, "line": "Algún día llegaré al rango S."},
+	{"name": "Odalys", "tier": 1, "level": 6, "base": 70, "rate": 1.0, "line": "¡Buena caza!"},
+	{"name": "Pascal", "tier": 2, "level": 17, "base": 411, "rate": 1.5, "line": "Entreno cada mañana en el patio del cuartel."},
+	{"name": "Runa", "tier": 2, "level": 16, "base": 288, "rate": 1.5, "line": "Vendo savia a buen precio en la forja."},
+	{"name": "Soren", "tier": 2, "level": 16, "base": 342, "rate": 1.7, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Thalia", "tier": 2, "level": 14, "base": 212, "rate": 1.4, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Uriel", "tier": 4, "level": 40, "base": 1674, "rate": 3.7, "line": "Entreno cada mañana en el patio del cuartel."},
+	{"name": "Valen", "tier": 5, "level": 68, "base": 2603, "rate": 5.2, "line": "La herrera Kara es la mejor de Valdoria."},
+	{"name": "Ximena", "tier": 6, "level": 74, "base": 3041, "rate": 6.6, "line": "La herrera Kara es la mejor de Valdoria."},
+	{"name": "Yara", "tier": 3, "level": 21, "base": 509, "rate": 1.7, "line": "Los limos de bruma salen del pantano al anochecer."},
+	{"name": "Zeno", "tier": 4, "level": 36, "base": 1140, "rate": 2.5, "line": "Algún día llegaré al rango S."},
+	{"name": "Arden", "tier": 3, "level": 26, "base": 731, "rate": 2.2, "line": "El bosque del noroeste está lleno de retoños."},
+	{"name": "Belen", "tier": 4, "level": 44, "base": 1893, "rate": 3.8, "line": "Los ents frondosos son lentos, pero duros."},
+	{"name": "Caspian", "tier": 4, "level": 36, "base": 1026, "rate": 2.8, "line": "El lago esconde algo, estoy seguro."},
+	{"name": "Dalia", "tier": 2, "level": 14, "base": 319, "rate": 1.4, "line": "El lago esconde algo, estoy seguro."},
+	{"name": "Evander", "tier": 4, "level": 41, "base": 1276, "rate": 3.0, "line": "No salgas sin pociones."},
+	{"name": "Faela", "tier": 4, "level": 40, "base": 1640, "rate": 2.8, "line": "Algún día llegaré al rango S."},
+	{"name": "Goran", "tier": 4, "level": 44, "base": 1636, "rate": 3.9, "line": "La herrera Kara es la mejor de Valdoria."},
+	{"name": "Hester", "tier": 2, "level": 12, "base": 243, "rate": 1.2, "line": "Me falta poco para subir de rango."},
+	{"name": "Ismael", "tier": 2, "level": 16, "base": 327, "rate": 1.7, "line": "Los limos de bruma salen del pantano al anochecer."},
+	{"name": "Jessa", "tier": 3, "level": 22, "base": 668, "rate": 1.8, "line": "Necesito más pieles para la forja."},
+	{"name": "Kiran", "tier": 5, "level": 50, "base": 2146, "rate": 3.8, "line": "Los gólems de cristal pegan más fuerte de lo que parece."},
+	{"name": "Liesel", "tier": 3, "level": 24, "base": 607, "rate": 2.5, "line": "El bosque del noroeste está lleno de retoños."},
+	{"name": "Matthias", "tier": 3, "level": 23, "base": 647, "rate": 2.1, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Noemi", "tier": 2, "level": 17, "base": 381, "rate": 1.8, "line": "Cada contrato cuenta para el ranking."},
+	{"name": "Osric", "tier": 4, "level": 31, "base": 818, "rate": 2.5, "line": "Los ents frondosos son lentos, pero duros."},
+	{"name": "Paloma", "tier": 2, "level": 13, "base": 190, "rate": 1.3, "line": "Vendo savia a buen precio en la forja."},
+	{"name": "Ragnar", "tier": 3, "level": 28, "base": 766, "rate": 2.6, "line": "Los limos de bruma salen del pantano al anochecer."},
+	{"name": "Selene", "tier": 4, "level": 31, "base": 914, "rate": 2.8, "line": "Los gólems de cristal pegan más fuerte de lo que parece."},
+	{"name": "Tobin", "tier": 4, "level": 33, "base": 856, "rate": 2.9, "line": "Cuidado con los gnolls de las colinas."},
+	{"name": "Una", "tier": 3, "level": 26, "base": 808, "rate": 2.6, "line": "Necesito más pieles para la forja."},
+	{"name": "Viggo", "tier": 5, "level": 63, "base": 2173, "rate": 5.0, "line": "El lago esconde algo, estoy seguro."},
+	{"name": "Wren", "tier": 3, "level": 23, "base": 692, "rate": 2.4, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Ysabel", "tier": 4, "level": 45, "base": 1270, "rate": 3.2, "line": "Me falta poco para subir de rango."},
+	{"name": "Abel", "tier": 3, "level": 24, "base": 643, "rate": 2.5, "line": "Los ents frondosos son lentos, pero duros."},
+	{"name": "Brina", "tier": 4, "level": 38, "base": 1515, "rate": 3.5, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Cato", "tier": 4, "level": 42, "base": 1208, "rate": 2.9, "line": "No salgas sin pociones."},
+	{"name": "Dunya", "tier": 2, "level": 12, "base": 218, "rate": 1.2, "line": "Mi zorro encontró un cofre ayer."},
+	{"name": "Emeric", "tier": 4, "level": 31, "base": 980, "rate": 2.7, "line": "Vendo savia a buen precio en la forja."},
+	{"name": "Fenna", "tier": 3, "level": 24, "base": 473, "rate": 2.2, "line": "Dicen que el Rey Limo vuelve siempre."},
+	{"name": "Hugo", "tier": 1, "level": 5, "base": 54, "rate": 0.9, "line": "Dicen que el Rey Limo vuelve siempre."},
+	{"name": "Inés", "tier": 4, "level": 44, "base": 1837, "rate": 4.0, "line": "Cada contrato cuenta para el ranking."},
+	{"name": "Lazlo", "tier": 6, "level": 76, "base": 4425, "rate": 6.7, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Milo", "tier": 2, "level": 16, "base": 277, "rate": 1.6, "line": "El lago esconde algo, estoy seguro."},
+	{"name": "Ottilie", "tier": 4, "level": 40, "base": 1104, "rate": 2.8, "line": "Estoy juntando oro para un ciervo de monta."},
+	{"name": "Rurik", "tier": 4, "level": 33, "base": 1131, "rate": 3.0, "line": "Las rachas de caza dan mucho renombre."},
+	{"name": "Saskia", "tier": 5, "level": 55, "base": 2712, "rate": 4.8, "line": "No salgas sin pociones."},
+	{"name": "Tilde", "tier": 2, "level": 16, "base": 343, "rate": 1.8, "line": "Los goblins roban todo lo que brilla."},
+	{"name": "Varg", "tier": 3, "level": 26, "base": 806, "rate": 2.2, "line": "¡Buena caza!"},
 ]
 const HUNTER_CHATTER := ["¡Uno menos!", "¡Toma eso!", "¡Por el Gremio!", "Otro limo...", "¡Cuidado, vienen más!", "Buena caza.",
 	"Necesito una poción.", "¿Viste al gólem?", "Esta zona está llena.", "Ya casi subo de rango."]
 ## Contract templates: [monster, base count]. Rewards scale with the hero's level.
 const CONTRACT_POOL := [["Limo", 8], ["Limo extraño", 5], ["Goblin", 6], ["Gnoll", 5], ["Goblin", 10], ["Limo", 14], ["Gnoll", 8],
-	["Gólem de las Ruinas", 1], ["Ent Ancestral", 1], ["Rey Limo", 1]]
+	["Retoño del bosque", 6], ["Ent frondoso", 4], ["Limo musgoso", 8], ["Limo de bruma", 6], ["Gólem de cristal", 4],
+	["Gólem de las Ruinas", 1], ["Ent Ancestral", 1], ["Rey Limo", 1], ["Gólem de Obsidiana", 1]]
+## Where the Guild's hunters spend the day (each real day the roster changes): map file -> how many.
+const HUNTER_SHIFTS := [["field.tscn", 10], ["forest.tscn", 6], ["world.tscn", 7]]
+const HUNTER_TOWN_LINES := ["Hoy me tomo el día libre. Mañana vuelvo a la llanura.", "Vengo de venderle mis trofeos a Kara.",
+	"Estoy esperando a mi grupo para ir al Bosque Profundo.", "Después de una buena cacería, nada como un paseo por la plaza.",
+	"Mañana salgo de caza temprano.", "Vine a revisar el tablón del Gremio."]
 
 
 static func guild_rank_index(renown: int) -> int:
@@ -225,11 +333,24 @@ const CF := "res://resources/sprite_frames/companions/"
 const MOUNT := {"id": "ciervo", "name": "Ciervo de monta", "price": 3000, "rank": "D", "speed": 1.8, "frames": CF + "deer.tres",
 	"desc": "Un ciervo criado en las granjas del este. Dócil, rápido y valiente. Con él cruzas la llanura en un suspiro."}
 ## Companions follow you and fight your target (or whatever attacks you). `power` = share of your attack per bite.
+## `fx` uses the same keys as the talents: the active companion adds its bonus to the hero.
 const PETS := {
+	"liebre": {"name": "Liebre de las colinas", "price": 800, "rank": "E", "power": 0.3, "rate": 0.7, "speed": 100.0, "frames": CF + "hare.tres",
+		"fx": {"gold": 0.08}, "perk": "+8 % de oro", "desc": "Inquieta y curiosa. Siempre encuentra alguna moneda entre la hierba."},
 	"zorro": {"name": "Zorro rojo", "price": 2000, "rank": "D", "power": 0.45, "rate": 0.9, "speed": 92.0, "frames": CF + "fox.tres",
-		"desc": "Rápido y astuto. Muerde a menudo, pero no muy fuerte."},
+		"fx": {"crit": 0.03}, "perk": "+3 % de crítico", "desc": "Rápido y astuto. Muerde a menudo, pero no muy fuerte."},
+	"urogallo": {"name": "Urogallo negro", "price": 3500, "rank": "D", "power": 0.5, "rate": 1.0, "speed": 90.0, "frames": CF + "grouse.tres",
+		"fx": {"xp": 0.08}, "perk": "+8 % de experiencia", "desc": "Se lanza en vuelo contra las bestias. Dicen que trae buena suerte al aprendiz."},
 	"jabali": {"name": "Jabalí de guerra", "price": 5000, "rank": "C", "power": 0.9, "rate": 1.6, "speed": 74.0, "frames": CF + "boar.tres",
-		"desc": "Lento y terco, pero cada embestida duele de verdad."},
+		"fx": {"def": 2}, "perk": "+2 de defensa", "desc": "Lento y terco, pero cada embestida duele de verdad."},
+	"zorro_nieve": {"name": "Zorro de las nieves", "price": 9000, "rank": "C", "power": 0.75, "rate": 0.85, "speed": 96.0, "frames": CF + "snow_fox.tres",
+		"fx": {"mana_regen": 0.25}, "perk": "+25 % de maná recuperado", "desc": "Bajó de los picos helados. Su aliento frío despeja la mente."},
+	"lobo": {"name": "Lobo gris", "price": 15000, "rank": "B", "power": 1.2, "rate": 1.1, "speed": 98.0, "frames": CF + "wolf.tres", "scale": 1.2,
+		"fx": {"atk_pct": 0.06}, "perk": "+6 % de ataque", "desc": "Un lobo de manada que eligió un nuevo líder: tú."},
+	"jabali_ebano": {"name": "Jabalí de ébano", "price": 26000, "rank": "A", "power": 1.6, "rate": 1.5, "speed": 78.0, "frames": CF + "ebony_boar.tres", "scale": 1.15,
+		"fx": {"hp_pct": 0.08}, "perk": "+8 % de vida", "desc": "Negro como el carbón y duro como la roca. Ninguna bestia lo hace retroceder."},
+	"zorro_igneo": {"name": "Zorro ígneo", "price": 45000, "rank": "S", "power": 2.0, "rate": 0.8, "speed": 104.0, "frames": CF + "fire_fox.tres",
+		"fx": {"skill_dmg": 0.12}, "perk": "+12 % de daño de habilidades", "desc": "Una leyenda de Valdoria. Donde pisa, la hierba humea."},
 }
 const RANK_ORDER := ["E", "D", "C", "B", "A", "S"]
 
@@ -241,6 +362,7 @@ const POI := {
 	"guild": {"icon": [16, 48], "title": "Gremio de Cazadores", "short": "Gremio"},
 	"home": {"icon": [64, 0], "title": "Tu casa", "short": "Casa"},
 	"board": {"icon": [16, 16], "title": "Pedidos"},
+	"camp": {"icon": [48, 272], "title": "Refugio: rellena pociones", "short": "Refugio"},
 }
 ## Doors that show on the maps, by their label.
 const POI_DOORS := {"Gremio de Cazadores": "guild", "Tu casa": "home"}

@@ -269,7 +269,7 @@ def walk_mask(w, out_path="resources/world/walkmask.png"):
 WORLD_CFG = dict(
     out="scenes/world/world.tscn", tileset="res://resources/tilesets/world_tileset.tres",
     walkmask="res://resources/world/walkmask.png", player=(89.5 * 16, 66 * 16),
-    minimap="res://resources/world/minimap_world.png", title="Valdoria",
+    minimap="res://resources/world/minimap_world.png", title="Valdoria", hunters=7,
     preview_layers=["water", "water_fx", "ground", "ground_overlay", "road", "detail", "water_city", "rim", "coast", "dock", "dock_fx", "fence", "walls", "towers"],
     zones=[("Cuartel de la Guardia", (8, 34, 47, 74)), ("Granjas del Este", (132, 14, 180, 96)),
            ("Puerto de Valdoria", (30, 92, 156, 140)), ("Ciudadela de Valdoria", (52, 24, 128, 89)),

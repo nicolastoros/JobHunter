@@ -192,7 +192,7 @@ func _refresh() -> void:
 	_xp_fill.size.x = roundf(46.0 * float(Game.xp) / float(Game.xp_to_next()))
 	_level.text = "Nv %d" % Game.level
 	_gold.text = "%d oro" % Game.gold
-	_potions.text = "x%d" % Game.potions
+	_potions.text = "%d/%d" % [Game.potions, GameData.POTION_MAX]
 
 
 func _set_bar(k: String, frac: float) -> void:

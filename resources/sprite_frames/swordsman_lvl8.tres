@@ -711,17 +711,23 @@ animations = [{
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2,
 "texture": SubResource("a36")
 }, {
-"duration": 1.0,
+"duration": 2,
 "texture": SubResource("a37")
 }, {
-"duration": 1.0,
+"duration": 2,
 "texture": SubResource("a38")
 }, {
-"duration": 1.0,
+"duration": 2,
 "texture": SubResource("a39")
+}, {
+"duration": 2,
+"texture": SubResource("a38")
+}, {
+"duration": 2,
+"texture": SubResource("a37")
 }],
 "loop": true,
 "name": &"idle_up",

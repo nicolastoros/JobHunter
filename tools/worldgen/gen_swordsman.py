@@ -60,7 +60,8 @@ def build(lv):
     out.append("[resource]")
     out.append("animations = [%s]" % ", ".join(anims))
     with open(os.path.join(ROOT, "resources/sprite_frames/swordsman_lvl%d.tres" % lv), "w", encoding="utf-8", newline="\n") as f:
-        f.write("\n".join(out) + "\n")
+        from even_loops import even_loops   # the idle facing up has 4 frames, the rest 12
+        f.write(even_loops("\n".join(out) + "\n"))
     print("lvl%d ok" % lv)
 
 

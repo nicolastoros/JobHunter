@@ -68,6 +68,14 @@ def build_farm(w, g):
     import w_outside as WO
     for kind, x, y in (("Deer", 136, 22.5), ("Fox", 140, 24), ("Boar", 137, 26)):
         WO.animal(w, kind, x * T, y * T, (134 * T, 20.5 * T, 8 * T, 6 * T))
+    # wild visitors: hares raiding the crops, grouse pecking by the barns, a fox eyeing the coops, deer at the edge
+    import random
+    arng = random.Random(909)   # own dice: the rest of the city keeps its layout
+    for kind, n, rect in (("Hare", 6, (141, 58, 20, 18)), ("Black_grouse", 4, (138, 44, 30, 8)), ("Fox", 2, (160, 46, 10, 10)),
+                          ("Deer", 3, (160, 76, 11, 14)), ("Hare", 3, (134, 76, 6, 14))):
+        for _ in range(n):
+            x, y = rect[0] + arng.uniform(0, rect[2]), rect[1] + arng.uniform(0, rect[3])
+            WO.animal(w, kind, x * T, y * T, (rect[0] * T, rect[1] * T, rect[2] * T, rect[3] * T))
     prop(w, "shed", 166, 31)
     prop(w, "longshed", 137.5, 52.3)
     prop(w, "coop", 170.5, 42)

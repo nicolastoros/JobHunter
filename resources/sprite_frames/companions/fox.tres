@@ -584,7 +584,7 @@ animations = [{
 "texture": SubResource("a57")
 }],
 "loop": true,
-"name": &"run_left",
+"name": &"run_right",
 "speed": 12.0
 }, {
 "frames": [{
@@ -607,7 +607,7 @@ animations = [{
 "texture": SubResource("a63")
 }],
 "loop": true,
-"name": &"run_right",
+"name": &"run_left",
 "speed": 12.0
 }, {
 "frames": [{
@@ -676,7 +676,7 @@ animations = [{
 "texture": SubResource("a81")
 }],
 "loop": false,
-"name": &"attack_left",
+"name": &"attack_right",
 "speed": 16.0
 }, {
 "frames": [{
@@ -699,6 +699,6 @@ animations = [{
 "texture": SubResource("a87")
 }],
 "loop": false,
-"name": &"attack_right",
+"name": &"attack_left",
 "speed": 16.0
 }]

@@ -58,13 +58,14 @@ func _ready() -> void:
 	player.set_camera_limits(Rect2i(Vector2i.ZERO, map_size * 16))
 	_spawn_chests()
 	_spawn_hunters.call_deferred()
-	if hunter_count > 0:
+	if hunter_count > 0 and not get_tree().get_nodes_in_group("monsters").is_empty():
 		var director := Node.new()
 		director.name = "EventDirector"
 		director.set_script(load("res://scripts/world/event_director.gd"))
 		add_child(director)
 		Game.advance_tutorial(4)
 		Game.tip("target", "Consejo: Tab fija una presa y la rueda del ratón cambia de presa.")
+	_spawn_safe_spots()
 	_spawn_pet.call_deferred()
 	Game.pet_changed.connect(_spawn_pet)
 	if Game.tutorial_step == 0 and scene_file_path == Game.FIRST_LEVEL:
@@ -146,16 +147,18 @@ func _spawn_hunters() -> void:
 			if not near:
 				prey.append(m)
 	prey.shuffle()
-	var roster: Array = GameData.HUNTERS.duplicate()
-	roster.shuffle()
+	var roster: Array = Game.hunters_today(scene_file_path.get_file())
+	var wild := not prey.is_empty()
 	for i in mini(hunter_count, roster.size()):
 		var h: Dictionary = roster[i]
 		var n := scene.instantiate()
 		var role := "fighter" if i < hunter_count * 0.55 else ("runner" if i % 3 == 0 else "traveler")
+		if not wild:
+			role = "traveler"   # in town they just stroll around
 		n.set("hunter_name", h["name"])
 		n.set("level", h["level"])
 		n.set("tier", h["tier"])
-		n.set("line", h["line"])
+		n.set("line", h["line"] if wild else GameData.HUNTER_TOWN_LINES[i % GameData.HUNTER_TOWN_LINES.size()])
 		n.set("role", role)
 		var home: Vector2 = marks[i % marks.size()]
 		if role == "fighter" and prey.size() > 0:
@@ -340,3 +343,16 @@ func _check_zone() -> void:
 		Game.location_entered.emit(zone)
 	elif zone == "":
 		_current_zone = ""
+
+
+## Safe havens of this map (potions refill there); they also show on the maps.
+func _spawn_safe_spots() -> void:
+	for spot in GameData.SAFE_SPOTS.get(scene_file_path.get_file(), []):
+		var n := Node2D.new()
+		n.position = spot[0]
+		n.set_meta("radius", spot[1])
+		n.set_meta("label", spot[2])
+		n.set_meta("poi_kind", "camp")
+		n.add_to_group("safe_spots")
+		n.add_to_group("poi")
+		add_child(n)

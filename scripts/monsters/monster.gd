@@ -19,6 +19,8 @@ enum State { IDLE, WANDER, CHASE, ATTACK, HURT, DEAD, RETURN }
 @export var boss := false
 @export var sprite_offset_y := -18.0
 @export var body_size := Vector2(12, 6)
+## Smaller (or bigger) versions of a sprite: forest saplings are scaled-down ents, etc.
+@export var sprite_scale := 1.0
 @export var respawn_time := 45.0
 ## Colossus of a world event: tougher, never respawns, and pays everyone who fought it.
 @export var event_boss := false
@@ -44,6 +46,7 @@ var _cool := 0.0
 var _hit_done := false
 var _knock := Vector2.ZERO
 var _bar_timer := 0.0
+var _tick := randi() % 6
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shape: CollisionShape2D = $CollisionShape2D
@@ -64,6 +67,8 @@ func _ready() -> void:
 	_apply_level()
 	sprite.sprite_frames = frames
 	sprite.offset.y = sprite_offset_y
+	sprite.scale = Vector2.ONE * sprite_scale
+	sprite_offset_y *= sprite_scale   # from here on, in world pixels (hurtbox, health bar, popups)
 	(shape.shape as RectangleShape2D).size = body_size
 	shape.position.y = -body_size.y / 2.0
 	var hs := RectangleShape2D.new()
@@ -78,6 +83,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Game.editing:
 		return
+	# far from the hero and just grazing: think 10 times a second instead of 60 (many monsters on the map)
+	if state == State.IDLE or state == State.WANDER:
+		var hero := _player()
+		if hero and hero.global_position.distance_squared_to(global_position) > 560.0 * 560.0:
+			_tick += 1
+			if _tick % 6 != 0:
+				return
+			delta *= 6.0
 	_cool -= delta
 	_bar_timer -= delta
 	var player := _pick_target()
@@ -284,7 +297,8 @@ func _pick_target() -> Node2D:
 
 
 func _process(_delta: float) -> void:
-	queue_redraw()
+	if _bar_timer > -0.2:   # only while the health bar is (or just was) on screen
+		queue_redraw()
 
 
 func _draw() -> void:

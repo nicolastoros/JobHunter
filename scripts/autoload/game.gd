@@ -27,6 +27,10 @@ const HOME_SCENE := "res://scenes/interiors/home.tscn"
 const HOME_DOOR := "door_2"
 const SETTINGS_PATH := "user://settings.cfg"
 const SAVE_PATH := "user://partida.json"
+const BACKUP_PATH := "user://partida_respaldo.json"
+## Automated tests run with CDC_TEST set and use their own file, so a real game is never touched.
+var save_path := SAVE_PATH
+var backup_path := BACKUP_PATH
 const SAVE_VERSION := 2
 ## Seconds between automatic saves while playing.
 const AUTOSAVE_INTERVAL := 180.0
@@ -99,6 +103,7 @@ var _buff_until := 0.0
 var _buff_bonus := 0
 var _autosave_left := AUTOSAVE_INTERVAL
 var _lifesteal_acc := 0.0
+var _refill_left := 1.0
 var potions: int:
 	get:
 		return item_count("pocion")
@@ -122,6 +127,9 @@ var quests: Array[Dictionary] = [
 	 "desc": "En el pantano del norte hay un limo enorme que se traga a los demás. Necesito lo que quede de él.", "reward": 700, "xp": 320, "target": ["Rey Limo", 1], "state": "open"},
 ]
 
+## Resources loaded by the loading screen, kept alive so later scene changes are quick.
+var preloaded: Array[Resource] = []
+
 var settings := {
 	"master_volume": 0.8,
 	"fullscreen": false,
@@ -135,6 +143,9 @@ var _busy := false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_fade()
+	if OS.get_environment("CDC_TEST") != "":
+		save_path = "user://partida_test.json"
+		backup_path = "user://partida_test_respaldo.json"
 	load_settings()
 	reset_progress()
 
@@ -145,6 +156,10 @@ func _process(delta: float) -> void:
 	clock += delta
 	if _in_gameplay():
 		play_time += delta
+		_refill_left -= delta
+		if _refill_left <= 0.0:
+			_refill_left = 0.5
+			_check_refill()
 		_autosave_left -= delta
 		if _autosave_left <= 0.0:
 			_autosave_left = AUTOSAVE_INTERVAL
@@ -307,8 +322,6 @@ func on_monster_killed(m: Node2D) -> void:
 	kills[name_] = int(kills.get(name_, 0)) + 1
 	var drops: Array = GameData.LOOT.get(name_, []).duplicate()
 	var boss: bool = m.get("boss")
-	if not boss:
-		drops.append(["pocion", 0.06, 1])
 	var dy := -10.0
 	for d in drops:
 		if randf() < float(d[1]) * (loot_mult if float(d[1]) < 1.0 else 1.0):
@@ -382,6 +395,25 @@ func npc_score(h: Dictionary) -> int:
 	return int(float(h["base"]) + float(h["rate"]) * play_time / 60.0) + int(npc_renown.get(h["name"], 0))
 
 
+## The hunters out on a given map today: the roster is shuffled once per real day, so each day
+## different faces hunt the plain, the forest, or take the day off in town (the rest stay home).
+func hunters_today(map_file: String) -> Array:
+	var roster: Array = GameData.HUNTERS.duplicate()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = int(Time.get_unix_time_from_system() / 86400.0) * 7919 + 13
+	for i in range(roster.size() - 1, 0, -1):
+		var j := rng.randi_range(0, i)
+		var t = roster[i]
+		roster[i] = roster[j]
+		roster[j] = t
+	var at := 0
+	for shift in GameData.HUNTER_SHIFTS:
+		if shift[0] == map_file:
+			return roster.slice(at, at + int(shift[1]))
+		at += int(shift[1])
+	return []
+
+
 ## Everyone in the ranking, best first. Each entry: name, renown, level, tier, rank, player.
 func ranking() -> Array:
 	var out: Array = []
@@ -438,13 +470,13 @@ func _check_rank_up() -> void:
 		var rk: Array = GameData.GUILD_RANKS[ranks_rewarded]
 		var g := 150 * ranks_rewarded
 		add_gold(g)
-		add_item("pocion", 2)
+		add_item("eter", 2)
 		var piece := _roll_equipment(level + 3)
 		var extra := ""
 		if piece != "":
 			bag.append(piece)
 			extra = ", " + eq(piece)["name"]
-		toast("¡Ascenso en el Gremio! Ahora eres rango %s (%s). Recompensa: %d de oro, 2 pociones%s." % [rk[1], rk[2], g, extra])
+		toast("¡Ascenso en el Gremio! Ahora eres rango %s (%s). Recompensa: %d de oro, 2 pociones de maná%s." % [rk[1], rk[2], g, extra])
 		var p := _player()
 		if p:
 			spawn_popup(p.global_position + Vector2(0, -52), "Rango %s" % rk[1], Color(1, 0.85, 0.35))
@@ -556,6 +588,8 @@ func tsum(key: String) -> float:
 		var n := GameData.talent_node(id)
 		if not n.is_empty() and n["fx"].has(key):
 			t += float(n["fx"][key]) * int(talents[id])
+	if active_pet != "":
+		t += float(GameData.PETS.get(active_pet, {}).get("fx", {}).get(key, 0.0))
 	return t
 
 
@@ -663,6 +697,8 @@ func item_count(id: String) -> int:
 
 func add_item(id: String, n := 1) -> void:
 	inventory[id] = item_count(id) + n
+	if id == "pocion":
+		inventory[id] = mini(int(inventory[id]), GameData.POTION_MAX)
 	stats_changed.emit()
 
 
@@ -700,9 +736,77 @@ func use_item(id: String) -> bool:
 
 func use_potion() -> void:
 	if item_count("pocion") <= 0:
-		toast("No te quedan pociones.")
+		if _tips_shown.has("no_potions"):
+			toast("No te quedan pociones.")
+		tip("no_potions", "No te quedan pociones. Se rellenan en la ciudad y en los refugios del mapa.")
 		return
 	use_item("pocion")
+
+
+## True where nothing can attack you: maps without monsters (town, houses) and the safe havens.
+func is_safe_here() -> bool:
+	var p := _player()
+	if p == null:
+		return false
+	for spot in get_tree().get_nodes_in_group("safe_spots"):
+		if p.global_position.distance_to((spot as Node2D).global_position) <= float(spot.get_meta("radius", 120.0)):
+			return true
+	for m in get_tree().get_nodes_in_group("monsters"):
+		if int(m.get("hp")) > 0:
+			return false
+	return true
+
+
+func safe_spot_name() -> String:
+	var p := _player()
+	for spot in get_tree().get_nodes_in_group("safe_spots"):
+		if p and p.global_position.distance_to((spot as Node2D).global_position) <= float(spot.get_meta("radius", 120.0)):
+			return String(spot.get_meta("label", ""))
+	return ""
+
+
+## Refills the healing potions when the hero is somewhere safe.
+func _check_refill() -> void:
+	if item_count("pocion") >= GameData.POTION_MAX or not is_safe_here():
+		return
+	inventory["pocion"] = GameData.POTION_MAX
+	stats_changed.emit()
+	var where := safe_spot_name()
+	toast("Rellenas tus pociones en %s (%d/%d)." % [where, GameData.POTION_MAX, GameData.POTION_MAX] if where != ""
+		else "Rellenas tus pociones (%d/%d)." % [GameData.POTION_MAX, GameData.POTION_MAX])
+
+
+# --- Selling (Kara buys what you don't need) ---------------------------------------------
+
+## Gold Kara pays for one unit: consumables/materials by id, equipment by its bag entry.
+func sell_value(id: String, is_equipment: bool) -> int:
+	if is_equipment:
+		var e := eq(id)
+		return int(round((12 + 9 * int(e.get("level", 1))) * (1.0 + 0.4 * eq_plus(id))))
+	return int(GameData.ITEMS.get(id, {}).get("value", 0))
+
+
+func sell_item(id: String, n := 1) -> int:
+	n = mini(n, item_count(id))
+	var v := sell_value(id, false)
+	if n <= 0 or v <= 0:
+		return 0
+	remove_item(id, n)
+	add_gold(v * n)
+	toast("Vendiste %s x%d por %d de oro." % [GameData.ITEMS[id]["name"], n, v * n])
+	return v * n
+
+
+func sell_equipment(bag_index: int) -> int:
+	if bag_index < 0 or bag_index >= bag.size():
+		return 0
+	var entry: String = bag[bag_index]
+	var v := sell_value(entry, true)
+	bag.remove_at(bag_index)
+	add_gold(v)
+	toast("Vendiste %s por %d de oro." % [eq(entry)["name"], v])
+	stats_changed.emit()
+	return v
 
 
 # --- Equipment --------------------------------------------------------------------
@@ -834,8 +938,8 @@ func open_chest(id: String, tier: int, pos: Vector2) -> void:
 	add_gold(g)
 	found.append("%d de oro" % g)
 	if randf() < 0.5 + tier * 0.1:
-		add_item("pocion", 1 + int(tier / 2))
-		found.append("pociones")
+		add_item("eter", 1 + int(tier / 2))
+		found.append("pociones de maná")
 	spawn_popup(pos, "¡Cofre!", Color(1, 0.88, 0.4))
 	add_renown(5 + tier * 5)
 	toast("En el cofre: %s." % ", ".join(found))
@@ -1058,7 +1162,7 @@ func spawn_popup(pos: Vector2, text: String, color: Color) -> void:
 # =============================================================================
 
 func has_save() -> bool:
-	return FileAccess.file_exists(SAVE_PATH)
+	return FileAccess.file_exists(save_path) or FileAccess.file_exists(backup_path)
 
 
 func can_save() -> bool:
@@ -1087,7 +1191,10 @@ func save_game(auto := false) -> bool:
 		"skill_ranks": skill_ranks, "talents": talents, "attributes": attributes, "kills": kills, "quests": quest_states,
 		"play_time": play_time,
 	}
-	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	# keep the previous save as a backup before writing the new one
+	if FileAccess.file_exists(save_path) and _read_save(save_path).size() > 0:
+		DirAccess.copy_absolute(ProjectSettings.globalize_path(save_path), ProjectSettings.globalize_path(backup_path))
+	var f := FileAccess.open(save_path, FileAccess.WRITE)
 	if f == null:
 		toast("No se pudo guardar la partida.")
 		return false
@@ -1099,9 +1206,16 @@ func save_game(auto := false) -> bool:
 
 
 func save_info() -> Dictionary:
-	if not has_save():
+	var d := _read_save(save_path)
+	if d.is_empty():
+		d = _read_save(backup_path)   # main file missing or damaged: fall back to the backup
+	return d
+
+
+func _read_save(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
 		return {}
-	var parsed = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
+	var parsed = JSON.parse_string(FileAccess.get_file_as_string(path))
 	return parsed if parsed is Dictionary else {}
 
 
@@ -1118,6 +1232,8 @@ func load_game() -> bool:
 	talent_points = int(d.get("talent_points", 0))
 	play_time = float(d.get("play_time", 0.0))
 	inventory = _int_dict(d.get("inventory", {}))
+	if item_count("pocion") > GameData.POTION_MAX:
+		inventory["pocion"] = GameData.POTION_MAX
 	bag.clear()
 	for id in d.get("bag", []):
 		if GameData.EQUIPMENT.has(eq_base(String(id))):
@@ -1274,6 +1390,7 @@ signal pet_changed
 
 func set_active_pet(id: String) -> void:
 	active_pet = id if id in pets else ""
+	recalc_stats()
 	pet_changed.emit()
 	stats_changed.emit()
 
