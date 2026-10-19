@@ -7,7 +7,8 @@ const INK := Color(0.25, 0.16, 0.1)
 const INK_SOFT := Color(0.47, 0.33, 0.22)
 const GOOD := Color(0.13, 0.42, 0.14)
 const BAD := Color(0.62, 0.14, 0.1)
-const STAT_NAMES := {"atk": "Ataque", "def": "Defensa", "hp": "Vida", "mana": "Maná"}
+const STAT_NAMES := {"atk": "Ataque", "def": "Defensa", "hp": "Vida", "mana": "Maná",
+	"crit": "Crítico", "crit_dmg": "Daño crítico", "lifesteal": "Robo de vida", "skill_dmg": "Habilidades"}
 
 var _root: Control
 var _list: VBoxContainer
@@ -375,6 +376,9 @@ static func _stat_line(e: Dictionary) -> String:
 	for k in ["atk", "def", "hp", "mana"]:
 		if e.has(k) and int(e[k]) != 0:
 			parts.append("%s %+d" % [STAT_NAMES[k], int(e[k])])
+	for k in ["crit", "crit_dmg", "lifesteal", "skill_dmg"]:
+		if e.has(k):
+			parts.append("%s %+d %%" % [STAT_NAMES[k], int(round(float(e[k]) * 100))])
 	return "   ".join(parts)
 
 

@@ -566,12 +566,18 @@ func roll_equipment(mlevel: int) -> String:
 
 
 func _roll_equipment(mlevel: int) -> String:
-	var pool: Array[String] = []
+	# first the slot, then the piece: with so many weapon types, armour still drops as often
+	var by_slot := {}
 	for id in GameData.EQUIPMENT:
 		var req := int(GameData.EQUIPMENT[id]["level"])
 		if req <= mlevel + 2 and req >= mlevel - 12:
-			pool.append(id)
-	return pool.pick_random() if pool.size() > 0 else ""
+			var slot: String = GameData.EQUIPMENT[id]["slot"]
+			if not by_slot.has(slot):
+				by_slot[slot] = []
+			by_slot[slot].append(id)
+	if by_slot.is_empty():
+		return ""
+	return by_slot[by_slot.keys().pick_random()].pick_random()
 
 
 func _equip_sum(key: String) -> float:
@@ -590,6 +596,8 @@ func tsum(key: String) -> float:
 			t += float(n["fx"][key]) * int(talents[id])
 	if active_pet != "":
 		t += float(GameData.PETS.get(active_pet, {}).get("fx", {}).get(key, 0.0))
+	if key in GameData.EQUIP_FX:
+		t += _equip_sum(key)
 	return t
 
 

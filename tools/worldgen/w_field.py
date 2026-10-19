@@ -14,6 +14,7 @@ import w_terrain as WT
 W, H = 170, 130
 ENTRY_X = (82, 89)
 NORTH_GAP = (27, 33)   # trail to the Deep Forest
+EAST_GAP = (76, 82)    # caravan trail to the Desert of Amber
 
 # ---- extra sheets for the field ---------------------------------------------------
 WP.SHEETS["gl"] = ("grassland_01/Tiled_files/Trees_rocks.png", "assets/sprites/field/Trees_rocks.png")
@@ -490,6 +491,16 @@ def build():
     autotile(w, "ground_overlay", w.field_path, FG, nine_at(19, 1), {"se": (22, 1), "sw": (23, 1), "ne": (22, 2), "nw": (23, 2)}, center_variants=[(20, 2)])
     for c in trail:
         w.layers.get("detail", {}).pop(c, None)
+    # caravan trail east to the Desert of Amber (gap in the east forest wall)
+    east = {c for c in road_mask([(160, 78), (165, 79), (171, 79)], 3.4) if 0 <= c[0] < W and 0 <= c[1] < H}
+    east = {c for c in east if c not in w.solids}
+    near = {(x + dx, y + dy) for (x, y) in east for dx in (-1, 0, 1) for dy in (-2, -1, 0, 1, 2)}
+    near |= set(rect_cells(W - 9, EAST_GAP[0] - 1, W, EAST_GAP[1] + 1))
+    w.props = [pp for pp in w.props if pp["floor"] or (int(pp["pos"][0] // 16), int((pp["pos"][1] - 1) // 16)) not in near]
+    w.field_path |= east
+    autotile(w, "ground_overlay", w.field_path, FG, nine_at(19, 1), {"se": (22, 1), "sw": (23, 1), "ne": (22, 2), "nw": (23, 2)}, center_variants=[(20, 2)])
+    for c in east:
+        w.layers.get("detail", {}).pop(c, None)
     w.graph = WL.Graph()
     return w
 
@@ -506,9 +517,10 @@ FIELD_CFG = dict(
            ("Pantano del Norte", (118, 14, 166, 44)), ("Campamento goblin", (10, 66, 40, 88)),
            ("Colinas del Este", (128, 94, 170, 130)), ("Llanura de Valdoria", (0, 0, 170, 130))],
     exits=[dict(name="SouthExit", pos=(85.5 * 16, 130 * 16 - 18), size=(8 * 16, 24), scene="res://scenes/world/world.tscn", spawn="north_gate", dir="down"),
-           dict(name="NorthExit", pos=(30 * 16, 18), size=(6 * 16, 24), scene="res://scenes/world/forest.tscn", spawn="south", dir="up")],
-    spawns={"south": (85.5 * 16, 124 * 16), "respawn": (85.5 * 16, 124 * 16), "start": (85.5 * 16, 124 * 16), "north": (30 * 16, 5 * 16)},
-    bottom_gap=ENTRY_X, top_gap=NORTH_GAP,
+           dict(name="NorthExit", pos=(30 * 16, 18), size=(6 * 16, 24), scene="res://scenes/world/forest.tscn", spawn="south", dir="up"),
+           dict(name="EastExit", pos=(W * 16 - 18, 79 * 16), size=(24, 6 * 16), scene="res://scenes/world/desert.tscn", spawn="west", dir="right")],
+    spawns={"south": (85.5 * 16, 124 * 16), "respawn": (85.5 * 16, 124 * 16), "start": (85.5 * 16, 124 * 16), "north": (30 * 16, 5 * 16), "east": (165 * 16, 79 * 16)},
+    bottom_gap=ENTRY_X, top_gap=NORTH_GAP, right_gap=EAST_GAP,
 )
 
 

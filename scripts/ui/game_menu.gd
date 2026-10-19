@@ -12,7 +12,8 @@ const INK := Color(0.25, 0.16, 0.1)
 const INK_SOFT := Color(0.47, 0.33, 0.22)
 const GOLD := Color(0.62, 0.42, 0.08)
 const SLOTS := 24
-const STAT_NAMES := {"atk": "Ataque", "def": "Defensa", "hp": "Vida", "mana": "Maná", "speed": "Velocidad"}
+const STAT_NAMES := {"atk": "Ataque", "def": "Defensa", "hp": "Vida", "mana": "Maná", "speed": "Velocidad",
+	"crit": "Crítico", "crit_dmg": "Daño crítico", "lifesteal": "Robo de vida", "skill_dmg": "Habilidades"}
 
 var _root: Control
 var _tab_buttons := {}
@@ -623,10 +624,10 @@ func _refresh() -> void:
 
 static func _bonus_text(e: Dictionary) -> String:
 	var parts: Array[String] = []
-	for k in ["atk", "def", "hp", "mana", "speed"]:
+	for k in ["atk", "def", "hp", "mana", "speed", "crit", "crit_dmg", "lifesteal", "skill_dmg"]:
 		if e.has(k):
 			var v = e[k]
-			if k == "speed":
+			if k in ["speed", "crit", "crit_dmg", "lifesteal", "skill_dmg"]:
 				parts.append("%s %+d %%" % [STAT_NAMES[k], int(round(float(v) * 100))])
 			else:
 				parts.append("%s %+d" % [STAT_NAMES[k], int(v)])

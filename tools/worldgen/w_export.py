@@ -462,6 +462,14 @@ def scene(w, cfg=None):
         edges["BottomLeft"] = (bgap[0] * 8, H + 8, bgap[0] * 16, 16)
         edges["BottomRight"] = ((bgap[1] + w.W) * 8, H + 8, (w.W - bgap[1]) * 16, 16)
         edges["BottomGate"] = ((bgap[0] + bgap[1]) * 8, H + 24, (bgap[1] - bgap[0]) * 16, 16)
+    # gaps in the side edges (exits east / west): (first row, last row) in tiles
+    for side, x, out_x in (("Right", W + 8, W + 24), ("Left", -8, -24)):
+        sgap = cfg.get(side.lower() + "_gap")
+        if sgap:
+            del edges[side]
+            edges[side + "Top"] = (x, sgap[0] * 8, 16, sgap[0] * 16)
+            edges[side + "Bottom"] = (x, (sgap[1] + w.H) * 8, 16, (w.H - sgap[1]) * 16)
+            edges[side + "Gate"] = (out_x, (sgap[0] + sgap[1]) * 8, 16, (sgap[1] - sgap[0]) * 16)
     for nm, (cx, cy, sw, sh) in edges.items():
         nodes.append('[node name="%s" type="CollisionShape2D" parent="Bounds"]\nposition = Vector2(%s, %s)\nshape = SubResource("%s")\n' % (nm, fmt(cx), fmt(cy), rect_shape(sw, sh)))
     exit_scr = eid("Script", "res://scripts/world/zone_exit.gd")

@@ -13,6 +13,7 @@ const POTION_MAX := 3
 const SAFE_SPOTS := {
 	"field.tscn": [[Vector2(1520, 410), 170.0, "el Campamento de viajeros"]],
 	"forest.tscn": [[Vector2(1288, 1728), 170.0, "el Puesto del Guardabosques"]],
+	"desert.tscn": [[Vector2(392, 960), 190.0, "el Oasis de Zafira"]],
 }
 
 # --- Consumables & materials --------------------------------------------------------
@@ -29,10 +30,18 @@ const ITEMS := {
 	"savia": {"name": "Savia del bosque", "desc": "Material. Espesa y dulce; los curanderos pagan bien por ella.", "icon": [32, 112], "value": 12},
 	"bruma": {"name": "Esencia de bruma", "desc": "Material. Un frasco de niebla del pantano que nunca se disipa.", "icon": [64, 112], "value": 10},
 	"cristal": {"name": "Fragmento de cristal", "desc": "Material. Vibra con un zumbido suave. Kara lo usa para templar el acero.", "icon": [80, 112], "value": 16},
+	"arenisca": {"name": "Bloque de arenisca", "desc": "Material. Pesado y caliente al tacto, aunque sea de noche.", "icon": "res://assets/ui/icons/items/arenisca.png", "value": 9},
+	"acido": {"name": "Frasco de ácido", "desc": "Material. Burbujea solo. No lo abras cerca de tu ropa.", "icon": "res://assets/ui/icons/items/acido.png", "value": 11},
+	"colmillo_chacal": {"name": "Colmillo de chacal", "desc": "Material. Afilado como una daga; los nómadas lo usan de amuleto.", "icon": "res://assets/ui/icons/items/colmillo_chacal.png", "value": 13},
+	"polvo_dorado": {"name": "Polvo dorado", "desc": "Material. Los saqueadores lo roban de las ruinas. Brilla al sol.", "icon": "res://assets/ui/icons/items/polvo_dorado.png", "value": 16},
+	"tesoro_sol": {"name": "Tesoro del Sol", "desc": "El tesoro que custodiaba el Guardián del Sol. Una fortuna en oro antiguo.", "icon": "res://assets/ui/icons/items/tesoro_sol.png", "value": 400},
 	"corona": {"name": "Corona de gel", "desc": "Lo único que quedó del Rey Limo. Tiembla si la tocas.", "icon": [64, 128], "value": 150},
 }
 
 # --- Equipment ------------------------------------------------------------------------
+## Equipment bonuses that work like talent effects (weapon types): critical chance and damage,
+## life steal and skill damage.
+const EQUIP_FX := ["crit", "crit_dmg", "lifesteal", "skill_dmg"]
 const SLOTS := ["weapon", "helmet", "chest", "gloves", "boots", "trinket"]
 const SLOT_NAMES := {"weapon": "Arma", "helmet": "Cabeza", "chest": "Torso", "gloves": "Manos", "boots": "Pies", "trinket": "Accesorio"}
 ## atk / def / hp / mana / speed (fraction) bonuses; `level` = level required to equip.
@@ -46,6 +55,28 @@ const EQUIPMENT := {
 	"espada_ignea": {"name": "Espada ígnea", "slot": "weapon", "level": 24, "atk": 10, "desc": "El filo nunca termina de enfriarse."},
 	"hoja_marina": {"name": "Hoja marina", "slot": "weapon", "level": 36, "atk": 14, "mana": 20, "desc": "Forjada con acero que pasó un siglo bajo el mar."},
 	"espada_alba": {"name": "Espada del alba", "slot": "weapon", "level": 55, "atk": 20, "hp": 10, "desc": "Dicen que brilla un poco más cada amanecer."},
+	"daga_bronce": {"name": "Daga de bronce", "slot": "weapon", "level": 4, "atk": 2, "crit": 0.05, "desc": "Daga. Ligera y traicionera: golpes críticos más a menudo."},
+	"daga_sombra": {"name": "Daga de sombra", "slot": "weapon", "level": 14, "atk": 5, "crit": 0.08, "desc": "Daga. Forjada de noche, para que nadie la vea venir."},
+	"colmillo_dunas": {"name": "Colmillo de las dunas", "slot": "weapon", "level": 28, "atk": 9, "crit": 0.12, "desc": "Daga. Tallada con el colmillo de un chacal gigante."},
+	"daga_eclipse": {"name": "Daga del eclipse", "slot": "weapon", "level": 48, "atk": 15, "crit": 0.15, "desc": "Daga. Brilla solo cuando el sol se esconde."},
+	"lanza_cazador": {"name": "Lanza de cazador", "slot": "weapon", "level": 6, "atk": 3, "def": 1, "desc": "Lanza. Mantiene a las bestias a distancia."},
+	"lanza_acero": {"name": "Lanza de acero", "slot": "weapon", "level": 18, "atk": 7, "def": 2, "desc": "Lanza. La usan los guardias de las murallas."},
+	"pica_dunas": {"name": "Pica de las dunas", "slot": "weapon", "level": 32, "atk": 11, "def": 3, "desc": "Lanza. Los nómadas la clavan en la arena para marcar su camino."},
+	"lanza_sol": {"name": "Lanza del sol", "slot": "weapon", "level": 52, "atk": 18, "def": 4, "desc": "Lanza. Su punta arde como el mediodía del desierto."},
+	"hacha_doble": {"name": "Hacha doble", "slot": "weapon", "level": 12, "atk": 7, "speed": -0.04, "desc": "Hacha de guerra. Dos filos, el doble de problemas."},
+	"hacha_berserker": {"name": "Hacha berserker", "slot": "weapon", "level": 30, "atk": 13, "speed": -0.04, "lifesteal": 0.03, "desc": "Hacha de guerra. Cada golpe te devuelve algo de vida."},
+	"hacha_titan": {"name": "Hacha del titán", "slot": "weapon", "level": 60, "atk": 24, "speed": -0.05, "desc": "Hacha de guerra. Solo un titán podría levantarla... o tú."},
+	"martillo_guerra": {"name": "Martillo de guerra", "slot": "weapon", "level": 16, "atk": 8, "hp": 8, "speed": -0.05, "desc": "Martillo. Lento, pero aplasta caparazones y piedras."},
+	"martillo_runico": {"name": "Martillo rúnico", "slot": "weapon", "level": 40, "atk": 16, "hp": 16, "speed": -0.05, "desc": "Martillo. Las runas zumban cuando golpea."},
+	"cimitarra": {"name": "Cimitarra", "slot": "weapon", "level": 22, "atk": 8, "crit_dmg": 0.2, "desc": "Cimitarra. La hoja curva de los nómadas del desierto: críticos más fuertes."},
+	"cimitarra_dorada": {"name": "Cimitarra dorada", "slot": "weapon", "level": 38, "atk": 13, "crit_dmg": 0.3, "desc": "Cimitarra. Bañada en el oro de las Ruinas del Sol."},
+	"cimitarra_faraon": {"name": "Cimitarra del faraón", "slot": "weapon", "level": 58, "atk": 21, "crit_dmg": 0.4, "desc": "Cimitarra. Perteneció a un rey que nadie recuerda."},
+	"estoque": {"name": "Estoque", "slot": "weapon", "level": 26, "atk": 9, "crit": 0.04, "crit_dmg": 0.15, "desc": "Espada fina. Precisión antes que fuerza."},
+	"katana_luna": {"name": "Katana de luna", "slot": "weapon", "level": 45, "atk": 16, "crit": 0.06, "crit_dmg": 0.25, "desc": "Katana. Corta tan limpio que el enemigo tarda en notarlo."},
+	"hoz_segador": {"name": "Hoz del segador", "slot": "weapon", "level": 20, "atk": 8, "lifesteal": 0.04, "desc": "Guadaña. Cosecha la vida de lo que corta."},
+	"guadana_alma": {"name": "Guadaña de almas", "slot": "weapon", "level": 50, "atk": 18, "lifesteal": 0.07, "desc": "Guadaña. Susurra con voces que no son tuyas."},
+	"tridente_marea": {"name": "Tridente de la marea", "slot": "weapon", "level": 24, "atk": 8, "mana": 20, "skill_dmg": 0.1, "desc": "Tridente. Potencia tus habilidades con la fuerza del mar."},
+	"tridente_abismo": {"name": "Tridente del abismo", "slot": "weapon", "level": 46, "atk": 15, "mana": 30, "skill_dmg": 0.15, "desc": "Tridente. Arrastra a sus presas hacia el fondo."},
 	"gorro_cuero": {"name": "Capucha de cuero", "slot": "helmet", "level": 1, "def": 1, "desc": "Protege del sol y de algún que otro golpe."},
 	"casco_hierro": {"name": "Casco de hierro", "slot": "helmet", "level": 7, "def": 2, "hp": 4, "desc": "Abollado, pero firme."},
 	"yelmo_astado": {"name": "Yelmo astado", "slot": "helmet", "level": 20, "def": 4, "hp": 10, "desc": "Los cuernos son de un ciervo de las colinas."},
@@ -91,6 +122,10 @@ const LOOT := {
 	"Limo musgoso": [["musgo", 0.6, 1], ["gel", 0.3, 1]], "Limo de bruma": [["bruma", 0.5, 1], ["gel", 0.3, 1]],
 	"Gólem de cristal": [["cristal", 0.5, 1], ["nucleo", 0.02, 1]],
 	"Gólem de Obsidiana": [["cristal", 1.0, 3], ["nucleo", 1.0, 1], ["eter", 1.0, 2]],
+	"Limo de arena": [["gel", 0.5, 1], ["arenisca", 0.2, 1]], "Limo ácido": [["acido", 0.55, 1], ["gel", 0.3, 1]],
+	"Saqueador de las dunas": [["polvo_dorado", 0.4, 1], ["abalorio", 0.3, 1]], "Chacal de las dunas": [["colmillo_chacal", 0.5, 1], ["piel", 0.3, 1]],
+	"Gólem de arenisca": [["arenisca", 0.6, 1], ["cristal", 0.1, 1]],
+	"Guardián del Sol": [["tesoro_sol", 1.0, 1], ["polvo_dorado", 1.0, 3], ["eter", 1.0, 2]],
 	"Gólem de las Ruinas": [["nucleo", 1.0, 1], ["eter", 1.0, 2]],
 	"Ent Ancestral": [["corteza", 1.0, 1], ["eter", 1.0, 2]],
 	"Rey Limo": [["corona", 1.0, 1], ["gel", 1.0, 3]],
@@ -311,9 +346,10 @@ const HUNTER_CHATTER := ["¡Uno menos!", "¡Toma eso!", "¡Por el Gremio!", "Otr
 ## Contract templates: [monster, base count]. Rewards scale with the hero's level.
 const CONTRACT_POOL := [["Limo", 8], ["Limo extraño", 5], ["Goblin", 6], ["Gnoll", 5], ["Goblin", 10], ["Limo", 14], ["Gnoll", 8],
 	["Retoño del bosque", 6], ["Ent frondoso", 4], ["Limo musgoso", 8], ["Limo de bruma", 6], ["Gólem de cristal", 4],
-	["Gólem de las Ruinas", 1], ["Ent Ancestral", 1], ["Rey Limo", 1], ["Gólem de Obsidiana", 1]]
+	["Gólem de las Ruinas", 1], ["Ent Ancestral", 1], ["Rey Limo", 1], ["Gólem de Obsidiana", 1],
+	["Limo de arena", 8], ["Limo ácido", 6], ["Saqueador de las dunas", 6], ["Chacal de las dunas", 5], ["Gólem de arenisca", 4], ["Guardián del Sol", 1]]
 ## Where the Guild's hunters spend the day (each real day the roster changes): map file -> how many.
-const HUNTER_SHIFTS := [["field.tscn", 10], ["forest.tscn", 6], ["world.tscn", 7]]
+const HUNTER_SHIFTS := [["field.tscn", 10], ["forest.tscn", 6], ["desert.tscn", 6], ["world.tscn", 7]]
 const HUNTER_TOWN_LINES := ["Hoy me tomo el día libre. Mañana vuelvo a la llanura.", "Vengo de venderle mis trofeos a Kara.",
 	"Estoy esperando a mi grupo para ir al Bosque Profundo.", "Después de una buena cacería, nada como un paseo por la plaza.",
 	"Mañana salgo de caza temprano.", "Vine a revisar el tablón del Gremio."]

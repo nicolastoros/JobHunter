@@ -8,12 +8,14 @@ const DIRS := ["res://resources/sprite_frames/monsters", "res://resources/sprite
 const FIRST := ["res://scenes/ui/main_menu.tscn", "res://scenes/ui/hud.tscn", "res://scenes/ui/pause_menu.tscn",
 	"res://scenes/characters/player.tscn", "res://scenes/monsters/monster.tscn", "res://scenes/npc/hunter.tscn",
 	"res://scenes/objects/chest.tscn"]
-const MAPS := ["res://scenes/world/world.tscn", "res://scenes/world/field.tscn", "res://scenes/world/forest.tscn"]
+const MAPS := ["res://scenes/world/world.tscn", "res://scenes/world/field.tscn", "res://scenes/world/forest.tscn", "res://scenes/world/desert.tscn"]
 const TIPS := ["Las pociones se rellenan en la ciudad y en los refugios del mapa.",
 	"Tab fija una presa; la rueda del ratón cambia de presa.",
 	"Kara, la herrera, mejora tu equipo y compra lo que no necesites.",
 	"Cada día salen a cazar cazadores distintos. Algunos descansan en la ciudad.",
 	"Al norte del Bosque de los Susurros empieza el Bosque Profundo.",
+	"Al este de la llanura, cruzando el lago, está el Desierto de Ámbar.",
+	"Cada tipo de arma tiene su efecto: las dagas dan crítico, las guadañas roban vida.",
 	"Las rachas de caza dan más renombre en el Gremio.",
 	"En el establo de las granjas hay compañeros que te ayudan a cazar."]
 
@@ -115,7 +117,7 @@ func _load_all() -> void:
 
 static func _what(path: String) -> String:
 	if path.contains("/world/"):
-		return {"world.tscn": "Valdoria", "field.tscn": "la Llanura", "forest.tscn": "el Bosque Profundo"}.get(path.get_file(), "el mundo")
+		return {"world.tscn": "Valdoria", "field.tscn": "la Llanura", "forest.tscn": "el Bosque Profundo", "desert.tscn": "el Desierto de Ámbar"}.get(path.get_file(), "el mundo")
 	if path.contains("monsters"):
 		return "monstruos"
 	if path.contains("interiors"):
