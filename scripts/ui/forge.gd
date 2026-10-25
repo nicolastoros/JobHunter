@@ -8,7 +8,8 @@ const INK_SOFT := Color(0.47, 0.33, 0.22)
 const GOOD := Color(0.13, 0.42, 0.14)
 const BAD := Color(0.62, 0.14, 0.1)
 const STAT_NAMES := {"atk": "Ataque", "def": "Defensa", "hp": "Vida", "mana": "Maná",
-	"crit": "Crítico", "crit_dmg": "Daño crítico", "lifesteal": "Robo de vida", "skill_dmg": "Habilidades"}
+	"crit": "Crítico", "crit_dmg": "Daño crítico", "lifesteal": "Robo de vida", "skill_dmg": "Habilidades",
+	"speed": "Velocidad", "gold": "Oro", "xp": "Experiencia"}
 
 var _root: Control
 var _list: VBoxContainer
@@ -303,7 +304,7 @@ func _refresh_sell() -> void:
 		ic.position = Vector2(3, 2)
 		b.add_child(ic)
 		var label: String = Game.eq(id)["name"] if is_eq else "%s x%d" % [GameData.ITEMS[id]["name"], Game.item_count(id)]
-		var nm := _ink(label, 7)
+		var nm := _ink(label, 7, Game.rarity_color(id, true) if is_eq else INK)
 		nm.position = Vector2(23, 5)
 		nm.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		b.add_child(nm)
@@ -332,7 +333,8 @@ func _refresh_sell() -> void:
 	var v := Game.sell_value(id, is_eq)
 	if is_eq:
 		var e := Game.eq(id)
-		_s_name.text = e["name"]
+		_s_name.text = e["name"] + ("" if int(e["rarity"]) == 0 else "\n" + GameData.RARITY_NAMES[int(e["rarity"])])
+		_s_name.add_theme_color_override("font_color", Game.rarity_color(id, true))
 		_s_desc.text = "%s · nivel %d   %s\n%s" % [GameData.SLOT_NAMES.get(e.get("slot", ""), ""), int(e.get("level", 1)), _stat_line(e), e.get("desc", "")]
 		_s_price.text = "Kara te paga: %d de oro" % v
 		_sell_one.text = "Vender"
@@ -340,6 +342,7 @@ func _refresh_sell() -> void:
 	else:
 		var n := Game.item_count(id)
 		_s_name.text = GameData.ITEMS[id]["name"]
+		_s_name.add_theme_color_override("font_color", INK)
 		_s_desc.text = GameData.ITEMS[id]["desc"]
 		_s_price.text = "%d de oro cada uno · tienes %d (todo: %d)" % [v, n, v * n]
 		_sell_one.text = "Vender 1"
@@ -348,6 +351,7 @@ func _refresh_sell() -> void:
 
 
 func open() -> void:
+	Game.sfx("ui_open", -3.0, 0.03)
 	Game.input_locked = true
 	Game.menu_open = true
 	get_tree().paused = true
@@ -376,8 +380,8 @@ static func _stat_line(e: Dictionary) -> String:
 	for k in ["atk", "def", "hp", "mana"]:
 		if e.has(k) and int(e[k]) != 0:
 			parts.append("%s %+d" % [STAT_NAMES[k], int(e[k])])
-	for k in ["crit", "crit_dmg", "lifesteal", "skill_dmg"]:
-		if e.has(k):
+	for k in ["speed", "crit", "crit_dmg", "lifesteal", "skill_dmg", "gold", "xp"]:
+		if e.has(k) and float(e[k]) != 0.0:
 			parts.append("%s %+d %%" % [STAT_NAMES[k], int(round(float(e[k]) * 100))])
 	return "   ".join(parts)
 
@@ -408,7 +412,7 @@ func _refresh() -> void:
 			var ic := _tex(Game.eq_icon(entry), 20)
 			ic.position = Vector2(3, 2)
 			b.add_child(ic)
-		var nm := _ink(Game.eq(entry)["name"] if entry != "" else "%s: —" % GameData.SLOT_NAMES[slot], 7, INK if entry != "" else INK_SOFT)
+		var nm := _ink(Game.eq(entry)["name"] if entry != "" else "%s: —" % GameData.SLOT_NAMES[slot], 7, Game.rarity_color(entry, true) if entry != "" else INK_SOFT)
 		nm.position = Vector2(27, 6)
 		nm.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		b.add_child(nm)
@@ -437,7 +441,7 @@ func _refresh() -> void:
 		_upgrade.disabled = true
 		_upgrade.text = "Máximo"
 		return
-	var nxt := Game.eq("%s+%d" % [Game.eq_base(entry), plus + 1])
+	var nxt := Game.eq(Game.eq_with_plus(entry, plus + 1))
 	_name.text = "%s  →  +%d" % [e["name"], plus + 1]
 	_stats.text = "Ahora: %s\nDespués: %s" % [_stat_line(e), _stat_line(nxt)]
 	var cost := Game.forge_cost(entry)

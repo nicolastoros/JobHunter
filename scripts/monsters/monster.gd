@@ -47,6 +47,7 @@ var _hit_done := false
 var _knock := Vector2.ZERO
 var _bar_timer := 0.0
 var _tick := randi() % 6
+var _near := false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shape: CollisionShape2D = $CollisionShape2D
@@ -115,6 +116,7 @@ func _physics_process(delta: float) -> void:
 	if alive_player and dist < aggro_radius and global_position.distance_to(_home) < territory * 2.5:
 		if state != State.CHASE and boss and player.is_in_group("player"):
 			Game.boss_engaged.emit(self)
+			Game.sfx("horn", -3.0, 0.0)
 		state = State.CHASE
 	elif state == State.CHASE:
 		state = State.RETURN
@@ -130,8 +132,6 @@ func _physics_process(delta: float) -> void:
 				state = State.IDLE
 				hp = max_hp
 				_wait = randf_range(1.0, 3.0)
-				if monster_level < Game.level - 1:
-					_apply_level()
 		State.WANDER:
 			if _move_toward(_target, speed, "walk"):
 				state = State.IDLE
@@ -181,7 +181,7 @@ func take_hit(amount: int, source: Node2D, crit := false) -> void:
 	hp -= amount
 	_bar_timer = 3.0
 	if crit:
-		Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), "%d!" % amount, Color(1, 0.82, 0.25))
+		Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), "%d!" % amount, Color(1, 0.82, 0.25), 13)
 	else:
 		Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), str(amount), Color(1, 1, 1))
 	var t := create_tween()
@@ -201,6 +201,10 @@ func take_hit(amount: int, source: Node2D, crit := false) -> void:
 func _die() -> void:
 	state = State.DEAD
 	velocity = Vector2.ZERO
+	Game.sfx_at("monster_die", global_position, -2.0, 0.15)
+	_burst()
+	if boss:
+		Game.shake(5.0, 0.5)
 	shape.set_deferred("disabled", true)
 	hurt_shape.set_deferred("disabled", true)
 	_play("death", true)
@@ -210,6 +214,31 @@ func _die() -> void:
 		Game.on_hunter_kill(String(_last_hitter.get("hunter_name")), self)
 	else:
 		Game.on_monster_killed(self)
+
+
+## A puff of dust and sparks where the monster falls.
+func _burst() -> void:
+	var p := CPUParticles2D.new()
+	p.one_shot = true
+	p.amount = 16
+	p.lifetime = 0.55
+	p.explosiveness = 1.0
+	p.direction = Vector2.UP
+	p.spread = 180.0
+	p.initial_velocity_min = 30.0
+	p.initial_velocity_max = 75.0
+	p.gravity = Vector2(0, 120)
+	p.scale_amount_min = 1.0
+	p.scale_amount_max = 2.5
+	var ramp := Gradient.new()
+	ramp.set_color(0, Color(1, 0.95, 0.8, 0.95))
+	ramp.set_color(1, Color(0.8, 0.7, 0.55, 0.0))
+	p.color_ramp = ramp
+	p.position = Vector2(0, sprite_offset_y)
+	p.z_index = 2
+	add_child(p)
+	p.emitting = true
+	get_tree().create_timer(1.0).timeout.connect(p.queue_free)
 
 
 func _on_anim_finished() -> void:
@@ -230,8 +259,7 @@ func _on_anim_finished() -> void:
 
 ## Monsters adapt to the hero: around the hero's level (bosses a little above).
 func _apply_level() -> void:
-	var lv := Game.level + (2 if boss else randi_range(-1, 1))
-	monster_level = clampi(lv, 1, GameData.MAX_LEVEL)
+	monster_level = clampi(Game.monster_level_for(String(base_name), self), 1, GameData.MAX_LEVEL)
 	max_hp = maxi(1, int(round(_base_hp * GameData.mon_hp_mult(monster_level))))
 	damage = maxi(1, int(round(_base_damage * GameData.mon_dmg_mult(monster_level))))
 	gold = int(round(_base_gold * (1.0 + 0.1 * (monster_level - 1))))
@@ -297,15 +325,25 @@ func _pick_target() -> Node2D:
 
 
 func _process(_delta: float) -> void:
-	if _bar_timer > -0.2:   # only while the health bar is (or just was) on screen
+	var hero := _player()
+	var near := hero != null and hero.global_position.distance_squared_to(global_position) < 120.0 * 120.0
+	if _bar_timer > -0.2 or near != _near:   # only while something above its head changes
+		_near = near
 		queue_redraw()
 
 
 func _draw() -> void:
-	if boss or state == State.DEAD or _bar_timer <= 0.0 or hp >= max_hp:
+	if boss or state == State.DEAD:
 		return
 	var w := 18.0
 	var y := sprite_offset_y * 2.0 - 4.0
-	draw_rect(Rect2(-w / 2 - 1, y - 1, w + 2, 4), Color(0.1, 0.06, 0.05, 0.85))
-	draw_rect(Rect2(-w / 2, y, w * float(hp) / max_hp, 2), Color(0.85, 0.2, 0.15))
-	draw_string(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), "Nv %d" % monster_level, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, Color(1, 0.95, 0.85))
+	var bar := _bar_timer > 0.0 and hp < max_hp
+	if not bar and not _near:
+		return
+	# the level, coloured by how dangerous it is for you (grey trivial ... red deadly)
+	var col := Game.level_color(monster_level, Game.level)
+	draw_string_outline(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), "Nv %d" % monster_level, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, 2, Color(0.08, 0.05, 0.04, 0.9))
+	draw_string(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), "Nv %d" % monster_level, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, col)
+	if bar:
+		draw_rect(Rect2(-w / 2 - 1, y - 1, w + 2, 4), Color(0.1, 0.06, 0.05, 0.85))
+		draw_rect(Rect2(-w / 2, y, w * float(hp) / max_hp, 2), Color(0.85, 0.2, 0.15))

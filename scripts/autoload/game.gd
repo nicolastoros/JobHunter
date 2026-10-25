@@ -132,8 +132,20 @@ var preloaded: Array[Resource] = []
 
 var settings := {
 	"master_volume": 0.8,
+	"sfx_volume": 0.8,
 	"fullscreen": false,
 }
+
+# --- Sound effects & game feel ---
+const SFX_DIR := "res://assets/audio/sfx/"
+var _sfx_players: Array[AudioStreamPlayer] = []
+var _sfx_next := 0
+var _sfx_cache := {}
+var _sfx_last := {}
+var _hitstop := false
+var _shake := 0.0
+var _shake_left := 0.0
+var _shake_total := 0.0
 
 var _fade_layer: CanvasLayer
 var _fade_rect: ColorRect
@@ -143,6 +155,8 @@ var _busy := false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_fade()
+	_build_audio()
+	get_tree().node_added.connect(_on_node_added)
 	if OS.get_environment("CDC_TEST") != "":
 		save_path = "user://partida_test.json"
 		backup_path = "user://partida_test_respaldo.json"
@@ -151,6 +165,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_update_shake(delta)
 	if get_tree().paused or editing:
 		return
 	clock += delta
@@ -297,6 +312,7 @@ func add_xp(n: int) -> void:
 		talent_points += GameData.TALENT_POINTS_PER_LEVEL
 		gained += 1
 	if gained > 0:
+		sfx("level_up", 0.0, 0.0)
 		recalc_stats()
 		player_hp = max_hp
 		mana = max_mana
@@ -319,6 +335,7 @@ func on_monster_killed(m: Node2D) -> void:
 	var loot_mult := 1.0 + tsum("loot")
 	add_gold(g)
 	spawn_popup(top, "+%d oro" % g, Color(1, 0.85, 0.3))
+	sfx("coin", -9.0, 0.1)
 	kills[name_] = int(kills.get(name_, 0)) + 1
 	var drops: Array = GameData.LOOT.get(name_, []).duplicate()
 	var boss: bool = m.get("boss")
@@ -329,12 +346,12 @@ func on_monster_killed(m: Node2D) -> void:
 			spawn_popup(top + Vector2(0, dy), GameData.ITEMS[d[0]]["name"], Color(0.6, 0.9, 1))
 			dy -= 10.0
 	if boss or randf() < GameData.EQUIP_DROP_CHANCE * loot_mult:
-		var piece := _roll_equipment(int(m.get("monster_level")) + (3 if boss else 0))
+		var piece := make_piece(int(m.get("monster_level")) + (3 if boss else 0), 1.0 if boss else 0.0)
 		if piece != "":
 			bag.append(piece)
-			spawn_popup(top + Vector2(0, dy), eq(piece)["name"], Color(0.85, 0.7, 1))
-			toast("Encontraste: %s" % eq(piece)["name"])
-	var gain := int(round(int(m.get("xp_reward")) * (1.0 + tsum("xp"))))
+			announce_piece(piece, top + Vector2(0, dy))
+	var gap := xp_gap_mult(int(m.get("monster_level")), level)
+	var gain := int(round(int(m.get("xp_reward")) * (1.0 + tsum("xp")) * gap))
 	skill_xp += maxi(1, int(round(gain / 2.0 * (1.0 + tsum("sxp")))))
 	if tsum("kill_mana") > 0.0:
 		mana = minf(mana + tsum("kill_mana"), max_mana)
@@ -363,11 +380,11 @@ func on_event_boss_killed(m: Node2D, player_fought: bool, hunters: Array) -> voi
 	for d in GameData.LOOT.get(String(m.get("base_name")), []):
 		add_item(d[0], int(d[2]) + 1)
 		got.append(GameData.ITEMS[d[0]]["name"])
-	var piece := _roll_equipment(level + 4)
+	var piece := make_piece(int(m.get("monster_level")) + 2, 2.0, randi_range(1, 3))
 	if piece != "":
-		piece = "%s+%d" % [piece, randi_range(1, 3)]
 		bag.append(piece)
 		got.append(eq(piece)["name"])
+		announce_piece(piece, top + Vector2(0, -12))
 	spawn_popup(top, "¡Botín del %s!" % name_, Color(1, 0.85, 0.35))
 	world_event.emit("¡%s derrotado! Botín: %s." % [name_, ", ".join(got)])
 	_bump_streak(top)
@@ -406,11 +423,23 @@ func hunters_today(map_file: String) -> Array:
 		var t = roster[i]
 		roster[i] = roster[j]
 		roster[j] = t
-	var at := 0
-	for shift in GameData.HUNTER_SHIFTS:
+	# the toughest regions are filled first, with hunters strong enough for them; the rest go where they fit
+	var shifts: Array = GameData.HUNTER_SHIFTS.duplicate()
+	shifts.sort_custom(func(a, b): return int(GameData.MAP_LEVELS.get(a[0], [0])[0]) > int(GameData.MAP_LEVELS.get(b[0], [0])[0]))
+	var taken := {}
+	for shift in shifts:
+		var lo := int(GameData.MAP_LEVELS.get(shift[0], [0])[0])
+		var picked: Array = []
+		for pass_ in 2:
+			for h in roster:
+				if picked.size() >= int(shift[1]):
+					break
+				if taken.has(h["name"]) or (pass_ == 0 and int(h["level"]) < lo - 6):
+					continue
+				picked.append(h)
+				taken[h["name"]] = true
 		if shift[0] == map_file:
-			return roster.slice(at, at + int(shift[1]))
-		at += int(shift[1])
+			return picked
 	return []
 
 
@@ -468,6 +497,7 @@ func _check_rank_up() -> void:
 	while ranks_rewarded < idx:
 		ranks_rewarded += 1
 		var rk: Array = GameData.GUILD_RANKS[ranks_rewarded]
+		sfx("quest", 0.0, 0.0)
 		var g := 150 * ranks_rewarded
 		add_gold(g)
 		add_item("eter", 2)
@@ -565,6 +595,148 @@ func roll_equipment(mlevel: int) -> String:
 	return _roll_equipment(mlevel)
 
 
+# --- Zone levels -------------------------------------------------------------------------
+
+## The current map file (the world node is in the tree before its monsters are ready).
+func map_file() -> String:
+	var w := get_tree().get_first_node_in_group("world")
+	if w and w.scene_file_path != "":
+		return w.scene_file_path.get_file()
+	var cs := get_tree().current_scene
+	return cs.scene_file_path.get_file() if cs else ""
+
+
+## Level of a monster: fixed by its kind and the region, not by the hero.
+func monster_level_for(mon_name: String, m: Node = null) -> int:
+	var r: Array = GameData.MON_LEVELS.get(mon_name, [])
+	var bonus := int(GameData.MAP_LEVEL_BONUS.get(map_file(), 0))
+	if r.is_empty():
+		var z: Array = GameData.MAP_LEVELS.get(map_file(), [level, level])
+		r = z
+	var lv := randi_range(int(r[0]), int(r[1])) + bonus
+	if m and m.get("event_boss"):
+		lv += 3
+	return lv
+
+
+## [min, max] level of the current map (empty in town).
+func zone_levels() -> Array:
+	return GameData.MAP_LEVELS.get(map_file(), [])
+
+
+## Experience for a kill depends on the gap: monsters far below you give little, above you a bonus.
+static func xp_gap_mult(mon_level: int, hero_level: int) -> float:
+	var d := mon_level - hero_level
+	if d >= 0:
+		return 1.0 + 0.08 * mini(d, 6)
+	if d >= -4:
+		return 1.0
+	return maxf(0.1, 1.0 + (d + 4) * 0.15)
+
+
+## Colour of a monster's level next to the hero's (grey = trivial, red = deadly).
+static func level_color(mon_level: int, hero_level: int) -> Color:
+	var d := mon_level - hero_level
+	if d <= -6:
+		return Color(0.65, 0.65, 0.65)
+	if d <= -3:
+		return Color(0.55, 0.9, 0.5)
+	if d <= 2:
+		return Color(1, 0.95, 0.6)
+	if d <= 5:
+		return Color(1, 0.6, 0.25)
+	return Color(1, 0.3, 0.25)
+
+
+# --- Loot rarity -------------------------------------------------------------------------
+## Equipment entries: "base", "base+3", "base+3@2:crit=0.04,hp=12" (forge level, rarity, bonuses).
+
+func eq_rarity(entry: String) -> int:
+	return int(entry.get_slice("@", 1).get_slice(":", 0)) if entry.contains("@") else 0
+
+
+func eq_affixes(entry: String) -> Dictionary:
+	var out := {}
+	if not entry.contains("@") or not entry.get_slice("@", 1).contains(":"):
+		return out
+	for kv in entry.get_slice("@", 1).get_slice(":", 1).split(","):
+		if kv.contains("="):
+			out[kv.get_slice("=", 0)] = float(kv.get_slice("=", 1))
+	return out
+
+
+## The same piece with another forge level (keeps its rarity and bonuses).
+func eq_with_plus(entry: String, plus: int) -> String:
+	var tail := ("@" + entry.get_slice("@", 1)) if entry.contains("@") else ""
+	return eq_base(entry) + ("+%d" % plus if plus > 0 else "") + tail
+
+
+func rarity_color(entry: String, ink := false) -> Color:
+	var r := eq_rarity(entry)
+	return GameData.RARITY_INK[r] if ink else GameData.RARITY_COLORS[r]
+
+
+func _roll_rarity(luck: float) -> int:
+	var x := randf()
+	var odds: Array = GameData.RARITY_ODDS
+	var leg := float(odds[2]) * (1.0 + luck * 2.0)
+	var epi := float(odds[1]) * (1.0 + luck)
+	var rar := float(odds[0]) * (1.0 + luck * 0.5)
+	if x < leg:
+		return 3
+	if x < leg + epi:
+		return 2
+	if x < leg + epi + rar:
+		return 1
+	return 0
+
+
+## A new piece of equipment around `mlevel`: rolls the base, the rarity and its bonuses.
+## luck: 0 normal monsters, ~1 bosses and good chests, ~2 colossi.
+func make_piece(mlevel: int, luck := 0.0, plus := 0) -> String:
+	var base := _roll_equipment(mlevel)
+	if base == "":
+		return ""
+	var rar := _roll_rarity(luck + tsum("loot"))
+	var entry := base + ("+%d" % plus if plus > 0 else "")
+	if rar == 0:
+		return entry
+	var keys: Array = GameData.AFFIXES.keys()
+	keys.shuffle()
+	var lv := int(GameData.EQUIPMENT[base]["level"])
+	var mult: float = [1.0, 1.0, 1.25, 1.6][rar]
+	var parts: Array[String] = []
+	for k in keys.slice(0, mini(rar, 3)):
+		var a: Array = GameData.AFFIXES[k]
+		var v := (randf_range(float(a[0]), float(a[1])) + lv * randf_range(float(a[2]), float(a[3]))) * mult
+		if k in ["atk", "def", "hp", "mana"]:
+			parts.append("%s=%d" % [k, maxi(1, int(round(v)))])
+		else:
+			parts.append("%s=%.3f" % [k, v])
+	return "%s@%d:%s" % [entry, rar, ",".join(parts)]
+
+
+## Tells the world about a good find: coloured popup, a beam of light for epic and legendary pieces.
+func announce_piece(piece: String, pos: Vector2) -> void:
+	var r := eq_rarity(piece)
+	spawn_popup(pos, eq(piece)["name"], GameData.RARITY_COLORS[r])
+	if r > 0:
+		sfx(["", "loot_rare", "loot_epic", "loot_legendary"][r], 0.0 if r == 3 else -3.0, 0.0)
+	if r == 3:
+		shake(2.0, 0.4)
+	if r >= 2:
+		var beam := Node2D.new()
+		beam.set_script(load("res://scripts/fx/loot_beam.gd"))
+		beam.set("color", GameData.RARITY_COLORS[r])
+		beam.position = pos + Vector2(0, 20)
+		var parent := get_tree().current_scene.get_node_or_null("Entities")
+		(parent if parent else get_tree().current_scene).add_child(beam)
+	if r == 3:
+		world_event.emit("¡Legendario! %s" % eq(piece)["name"])
+	else:
+		toast("Encontraste: %s%s" % [eq(piece)["name"], "" if r == 0 else " (%s)" % GameData.RARITY_NAMES[r].to_lower()])
+
+
 func _roll_equipment(mlevel: int) -> String:
 	# first the slot, then the piece: with so many weapon types, armour still drops as often
 	var by_slot := {}
@@ -653,6 +825,13 @@ func hit_monster(target: Object, base: int, is_skill: bool, source: Node2D) -> v
 		dmg *= crit_mult()
 	var final := maxi(1, int(round(dmg)))
 	target.call("take_hit", final, source, crit)
+	if crit:
+		sfx("crit", 0.0, 0.06)
+		hit_stop(0.075)
+		shake(3.0, 0.18)
+	else:
+		sfx("hit", -2.0, 0.1)
+		hit_stop(0.035)
 	var ls := tsum("lifesteal")
 	if ls > 0.0 and player_hp < max_hp:
 		_lifesteal_acc += final * ls
@@ -739,6 +918,7 @@ func use_item(id: String) -> bool:
 		mana = minf(mana + m, max_mana)
 		toast("Usaste: %s (+%d de maná)" % [it["name"], int(m)])
 	remove_item(id)
+	sfx("potion", -2.0, 0.08)
 	return true
 
 
@@ -790,7 +970,7 @@ func _check_refill() -> void:
 func sell_value(id: String, is_equipment: bool) -> int:
 	if is_equipment:
 		var e := eq(id)
-		return int(round((12 + 9 * int(e.get("level", 1))) * (1.0 + 0.4 * eq_plus(id))))
+		return int(round((12 + 9 * int(e.get("level", 1))) * (1.0 + 0.4 * eq_plus(id)) * (1.0 + 0.6 * eq_rarity(id))))
 	return int(GameData.ITEMS.get(id, {}).get("value", 0))
 
 
@@ -801,6 +981,7 @@ func sell_item(id: String, n := 1) -> int:
 		return 0
 	remove_item(id, n)
 	add_gold(v * n)
+	sfx("coin", -4.0, 0.1)
 	toast("Vendiste %s x%d por %d de oro." % [GameData.ITEMS[id]["name"], n, v * n])
 	return v * n
 
@@ -812,6 +993,7 @@ func sell_equipment(bag_index: int) -> int:
 	var v := sell_value(entry, true)
 	bag.remove_at(bag_index)
 	add_gold(v)
+	sfx("coin", -4.0, 0.1)
 	toast("Vendiste %s por %d de oro." % [eq(entry)["name"], v])
 	stats_changed.emit()
 	return v
@@ -854,11 +1036,12 @@ func unequip(slot: String) -> void:
 
 ## Base id of an equipment entry ("espada_acero+3" -> "espada_acero").
 func eq_base(entry: String) -> String:
-	return entry.get_slice("+", 0)
+	return entry.get_slice("@", 0).get_slice("+", 0)
 
 
 func eq_plus(entry: String) -> int:
-	return int(entry.get_slice("+", 1)) if entry.contains("+") else 0
+	var head := entry.get_slice("@", 0)
+	return int(head.get_slice("+", 1)) if head.contains("+") else 0
 
 
 func eq_icon(entry: String) -> String:
@@ -883,6 +1066,19 @@ func eq(entry: String) -> Dictionary:
 			e["mana"] = int(e["mana"]) + plus * 4
 		if not e.has("atk") and not e.has("def"):
 			e["hp"] = int(e.get("hp", 0)) + plus * 2
+	var rar := eq_rarity(entry)
+	e["rarity"] = rar
+	if rar == 3:   # legendary: +20 % to the piece's own stats
+		for k in ["atk", "def", "hp", "mana"]:
+			if e.has(k) and int(e[k]) > 0:
+				e[k] = int(round(int(e[k]) * 1.2))
+	var fx := eq_affixes(entry)
+	for k in fx:
+		if k in ["atk", "def", "hp", "mana"]:
+			e[k] = int(e.get(k, 0)) + int(fx[k])
+		else:
+			e[k] = float(e.get(k, 0.0)) + float(fx[k])
+	e["affixes"] = fx
 	return e
 
 
@@ -917,7 +1113,7 @@ func forge_upgrade(slot: String) -> bool:
 	gold -= int(cost["gold"])
 	for id in cost["items"]:
 		remove_item(id, int(cost["items"][id]))
-	equipped[slot] = "%s+%d" % [eq_base(entry), eq_plus(entry) + 1]
+	equipped[slot] = eq_with_plus(entry, eq_plus(entry) + 1)
 	recalc_stats()
 	toast("Kara mejora tu %s." % eq(equipped[slot])["name"])
 	return true
@@ -935,13 +1131,15 @@ func open_chest(id: String, tier: int, pos: Vector2) -> void:
 		return
 	opened_chests[id] = true
 	var found: Array[String] = []
+	var zl := zone_levels()
+	var base_lv := clampi(level, int(zl[0]), int(zl[1])) if zl.size() == 2 else level
 	for i in (2 if tier >= 3 else 1):
-		var piece := _roll_equipment(level + tier * 2)
+		var piece := make_piece(base_lv + tier * 2, tier * 0.4, randi_range(1, tier) if tier >= 2 and randf() < 0.5 else 0)
 		if piece != "":
-			if tier >= 2 and randf() < 0.5:
-				piece = "%s+%d" % [piece, randi_range(1, tier)]
 			bag.append(piece)
 			found.append(eq(piece)["name"])
+			if eq_rarity(piece) >= 2:
+				announce_piece(piece, pos + Vector2(0, -10))
 	var g := int(round((10 + 6 * level) * (1.0 + tier * 0.6) * randf_range(0.8, 1.2)))
 	add_gold(g)
 	found.append("%d de oro" % g)
@@ -949,6 +1147,7 @@ func open_chest(id: String, tier: int, pos: Vector2) -> void:
 		add_item("eter", 1 + int(tier / 2))
 		found.append("pociones de maná")
 	spawn_popup(pos, "¡Cofre!", Color(1, 0.88, 0.4))
+	sfx("chest", 0.0, 0.04)
 	add_renown(5 + tier * 5)
 	toast("En el cofre: %s." % ", ".join(found))
 	stats_changed.emit()
@@ -1151,7 +1350,7 @@ func player_died() -> void:
 
 
 ## Small floating text in the world (damage numbers, gold...).
-func spawn_popup(pos: Vector2, text: String, color: Color) -> void:
+func spawn_popup(pos: Vector2, text: String, color: Color, size := 8) -> void:
 	var scene := get_tree().current_scene
 	if scene == null:
 		return
@@ -1159,6 +1358,7 @@ func spawn_popup(pos: Vector2, text: String, color: Color) -> void:
 	p.set_script(load("res://scripts/ui/popup_text.gd"))
 	p.set("text", text)
 	p.set("color", color)
+	p.set("size", size)
 	p.position = pos
 	p.z_index = 70
 	p.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -1446,6 +1646,7 @@ func accept_quest(id: String) -> void:
 		if q["id"] == id and q["state"] == "open":
 			q["state"] = "accepted"
 			q["progress"] = 0
+			sfx("ui_open", -2.0, 0.0)
 			quests_changed.emit()
 			toast("Pedido aceptado: %s" % q["title"])
 			return
@@ -1456,6 +1657,7 @@ func claim_quest(id: String) -> void:
 	for q in quests:
 		if q["id"] == id and q["state"] == "done":
 			q["state"] = "claimed"
+			sfx("quest", 0.0, 0.0)
 			add_gold(int(q["reward"]))
 			toast("Recompensa: %d de oro y %d de experiencia." % [q["reward"], q.get("xp", 0)])
 			add_renown(int(q["reward"]) / 6)
@@ -1473,6 +1675,102 @@ func quit_game() -> void:
 
 
 # --- UI bus -------------------------------------------------------------------
+
+# --- Sound effects ---------------------------------------------------------------
+
+func _build_audio() -> void:
+	if AudioServer.get_bus_index("SFX") < 0:
+		AudioServer.add_bus()
+		var i := AudioServer.bus_count - 1
+		AudioServer.set_bus_name(i, "SFX")
+		AudioServer.set_bus_send(i, "Master")
+	for i in 12:
+		var p := AudioStreamPlayer.new()
+		p.bus = "SFX"
+		p.process_mode = Node.PROCESS_MODE_ALWAYS
+		add_child(p)
+		_sfx_players.append(p)
+
+
+## Plays a sound from assets/audio/sfx with a little random pitch so repeats never sound identical.
+func sfx(sound: String, volume_db := 0.0, pitch_var := 0.05) -> void:
+	var now := Time.get_ticks_msec()
+	if now - int(_sfx_last.get(sound, -1000)) < 35:   # many coins at once: one is enough
+		return
+	_sfx_last[sound] = now
+	if not _sfx_cache.has(sound):
+		_sfx_cache[sound] = load(SFX_DIR + sound + ".wav")
+	var stream: AudioStream = _sfx_cache[sound]
+	if stream == null or _sfx_players.is_empty():
+		return
+	var p: AudioStreamPlayer = null
+	for q in _sfx_players:
+		if not q.playing:
+			p = q
+			break
+	if p == null:
+		p = _sfx_players[_sfx_next]
+		_sfx_next = (_sfx_next + 1) % _sfx_players.size()
+	p.stream = stream
+	p.volume_db = volume_db
+	p.pitch_scale = randf_range(1.0 - pitch_var, 1.0 + pitch_var)
+	p.play()
+
+
+## Every button in the game clicks.
+func _on_node_added(n: Node) -> void:
+	if n is BaseButton:
+		(n as BaseButton).pressed.connect(func(): sfx("ui_click", -6.0, 0.03))
+
+
+## A sound that only plays if it happens near the hero (monsters dying across the map stay quiet).
+func sfx_at(sound: String, pos: Vector2, volume_db := 0.0, pitch_var := 0.08) -> void:
+	var p := _player()
+	if p == null:
+		return
+	var d := p.global_position.distance_to(pos)
+	if d > 320.0:
+		return
+	sfx(sound, volume_db - d / 40.0, pitch_var)
+
+
+# --- Game feel -------------------------------------------------------------------
+
+## Freezes the action for a split second so hits land with weight.
+func hit_stop(duration: float) -> void:
+	if _hitstop:
+		return
+	_hitstop = true
+	Engine.time_scale = 0.05
+	await get_tree().create_timer(duration, true, false, true).timeout
+	Engine.time_scale = 1.0
+	_hitstop = false
+
+
+## Shakes the camera (critical hits, damage, bosses).
+func shake(strength: float, duration: float) -> void:
+	if strength >= _shake * (_shake_left / maxf(_shake_total, 0.001)):
+		_shake = strength
+		_shake_left = duration
+		_shake_total = duration
+
+
+func _update_shake(delta: float) -> void:
+	var p := _player()
+	if p == null:
+		_shake_left = 0.0
+		return
+	var cam := p.get_node_or_null("Camera2D") as Camera2D
+	if cam == null:
+		return
+	if _shake_left <= 0.0:
+		if cam.offset != Vector2.ZERO:
+			cam.offset = Vector2.ZERO
+		return
+	_shake_left -= delta / maxf(Engine.time_scale, 0.05)
+	var k := _shake * clampf(_shake_left / _shake_total, 0.0, 1.0)
+	cam.offset = Vector2(randf_range(-1, 1), randf_range(-1, 1)) * k
+
 
 func show_dialogue(speaker: String, lines: PackedStringArray) -> void:
 	dialogue_requested.emit(speaker, lines)
@@ -1495,6 +1793,11 @@ func apply_settings() -> void:
 	var vol: float = settings["master_volume"]
 	AudioServer.set_bus_volume_db(bus, linear_to_db(maxf(vol, 0.0001)))
 	AudioServer.set_bus_mute(bus, vol <= 0.0)
+	var sb := AudioServer.get_bus_index("SFX")
+	if sb >= 0:
+		var sv: float = settings.get("sfx_volume", 0.8)
+		AudioServer.set_bus_volume_db(sb, linear_to_db(maxf(sv, 0.0001)))
+		AudioServer.set_bus_mute(sb, sv <= 0.0)
 	var mode := DisplayServer.WINDOW_MODE_FULLSCREEN if settings["fullscreen"] else DisplayServer.WINDOW_MODE_WINDOWED
 	if DisplayServer.window_get_mode() != mode:
 		DisplayServer.window_set_mode(mode)

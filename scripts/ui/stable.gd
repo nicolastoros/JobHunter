@@ -144,6 +144,7 @@ func _build() -> void:
 
 
 func open() -> void:
+	Game.sfx("ui_open", -3.0, 0.03)
 	Game.input_locked = true
 	Game.menu_open = true
 	get_tree().paused = true

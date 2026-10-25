@@ -204,6 +204,7 @@ func _start_attack() -> void:
 	if not _moving_attack and is_instance_valid(Game.target) and Game.target.global_position.distance_to(global_position) < 90.0:
 		facing = _dir_name(Game.target.global_position - global_position)
 	state = State.ATTACK
+	Game.sfx("swing", -5.0, 0.12)
 	attack_hitbox.position = HITBOX_OFFSETS[facing]
 	attack_shape.disabled = false
 	if _moving_attack:
@@ -310,6 +311,7 @@ func cast_skill(id: String) -> void:
 	if err != "":
 		Game.toast(err)
 		return
+	Game.sfx("skill", -2.0, 0.08)
 	if Game.mounted:
 		_toggle_mount()
 	if is_instance_valid(Game.target) and id in ["tajo", "embestida"]:
@@ -418,6 +420,8 @@ func take_damage(amount: int, from := Vector2.INF) -> void:
 			return
 	Game.damage_player(amount)
 	Game.spawn_popup(global_position + Vector2(0, -30), "-%d" % amount, Color(1, 0.35, 0.3))
+	Game.sfx("hurt", -1.0, 0.1)
+	Game.shake(3.5 if amount < Game.max_hp * 0.2 else 6.0, 0.22)
 	attack_shape.set_deferred("disabled", true)
 	if Game.player_hp <= 0:
 		_die()
@@ -432,6 +436,7 @@ func take_damage(amount: int, from := Vector2.INF) -> void:
 func _die() -> void:
 	state = State.DEAD
 	velocity = Vector2.ZERO
+	Game.sfx("player_die", 0.0, 0.0)
 	_play("death")
 	Game.input_locked = true
 	await get_tree().create_timer(1.6).timeout

@@ -66,6 +66,7 @@ func _ready() -> void:
 		Game.advance_tutorial(4)
 		Game.tip("target", "Consejo: Tab fija una presa y la rueda del ratón cambia de presa.")
 	_spawn_safe_spots()
+	_announce_levels.call_deferred()
 	_spawn_pet.call_deferred()
 	Game.pet_changed.connect(_spawn_pet)
 	if Game.tutorial_step == 0 and scene_file_path == Game.FIRST_LEVEL:
@@ -356,3 +357,15 @@ func _spawn_safe_spots() -> void:
 		n.add_to_group("safe_spots")
 		n.add_to_group("poi")
 		add_child(n)
+
+
+## Entering a wild map: its level range, and a warning if it is too much for you yet.
+func _announce_levels() -> void:
+	var z: Array = GameData.MAP_LEVELS.get(scene_file_path.get_file(), [])
+	if z.is_empty():
+		return
+	await get_tree().create_timer(1.4).timeout
+	if Game.level < int(z[0]) - 2:
+		Game.toast("¡Cuidado! Aquí los monstruos son de nivel %d a %d. Tú eres nivel %d." % [z[0], z[1], Game.level])
+	else:
+		Game.toast("Monstruos de nivel %d a %d." % [z[0], z[1]])

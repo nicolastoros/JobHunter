@@ -16,6 +16,8 @@ const TIPS := ["Las pociones se rellenan en la ciudad y en los refugios del mapa
 	"Al norte del Bosque de los Susurros empieza el Bosque Profundo.",
 	"Al este de la llanura, cruzando el lago, está el Desierto de Ámbar.",
 	"Cada tipo de arma tiene su efecto: las dagas dan crítico, las guadañas roban vida.",
+	"Llanura: niveles 1-16. Bosque Profundo: 16-32. Desierto de Ámbar: 30-50.",
+	"Busca botín raro (azul), épico (morado) y legendario (dorado): traen bonus extra.",
 	"Las rachas de caza dan más renombre en el Gremio.",
 	"En el establo de las granjas hay compañeros que te ayudan a cazar."]
 

@@ -41,7 +41,35 @@ const ITEMS := {
 # --- Equipment ------------------------------------------------------------------------
 ## Equipment bonuses that work like talent effects (weapon types): critical chance and damage,
 ## life steal and skill damage.
-const EQUIP_FX := ["crit", "crit_dmg", "lifesteal", "skill_dmg"]
+const EQUIP_FX := ["crit", "crit_dmg", "lifesteal", "skill_dmg", "gold", "xp"]
+
+# --- Loot rarity ----------------------------------------------------------------------------
+## Each piece that drops rolls a rarity: more bonuses (affixes) and a coloured name.
+const RARITY_NAMES := ["Común", "Rara", "Épica", "Legendaria"]
+const RARITY_COLORS := [Color(0.85, 0.82, 0.76), Color(0.35, 0.62, 1.0), Color(0.72, 0.42, 1.0), Color(1.0, 0.66, 0.15)]
+## Darker versions for text on parchment.
+const RARITY_INK := [Color(0.25, 0.16, 0.1), Color(0.1, 0.32, 0.72), Color(0.45, 0.15, 0.7), Color(0.72, 0.38, 0.02)]
+## Chance of rare / epic / legendary (the rest is common). `luck` (bosses, chests) shifts the odds.
+const RARITY_ODDS := [0.26, 0.08, 0.015]
+## Random bonuses a piece can carry: key -> [min, max] at level 1, [min, max] extra per level.
+const AFFIXES := {
+	"atk": [1, 1, 0.12, 0.16], "def": [1, 1, 0.08, 0.12], "hp": [3, 6, 0.4, 0.6], "mana": [5, 8, 0.5, 0.7],
+	"crit": [0.02, 0.05, 0.0, 0.0], "crit_dmg": [0.08, 0.2, 0.0, 0.0], "lifesteal": [0.015, 0.035, 0.0, 0.0],
+	"skill_dmg": [0.04, 0.1, 0.0, 0.0], "speed": [0.03, 0.06, 0.0, 0.0], "gold": [0.05, 0.12, 0.0, 0.0], "xp": [0.04, 0.1, 0.0, 0.0],
+}
+
+# --- Zone levels ------------------------------------------------------------------------------
+## Monsters no longer follow the hero's level: each region has its own, so you feel how you grow.
+const MAP_LEVELS := {"field.tscn": [1, 16], "forest.tscn": [16, 32], "desert.tscn": [30, 50]}
+const MON_LEVELS := {
+	"Limo": [1, 4], "Limo extraño": [4, 7], "Goblin": [5, 9], "Gnoll": [8, 12], "Limo musgoso": [9, 12], "Retoño del bosque": [10, 13],
+	"Limo de bruma": [11, 14], "Ent frondoso": [12, 15], "Gólem de cristal": [13, 16], "Rey Limo": [12, 12], "Gólem de las Ruinas": [14, 14],
+	"Ent Ancestral": [16, 16], "Gólem de Obsidiana": [24, 24],
+	"Limo de arena": [30, 34], "Limo ácido": [33, 37], "Saqueador de las dunas": [36, 41], "Chacal de las dunas": [39, 44],
+	"Gólem de arenisca": [42, 47], "Guardián del Sol": [50, 50],
+}
+## The same creatures are tougher deeper in: levels added on each map.
+const MAP_LEVEL_BONUS := {"forest.tscn": 8}
 const SLOTS := ["weapon", "helmet", "chest", "gloves", "boots", "trinket"]
 const SLOT_NAMES := {"weapon": "Arma", "helmet": "Cabeza", "chest": "Torso", "gloves": "Manos", "boots": "Pies", "trinket": "Accesorio"}
 ## atk / def / hp / mana / speed (fraction) bonuses; `level` = level required to equip.

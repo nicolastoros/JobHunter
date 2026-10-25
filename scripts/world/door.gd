@@ -35,6 +35,7 @@ func _physics_process(_delta: float) -> void:
 
 func _go() -> void:
 	_inside = false
+	Game.sfx("door", -3.0, 0.06)
 	if leaf_texture and target_scene.contains("/interiors/") and not get_tree().current_scene.scene_file_path.contains("/interiors/"):
 		await _open_door()
 	var spawn := target_spawn

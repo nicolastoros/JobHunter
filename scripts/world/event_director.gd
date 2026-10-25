@@ -37,6 +37,7 @@ func time_left() -> float:
 
 
 func spawn_event() -> Node2D:
+	Game.sfx("horn", 0.0, 0.0)
 	var templates: Array = []
 	for m in get_tree().get_nodes_in_group("monsters"):
 		if m.get("boss") and not m.get("event_boss"):

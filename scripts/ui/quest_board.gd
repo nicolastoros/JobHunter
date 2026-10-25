@@ -287,6 +287,7 @@ func _build_ranking() -> Control:
 # =============================================================================
 
 func open() -> void:
+	Game.sfx("ui_open", -3.0, 0.03)
 	Game.input_locked = true
 	_root.show()
 	show_tab(_tab)

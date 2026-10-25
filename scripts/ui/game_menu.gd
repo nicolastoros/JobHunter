@@ -13,7 +13,8 @@ const INK_SOFT := Color(0.47, 0.33, 0.22)
 const GOLD := Color(0.62, 0.42, 0.08)
 const SLOTS := 24
 const STAT_NAMES := {"atk": "Ataque", "def": "Defensa", "hp": "Vida", "mana": "Maná", "speed": "Velocidad",
-	"crit": "Crítico", "crit_dmg": "Daño crítico", "lifesteal": "Robo de vida", "skill_dmg": "Habilidades"}
+	"crit": "Crítico", "crit_dmg": "Daño crítico", "lifesteal": "Robo de vida", "skill_dmg": "Habilidades", "gold": "Oro", "xp": "Experiencia"}
+const PCT_KEYS := ["speed", "crit", "crit_dmg", "lifesteal", "skill_dmg", "gold", "xp"]
 
 var _root: Control
 var _tab_buttons := {}
@@ -565,6 +566,7 @@ func _build_talents() -> Control:
 # =============================================================================
 
 func open(tab: String) -> void:
+	Game.sfx("ui_open", -3.0, 0.03)
 	Game.menu_open = true
 	Game.input_locked = true
 	get_tree().paused = true
@@ -624,14 +626,31 @@ func _refresh() -> void:
 
 static func _bonus_text(e: Dictionary) -> String:
 	var parts: Array[String] = []
-	for k in ["atk", "def", "hp", "mana", "speed", "crit", "crit_dmg", "lifesteal", "skill_dmg"]:
-		if e.has(k):
+	for k in ["atk", "def", "hp", "mana", "speed", "crit", "crit_dmg", "lifesteal", "skill_dmg", "gold", "xp"]:
+		if e.has(k) and float(e[k]) != 0.0:
 			var v = e[k]
-			if k in ["speed", "crit", "crit_dmg", "lifesteal", "skill_dmg"]:
+			if k in PCT_KEYS:
 				parts.append("%s %+d %%" % [STAT_NAMES[k], int(round(float(v) * 100))])
 			else:
 				parts.append("%s %+d" % [STAT_NAMES[k], int(v)])
 	return "   ".join(parts)
+
+
+## Coloured border on a slot for rare, epic and legendary pieces.
+func _rarity_frame(slot: Control, entry: String) -> void:
+	var r := Game.eq_rarity(entry)
+	if r == 0:
+		return
+	var p := Panel.new()
+	var st := StyleBoxFlat.new()
+	st.bg_color = Color(GameData.RARITY_COLORS[r], 0.12)
+	st.border_color = GameData.RARITY_COLORS[r]
+	st.set_border_width_all(2 if r >= 2 else 1)
+	st.anti_aliasing = false
+	p.add_theme_stylebox_override("panel", st)
+	p.set_anchors_preset(Control.PRESET_FULL_RECT)
+	p.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	slot.add_child(p)
 
 
 func _refresh_character() -> void:
@@ -644,6 +663,7 @@ func _refresh_character() -> void:
 		var b := _slot(24, false, worn == "")
 		if worn != "":
 			_place_icon(b, Game.eq_icon(worn), 20, 24)
+			_rarity_frame(b, worn)
 			b.tooltip_text = "Quitar " + Game.eq(worn)["name"]
 			b.pressed.connect(func():
 				Game.unequip(slot_name)
@@ -652,7 +672,7 @@ func _refresh_character() -> void:
 		var col := VBoxContainer.new()
 		col.add_theme_constant_override("separation", -3)
 		col.add_child(_ink(GameData.SLOT_NAMES[slot_name], 6, INK_SOFT))
-		col.add_child(_ink(Game.eq(worn)["name"] if worn != "" else "—", 7))
+		col.add_child(_ink(Game.eq(worn)["name"] if worn != "" else "—", 7, Game.rarity_color(worn, true) if worn != "" else INK))
 		row.add_child(col)
 		_equip_box.add_child(row)
 	# bag
@@ -668,6 +688,7 @@ func _refresh_character() -> void:
 		if not empty:
 			var id: String = Game.bag[i]
 			var ic := _place_icon(b, Game.eq_icon(id), 20, 24)
+			_rarity_frame(b, id)
 			if Game.equip_block_reason(id) != "":
 				ic.modulate = Color(1, 0.55, 0.55, 0.75)
 			b.tooltip_text = Game.eq(id)["name"]
@@ -680,7 +701,8 @@ func _refresh_character() -> void:
 		var e: Dictionary = Game.eq(id)
 		_eq_icon.texture = load(Game.eq_icon(id))
 		_eq_icon.visible = true
-		_eq_name.text = "%s  ·  %s" % [e["name"], GameData.SLOT_NAMES[e["slot"]]]
+		_eq_name.text = "%s  ·  %s%s" % [e["name"], GameData.SLOT_NAMES[e["slot"]], "" if int(e["rarity"]) == 0 else "  ·  " + GameData.RARITY_NAMES[int(e["rarity"])]]
+		_eq_name.add_theme_color_override("font_color", Game.rarity_color(id, true))
 		var worn: String = Game.equipped.get(e["slot"], "")
 		var cmp := ("\nLlevas: %s (%s)" % [Game.eq(worn)["name"], _bonus_text(Game.eq(worn))]) if worn != "" else ""
 		_eq_desc.text = "%s\n%s\nRequiere nivel %d%s" % [_bonus_text(e), e["desc"], e["level"], cmp]
