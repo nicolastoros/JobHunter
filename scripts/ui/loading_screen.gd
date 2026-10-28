@@ -8,7 +8,7 @@ const DIRS := ["res://resources/sprite_frames/monsters", "res://resources/sprite
 const FIRST := ["res://scenes/ui/main_menu.tscn", "res://scenes/ui/hud.tscn", "res://scenes/ui/pause_menu.tscn",
 	"res://scenes/characters/player.tscn", "res://scenes/monsters/monster.tscn", "res://scenes/npc/hunter.tscn",
 	"res://scenes/objects/chest.tscn"]
-const MAPS := ["res://scenes/world/world.tscn", "res://scenes/world/field.tscn", "res://scenes/world/forest.tscn", "res://scenes/world/desert.tscn"]
+const MAPS := ["res://scenes/world/world.tscn", "res://scenes/world/field.tscn", "res://scenes/world/forest.tscn", "res://scenes/world/desert.tscn", "res://scenes/world/aurelia.tscn"]
 const TIPS := ["Las pociones se rellenan en la ciudad y en los refugios del mapa.",
 	"Tab fija una presa; la rueda del ratón cambia de presa.",
 	"Kara, la herrera, mejora tu equipo y compra lo que no necesites.",
@@ -17,6 +17,8 @@ const TIPS := ["Las pociones se rellenan en la ciudad y en los refugios del mapa
 	"Al este de la llanura, cruzando el lago, está el Desierto de Ámbar.",
 	"Cada tipo de arma tiene su efecto: las dagas dan crítico, las guadañas roban vida.",
 	"Llanura: niveles 1-16. Bosque Profundo: 16-32. Desierto de Ámbar: 30-50.",
+	"Al este del desierto se alza Aurelia, la Ciudad Dorada.",
+	"Pulsa N para ver el mapamundi.",
 	"Busca botín raro (azul), épico (morado) y legendario (dorado): traen bonus extra.",
 	"Las rachas de caza dan más renombre en el Gremio.",
 	"En el establo de las granjas hay compañeros que te ayudan a cazar."]
@@ -119,7 +121,7 @@ func _load_all() -> void:
 
 static func _what(path: String) -> String:
 	if path.contains("/world/"):
-		return {"world.tscn": "Valdoria", "field.tscn": "la Llanura", "forest.tscn": "el Bosque Profundo", "desert.tscn": "el Desierto de Ámbar"}.get(path.get_file(), "el mundo")
+		return {"world.tscn": "Valdoria", "field.tscn": "la Llanura", "forest.tscn": "el Bosque Profundo", "desert.tscn": "el Desierto de Ámbar", "aurelia.tscn": "Aurelia"}.get(path.get_file(), "el mundo")
 	if path.contains("monsters"):
 		return "monstruos"
 	if path.contains("interiors"):

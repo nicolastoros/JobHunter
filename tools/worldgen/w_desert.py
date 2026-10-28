@@ -11,6 +11,7 @@ import w_common as C
 
 DW, DH = 160, 120
 GATE_Y = (58, 64)              # trail to the plain (west edge)
+EAST_Y = (58, 64)              # caravan road to Aurelia (east edge)
 
 # ---- sand versions of the field's tile sheets -------------------------------------------
 SAND_FG, SAND_GD, SAND_SHORE = 14, 15, 16
@@ -145,6 +146,7 @@ def build():
         [(40, 62), (56, 70), (72, 80), (90, 88), (106, 92)],                         # -> red canyon
         [(56, 70), (60, 86), (64, 102)],                                             # -> glass flats
         [(88, 42), (90, 24), (96, 16)],                                              # dunes north
+        [(72, 50), (96, 58), (122, 61), (146, 61), (161, 61)],                       # caravan road east, to Aurelia
     ]
     for pts in P:
         path(w, pts, 3.2)
@@ -217,7 +219,8 @@ def build():
     w.blocked |= w.field_path
 
     # ---- scenery: rocky edges, dry trees, bones and rocks on the dunes --------------------
-    border = [(0, 0, DW, 7), (0, DH - 7, DW, DH), (DW - 7, 0, DW, DH), (0, 0, 7, GATE_Y[0] - 3), (0, GATE_Y[1] + 3, 7, DH)]
+    border = [(0, 0, DW, 7), (0, DH - 7, DW, DH), (DW - 7, 0, DW, EAST_Y[0] - 3), (DW - 7, EAST_Y[1] + 3, DW, DH),
+              (0, 0, 7, GATE_Y[0] - 3), (0, GATE_Y[1] + 3, 7, DH)]
     for r in border:
         scatter(w, ROCKS + ["tr_dead", "tr_dead_m", "tr_palm"], r, int((r[2] - r[0]) * (r[3] - r[1]) / 13), min_dist=2.6, avoid_path=False)
     scatter(w, ROCKS, (8, 8, 152, 112), 70, min_dist=6)
@@ -249,9 +252,10 @@ DESERT_CFG = dict(
     preview_layers=["water", "water_fx", "ground", "ground_overlay", "hill", "road", "detail", "coast", "dock", "dock_fx"],
     walkmask="res://resources/world/desert_walkmask.png", player=(4 * 16, 61 * 16),
     zones=ZONES,
-    exits=[dict(name="WestExit", pos=(18, 61 * 16), size=(24, 6 * 16), scene="res://scenes/world/field.tscn", spawn="east", dir="left")],
-    spawns={"west": (5 * 16, 61 * 16), "respawn": (24 * 16, 70 * 16), "start": (5 * 16, 61 * 16)},
-    left_gap=GATE_Y,
+    exits=[dict(name="WestExit", pos=(18, 61 * 16), size=(24, 6 * 16), scene="res://scenes/world/field.tscn", spawn="east", dir="left"),
+           dict(name="EastExit", pos=(DW * 16 - 18, 61 * 16), size=(24, 6 * 16), scene="res://scenes/world/aurelia.tscn", spawn="west", dir="right")],
+    spawns={"west": (5 * 16, 61 * 16), "respawn": (24 * 16, 70 * 16), "start": (5 * 16, 61 * 16), "east": (DW * 16 - 6 * 16, 61 * 16)},
+    left_gap=GATE_Y, right_gap=EAST_Y,
 )
 
 

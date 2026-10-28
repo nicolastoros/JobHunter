@@ -1,7 +1,7 @@
 # Market map definition: tile layers + props + NPCs.
 import random
 
-RAW = r"C:/Users/nicol/AppData/Local/Temp/claude/c--Users-nicol-OneDrive-Documentos-JobHunter/7f39b642-3aaa-4323-9d53-2b420a1d2380/scratchpad/raw"
+RAW = r"C:/Users/nicol/JobHunter_raw"
 T = 16
 W, H = 48, 36
 GATE_X0, GATE_X1 = 22, 25          # inclusive gate columns (north & south)

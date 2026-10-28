@@ -3,7 +3,7 @@ import random
 import xml.etree.ElementTree as ET
 import os
 
-RAW = r"C:/Users/nicol/AppData/Local/Temp/claude/c--Users-nicol-OneDrive-Documentos-JobHunter/7f39b642-3aaa-4323-9d53-2b420a1d2380/scratchpad/raw"
+RAW = r"C:/Users/nicol/JobHunter_raw"
 ROOT = r"C:/Users/nicol/OneDrive/Documentos/JobHunter"
 T = 16
 

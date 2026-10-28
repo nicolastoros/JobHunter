@@ -2,7 +2,7 @@
 import os, shutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RAW = os.path.join(HERE, "..", "raw")
+RAW = r"C:/Users/nicol/JobHunter_raw"
 ROOT = "C:/Users/nicol/OneDrive/Documentos/JobHunter"
 W = "ic_weapon_icons01/Icons/icon_2_%02d.png"
 A = "ic_armor_icons01/Icons/Icons_6_%02d.png"

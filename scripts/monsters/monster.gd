@@ -180,13 +180,23 @@ func take_hit(amount: int, source: Node2D, crit := false) -> void:
 		_hunters_hit[String(source.get("hunter_name"))] = true
 	hp -= amount
 	_bar_timer = 3.0
+	var head := global_position + Vector2(0, sprite_offset_y * 1.6)
 	if crit:
-		Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), "%d!" % amount, Color(1, 0.82, 0.25), 13)
+		Game.spawn_popup(head, "%d" % amount, Color(1, 0.4, 0.15), 15, "crit")
 	else:
-		Game.spawn_popup(global_position + Vector2(0, sprite_offset_y * 1.6), str(amount), Color(1, 1, 1))
+		Game.spawn_popup(head, str(amount), Color(1, 0.84, 0.5), 12, "dmg")
+	# where the blow lands: on the side facing whoever hit it
+	var from := (source.global_position - global_position).normalized() if source else Vector2.ZERO
+	Game.spawn_spark(global_position + Vector2(0, sprite_offset_y) + from * 6.0, crit)
 	var t := create_tween()
 	sprite.modulate = Color(3, 3, 3)
 	t.tween_property(sprite, "modulate", Color.WHITE, 0.18)
+	# squash and stretch: the body gives under the blow and springs back
+	var base := Vector2.ONE * sprite_scale
+	var sq := create_tween()
+	sprite.scale = base * Vector2(1.28, 0.78) if crit else base * Vector2(1.16, 0.86)
+	sq.tween_property(sprite, "scale", base * Vector2(0.94, 1.06), 0.07)
+	sq.tween_property(sprite, "scale", base, 0.09)
 	if boss:
 		Game.boss_engaged.emit(self)
 	if hp <= 0:

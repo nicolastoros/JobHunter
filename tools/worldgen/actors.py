@@ -2,7 +2,7 @@
 import os, sys, json
 import xml.etree.ElementTree as ET
 
-RAW = r"C:/Users/nicol/AppData/Local/Temp/claude/c--Users-nicol-OneDrive-Documentos-JobHunter/7f39b642-3aaa-4323-9d53-2b420a1d2380/scratchpad/raw"
+RAW = r"C:/Users/nicol/JobHunter_raw"
 MAPS = [
     "farm/Tiled_files/Farm.tmx",
     "farm/Tiled_files/Plants_animals.tmx",

@@ -87,7 +87,7 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.95, 0.9, 0.8, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
-text = "WASD mover · Shift correr · J atacar · 1-6 habilidades · Tab objetivo · E hablar · H montar · C/I/K/L menú · R ranking · M mapa"
+text = "WASD mover · Shift correr · J atacar · 1-6 habilidades · Tab objetivo · E hablar · H montar · C/I/K/L menú · R ranking · M mapa · N mundo"
 
 [node name="DialogueBox" type="PanelContainer" parent="."]
 anchors_preset = 12

@@ -5,7 +5,7 @@ import colorsys, os, shutil
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RAW = os.path.join(HERE, "..", "raw", "animals", "PNG", "With_Shadow")
+RAW = os.path.join(r"C:/Users/nicol/JobHunter_raw", "animals", "PNG", "With_Shadow")
 ROOT = "C:/Users/nicol/OneDrive/Documentos/JobHunter"
 OUT = os.path.join(ROOT, "assets/sprites/animals/companions")
 DIRS = ["down", "up", "left", "right"]

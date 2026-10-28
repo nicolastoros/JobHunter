@@ -3,7 +3,7 @@ import os, shutil
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RAW = os.path.join(HERE, "..", "raw")
+RAW = r"C:/Users/nicol/JobHunter_raw"
 ROOT = "C:/Users/nicol/OneDrive/Documentos/JobHunter"
 
 EQUIP = {

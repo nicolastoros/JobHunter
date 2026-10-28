@@ -147,6 +147,9 @@ var _shake := 0.0
 var _shake_left := 0.0
 var _shake_total := 0.0
 
+## Regions the hero has set foot in (the world map hides the rest).
+var visited_maps := {}
+
 var _fade_layer: CanvasLayer
 var _fade_rect: ColorRect
 var _busy := false
@@ -157,6 +160,14 @@ func _ready() -> void:
 	_build_fade()
 	_build_audio()
 	get_tree().node_added.connect(_on_node_added)
+	if not InputMap.has_action("world_map"):
+		InputMap.add_action("world_map")
+		var ev := InputEventKey.new()
+		ev.physical_keycode = KEY_N
+		InputMap.action_add_event("world_map", ev)
+	var wm := CanvasLayer.new()
+	wm.set_script(load("res://scripts/ui/world_map.gd"))
+	add_child(wm)
 	if OS.get_environment("CDC_TEST") != "":
 		save_path = "user://partida_test.json"
 		backup_path = "user://partida_test_respaldo.json"
@@ -247,6 +258,7 @@ func _in_gameplay() -> bool:
 # =============================================================================
 
 func reset_progress() -> void:
+	visited_maps = {}
 	gold = 120
 	level = 1
 	xp = 0
@@ -1350,7 +1362,7 @@ func player_died() -> void:
 
 
 ## Small floating text in the world (damage numbers, gold...).
-func spawn_popup(pos: Vector2, text: String, color: Color, size := 8) -> void:
+func spawn_popup(pos: Vector2, text: String, color: Color, size := 8, kind := "text") -> void:
 	var scene := get_tree().current_scene
 	if scene == null:
 		return
@@ -1359,6 +1371,7 @@ func spawn_popup(pos: Vector2, text: String, color: Color, size := 8) -> void:
 	p.set("text", text)
 	p.set("color", color)
 	p.set("size", size)
+	p.set("kind", kind)
 	p.position = pos
 	p.z_index = 70
 	p.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -1397,7 +1410,7 @@ func save_game(auto := false) -> bool:
 		"renown": renown, "ranks_rewarded": ranks_rewarded, "npc_renown": npc_renown, "contracts": contracts,
 		"has_mount": has_mount, "pets": Array(pets), "active_pet": active_pet, "tutorial_step": tutorial_step,
 		"skill_ranks": skill_ranks, "talents": talents, "attributes": attributes, "kills": kills, "quests": quest_states,
-		"play_time": play_time,
+		"play_time": play_time, "visited": visited_maps.keys(),
 	}
 	# keep the previous save as a backup before writing the new one
 	if FileAccess.file_exists(save_path) and _read_save(save_path).size() > 0:
@@ -1440,6 +1453,9 @@ func load_game() -> bool:
 	talent_points = int(d.get("talent_points", 0))
 	play_time = float(d.get("play_time", 0.0))
 	inventory = _int_dict(d.get("inventory", {}))
+	visited_maps = {}
+	for m in d.get("visited", []):
+		visited_maps[String(m)] = true
 	if item_count("pocion") > GameData.POTION_MAX:
 		inventory["pocion"] = GameData.POTION_MAX
 	bag.clear()
@@ -1718,6 +1734,19 @@ func sfx(sound: String, volume_db := 0.0, pitch_var := 0.05) -> void:
 
 
 ## Every button in the game clicks.
+## Impact flash on a monster (the blow's point of contact, a bit towards whoever hit it).
+func spawn_spark(pos: Vector2, crit: bool) -> void:
+	var scene := get_tree().current_scene
+	if scene == null:
+		return
+	var s := Node2D.new()
+	s.set_script(load("res://scripts/fx/hit_spark.gd"))
+	s.set("crit", crit)
+	s.position = pos
+	s.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	scene.add_child(s)
+
+
 func _on_node_added(n: Node) -> void:
 	if n is BaseButton:
 		(n as BaseButton).pressed.connect(func(): sfx("ui_click", -6.0, 0.03))

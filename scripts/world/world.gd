@@ -66,6 +66,10 @@ func _ready() -> void:
 		Game.advance_tutorial(4)
 		Game.tip("target", "Consejo: Tab fija una presa y la rueda del ratón cambia de presa.")
 	_spawn_safe_spots()
+	var first_visit := not Game.visited_maps.has(scene_file_path.get_file())
+	Game.visited_maps[scene_file_path.get_file()] = true
+	if first_visit and scene_file_path.get_file() == "aurelia.tscn":
+		_welcome_aurelia.call_deferred()
 	_announce_levels.call_deferred()
 	_spawn_pet.call_deferred()
 	Game.pet_changed.connect(_spawn_pet)
@@ -369,3 +373,11 @@ func _announce_levels() -> void:
 		Game.toast("¡Cuidado! Aquí los monstruos son de nivel %d a %d. Tú eres nivel %d." % [z[0], z[1], Game.level])
 	else:
 		Game.toast("Monstruos de nivel %d a %d." % [z[0], z[1]])
+
+
+## First time through the gates of Aurelia.
+func _welcome_aurelia() -> void:
+	await get_tree().create_timer(0.8).timeout
+	Game.sfx("quest", -2.0, 0.0)
+	await get_tree().create_timer(2.4).timeout
+	Game.toast("Doran, el maestro herrero, trabaja en el Mercado Mayor. Pulsa N para ver el mapamundi.")

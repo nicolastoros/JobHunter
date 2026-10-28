@@ -377,7 +377,26 @@ const CONTRACT_POOL := [["Limo", 8], ["Limo extraño", 5], ["Goblin", 6], ["Gnol
 	["Gólem de las Ruinas", 1], ["Ent Ancestral", 1], ["Rey Limo", 1], ["Gólem de Obsidiana", 1],
 	["Limo de arena", 8], ["Limo ácido", 6], ["Saqueador de las dunas", 6], ["Chacal de las dunas", 5], ["Gólem de arenisca", 4], ["Guardián del Sol", 1]]
 ## Where the Guild's hunters spend the day (each real day the roster changes): map file -> how many.
-const HUNTER_SHIFTS := [["field.tscn", 10], ["forest.tscn", 6], ["desert.tscn", 6], ["world.tscn", 7]]
+const HUNTER_SHIFTS := [["field.tscn", 10], ["forest.tscn", 6], ["desert.tscn", 6], ["world.tscn", 7], ["aurelia.tscn", 6]]
+
+# --- World map ----------------------------------------------------------------------------------
+## Every region on the world map: its thumbnail (the minimap picture), where it sits (px on a
+## 480x270 canvas, top-left) and its gates to the neighbours, in the region's own tiles.
+const WORLD_SCALE := 0.22
+const WORLD_MAP := [
+	{"file": "forest.tscn", "name": "Bosque Profundo", "pic": "res://resources/world/minimap_forest.png", "pos": Vector2(118, 19), "tiles": Vector2(160, 120)},
+	{"file": "field.tscn", "name": "Llanura de Valdoria", "pic": "res://resources/world/minimap_field.png", "pos": Vector2(140, 92), "tiles": Vector2(170, 130)},
+	{"file": "world.tscn", "name": "Valdoria", "pic": "res://resources/world/minimap_world.png", "pos": Vector2(138, 178), "tiles": Vector2(180, 140)},
+	{"file": "desert.tscn", "name": "Desierto de Ámbar", "pic": "res://resources/world/minimap_desert.png", "pos": Vector2(229, 100), "tiles": Vector2(160, 120)},
+	{"file": "aurelia.tscn", "name": "Aurelia", "pic": "res://resources/world/minimap_aurelia.png", "pos": Vector2(313, 90), "tiles": Vector2(200, 150)},
+]
+## Roads between regions: [file a, tile in a, file b, tile in b].
+const WORLD_LINKS := [
+	["world.tscn", Vector2(89.5, 0), "field.tscn", Vector2(85.5, 130)],
+	["field.tscn", Vector2(30, 0), "forest.tscn", Vector2(80.5, 120)],
+	["field.tscn", Vector2(170, 79), "desert.tscn", Vector2(0, 61)],
+	["desert.tscn", Vector2(160, 61), "aurelia.tscn", Vector2(0, 82.5)],
+]
 const HUNTER_TOWN_LINES := ["Hoy me tomo el día libre. Mañana vuelvo a la llanura.", "Vengo de venderle mis trofeos a Kara.",
 	"Estoy esperando a mi grupo para ir al Bosque Profundo.", "Después de una buena cacería, nada como un paseo por la plaza.",
 	"Mañana salgo de caza temprano.", "Vine a revisar el tablón del Gremio."]
