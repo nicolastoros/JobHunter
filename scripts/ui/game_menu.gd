@@ -308,10 +308,14 @@ func _build_character() -> Control:
 	dv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	det.add_child(dv)
 	_eq_name = _ink("", 8)
+	_eq_name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_eq_name.custom_minimum_size = Vector2(110, 0)
+	_eq_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	dv.add_child(_eq_name)
-	_eq_desc = _ink("", 7)
+	_eq_desc = _ink("", 6)
 	_eq_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_eq_desc.custom_minimum_size = Vector2(110, 0)
+	_eq_desc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	dv.add_child(_eq_desc)
 	var grow := Control.new()
 	grow.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -424,7 +428,7 @@ func _build_skills() -> Control:
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 6)
 	rv.add_child(top)
-	_sk_icon = _icon(GameData.SKILLS[0]["icon"], 40)
+	_sk_icon = _icon(Game.class_skills()[0]["icon"], 40)
 	top.add_child(_sk_icon)
 	var tv := VBoxContainer.new()
 	tv.add_theme_constant_override("separation", 2)
@@ -701,11 +705,12 @@ func _refresh_character() -> void:
 		var e: Dictionary = Game.eq(id)
 		_eq_icon.texture = load(Game.eq_icon(id))
 		_eq_icon.visible = true
-		_eq_name.text = "%s  ·  %s%s" % [e["name"], GameData.SLOT_NAMES[e["slot"]], "" if int(e["rarity"]) == 0 else "  ·  " + GameData.RARITY_NAMES[int(e["rarity"])]]
+		_eq_name.text = "%s  ·  %s%s" % [e["name"], GameData.SLOT_NAMES[e["slot"]], "" if int(e["rarity"]) == 0 or int(e["rarity"]) >= 4 else "  ·  " + GameData.RARITY_NAMES[int(e["rarity"])]]
 		_eq_name.add_theme_color_override("font_color", Game.rarity_color(id, true))
 		var worn: String = Game.equipped.get(e["slot"], "")
 		var cmp := ("\nLlevas: %s (%s)" % [Game.eq(worn)["name"], _bonus_text(Game.eq(worn))]) if worn != "" else ""
-		_eq_desc.text = "%s\n%s\nRequiere nivel %d%s" % [_bonus_text(e), e["desc"], e["level"], cmp]
+		var extra := Game.gear_extra_text(id)
+		_eq_desc.text = "%s\n%s%s\nRequiere nivel %d%s" % [_bonus_text(e), e["desc"], ("\n" + extra) if extra != "" else "", e["level"], cmp]
 		var why := Game.equip_block_reason(id)
 		_eq_btn.visible = true
 		_eq_btn.disabled = why != ""
@@ -716,14 +721,14 @@ func _refresh_character() -> void:
 		_eq_desc.text = "Los monstruos a veces dejan armas y armaduras. Los jefes, siempre."
 		_eq_btn.visible = false
 	# hero
-	var sf := load("res://resources/sprite_frames/swordsman_lvl%d.tres" % Game.look_tier()) as SpriteFrames
+	var sf := load(String(Game.class_def()["frames"]) % Game.look_tier()) as SpriteFrames
 	if sf and sf.has_animation(&"idle_down"):
 		var a := AtlasTexture.new()
 		var f := sf.get_frame_texture(&"idle_down", 0) as AtlasTexture
 		a.atlas = f.atlas
 		a.region = Rect2(f.region.position + Vector2(12, 8), Vector2(40, 40))
 		_portrait.texture = a
-	_look_label.text = Game.look_title()
+	_look_label.text = "%s · %s" % [Game.class_def()["name"], Game.look_title()]
 	for c in _stat_grid.get_children():
 		c.queue_free()
 	_stat_row(_stat_grid, "Nivel", "%d" % Game.level, true)
@@ -740,6 +745,7 @@ func _refresh_character() -> void:
 		_stat_row(_stat_grid, "Robo de vida", "%d %%" % int(round(Game.tsum("lifesteal") * 100)))
 	_stat_row(_stat_grid, "Poder de habilidad", "%d %%" % int(round(Game.skill_power() * 100)))
 	_stat_row(_stat_grid, "Rango del Gremio", "%s · %d" % [Game.guild_rank()[1], Game.renown], true)
+	_stat_row(_stat_grid, "Título", Game.active_title if Game.active_title != "" else "—", Game.active_title != "")
 	_next_look.text = ""
 	for l in GameData.LOOKS:
 		if int(l[0]) > Game.level:
@@ -806,8 +812,11 @@ func _refresh_skills() -> void:
 	_skill_header.text = "Experiencia de habilidad: %d" % Game.skill_xp
 	for c in _skill_list.get_children():
 		c.queue_free()
-	for i in GameData.SKILLS.size():
-		var s: Dictionary = GameData.SKILLS[i]
+	var list := Game.class_skills()
+	if GameData.skill_def(_skill_sel) not in list:
+		_skill_sel = String(list[0]["id"])
+	for i in list.size():
+		var s: Dictionary = list[i]
 		var id: String = s["id"]
 		var rank := Game.skill_rank(id)
 		var b := Button.new()
@@ -845,7 +854,7 @@ func _refresh_skills() -> void:
 		_skill_list.add_child(b)
 	# detail
 	var s := GameData.skill_def(_skill_sel)
-	var idx := GameData.SKILLS.find(s)
+	var idx := list.find(s)
 	var rank := Game.skill_rank(_skill_sel)
 	_sk_icon.texture = Game.icon_texture(s["icon"])
 	_sk_icon.modulate = Color.WHITE if rank > 0 else Color(0.6, 0.6, 0.6, 0.8)

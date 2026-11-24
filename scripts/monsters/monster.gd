@@ -21,6 +21,10 @@ enum State { IDLE, WANDER, CHASE, ATTACK, HURT, DEAD, RETURN }
 @export var body_size := Vector2(12, 6)
 ## Smaller (or bigger) versions of a sprite: forest saplings are scaled-down ents, etc.
 @export var sprite_scale := 1.0
+## Dungeon monsters: a fixed level, never come back, and elites (tougher, golden, better loot).
+@export var forced_level := 0
+@export var no_respawn := false
+@export var elite := false
 @export var respawn_time := 45.0
 ## Colossus of a world event: tougher, never respawns, and pays everyone who fought it.
 @export var event_boss := false
@@ -48,6 +52,9 @@ var _knock := Vector2.ZERO
 var _bar_timer := 0.0
 var _tick := randi() % 6
 var _near := false
+var _dots := []            # [kind, damage per tick, ticks left, colour]
+var _dot_clock := 0.0
+var _stun_left := 0.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shape: CollisionShape2D = $CollisionShape2D
@@ -58,11 +65,17 @@ var _near := false
 func _ready() -> void:
 	add_to_group("monsters")
 	_home = global_position
+	_unstick.call_deferred()   # after the map has built its walk grid
 	_base_hp = max_hp
 	_base_damage = damage
 	_base_gold = gold
 	if base_name == "":
 		base_name = monster_name
+	if elite:
+		_base_hp = int(_base_hp * 2.4)
+		_base_damage = int(ceil(_base_damage * 1.4))
+		_base_gold *= 3
+		monster_name = "%s élite" % monster_name
 	if event_boss:
 		add_to_group("event_boss")
 	_apply_level()
@@ -83,6 +96,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Game.editing:
+		return
+	_tick_status(delta)
+	if _stun_left > 0.0 and state != State.DEAD:
+		_stun_left -= delta
+		velocity = Vector2.ZERO
 		return
 	# far from the hero and just grazing: think 10 times a second instead of 60 (many monsters on the map)
 	if state == State.IDLE or state == State.WANDER:
@@ -260,7 +278,7 @@ func _on_anim_finished() -> void:
 		State.DEAD:
 			var t := create_tween()
 			t.tween_property(sprite, "modulate:a", 0.0, 0.8)
-			if event_boss:
+			if event_boss or no_respawn:
 				t.tween_callback(queue_free)
 				return
 			t.tween_interval(respawn_time)
@@ -269,7 +287,7 @@ func _on_anim_finished() -> void:
 
 ## Monsters adapt to the hero: around the hero's level (bosses a little above).
 func _apply_level() -> void:
-	monster_level = clampi(Game.monster_level_for(String(base_name), self), 1, GameData.MAX_LEVEL)
+	monster_level = clampi(forced_level if forced_level > 0 else Game.monster_level_for(String(base_name), self), 1, GameData.MAX_LEVEL)
 	max_hp = maxi(1, int(round(_base_hp * GameData.mon_hp_mult(monster_level))))
 	damage = maxi(1, int(round(_base_damage * GameData.mon_dmg_mult(monster_level))))
 	gold = int(round(_base_gold * (1.0 + 0.1 * (monster_level - 1))))
@@ -352,8 +370,82 @@ func _draw() -> void:
 		return
 	# the level, coloured by how dangerous it is for you (grey trivial ... red deadly)
 	var col := Game.level_color(monster_level, Game.level)
-	draw_string_outline(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), "Nv %d" % monster_level, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, 2, Color(0.08, 0.05, 0.04, 0.9))
-	draw_string(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), "Nv %d" % monster_level, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, col)
+	var tag := ("★ " if Game.is_prey(base_name) else "") + "Nv %d" % monster_level
+	draw_string_outline(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), tag, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, 2, Color(0.08, 0.05, 0.04, 0.9))
+	draw_string(ThemeDB.fallback_font, Vector2(-w / 2, y - 2), tag, HORIZONTAL_ALIGNMENT_LEFT, -1, 6, Color(1, 0.8, 0.2) if Game.is_prey(base_name) else col)
 	if bar:
 		draw_rect(Rect2(-w / 2 - 1, y - 1, w + 2, 4), Color(0.1, 0.06, 0.05, 0.85))
 		draw_rect(Rect2(-w / 2, y, w * float(hp) / max_hp, 2), Color(0.85, 0.2, 0.15))
+
+
+## Spawned inside a tree, a rock or a wall: step out to the nearest free ground.
+func _unstick() -> void:
+	if not is_inside_tree():
+		return
+	var w := get_tree().get_first_node_in_group("world")
+	if w == null or not w.has_method("is_walkable") or w.is_walkable(global_position):
+		return
+	for r in [8, 16, 24, 32, 48, 64]:
+		for i in 12:
+			var p: Vector2 = global_position + Vector2.RIGHT.rotated(i * TAU / 12.0) * float(r)
+			if w.is_walkable(p) and w.is_walkable(p + Vector2(6, 0)) and w.is_walkable(p - Vector2(6, 0)):
+				global_position = p
+				_home = p
+				reset_physics_interpolation()
+				return
+
+
+# --- status effects (forge weapons, seals) -----------------------------------------------
+
+## Damage over time: `total` spread over `dur` seconds in ticks of half a second. Poison stacks (3).
+func apply_dot(kind: String, total: int, dur: float, col: Color) -> void:
+	if state == State.DEAD:
+		return
+	var ticks := maxi(1, int(dur / 0.5))
+	var per := maxi(1, int(round(float(total) / ticks)))
+	var same := _dots.filter(func(d): return d[0] == kind)
+	if kind == "veneno" and same.size() < 3:
+		_dots.append([kind, per, ticks, col])
+	elif same.size() > 0:
+		same[0][2] = ticks
+		same[0][1] = maxi(int(same[0][1]), per)
+	else:
+		_dots.append([kind, per, ticks, col])
+
+
+func stun(dur: float) -> void:
+	if state != State.DEAD and not boss:
+		_stun_left = maxf(_stun_left, dur)
+
+
+## Effect damage: no knockback, a coloured number, credited to the hero.
+func dot_tick(amount: int, col: Color, label := "") -> void:
+	if state == State.DEAD:
+		return
+	hp -= amount
+	_bar_timer = 3.0
+	_last_hitter = _player()
+	_player_damage += amount
+	Game.spawn_popup(global_position + Vector2(randf_range(-6, 6), sprite_offset_y * 1.4), (label + " " if label != "" else "") + str(amount), col, 9, "dmg")
+	var t := create_tween()
+	sprite.modulate = col.lightened(0.4)
+	t.tween_property(sprite, "modulate", Color.WHITE, 0.25)
+	if hp <= 0:
+		_die()
+
+
+func _tick_status(delta: float) -> void:
+	if _dots.is_empty() or state == State.DEAD:
+		return
+	_dot_clock += delta
+	if _dot_clock < 0.5:
+		return
+	_dot_clock = 0.0
+	for d in _dots.duplicate():
+		d[2] = int(d[2]) - 1
+		if d[2] <= 0:
+			_dots.erase(d)
+		dot_tick(int(d[1]), d[3])
+		if state == State.DEAD:
+			_dots.clear()
+			return

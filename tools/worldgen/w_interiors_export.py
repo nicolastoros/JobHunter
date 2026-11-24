@@ -26,7 +26,7 @@ INTERIORS = {
                      talk={"Mage": ("Maga aprendiz", ["Cuidado, este hechizo todavía no me sale bien.", "El círculo arcano canaliza el fuego."]),
                            "Reader": ("Erudito", ["Este bestiario describe más de cien criaturas. Las del norte son las peores.",
                                                   "Estoy leyendo."]),
-                           "Fighter": ("Espadachín veterano", ["Golpea, retrocede, golpea. Así de simple."])}),
+                           "Fighter": ("Aldric, maestro de clases", ["Espada, arco o bastón: cada camino tiene su disciplina."])}),
     "house_red": dict(map="house/Tiled_files/Interior1.tmx", title="Casa de piedra",
                       exits=[dict(cells=[(19, 16), (20, 16), (19, 17), (20, 17)], dir="down", scene=WORLD, spawn="")],
                       stairs=[], decals=[], spawns={"door": (19.7, 14.6)}, boards=[], talk={}),
@@ -164,6 +164,8 @@ def write_scene(name, cfg, info):
         lines = ""
         if talk:
             lines = 'npc_name = "%s"\nlines = PackedStringArray(%s)\n' % (WE.esc(talk[0]), ", ".join('"%s"' % WE.esc(l) for l in talk[1]))
+        if talk and "maestro de clases" in talk[0]:
+            lines += 'opens = "class"\n'   # opens the class cards (Game.open_class_menu)
         collide = "" if talk else "collide = false\n"
         nodes.append('[node name="Actor%d" parent="Entities" instance=ExtResource("%s")]\nposition = Vector2(%s, %s)\nframes = ExtResource("%s")\nsprite_offset = Vector2(0, %s)\n%s%s' % (
             i, actor_scene, fmt(a["pos"][0]), fmt(a["pos"][1]), fr, fmt(fh / 2 - a["foot"]), collide, lines))

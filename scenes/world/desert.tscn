@@ -29,10 +29,11 @@
 [ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/desert_acid_slime3.tres" id="27_desert_aci"]
 [ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/desert_acid_slime2.tres" id="28_desert_aci"]
 [ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/desert_acid_slime1.tres" id="29_desert_aci"]
-[ext_resource type="Script" path="res://scripts/world/zone_exit.gd" id="30_zone_exit"]
-[ext_resource type="Script" path="res://scripts/world/door.gd" id="31_door"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="32_hud"]
-[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="33_pause_menu"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/dry_ents_ent2.tres" id="30_dry_ents_e"]
+[ext_resource type="Script" path="res://scripts/world/zone_exit.gd" id="31_zone_exit"]
+[ext_resource type="Script" path="res://scripts/world/door.gd" id="32_door"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="33_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="34_pause_menu"]
 
 [sub_resource type="RectangleShape2D" id="Rect_0"]
 size = Vector2(83, 38)
@@ -9609,6 +9610,134 @@ territory = 100
 sprite_offset_y = -12.0
 monster_name = "Saqueador de las dunas"
 
+[node name="Withered_Ent2" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(1843.549, 1601.83)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
+[node name="Withered_Ent2_2" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(1846.077, 1601.106)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
+[node name="Withered_Ent2_3" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(2364.474, 1609.241)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
+[node name="Withered_Ent2_4" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(2390.302, 1620.991)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
+[node name="Withered_Ent2_5" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(1196.464, 1508.351)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
+[node name="Withered_Ent2_6" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(1158.449, 1527.44)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
+[node name="Withered_Ent2_7" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(637.8, 1689.342)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
+[node name="Withered_Ent2_8" parent="Entities/Monsters" instance=ExtResource("15_monster")]
+position = Vector2(618.977, 1649.817)
+frames = ExtResource("30_dry_ents_e")
+max_hp = 16
+damage = 3
+speed = 11
+chase_speed = 24
+aggro_radius = 88
+attack_range = 20
+gold = 10
+territory = 70
+sprite_scale = 0.6
+body_size = Vector2(14, 6)
+sprite_offset_y = -17.0
+monster_name = "Árbol marchito"
+
 [node name="Player" parent="Entities" instance=ExtResource("14_player")]
 position = Vector2(64, 976)
 
@@ -9652,7 +9781,7 @@ position = Vector2(18, 976)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("30_zone_exit")
+script = ExtResource("31_zone_exit")
 target_scene = "res://scenes/world/field.tscn"
 target_spawn = "east"
 
@@ -9664,7 +9793,7 @@ position = Vector2(2542, 976)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("30_zone_exit")
+script = ExtResource("31_zone_exit")
 target_scene = "res://scenes/world/aurelia.tscn"
 target_spawn = "west"
 
@@ -9685,6 +9814,6 @@ position = Vector2(80, 976)
 [node name="east" type="Marker2D" parent="Spawns"]
 position = Vector2(2464, 976)
 
-[node name="HUD" parent="." instance=ExtResource("32_hud")]
+[node name="HUD" parent="." instance=ExtResource("33_hud")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("33_pause_menu")]
+[node name="PauseMenu" parent="." instance=ExtResource("34_pause_menu")]

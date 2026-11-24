@@ -14,7 +14,11 @@ signal attacked
 enum State { MOVE, ATTACK, HURT, DEAD, DASH }
 
 const DASH_SPEED := 430.0
-const LOOK_FRAMES := "res://resources/sprite_frames/swordsman_lvl%d.tres"
+const PROJECTILE := preload("res://scripts/fx/projectile.gd")
+const FX := preload("res://scripts/fx/anim_fx.gd")
+const FX_PATH := "res://resources/sprite_frames/fx_%s.tres"
+## How far the archer and the mage aim on their own when nothing is locked.
+const RANGED_AIM := 240.0
 
 var state := State.MOVE
 var facing := "down"
@@ -34,6 +38,9 @@ var _dash_dir := Vector2.ZERO
 var _dash_hit: Array = []
 var _dash_dmg := 1
 var _look := 0
+var _look_class := ""
+var _barrier := 0.0
+var _barrier_fx: Node2D
 var _moving_attack := false
 var _mount: AnimatedSprite2D
 const TARGET_RANGE := 230.0
@@ -53,6 +60,10 @@ func _ready() -> void:
 	attack_shape.disabled = true
 	apply_look()
 	Game.look_changed.connect(apply_look)
+	var aura := Node2D.new()
+	aura.name = "Aura"
+	aura.set_script(load("res://scripts/fx/hero_aura.gd"))
+	add_child(aura)
 	_mount = AnimatedSprite2D.new()
 	_mount.sprite_frames = load(GameData.MOUNT["frames"])
 	_mount.offset = Vector2(0, -12)
@@ -73,16 +84,17 @@ func _outdoors() -> bool:
 	return scene != null and scene.get("walkmask_path") != null
 
 
-## Swaps the sprite set when the hero reaches a new look.
+## Swaps the sprite set when the hero reaches a new look (or changes class).
 func apply_look() -> void:
 	var tier := Game.look_tier()
-	if tier == _look:
+	if tier == _look and Game.hero_class == _look_class:
 		return
-	var sf := load(LOOK_FRAMES % tier) as SpriteFrames
+	var sf := load(String(Game.class_def()["frames"]) % tier) as SpriteFrames
 	if sf == null:
 		return
 	var anim := sprite.animation
 	_look = tier
+	_look_class = Game.hero_class
 	sprite.sprite_frames = sf
 	if sf.has_animation(anim):
 		sprite.play(anim)
@@ -120,6 +132,10 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 		State.DASH:
 			_dash_state(delta)
+	if _barrier > 0.0:
+		_barrier -= delta
+		if _barrier <= 0.0 and is_instance_valid(_barrier_fx):
+			_barrier_fx.queue_free()
 	# war cry: a warm glow while it lasts
 	sprite.modulate = Color(1.25, 1.1, 0.8) if Game.buff_active() else Color.WHITE
 	_update_mount()
@@ -159,10 +175,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		_play("idle")
 		_focused.interact(self)
 	else:
-		for i in GameData.SKILLS.size():
+		var list := Game.class_skills()
+		for i in list.size():
 			if event.is_action_pressed("skill_%d" % (i + 1)):
 				get_viewport().set_input_as_handled()
-				cast_skill(GameData.SKILLS[i]["id"])
+				cast_skill(list[i]["id"])
 				return
 
 
@@ -199,6 +216,9 @@ func _move_state(delta: float) -> void:
 func _start_attack() -> void:
 	if Game.mounted:
 		_toggle_mount()
+	if String(Game.class_def()["attack"]) != "melee":
+		_ranged_attack()
+		return
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	_moving_attack = input != Vector2.ZERO
 	if not _moving_attack and is_instance_valid(Game.target) and Game.target.global_position.distance_to(global_position) < 90.0:
@@ -218,6 +238,68 @@ func _start_attack() -> void:
 		for area in attack_hitbox.get_overlapping_areas():
 			if area.has_method("take_hit"):
 				Game.hit_monster(area, Game.attack(), false, self)
+
+
+## The archer's arrow / the mage's fireball: turn toward the prey, draw (or conjure) and release.
+func _ranged_attack() -> void:
+	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	_moving_attack = input != Vector2.ZERO
+	var dir := ranged_dir()
+	facing = _dir_name(dir)
+	state = State.ATTACK
+	var mage := Game.hero_class == "mago"
+	Game.sfx("skill" if mage else "swing", -8.0 if mage else -6.0, 0.15)
+	_play("attack")
+	attacked.emit()
+	await get_tree().create_timer(0.2).timeout
+	if state != State.ATTACK:
+		return
+	dir = ranged_dir()
+	if mage:
+		_shoot("fireball", dir, Game.attack(), false, {"radius": 16.0, "burst": FX_PATH % "fire_explosion", "burst_scale": 0.55, "speed": 230.0, "range": 210.0})
+	else:
+		_shoot("arrow", dir, maxi(1, int(round(Game.attack() * 0.9))), false, {"speed": 400.0, "range": 250.0})
+
+
+## Where a shot goes: the locked prey, else the nearest monster roughly ahead, else straight ahead.
+func ranged_dir() -> Vector2:
+	var from := global_position + Vector2(0, -10)
+	if is_instance_valid(Game.target) and Game.target.global_position.distance_to(global_position) <= RANGED_AIM + 40.0:
+		return (Game.target.global_position + Vector2(0, -8) - from).normalized()
+	var ahead: Vector2 = {"down": Vector2.DOWN, "up": Vector2.UP, "left": Vector2.LEFT, "right": Vector2.RIGHT}[facing]
+	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if input != Vector2.ZERO:
+		ahead = input.normalized()
+	var best: Node2D = null
+	var bd := RANGED_AIM
+	for m in get_tree().get_nodes_in_group("monsters"):
+		var mon := m as Node2D
+		if int(mon.get("hp")) <= 0:
+			continue
+		var rel := mon.global_position + Vector2(0, -8) - from
+		var d := rel.length()
+		if d < bd and rel.normalized().dot(ahead) > 0.55:
+			best = mon
+			bd = d
+	if best:
+		return (best.global_position + Vector2(0, -8) - from).normalized()
+	return ahead
+
+
+func _shoot(kind: String, dir: Vector2, dmg: int, is_skill: bool, opts := {}) -> Node2D:
+	var p := Node2D.new()
+	p.set_script(PROJECTILE)
+	p.set("kind", kind)
+	p.set("dir", dir)
+	p.set("dmg", dmg)
+	p.set("is_skill", is_skill)
+	p.set("source", self)
+	p.set("tier", _look)
+	for k in opts:
+		p.set("max_range" if k == "range" else String(k), opts[k])
+	p.position = global_position + Vector2(0, -10) + dir * 8.0
+	get_parent().add_child(p)
+	return p
 
 
 func is_dead() -> bool:
@@ -317,6 +399,8 @@ func cast_skill(id: String) -> void:
 	if is_instance_valid(Game.target) and id in ["tajo", "embestida"]:
 		facing = _dir_name(aim_dir())
 	var v := Game.skill_values(id)
+	if _class_skill(id, v):
+		return
 	match id:
 		"giro":
 			state = State.ATTACK
@@ -368,6 +452,236 @@ func cast_skill(id: String) -> void:
 					Game.hit_monster(mon, int(v["dmg"]), true, self)
 
 
+## The archer's and the mage's skills. False if `id` is not one of theirs.
+func _class_skill(id: String, v: Dictionary) -> bool:
+	match id:
+		"abanico":
+			var dir := ranged_dir()
+			facing = _dir_name(dir)
+			state = State.ATTACK
+			_play("attack")
+			var n := int(v["arrows"])
+			for i in n:
+				var a := (i - (n - 1) / 2.0) * deg_to_rad(11.0)
+				_shoot("arrow", dir.rotated(a), int(v["dmg"]), true, {"speed": 420.0, "range": 220.0})
+		"salto":
+			var away := -ranged_dir()
+			facing = _dir_name(-away)
+			_dash_dir = away
+			_dash_left = float(v["time"])
+			_dash_dmg = 0
+			_dash_hit.clear()
+			state = State.DASH
+			_play("idle")
+			FX.spawn(get_parent(), FX_PATH % "lightning_ring", global_position + Vector2(0, -6), 0.35, Color(0.7, 1.0, 0.6, 0.8))
+		"ojo_halcon":
+			Game.start_buff(float(v["time"]), int(v["bonus"]))
+			Game.spawn_popup(global_position + Vector2(0, -36), "+%d de ataque" % v["bonus"], Color(0.7, 1, 0.5))
+			FX.spawn(self, FX_PATH % "lightning_ring", Vector2(0, -12), 0.4, Color(0.6, 1.0, 0.5))
+		"explosiva":
+			var dir := ranged_dir()
+			facing = _dir_name(dir)
+			state = State.ATTACK
+			_play("attack")
+			_shoot("arrow", dir, int(v["dmg"]), true, {"radius": float(v["radius"]), "burst": FX_PATH % "explosion_small",
+				"burst_scale": float(v["radius"]) / 26.0, "speed": 360.0, "range": 240.0, "tint": Color(1, 0.7, 0.4), "big": 1.2})
+		"lluvia":
+			state = State.ATTACK
+			_play("attack")
+			_arrow_rain(_skill_point(230.0, 90.0), float(v["radius"]), int(v["arrows"]), int(v["dmg"]))
+		"perforante":
+			var dir := ranged_dir()
+			facing = _dir_name(dir)
+			state = State.ATTACK
+			_play("attack")
+			_shoot("arrow", dir, int(v["dmg"]), true, {"pierce": true, "speed": 520.0, "range": float(v["length"]),
+				"tint": Color(0.75, 0.95, 1.0), "big": 1.6})
+			Game.shake(2.0, 0.12)
+		"bola_fuego":
+			var dir := ranged_dir()
+			facing = _dir_name(dir)
+			state = State.ATTACK
+			_play("attack")
+			_shoot("fireball", dir, int(v["dmg"]), true, {"radius": float(v["radius"]), "burst": FX_PATH % "fire_explosion",
+				"burst_scale": float(v["radius"]) / 28.0, "speed": 250.0, "range": 230.0, "big": 1.7, "burn": maxi(1, int(v["dmg"]) / 4)})
+		"parpadeo":
+			var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+			if dir == Vector2.ZERO:
+				dir = {"down": Vector2.DOWN, "up": Vector2.UP, "left": Vector2.LEFT, "right": Vector2.RIGHT}[facing]
+			dir = dir.normalized()
+			var to := global_position + dir * float(v["dist"])
+			var w := get_tree().get_first_node_in_group("world")
+			var steps := 0
+			while w and w.has_method("is_walkable") and not w.is_walkable(to) and steps < 14:
+				to -= dir * 8.0
+				steps += 1
+			FX.spawn(get_parent(), FX_PATH % "lightning_ring", global_position + Vector2(0, -8), 0.4, Color(0.75, 0.55, 1.0))
+			global_position = to
+			reset_physics_interpolation()
+			FX.spawn(get_parent(), FX_PATH % "lightning_ring", global_position + Vector2(0, -8), 0.4, Color(0.75, 0.55, 1.0))
+			_invulnerable = maxf(_invulnerable, 0.35)
+		"barrera":
+			var h := maxi(1, int(round(Game.max_hp * float(v["heal"]))))
+			Game.heal_player(h)
+			Game.spawn_popup(global_position + Vector2(0, -36), "+%d" % h, Color(0.5, 1, 0.55))
+			_barrier = float(v["shield"])
+			if is_instance_valid(_barrier_fx):
+				_barrier_fx.queue_free()
+			_barrier_fx = FX.spawn(self, FX_PATH % "lightning_ring", Vector2(0, -12), 0.42, Color(0.55, 0.85, 1.0, 0.85))
+			_barrier_fx.set("loops", 99)
+		"rayo":
+			state = State.ATTACK
+			_play("attack")
+			_chain_lightning(int(v["dmg"]), int(v["chains"]))
+		"nova":
+			state = State.ATTACK
+			_play("attack")
+			var r := float(v["radius"])
+			FX.spawn(get_parent(), FX_PATH % "lightning_ring", global_position + Vector2(0, -6), r / 52.0, Color(0.6, 0.9, 1.0))
+			_ring(r)
+			for m in get_tree().get_nodes_in_group("monsters"):
+				var mon := m as Node2D
+				if int(mon.get("hp")) > 0 and mon.global_position.distance_to(global_position) <= r:
+					Game.hit_monster(mon, int(v["dmg"]), true, self)
+					if is_instance_valid(mon) and mon.has_method("stun"):
+						mon.stun(float(v["stun"]))
+						mon.modulate = Color(0.6, 0.85, 1.0)
+						mon.create_tween().tween_property(mon, "modulate", Color.WHITE, float(v["stun"]))
+		"meteoro":
+			state = State.ATTACK
+			_play("attack")
+			_meteor(_skill_point(240.0, 100.0), float(v["radius"]), int(v["dmg"]))
+		_:
+			return false
+	return true
+
+
+## The locked prey's spot if it is close enough, else the nearest monster, else a point ahead.
+func _skill_point(max_dist: float, ahead: float) -> Vector2:
+	if is_instance_valid(Game.target) and Game.target.global_position.distance_to(global_position) <= max_dist:
+		return Game.target.global_position
+	var near: Node2D = null
+	for m in get_tree().get_nodes_in_group("monsters"):
+		var mon := m as Node2D
+		if int(mon.get("hp")) > 0 and mon.global_position.distance_to(global_position) <= max_dist * 0.8 and (near == null or mon.global_position.distance_to(global_position) < near.global_position.distance_to(global_position)):
+			near = mon
+	if near:
+		return near.global_position
+	return global_position + aim_dir() * ahead
+
+
+func _arrow_rain(center: Vector2, radius: float, n: int, dmg: int) -> void:
+	var mark := Node2D.new()
+	mark.set_script(load("res://scripts/fx/slash_ring.gd"))
+	mark.set("radius", radius)
+	mark.position = center
+	get_parent().add_child(mark)
+	var fall := Vector2(0.18, 1.0).normalized()
+	for i in n:
+		var p := center + Vector2.from_angle(randf() * TAU) * sqrt(randf()) * radius
+		# most arrows rain on the monsters caught in the circle
+		if randf() < 0.65:
+			var inside: Array = []
+			for m in get_tree().get_nodes_in_group("monsters"):
+				if int(m.get("hp")) > 0 and (m as Node2D).global_position.distance_to(center) <= radius + 12.0:
+					inside.append(m)
+			if not inside.is_empty():
+				p = (inside.pick_random() as Node2D).global_position + Vector2(randf_range(-6, 6), randf_range(-4, 4))
+		var a := Node2D.new()
+		a.set_script(PROJECTILE)
+		a.set("kind", "drop")
+		a.set("dir", fall)
+		a.set("dmg", dmg)
+		a.set("is_skill", true)
+		a.set("source", self)
+		a.set("tier", _look)
+		a.set("speed", 520.0)
+		a.set("max_range", 90.0)
+		a.position = p - fall * 90.0
+		get_parent().add_child(a)
+		await get_tree().create_timer(0.06).timeout
+		if not is_inside_tree():
+			return
+
+
+func _chain_lightning(dmg: int, chains: int) -> void:
+	var first: Node2D = null
+	if is_instance_valid(Game.target) and int(Game.target.get("hp")) > 0 and Game.target.global_position.distance_to(global_position) <= 240.0:
+		first = Game.target
+	else:
+		var bd := 220.0
+		for m in get_tree().get_nodes_in_group("monsters"):
+			var mon := m as Node2D
+			var d := mon.global_position.distance_to(global_position)
+			if int(mon.get("hp")) > 0 and d < bd:
+				first = mon
+				bd = d
+	if first == null:
+		FX.spawn(get_parent(), FX_PATH % "lightning_strike", global_position + aim_dir() * 70.0 + Vector2(0, -56), 0.5)
+		return
+	var hit: Array = [first]
+	var cur := first
+	var power := float(dmg)
+	FX.spawn(get_parent(), FX_PATH % "lightning_strike", cur.global_position + Vector2(0, -56), 0.5)
+	Game.hit_monster(cur, int(power), true, self)
+	Game.shake(3.0, 0.15)
+	for i in chains:
+		await get_tree().create_timer(0.09).timeout
+		if not is_instance_valid(cur) or not is_inside_tree():
+			return
+		var nxt: Node2D = null
+		var bd := 100.0
+		for m in get_tree().get_nodes_in_group("monsters"):
+			var mon := m as Node2D
+			if mon in hit or int(mon.get("hp")) <= 0:
+				continue
+			var d := mon.global_position.distance_to(cur.global_position)
+			if d < bd:
+				nxt = mon
+				bd = d
+		if nxt == null:
+			return
+		var a := cur.global_position + Vector2(0, -10)
+		var b := nxt.global_position + Vector2(0, -10)
+		var bolt := FX.spawn(get_parent(), FX_PATH % "lightning_bolt", (a + b) / 2.0, 1.0, Color.WHITE, (b - a).angle())
+		bolt.scale = Vector2(a.distance_to(b) / 200.0, 0.45)
+		power *= 0.85
+		Game.hit_monster(nxt, maxi(1, int(power)), true, self)
+		hit.append(nxt)
+		cur = nxt
+
+
+func _meteor(at: Vector2, radius: float, dmg: int) -> void:
+	var mark := Node2D.new()
+	mark.set_script(load("res://scripts/fx/slash_ring.gd"))
+	mark.set("radius", radius)
+	mark.position = at
+	get_parent().add_child(mark)
+	var ball := AnimatedSprite2D.new()
+	ball.sprite_frames = load("res://resources/sprite_frames/fx_fireball.tres")
+	ball.play(&"right")
+	ball.position = at + Vector2(-60, -150)
+	ball.rotation = Vector2(60, 150).angle()
+	ball.scale = Vector2(2.4, 2.4)
+	ball.z_index = 6
+	get_parent().add_child(ball)
+	var t := ball.create_tween()
+	t.tween_property(ball, "position", at + Vector2(0, -8), 0.5).set_ease(Tween.EASE_IN)
+	t.tween_callback(ball.queue_free)
+	await get_tree().create_timer(0.5).timeout
+	if not is_inside_tree():
+		return
+	FX.spawn(get_parent(), FX_PATH % "explosion_big", at + Vector2(0, -20), radius / 30.0)
+	Game.sfx("hit", 2.0, 0.0)
+	Game.shake(6.0, 0.35)
+	for m in get_tree().get_nodes_in_group("monsters"):
+		var mon := m as Node2D
+		if int(mon.get("hp")) > 0 and mon.global_position.distance_to(at) <= radius:
+			Game.hit_monster(mon, dmg, true, self)
+			if is_instance_valid(mon) and mon.has_method("apply_dot"):
+				mon.apply_dot("burn", maxi(1, dmg / 3), 3.0, Color(1, 0.5, 0.2))
+
+
 func _ring(radius: float) -> void:
 	var fx := Node2D.new()
 	fx.set_script(load("res://scripts/fx/slash_ring.gd"))
@@ -391,7 +705,7 @@ func _dash_state(delta: float) -> void:
 	move_and_slide()
 	for m in get_tree().get_nodes_in_group("monsters"):
 		var mon := m as Node2D
-		if not mon in _dash_hit and int(mon.get("hp")) > 0 and mon.global_position.distance_to(global_position) < 22.0:
+		if _dash_dmg > 0 and not mon in _dash_hit and int(mon.get("hp")) > 0 and mon.global_position.distance_to(global_position) < 22.0:
 			_dash_hit.append(mon)
 			Game.hit_monster(mon, _dash_dmg, true, self)
 	if _dash_left <= 0.0:
@@ -402,6 +716,9 @@ func _dash_state(delta: float) -> void:
 ## Called by monsters. `from` is the attacker position, used for knockback.
 func take_damage(amount: int, from := Vector2.INF) -> void:
 	if state == State.DEAD or state == State.DASH or _invulnerable > 0.0 or Game.editing:
+		return
+	if _barrier > 0.0:
+		Game.spawn_popup(global_position + Vector2(0, -30), "Barrera", Color(0.6, 0.85, 1))
 		return
 	if randf() < Game.dodge_chance():
 		Game.spawn_popup(global_position + Vector2(0, -30), "Esquivas", Color(0.85, 0.9, 1))

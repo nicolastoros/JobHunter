@@ -1,0 +1,9 @@
+Paquetes de arte originales (.zip) de Crónicas del Cazador.
+
+- El juego NO usa estos archivos: usa las imágenes ya copiadas en assets/.
+- Godot ignora esta carpeta (.gdignore) y git también (*.zip en .gitignore).
+- Los generadores de mapas (tools/worldgen) leen los packs descomprimidos en
+  C:\Users\nicol\JobHunter_raw  — si esa carpeta se pierde, se puede rehacer
+  descomprimiendo estos .zip allí (cada pack en su carpeta: market, house, farm,
+  fishing, guild = salon_aventureros, training = training_arena_assets,
+  monsters/*.zip -> mon_<nombre>, iconos -> ic_<nombre>, magic_objects ...).

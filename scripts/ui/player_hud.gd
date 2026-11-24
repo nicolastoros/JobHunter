@@ -8,6 +8,7 @@ const ACTION := "res://assets/ui/pack/Action_panel.png"
 const BARS := {"hp": [28, 8, 52], "mana": [30, 13, 43], "stamina": [29, 18, 38]}
 const SLOT_PITCH := 16.0
 
+var _icons_class := ""   # the class whose skill icons are on the action bar
 var _clips := {}
 var _gold: Label
 var _potions: Label
@@ -80,9 +81,9 @@ func _ready() -> void:
 	potion.texture = _atlas(act, Rect2(179, 82, 9, 12))
 	potion.position = Vector2(23, 4)
 	bar.add_child(potion)
-	for i in GameData.SKILLS.size():
+	for i in Game.class_skills().size():
 		var t := TextureRect.new()
-		t.texture = Game.icon_texture(GameData.SKILLS[i]["icon"])
+		t.texture = Game.icon_texture(Game.class_skills()[i]["icon"])
 		t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		t.size = Vector2(14, 14)
 		t.position = Vector2(4 + SLOT_PITCH * (i + 2), 3)
@@ -95,7 +96,7 @@ func _ready() -> void:
 		bar.add_child(cd)
 		_skill_cd.append(cd)
 	var keys := [[Vector2(11, 11), "J"], [Vector2(28, 11), "Q"]]
-	for i in GameData.SKILLS.size():
+	for i in Game.class_skills().size():
 		keys.append([Vector2(12 + SLOT_PITCH * (i + 2), 11), str(i + 1)])
 	for pair in keys:
 		var l := Label.new()
@@ -190,7 +191,7 @@ func _refresh() -> void:
 	_set_bar("mana", Game.mana / Game.max_mana)
 	_set_bar("stamina", Game.stamina / Game.max_stamina)
 	_xp_fill.size.x = roundf(46.0 * float(Game.xp) / float(Game.xp_to_next()))
-	_level.text = "Nv %d" % Game.level
+	_level.text = "Nv %d" % Game.level if int(Game.stats.get("legend_level", 0)) == 0 else "Nv %d ★%d" % [Game.level, int(Game.stats["legend_level"])]
 	_gold.text = "%d oro" % Game.gold
 	_potions.text = "%d/%d" % [Game.potions, GameData.POTION_MAX]
 
@@ -228,8 +229,13 @@ func _process(_delta: float) -> void:
 	_streak.visible = st >= 2
 	if st >= 2:
 		_streak.text = "Racha x%d  (+%d %% renombre)" % [st, int(round((Game.streak_mult() - 1.0) * 100))]
-	for i in GameData.SKILLS.size():
-		var s: Dictionary = GameData.SKILLS[i]
+	var list := Game.class_skills()
+	if _icons_class != Game.hero_class:
+		_icons_class = Game.hero_class
+		for k in list.size():
+			_skill_icons[k].texture = Game.icon_texture(list[k]["icon"])
+	for i in list.size():
+		var s: Dictionary = list[i]
 		var known := Game.has_skill(s["id"])
 		_skill_icons[i].modulate = Color(1, 1, 1, 1) if known and Game.mana >= float(s["mana"]) else Color(0.55, 0.55, 0.6, 0.55 if known else 0.22)
 		var frac := Game.skill_cooldown_left(s["id"]) / Game.skill_cooldown(s["id"]) if known else 0.0

@@ -96,6 +96,10 @@ func interact(_player: Node) -> void:
 		$Bubble.hide_now()
 		Game.forge_requested.emit()
 		return
+	if opens == "class":
+		$Bubble.hide_now()
+		Game.open_class_menu()
+		return
 	if opens == "stable":
 		$Bubble.hide_now()
 		Game.stable_requested.emit()

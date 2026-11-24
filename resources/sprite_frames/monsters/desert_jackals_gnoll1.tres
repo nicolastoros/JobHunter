@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/monsters/desert_jackals/Gnoll1_Run_with_shadow.png" id="t2"]
 [ext_resource type="Texture2D" path="res://assets/sprites/monsters/desert_jackals/Gnoll1_Attack_with_shadow.png" id="t3"]
 [ext_resource type="Texture2D" path="res://assets/sprites/monsters/desert_jackals/Gnoll1_Hurt_with_shadow.png" id="t4"]
-[ext_resource type="Texture2D" path="res://assets/sprites/monsters/desert_jackals/Gnoll_Death_with_shadow.png" id="t5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/monsters/desert_jackals/Gnoll1/Gnoll_Death_with_shadow.png" id="t5"]
 
 [sub_resource type="AtlasTexture" id="a0"]
 atlas = ExtResource("t0")

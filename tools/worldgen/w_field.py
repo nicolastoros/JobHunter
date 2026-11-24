@@ -480,6 +480,11 @@ def build():
         for _ in range(n):
             x, y = rng.uniform(56, 114), rng.uniform(78, 118)
             WO.animal(w, kind, x * 16, y * 16, (52 * 16, 76 * 16, 66 * 16, 44 * 16))
+    # wild boars on the meadow (own dice)
+    import w_snow_assets
+    MON.update(w_snow_assets.WF.MON)   # (when this file runs as the main script it has its own MON)
+    for (cx, cy) in ((70, 104), (100, 104), (60, 90), (110, 90), (90, 116)):
+        pack_monsters(w, "boar", cx, cy, 2, 3, own=True)
     # trail from the Whispering Woods up to the Deep Forest (north gap). Carved last, so the rest of the
     # field keeps its layout: clear the trees on the way and repaint the dirt paths.
     trail = {c for c in road_mask([(34, 28), (31, 20), (30, 10), (30, -1)], 3.4) if 0 <= c[0] < W and 0 <= c[1] < H}

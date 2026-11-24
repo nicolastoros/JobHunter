@@ -76,6 +76,7 @@ func _draw() -> void:
 		return area.position + world * scale - src.position
 	_markers(to_screen, area, 1.0)
 	_pois(to_screen, area, false)
+	_objective(to_screen, area, 1.0)
 	var pp: Vector2 = to_screen.call(p.global_position)
 	_hero(pp, 1.0)
 	var f := get_theme_default_font()
@@ -97,6 +98,7 @@ func _draw_big(p: Node2D) -> void:
 		return area.position + world * scale
 	_markers(to_screen, area, 1.3)
 	_pois(to_screen, area, true)
+	_objective(to_screen, area, 1.5)
 	_hero(to_screen.call(p.global_position), 1.5)
 	var f := get_theme_default_font()
 	var title := String(get_tree().current_scene.get("map_title")) if get_tree().current_scene.get("map_title") else "Mapa"
@@ -161,3 +163,32 @@ func _pois(to_screen: Callable, area: Rect2, big: bool) -> void:
 func _hero(pp: Vector2, k: float) -> void:
 	draw_circle(pp, 3.0 * k, Color(0.1, 0.06, 0.04))
 	draw_circle(pp, 2.0 * k, Color(1, 1, 1))
+
+
+
+## The story objective: a pulsing gold star; when it is off the map's edge, an arrow pointing to it.
+func _objective(to_screen: Callable, area: Rect2, k: float) -> void:
+	var target := Game.objective_marker()
+	if target == Vector2.INF:
+		return
+	var tp: Vector2 = to_screen.call(target)
+	var inside := area.grow(-4).has_point(tp)
+	var c := Color(1, 0.82, 0.2)
+	if inside:
+		var r := (4.0 + 0.8 * sin(_t * 5.0)) * k
+		var pts := PackedVector2Array()
+		for i in 10:
+			var a := -PI / 2.0 + i * TAU / 10.0
+			pts.append(tp + Vector2(cos(a), sin(a)) * (r if i % 2 == 0 else r * 0.45))
+		draw_colored_polygon(pts, Color(0.25, 0.14, 0.02))
+		var inner := PackedVector2Array()
+		for q in pts:
+			inner.append(tp + (q - tp) * 0.75)
+		draw_colored_polygon(inner, c)
+	else:
+		var center := area.get_center()
+		var dir := (tp - center).normalized()
+		var edge := tp.clamp(area.position + Vector2(5, 5), area.end - Vector2(5, 5))
+		var side := Vector2(-dir.y, dir.x)
+		var tri := PackedVector2Array([edge + dir * 4.0 * k, edge - dir * 3.0 * k + side * 3.0 * k, edge - dir * 3.0 * k - side * 3.0 * k])
+		draw_colored_polygon(tri, c if int(_t * 3.0) % 2 == 0 else c.lightened(0.4))

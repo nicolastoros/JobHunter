@@ -1,11 +1,11 @@
 [gd_resource type="SpriteFrames" format=3]
 
-[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Idle_with_shadow.png" id="t0"]
-[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Walk_with_shadow.png" id="t1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Run_with_shadow.png" id="t2"]
-[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Attack_with_shadow.png" id="t3"]
-[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Hurt_with_shadow.png" id="t4"]
-[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Death_with_shadow.png" id="t5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Goblin3/Idle_with_shadow.png" id="t0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Goblin3/Walk_with_shadow.png" id="t1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Goblin3/Run_with_shadow.png" id="t2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Goblin3/Attack_with_shadow.png" id="t3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Goblin3/Hurt_with_shadow.png" id="t4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/monsters/goblin_mobs01/Goblin3/Death_with_shadow.png" id="t5"]
 
 [sub_resource type="AtlasTexture" id="a0"]
 atlas = ExtResource("t0")

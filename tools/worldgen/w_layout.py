@@ -6,7 +6,7 @@ import w_terrain as WT
 import w_props as WP
 
 T = 16
-ACTORS_JSON = os.path.join(os.path.dirname(RAW), "actors.json")
+ACTORS_JSON = os.path.join(os.path.dirname(os.path.abspath(__file__)), "actors.json")
 FWC = 12  # farm Water_coasts atlas (registered below)
 SOURCES[FWC] = ("farm/Tiled_files/Water_coasts.png", "assets/sprites/farm/tiles/Water_coasts.png")
 ANIM_MAPS_EXTRA = None

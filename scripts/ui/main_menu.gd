@@ -15,7 +15,7 @@ var _pan_dir := 1.0
 func _ready() -> void:
 	Game.input_locked = false
 	options.hide()
-	new_game_button.pressed.connect(Game.start_new_game)
+	new_game_button.pressed.connect(_choose_class)
 	var cont := $Menu/Buttons/Continue as Button
 	cont.disabled = not Game.has_save()
 	cont.pressed.connect(func(): Game.load_game())
@@ -43,6 +43,16 @@ func _process(delta: float) -> void:
 		_pan_dir = -1.0
 	elif background.position.x > 0.0:
 		_pan_dir = 1.0
+
+
+## New game: first the class.
+func _choose_class() -> void:
+	$Menu.hide()
+	var cs := Control.new()
+	cs.set_script(load("res://scripts/ui/class_select.gd"))
+	cs.set("mode", "new")
+	cs.chosen.connect(func(cls: String): Game.start_new_game(cls))
+	add_child(cs)
 
 
 func _open_options() -> void:

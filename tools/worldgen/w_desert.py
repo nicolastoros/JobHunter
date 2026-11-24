@@ -201,6 +201,9 @@ def build():
     for (cx, cy, k) in ((150, 60, "jackal"), (150, 16, "sandgolem"), (20, 100, "acid"), (20, 20, "sand"), (34, 30, "jackal"), (150, 112, "raider")):
         pack_monsters(w, k, cx, cy, 3, 3, own=True)
 
+    import w_snow_assets  # noqa: F401  (defines the withered trees)
+    for (cx, cy) in ((116, 100), (148, 100), (74, 96), (40, 104)):
+        pack_monsters(w, "withered", cx, cy, 2, 2.5, own=True)
     # treasure chests
     w.chests = []
     for (x, y, tier) in ((124, 34, 4), (150, 10, 3), (152, 110, 3), (130, 92, 2), (90, 112, 2), (18, 16, 2), (70, 44, 1), (46, 94, 1), (84, 68, 1)):

@@ -5,3 +5,6 @@ export_presets.cfg
 /android/
 # Asset source archives
 *.zip
+
+# Python caches of the world generator
+__pycache__/

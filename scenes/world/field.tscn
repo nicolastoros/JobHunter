@@ -40,10 +40,11 @@
 [ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/slimes02_slime_boss2.tres" id="38_slimes02_s"]
 [ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/golem_bosses01_golem2.tres" id="39_golem_boss"]
 [ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/slimes02_slime_boss3.tres" id="40_slimes02_s"]
-[ext_resource type="Script" path="res://scripts/world/zone_exit.gd" id="41_zone_exit"]
-[ext_resource type="Script" path="res://scripts/world/door.gd" id="42_door"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="43_hud"]
-[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="44_pause_menu"]
+[ext_resource type="SpriteFrames" path="res://resources/sprite_frames/monsters/beasts_boar.tres" id="41_beasts_boa"]
+[ext_resource type="Script" path="res://scripts/world/zone_exit.gd" id="42_zone_exit"]
+[ext_resource type="Script" path="res://scripts/world/door.gd" id="43_door"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="44_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="45_pause_menu"]
 
 [sub_resource type="RectangleShape2D" id="Rect_0"]
 size = Vector2(83, 38)
@@ -17698,6 +17699,156 @@ body_size = Vector2(14, 6)
 sprite_offset_y = -12.0
 monster_name = "Limo de bruma"
 
+[node name="Boar_Boar" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1115.583, 1630.272)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_2" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1083.566, 1674.754)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_3" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1609.394, 1657.715)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_4" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1625.681, 1627.063)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_5" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(986.367, 1432.456)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_6" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(984.592, 1426.047)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_7" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1799.739, 1433.042)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_8" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1724.209, 1415.241)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_9" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1448.302, 1816.323)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
+[node name="Boar_Boar_10" parent="Entities/Monsters" instance=ExtResource("20_monster")]
+position = Vector2(1398.923, 1872.168)
+frames = ExtResource("41_beasts_boa")
+max_hp = 9
+damage = 2
+speed = 20
+chase_speed = 58
+aggro_radius = 90
+attack_range = 18
+gold = 4
+territory = 100
+sprite_scale = 1.0
+sprite_offset_y = -9.0
+monster_name = "Jabalí salvaje"
+
 [node name="Player" parent="Entities" instance=ExtResource("19_player")]
 position = Vector2(1368, 1984)
 
@@ -17749,7 +17900,7 @@ position = Vector2(1368, 2062)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("41_zone_exit")
+script = ExtResource("42_zone_exit")
 target_scene = "res://scenes/world/world.tscn"
 target_spawn = "north_gate"
 
@@ -17761,7 +17912,7 @@ position = Vector2(480, 18)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("41_zone_exit")
+script = ExtResource("42_zone_exit")
 target_scene = "res://scenes/world/forest.tscn"
 target_spawn = "south"
 
@@ -17773,7 +17924,7 @@ position = Vector2(2702, 1264)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("41_zone_exit")
+script = ExtResource("42_zone_exit")
 target_scene = "res://scenes/world/desert.tscn"
 target_spawn = "west"
 
@@ -17797,6 +17948,6 @@ position = Vector2(480, 80)
 [node name="east" type="Marker2D" parent="Spawns"]
 position = Vector2(2640, 1264)
 
-[node name="HUD" parent="." instance=ExtResource("43_hud")]
+[node name="HUD" parent="." instance=ExtResource("44_hud")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("44_pause_menu")]
+[node name="PauseMenu" parent="." instance=ExtResource("45_pause_menu")]

@@ -14,24 +14,33 @@ Abre Godot 4.7.2 → **Importar** → selecciona `project.godot`. Pulsa F5 para 
 | Poción de vida (30 %) | Q | Y |
 | Habilidades | 1 a 6 | — |
 | Personaje / Inventario / Habilidades / Talentos | C / I / K / L | Select |
-| Mapa | M | — |
+| Mapa · Mapamundi | M · N | — |
+| Diario (recompensa diaria, tareas, presa del día) | O | — |
+| Bestiario · Logros y títulos | B | — |
 | Fijar / soltar objetivo · cambiar objetivo | Tab · rueda del ratón | — |
 | Montar / desmontar | H | — |
 | Ranking del Gremio (en cualquier lugar) | R | — |
-| Hablar | E / Enter | A |
+| Hablar · despertar / usar piedra rúnica | E / Enter | A |
 | Pausa | Esc | Start |
 
 ## Estructura
 ```
-assets/        sprites originales (mercado, espadachín lvl1-3, naturaleza) + licencias
-resources/     tileset del mercado, SpriteFrames, tema de UI
+assets/          imágenes y sonidos que usa el juego (+ licencias)
+  audio/sfx/     efectos de sonido (generados con tools/worldgen/gen_sfx.py)
+resources/       tilesets, SpriteFrames, minimapas y mapas de colisión de cada región
 scenes/
-  ui/          menú principal, HUD (diálogos), pausa, opciones
-  world/       world.tscn (Valdoria), field.tscn (la llanura)
-  monsters/    monster.tscn (IA, vida, golpes, reaparición)
-  characters/  player.tscn
-  npc/         trader.tscn (comerciante), citizen.tscn (ciudadano que pasea)
-scripts/       mismo orden que scenes/ + autoload/game.gd (transiciones, ajustes)
+  ui/            menú, carga, HUD, pausa, opciones
+  world/         world (Valdoria), field (Llanura), forest (Bosque Profundo),
+                 desert (Desierto de Ámbar), aurelia (Aurelia),
+                 snowforest (Bosque Nevado), snowvillage (Villa Escarcha)
+  interiors/     casas, Gremio...
+  monsters/ characters/ npc/ objects/   monstruos, jugador, PNJ, cofres y piedras rúnicas
+scripts/         mismo orden que scenes/ + autoload/game.gd (estado y progreso)
+                 y data/game_data.gd (todos los datos del juego)
+tools/worldgen/  generadores de mapas, sprites y sonidos (Python); leen los packs
+                 descomprimidos de C:\Users\nicol\JobHunter_raw
+build/web/       la versión web (la que publica Vercel)
+_originals/      los .zip originales de los packs de arte (ignorada por Godot y git)
 ```
 
 ## Capas de colisión
@@ -126,6 +135,79 @@ Modos: **paseantes** (caminan entre puntos con pausas), **vecinos quietos** (pas
 - ~52 caminantes recorren la red de calles. Unos 28 tienen **rutinas**: entran y salen de sus casas, van a comprar a los puestos (el comerciante les responde), conversan entre ellos y saludan al jugador.
 - 5 **guardias** patrullan los portones y avenidas.
 - Comerciantes y personajes fijos pregonan con globos de diálogo; con **E** se habla con casi todos.
+
+## Regiones
+| Región | Escena | Niveles | Destacado |
+|---|---|---|---|
+| Valdoria | `world.tscn` | ciudad | Gremio, Kara (forja), establo, casa del héroe |
+| Llanura de Valdoria | `field.tscn` | 1–16 | Ruinas, campamento (refugio), jefes Gólem, Ent y Rey Limo |
+| Bosque Profundo | `forest.tscn` | 16–32 | Puesto del guardabosques (refugio), Gólem de Obsidiana |
+| Desierto de Ámbar | `desert.tscn` | 30–50 | Oasis de Zafira (refugio), Guardián del Sol |
+| Aurelia | `aurelia.tscn` | ciudad | Ciudad dorada con canales, Doran (forja), archivista Leandra |
+| Bosque Nevado | `snowforest.tscn` | 50–70 | Linde Helada (refugio), Rey Limo de Escarcha, Ent Invernal |
+| Villa Escarcha | `snowvillage.tscn` | ciudad | Plaza del Fuego, Bjorn (forja), anciana Freya |
+| Páramo del Ocaso | `ocaso.tscn` | 72–90 | Post-game, al este de Aurelia: Puesto del Crepúsculo (refugio), acólitos del Sol Negro, Ent Corrupto Anciano |
+
+## Clases (`GameData.CLASSES`, `scripts/ui/class_select.gd`)
+Al empezar partida se elige **Guerrero** (espada, +15 % vida y +2 defensa), **Arquero** (flechas a
+distancia, +8 % velocidad y +6 % crítico) o **Mago** (bolas de fuego que estallan, +40 maná y +20 %
+de daño de habilidades). Cada clase tiene nueve aspectos según el nivel (sprites en
+`assets/sprites/characters/{swordsman,archer,mage}`, generados con `tools/worldgen/gen_classes.py`) y
+seis habilidades propias (`GameData.ARCHER_SKILLS` / `MAGE_SKILLS`): abanico, salto atrás, ojo de
+halcón, flecha explosiva, lluvia y flecha perforante; bola de fuego, parpadeo, barrera, cadena de
+rayos, nova de escarcha y meteoro. Proyectiles en `scripts/fx/projectile.gd`, efectos animados en
+`scripts/fx/anim_fx.gd` (rayos y explosiones de los packs de efectos). Aldric, en el segundo piso del
+Gremio, cambia la clase (el primer cambio es gratis; luego 500 de oro) y lo aprendido se conserva.
+
+## Historia: «Crónica del Quinto Viento»
+Un cazador que empieza tarde (rango E «a su edad») tumba al Gólem de las Ruinas y llama la atención de
+los Cuatro Vientos, el grupo más fuerte de Valdoria: Brann Rompemuros, Seren Llamagris, Corvin
+Sinsombra y Madre Tova. Lo entrenan «hasta caer» mientras alguien rompe los tres Sellos (Estrella, Luna
+y Sol) que encierran al Devorador de Eclipses: Varian, el primer alumno de los Vientos. Al final el
+novato tardío se convierte en el que entrena (Darío, el chico que se reía de él, le pide ser su alumno).
+7 capítulos y 28 pasos: hablar, cazar (algunos con contador, p. ej. 10 gnolls), viajar y superar
+mazmorras. El elenco aparece y se mueve por el mundo según avanza la historia (`GameData.STORY_CAST`,
+`scripts/world/story_cast.gd`). El objetivo se ve bajo el minimapa, con una estrella dorada en el
+minimapa (o una flecha hacia la salida que lleva a él) y en el mapamundi; se relee en el bestiario
+(B) → Crónica. Las partidas con la historia anterior se convierten solas (`story_ver`).
+Datos: `GameData.STORY`; lógica: `story_*` en `game.gd`.
+
+## Mazmorras de oleadas (`scenes/dungeons/`, `scripts/world/dungeon.gd`)
+Un portal por región: Cripta de las Ruinas (12), Raíces del Bosque (26), Tumba del Faraón (42),
+Cripta de Escarcha (60) y el Santuario del Eclipse (70, se abre con la historia). Cinco oleadas
+(élites dorados en la 3.ª y 4.ª, el jefe en la última), rango S/A/B/C por tiempo y golpes recibidos,
+cofre con una pieza del set de la región y equipo con buenas probabilidades de rareza. Modo heroico
+(+8 niveles, más botín) tras la primera victoria. Morir dentro devuelve al portal sin castigo.
+Además: Cloacas de Valdoria (6, en el puerto), Oasis Hundido (36, desierto) y la Fosa del Ocaso
+(84, con el Heraldo del Sol Negro).
+
+## Post-game
+- **Capítulo 8, «Ecos del Sol Negro»**: tras la historia, Varian despierta en el Gremio y lleva al
+  Páramo del Ocaso (acólitos, el Ent Corrupto Anciano y la Fosa del Ocaso).
+- **Torre del Abismo** (portal junto al Gremio; se abre al terminar la historia o en el nivel 60):
+  pisos infinitos de 3 oleadas que rotan entre las cinco arenas, el nivel sube 2 por piso, jefe
+  cada 5 pisos y punto de control cada 10. Récord en `stats.tower_best`; títulos en los pisos 10/25/50.
+- **Niveles de leyenda**: pasado el nivel 99 la experiencia sigue contando; cada nivel de leyenda da
+  un punto de talento (se ve como «Nv 99 ★N»).
+
+## Equipo
+- **Rareza**: Común < Rara < Épica < Legendaria < **Sello de Estrella (SOS)** < **Sello de Luna (SOM)** <
+  **Sello de Sol (SOSUN)**. Los Sellos tienen más atributos, más bonus y un poder propio
+  (estrella que cae, marea que cura, fuego solar). Ver `GameData.SEALS`.
+- **Forja +5/+8/+10**: cada familia de arma despierta un efecto (quemadura, veneno, desgarro,
+  aturdir, perforar, viento cortante, corte doble, siega de almas, tormenta) y la armadura gana un
+  bonus por ranura. A +8/+10 el héroe muestra un aura del elemento.
+- **Sets** (`GameData.SETS`): Guardia de Valdoria, Sombra del Bosque, Vestiduras del Sol, Coraza del
+  Invierno y Reliquias del Eclipse; bonus con 2 y 4 piezas. Caen en mazmorras y de los jefes.
+
+## Pruebas automáticas (`tools/tests/`)
+`CDC_TEST=1 Godot --path . --resolution 960x540 --script tools/tests/<prueba>.gd` (con `CDC_TEST=1`
+usan una partida de prueba y nunca tocan la real). `playtest_reach` comprueba que se puede llegar a
+cada cofre, piedra, salida y PNJ; `playtest_fuzz` juega al azar en todas las regiones;
+`story_test` recorre la historia entera; `story_real` juega de verdad el entrenamiento de Brann
+(10 gnolls a espadazos); `cast_test` visita cada aparición del elenco; `collision_audit` compara la
+navegación con las colisiones reales de cada región (paredes olvidadas, cosas dentro de muros,
+bordes por los que se escapa el héroe); `dungeon_real` pelea una mazmorra de verdad.
 
 ## Modo desarrollador (editor de mapas)
 Menú principal → **Modo desarrollador** → clave. Abre el mundo congelado (NPC quietos) con el editor encima.

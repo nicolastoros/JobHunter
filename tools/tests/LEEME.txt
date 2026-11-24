@@ -1,0 +1,3 @@
+Pruebas automáticas (Godot): ejecutar con
+  CDC_TEST=1 CAPTURE_DIR=<carpeta> Godot --path . --resolution 960x540 --script tools/tests/<prueba>.gd
+CDC_TEST=1 hace que usen user://partida_test.json y nunca toquen la partida real.

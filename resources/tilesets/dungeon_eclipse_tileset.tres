@@ -1,0 +1,61 @@
+[gd_resource type="TileSet" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/market/tiles/Walls_street.png" id="tex_0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/farm/tiles/ground_grass_bricks.png" id="tex_2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/farm/tiles/Road.png" id="tex_3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/farm/tiles/Ground_grass_details.png" id="tex_4"]
+
+[sub_resource type="TileSetAtlasSource" id="atlas_0"]
+texture = ExtResource("tex_0")
+14:8/0 = 0
+14:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="atlas_2"]
+texture = ExtResource("tex_2")
+17:8/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="atlas_3"]
+texture = ExtResource("tex_3")
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+6:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="atlas_4"]
+texture = ExtResource("tex_4")
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+16:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("atlas_0")
+sources/2 = SubResource("atlas_2")
+sources/3 = SubResource("atlas_3")
+sources/4 = SubResource("atlas_4")

@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/snow/snow_village.png" id="t0"]
+
+[sub_resource type="AtlasTexture" id="a0"]
+atlas = ExtResource("t0")
+region = Rect2(292, 129, 8, 29)
+
+[sub_resource type="AtlasTexture" id="a1"]
+atlas = ExtResource("t0")
+region = Rect2(308, 131, 8, 29)
+
+[sub_resource type="AtlasTexture" id="a2"]
+atlas = ExtResource("t0")
+region = Rect2(324, 128, 8, 29)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1,
+"texture": SubResource("a0")
+}, {
+"duration": 1,
+"texture": SubResource("a1")
+}, {
+"duration": 1,
+"texture": SubResource("a2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.091
+}]

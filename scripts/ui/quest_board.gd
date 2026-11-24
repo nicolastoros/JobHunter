@@ -537,5 +537,9 @@ func _rank_row(place: int, e: Dictionary) -> Control:
 	for pair in [[e["name"], 92, INK], [e["rank"], 36, RANK_COLORS.get(e["rank"], INK)], [str(e["level"]), 34, INK], [str(e["renown"]), 60, GOLD]]:
 		var l := _ink(pair[0], 8, pair[2])
 		l.custom_minimum_size = Vector2(pair[1], 0)
+		if pair[1] == 92 and String(e.get("title", "")) != "":
+			l.text = "%s «%s»" % [e["name"], e["title"]]
+			l.add_theme_font_size_override("font_size", 7)
+			l.clip_text = true
 		hb.add_child(l)
 	return row

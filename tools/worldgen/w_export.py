@@ -55,6 +55,11 @@ def res_for_raw(raw_abs):
                   "animals": "animals", "house": "nature", "guild": "guild/actors", "campfire_asset": "field/camp",
                   "grassland_01": "field", "trees_01": "field"}.get(pack) or ("monsters/" + pack.replace("mon_", ""))
         proj = "assets/sprites/%s/%s" % (folder, os.path.basename(raw_abs))
+        # monster packs whose sheets are not named after the variant (Goblin2/Idle_with_shadow.png and
+        # Goblin3/Idle_with_shadow.png): keep each variant in its own folder so they don't overwrite each other
+        parts = rel.split("/")
+        if pack.startswith("mon_") and len(parts) >= 4 and not os.path.basename(raw_abs).lower().startswith(parts[2].lower()):
+            proj = "assets/sprites/%s/%s/%s" % (folder, parts[2], os.path.basename(raw_abs))
     dst = os.path.join(ROOT, proj)
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(raw_abs):
@@ -232,7 +237,7 @@ def walk_mask(w, out_path="resources/world/walkmask.png"):
             for gx in range(max(0, int(x0 // S)), min(gw, int((x1 - 0.01) // S) + 1)):
                 r, g, b = px[gx, gy]
                 px[gx, gy] = (255, g, b)
-    for name in ("walls", "towers", "rim", "fence", "water_city"):
+    for name in [n for n, col in LAYERS if col and n != "solids"]:   # every layer that collides (hills too)
         for (x, y), (src, at, alt) in w.layers.get(name, {}).items():
             kind = w.collide.get((src, at))
             if not kind:

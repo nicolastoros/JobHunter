@@ -40,3 +40,7 @@ func _ready() -> void:
 		$Entities.add_child(bed)
 	if title != "":
 		Game.location_entered.emit(title)
+	var cast := Node.new()
+	cast.name = "StoryCast"
+	cast.set_script(load("res://scripts/world/story_cast.gd"))
+	add_child(cast)

@@ -8,6 +8,7 @@ import w_field as WF
 
 FW, FH = 160, 120
 GATE_X = (77, 84)              # trail out to the plain (bottom edge)
+GATE_N = (37, 43)              # trail north to the Bosque Nevado
 
 WF.MON["obsidian"] = dict(pack="mon_golem_bosses01", kinds=["Golem3"], name="Gólem de Obsidiana",
                           props=dict(max_hp=60, damage=4, speed=12, chase_speed=24, aggro_radius=130, attack_range=30, gold=90, territory=90,
@@ -136,6 +137,21 @@ def build():
         x, y = rng.randrange(1, FW - 1), rng.randrange(1, FH - 1)
         if (x, y) not in w.blocked and (x, y) not in w.solids:
             w.put("detail", x, y, GD, rng.choice(tufts))
+    # new beasts: forest wolves along the trails (own dice, nothing else moves)
+    import w_snow_assets  # noqa: F401  (defines the beasts)
+    for (cx, cy) in ((60, 86), (100, 74), (40, 60), (122, 60)):
+        pack_monsters(w, "wolf", cx, cy, 3, 4, own=True)
+    # trail north from the Crystal Grove to the Bosque Nevado: clear the trees on the way
+    from w_coast import road_mask
+    trail = {c for c in road_mask([(38, 32), (39, 20), (40, 10), (40, -1)], 3.4) if 0 <= c[0] < FW and 0 <= c[1] < FH}
+    trail = {c for c in trail if c not in w.solids}
+    near = {(x + dx, y + dy) for (x, y) in trail for dx in (-2, -1, 0, 1, 2) for dy in (-1, 0, 1, 2)}
+    near |= set(rect_cells(GATE_N[0] - 1, 0, GATE_N[1] + 1, 10))
+    w.props = [pp for pp in w.props if pp["floor"] or (int(pp["pos"][0] // 16), int((pp["pos"][1] - 1) // 16)) not in near]
+    w.field_path |= trail
+    autotile(w, "ground_overlay", w.field_path, FG, nine_at(19, 1), {"se": (22, 1), "sw": (23, 1), "ne": (22, 2), "nw": (23, 2)}, center_variants=[(20, 2)])
+    for c in trail:
+        w.layers.get("detail", {}).pop(c, None)
     w.graph = WL.Graph()
     return w
 
@@ -146,9 +162,10 @@ FOREST_CFG = dict(
     preview_layers=["water", "water_fx", "ground", "ground_overlay", "hill", "road", "detail", "coast", "dock", "dock_fx"],
     walkmask="res://resources/world/forest_walkmask.png", player=(80.5 * 16, 115 * 16),
     zones=ZONES,
-    exits=[dict(name="SouthExit", pos=(80.5 * 16, FH * 16 - 18), size=(8 * 16, 24), scene="res://scenes/world/field.tscn", spawn="north", dir="down")],
-    spawns={"south": (80.5 * 16, 115 * 16), "respawn": (80.5 * 16, 115 * 16), "start": (80.5 * 16, 115 * 16)},
-    bottom_gap=GATE_X,
+    exits=[dict(name="SouthExit", pos=(80.5 * 16, FH * 16 - 18), size=(8 * 16, 24), scene="res://scenes/world/field.tscn", spawn="north", dir="down"),
+           dict(name="NorthExit", pos=(40 * 16, 18), size=(6 * 16, 24), scene="res://scenes/world/snowforest.tscn", spawn="south", dir="up")],
+    spawns={"south": (80.5 * 16, 115 * 16), "respawn": (80.5 * 16, 115 * 16), "start": (80.5 * 16, 115 * 16), "north": (40 * 16, 5 * 16)},
+    bottom_gap=GATE_X, top_gap=GATE_N,
 )
 
 

@@ -5,7 +5,7 @@ from collections import deque
 from PIL import Image
 from w_common import RAW, ROOT
 
-ACTORS = json.load(open(os.path.join(os.path.dirname(RAW), "actors.json")))
+ACTORS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "actors.json")))
 FLOOR_NAMES = {"floor", "carpet", "tile layer 6"}
 WALL_NAMES = {"walls", "windows"}
 TOP_NAMES = {"walls_top"}

@@ -54,6 +54,13 @@ func _ready() -> void:
 		player.facing = "down"
 	Game.pending_spawn = ""
 	Game.take_pending_position(player)
+	# arriving somewhere blocked (a teleport next to a wall, an old save...): step to the nearest free spot
+	if nav and not is_walkable(player.global_position):
+		for r in [24.0, 48.0, 96.0]:
+			var free := _walkable_in(Rect2(player.global_position - Vector2(r, r), Vector2(r, r) * 2.0))
+			if free != Vector2.INF:
+				player.global_position = free
+				break
 	player.reset_physics_interpolation()
 	player.set_camera_limits(Rect2i(Vector2i.ZERO, map_size * 16))
 	_spawn_chests()
@@ -66,8 +73,21 @@ func _ready() -> void:
 		Game.advance_tutorial(4)
 		Game.tip("target", "Consejo: Tab fija una presa y la rueda del ratón cambia de presa.")
 	_spawn_safe_spots()
+	_spawn_waystones()
+	_spawn_dungeon_portals()
+	if scene_file_path.contains("/dungeons/") and Game.current_dungeon != "":
+		var ctrl := Node.new()
+		ctrl.name = "Dungeon"
+		ctrl.set_script(load("res://scripts/world/dungeon.gd"))
+		add_child(ctrl)
+	var cast := Node.new()
+	cast.name = "StoryCast"
+	cast.set_script(load("res://scripts/world/story_cast.gd"))
+	add_child(cast)
+	Game.check_new_day.call_deferred()
 	var first_visit := not Game.visited_maps.has(scene_file_path.get_file())
 	Game.visited_maps[scene_file_path.get_file()] = true
+	Game.story_event.call_deferred("visit", scene_file_path.get_file())
 	if first_visit and scene_file_path.get_file() == "aurelia.tscn":
 		_welcome_aurelia.call_deferred()
 	_announce_levels.call_deferred()
@@ -201,6 +221,38 @@ func _build_nav() -> void:
 			return
 		img = tex.get_image()
 	_build_nav_from(img)
+	_block_tile_colliders()
+
+
+## Every tile layer that collides (cliffs of the hills, walls...) is a wall for the walk grid too, even
+## where an older walk mask forgot it: otherwise monsters and hunters path into cliffs and get stuck.
+func _block_tile_colliders() -> void:
+	if nav == null:
+		return
+	for layer in get_children():
+		if not (layer is TileMapLayer) or not (layer as TileMapLayer).collision_enabled:
+			continue
+		var tl := layer as TileMapLayer
+		if tl.tile_set == null or tl.tile_set.get_physics_layers_count() == 0:
+			continue
+		for cell in tl.get_used_cells():
+			var td := tl.get_cell_tile_data(cell)
+			if td == null or td.get_collision_polygons_count(0) == 0:
+				continue
+			var pts := td.get_collision_polygon_points(0, 0)
+			if pts.is_empty():
+				continue
+			var r := Rect2(pts[0], Vector2.ZERO)
+			for i in td.get_collision_polygons_count(0):
+				for pt in td.get_collision_polygon_points(0, i):
+					r = r.expand(pt)
+			var origin := tl.map_to_local(cell)
+			var a := Vector2i(((origin + r.position) / NAV_CELL).floor())
+			var b := Vector2i(((origin + r.end - Vector2(0.01, 0.01)) / NAV_CELL).floor())
+			for y in range(a.y, b.y + 1):
+				for x in range(a.x, b.x + 1):
+					if nav.region.has_point(Vector2i(x, y)):
+						nav.set_point_solid(Vector2i(x, y), true)
 
 
 ## Rebuilds the walk grid from the live collision shapes (used by the map editor after edits).
@@ -381,3 +433,49 @@ func _welcome_aurelia() -> void:
 	Game.sfx("quest", -2.0, 0.0)
 	await get_tree().create_timer(2.4).timeout
 	Game.toast("Doran, el maestro herrero, trabaja en el Mercado Mayor. Pulsa N para ver el mapamundi.")
+
+
+## Rune stones of this map (teleports), nudged onto walkable ground.
+func _spawn_waystones() -> void:
+	var scene := load("res://scenes/objects/waystone.tscn") as PackedScene
+	for w in GameData.WAYSTONES:
+		if w["map"] != scene_file_path.get_file():
+			continue
+		var pos: Vector2 = (w["pos"] as Vector2) * 16.0
+		if not is_walkable(pos):
+			var near := _walkable_in(Rect2(pos - Vector2(40, 40), Vector2(80, 80)))
+			if near != Vector2.INF:
+				pos = near
+		var n := scene.instantiate()
+		n.set("stone_id", w["id"])
+		n.position = pos
+		$Entities.add_child(n)
+		if Game.pending_waystone == w["id"]:
+			# just teleported here: appear in front of the stone
+			Game.pending_waystone = ""
+			var arrive := pos + Vector2(0, 20)
+			if not is_walkable(arrive):
+				var free := _walkable_in(Rect2(arrive - Vector2(32, 32), Vector2(64, 64)))
+				if free != Vector2.INF:
+					arrive = free
+			player.global_position = arrive
+			player.reset_physics_interpolation()
+			player.camera.reset_smoothing()
+
+
+## Portals to the wave dungeons of this region.
+func _spawn_dungeon_portals() -> void:
+	var scene := load("res://scenes/objects/dungeon_portal.tscn") as PackedScene
+	for id in GameData.DUNGEONS:
+		var d: Dictionary = GameData.DUNGEONS[id]
+		if d["map"] != scene_file_path.get_file():
+			continue
+		var pos: Vector2 = (d["pos"] as Vector2) * 16.0
+		if not is_walkable(pos):
+			var near := _walkable_in(Rect2(pos - Vector2(40, 40), Vector2(80, 80)))
+			if near != Vector2.INF:
+				pos = near
+		var n := scene.instantiate()
+		n.set("dungeon_id", id)
+		n.position = pos
+		$Entities.add_child(n)

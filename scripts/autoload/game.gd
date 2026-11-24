@@ -149,6 +149,28 @@ var _shake_total := 0.0
 
 ## Regions the hero has set foot in (the world map hides the rest).
 var visited_maps := {}
+## The story: index of the step in GameData.STORY (== size when finished).
+var story_step := 0
+## The hero's class: "guerrero", "arquero" or "mago" (GameData.CLASSES).
+var hero_class := "guerrero"
+## Abyss Tower: the floor you are on during a climb (0 = not climbing). Best floor: stats["tower_best"].
+var tower_floor := 0
+## Kills counted toward the current story step, when it asks for several.
+var story_prog := 0
+## Old «Crónica de los Tres Sellos» steps -> steps of the «Crónica del Quinto Viento».
+const _STORY_V1_MAP := [0, 1, 2, 2, 7, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 28]
+## Wave dungeons: the one you are in, heroic or not, where to come back to, and your best results.
+var current_dungeon := ""
+var dungeon_heroic := false
+var dungeon_return := {}
+var dungeon_records := {}
+signal dungeon_menu_requested(id: String)
+signal dungeon_victory_panel(rank: String, secs: float, got: Array)
+## Rune stones woken up (teleports).
+var waystones_unlocked := {}
+## Stone to appear next to after a teleport to another region (the world places you once it is built).
+var pending_waystone := ""
+signal waystone_menu_requested(from_id: String)
 
 var _fade_layer: CanvasLayer
 var _fade_rect: ColorRect
@@ -160,14 +182,16 @@ func _ready() -> void:
 	_build_fade()
 	_build_audio()
 	get_tree().node_added.connect(_on_node_added)
-	if not InputMap.has_action("world_map"):
-		InputMap.add_action("world_map")
-		var ev := InputEventKey.new()
-		ev.physical_keycode = KEY_N
-		InputMap.action_add_event("world_map", ev)
-	var wm := CanvasLayer.new()
-	wm.set_script(load("res://scripts/ui/world_map.gd"))
-	add_child(wm)
+	for pair in [["world_map", KEY_N], ["daily", KEY_O], ["codex", KEY_B]]:
+		if not InputMap.has_action(pair[0]):
+			InputMap.add_action(pair[0])
+			var ev := InputEventKey.new()
+			ev.physical_keycode = pair[1]
+			InputMap.action_add_event(pair[0], ev)
+	for ui in ["res://scripts/ui/world_map.gd", "res://scripts/ui/daily.gd", "res://scripts/ui/codex.gd", "res://scripts/ui/waystone_menu.gd", "res://scripts/ui/dungeon_menu.gd"]:
+		var layer := CanvasLayer.new()
+		layer.set_script(load(ui))
+		add_child(layer)
 	if OS.get_environment("CDC_TEST") != "":
 		save_path = "user://partida_test.json"
 		backup_path = "user://partida_test_respaldo.json"
@@ -182,6 +206,14 @@ func _process(delta: float) -> void:
 	clock += delta
 	if _in_gameplay():
 		play_time += delta
+		_daily_check_left -= delta
+		if _daily_check_left <= 0.0:
+			_daily_check_left = 30.0
+			check_new_day()
+		_ach_check_left -= delta
+		if _ach_check_left <= 0.0:
+			_ach_check_left = 1.5
+			check_achievements()
 		_refill_left -= delta
 		if _refill_left <= 0.0:
 			_refill_left = 0.5
@@ -206,6 +238,7 @@ func _build_fade() -> void:
 	_fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_fade_rect.modulate.a = 0.0
 	_fade_layer.add_child(_fade_rect)
+	_build_region_card()
 
 
 func change_scene(path: String, duration := 0.35) -> void:
@@ -219,9 +252,16 @@ func change_scene(path: String, duration := 0.35) -> void:
 	get_tree().paused = false
 	input_locked = false
 	menu_open = false
+	# travelling to another region: its card (picture, name, level, a tip) while it loads
+	var card := _show_region_card(path)
 	get_tree().change_scene_to_file(path)
 	await get_tree().process_frame
 	await get_tree().process_frame
+	if card:
+		await get_tree().create_timer(1.1).timeout
+		var ct := create_tween()
+		ct.tween_property(_card, "modulate:a", 0.0, 0.3)
+		await ct.finished
 	tween = create_tween()
 	tween.tween_property(_fade_rect, "modulate:a", 0.0, duration)
 	await tween.finished
@@ -229,8 +269,12 @@ func change_scene(path: String, duration := 0.35) -> void:
 	_busy = false
 
 
-func start_new_game() -> void:
+func start_new_game(cls := "guerrero") -> void:
 	reset_progress()
+	hero_class = cls if GameData.CLASSES.has(cls) else "guerrero"
+	recalc_stats()
+	player_hp = max_hp
+	mana = max_mana
 	pending_spawn = "bed"
 	return_spawn = HOME_DOOR
 	pending_position = Vector2.INF
@@ -259,6 +303,16 @@ func _in_gameplay() -> bool:
 
 func reset_progress() -> void:
 	visited_maps = {}
+	story_step = 0
+	hero_class = "guerrero"
+	story_prog = 0
+	current_dungeon = ""
+	dungeon_records = {}
+	waystones_unlocked = {}
+	stats = {"gold_earned": 0, "legendaries": 0, "dailies": 0, "best_streak": 0}
+	titles_unlocked = {}
+	active_title = ""
+	daily = {}
 	gold = 120
 	level = 1
 	xp = 0
@@ -309,11 +363,33 @@ func look_tier() -> int:
 
 
 func look_title() -> String:
+	var titles: Array = GameData.CLASS_TITLES.get(hero_class, [])
+	var tier := look_tier()
+	if tier >= 1 and tier <= titles.size():
+		return String(titles[tier - 1])
 	return String(GameData.look_for(level)[2])
+
+
+## Past level 99 the experience keeps counting: legend levels, one talent point each.
+func legend_need() -> int:
+	return 2500 + 150 * int(stats.get("legend_level", 0))
+
+
+func _add_legend_xp(n: int) -> void:
+	stats["legend_xp"] = int(stats.get("legend_xp", 0)) + n
+	while int(stats["legend_xp"]) >= legend_need():
+		stats["legend_xp"] = int(stats["legend_xp"]) - legend_need()
+		stats["legend_level"] = int(stats.get("legend_level", 0)) + 1
+		talent_points += 1
+		sfx("level_up", 0.0, 0.0)
+		world_event.emit("Nivel de leyenda %d  ·  +1 punto de talento" % int(stats["legend_level"]))
+		check_achievements()
+	stats_changed.emit()
 
 
 func add_xp(n: int) -> void:
 	if level >= GameData.MAX_LEVEL:
+		_add_legend_xp(n)
 		return
 	var tier_before := look_tier()
 	xp += n
@@ -341,10 +417,12 @@ func add_xp(n: int) -> void:
 
 ## Gold, experience and loot when a monster falls.
 func on_monster_killed(m: Node2D) -> void:
-	var name_: String = m.get("monster_name")
+	var name_: String = String(m.get("base_name")) if String(m.get("base_name")) != "" else String(m.get("monster_name"))
 	var top: Vector2 = m.global_position + Vector2(0, float(m.get("sprite_offset_y")) * 2.0)
-	var g := int(round(int(m.get("gold")) * gold_mult()))
-	var loot_mult := 1.0 + tsum("loot")
+	var prey := is_prey(name_)
+	var stars_before := bestiary_stars(name_)
+	var g := int(round(int(m.get("gold")) * gold_mult() * (1.0 + GameData.BESTIARY_GOLD * stars_before) * (GameData.PREY_MULT if prey else 1.0)))
+	var loot_mult := (1.0 + tsum("loot")) * (2.0 if prey else 1.0)
 	add_gold(g)
 	spawn_popup(top, "+%d oro" % g, Color(1, 0.85, 0.3))
 	sfx("coin", -9.0, 0.1)
@@ -357,6 +435,15 @@ func on_monster_killed(m: Node2D) -> void:
 			add_item(d[0], int(d[2]))
 			spawn_popup(top + Vector2(0, dy), GameData.ITEMS[d[0]]["name"], Color(0.6, 0.9, 1))
 			dy -= 10.0
+	if boss and randf() < 0.25:
+		# region bosses sometimes leave a piece of their region's set
+		for did in GameData.DUNGEONS:
+			if GameData.DUNGEONS[did]["map"] == map_file() and did != "eclipse":
+				var sp := make_set_piece(String(GameData.DUNGEONS[did]["set"]), 1.0)
+				if sp != "":
+					bag.append(sp)
+					announce_piece(sp, top + Vector2(0, dy - 12.0))
+				break
 	if boss or randf() < GameData.EQUIP_DROP_CHANCE * loot_mult:
 		var piece := make_piece(int(m.get("monster_level")) + (3 if boss else 0), 1.0 if boss else 0.0)
 		if piece != "":
@@ -369,6 +456,15 @@ func on_monster_killed(m: Node2D) -> void:
 		mana = minf(mana + tsum("kill_mana"), max_mana)
 	_quest_progress(name_)
 	_contract_progress(name_)
+	_daily_progress("kill", name_)
+	_daily_progress("kill_any")
+	if prey:
+		_daily_progress("prey", name_)
+		add_renown(4)
+	if boss:
+		_daily_progress("boss")
+	_bestiary_after_kill(name_, stars_before)
+	story_event("kill", name_)
 	_bump_streak(top + Vector2(0, dy - 10.0))
 	add_renown(2 + int(m.get("monster_level")) / 4 + (25 if boss else 0))
 	add_xp(gain)
@@ -398,6 +494,7 @@ func on_event_boss_killed(m: Node2D, player_fought: bool, hunters: Array) -> voi
 		got.append(eq(piece)["name"])
 		announce_piece(piece, top + Vector2(0, -12))
 	spawn_popup(top, "¡Botín del %s!" % name_, Color(1, 0.85, 0.35))
+	_daily_progress("boss")
 	world_event.emit("¡%s derrotado! Botín: %s." % [name_, ", ".join(got)])
 	_bump_streak(top)
 	add_renown(80)
@@ -462,7 +559,7 @@ func ranking() -> Array:
 		var sc := npc_score(h)
 		out.append({"name": h["name"], "renown": sc, "level": h["level"], "tier": h["tier"],
 			"rank": GameData.GUILD_RANKS[GameData.guild_rank_index(sc)][1], "player": false})
-	out.append({"name": "Tú", "renown": renown, "level": level, "tier": look_tier(), "rank": guild_rank()[1], "player": true})
+	out.append({"name": "Tú", "title": active_title, "renown": renown, "level": level, "tier": look_tier(), "rank": guild_rank()[1], "player": true})
 	out.sort_custom(func(a, b): return int(a["renown"]) > int(b["renown"]))
 	return out
 
@@ -530,9 +627,15 @@ func _new_contract() -> Dictionary:
 	for c in contracts:
 		if int(c.get("progress", 0)) < int(c.get("count", 1)):
 			taken.append(c["monster"])
+	var reachable := _huntable(true)
 	for t in GameData.CONTRACT_POOL:
 		var boss: bool = int(t[1]) == 1
 		if boss and level < 8:
+			continue
+		var r: Array = GameData.MON_LEVELS.get(t[0], [1, 1])
+		if not boss and not (t[0] in reachable):
+			continue
+		if boss and int(r[0]) > level + 6:
 			continue
 		if t[0] in taken:
 			continue
@@ -689,6 +792,12 @@ func rarity_color(entry: String, ink := false) -> Color:
 
 
 func _roll_rarity(luck: float) -> int:
+	var seal_roll := randf()
+	var acc := 0.0
+	for tier in [6, 5, 4]:
+		acc += float(GameData.SEAL_ODDS[tier - 4]) * (1.0 + luck * 3.0) * seal_luck()
+		if seal_roll < acc:
+			return tier
 	var x := randf()
 	var odds: Array = GameData.RARITY_ODDS
 	var leg := float(odds[2]) * (1.0 + luck * 2.0)
@@ -715,10 +824,10 @@ func make_piece(mlevel: int, luck := 0.0, plus := 0) -> String:
 		return entry
 	var keys: Array = GameData.AFFIXES.keys()
 	keys.shuffle()
-	var lv := int(GameData.EQUIPMENT[base]["level"])
-	var mult: float = [1.0, 1.0, 1.25, 1.6][rar]
+	var lv := int(GameData.equip_def(base)["level"])
+	var mult: float = GameData.RARITY_AFFIX_MULT[rar]
 	var parts: Array[String] = []
-	for k in keys.slice(0, mini(rar, 3)):
+	for k in keys.slice(0, int(GameData.RARITY_AFFIX_COUNT[rar])):
 		var a: Array = GameData.AFFIXES[k]
 		var v := (randf_range(float(a[0]), float(a[1])) + lv * randf_range(float(a[2]), float(a[3]))) * mult
 		if k in ["atk", "def", "hp", "mana"]:
@@ -733,9 +842,13 @@ func announce_piece(piece: String, pos: Vector2) -> void:
 	var r := eq_rarity(piece)
 	spawn_popup(pos, eq(piece)["name"], GameData.RARITY_COLORS[r])
 	if r > 0:
-		sfx(["", "loot_rare", "loot_epic", "loot_legendary"][r], 0.0 if r == 3 else -3.0, 0.0)
-	if r == 3:
-		shake(2.0, 0.4)
+		sfx(["", "loot_rare", "loot_epic", "loot_legendary", "loot_legendary", "loot_legendary", "loot_legendary"][r], 0.0 if r >= 3 else -3.0, 0.0)
+	if r >= 3:
+		shake(2.0 + (r - 3) * 1.5, 0.4 + (r - 3) * 0.2)
+		stats["legendaries"] = int(stats.get("legendaries", 0)) + 1
+	if r >= 4:
+		sfx("horn", -2.0, 0.0)
+		stats["seals"] = int(stats.get("seals", 0)) + 1
 	if r >= 2:
 		var beam := Node2D.new()
 		beam.set_script(load("res://scripts/fx/loot_beam.gd"))
@@ -743,7 +856,10 @@ func announce_piece(piece: String, pos: Vector2) -> void:
 		beam.position = pos + Vector2(0, 20)
 		var parent := get_tree().current_scene.get_node_or_null("Entities")
 		(parent if parent else get_tree().current_scene).add_child(beam)
-	if r == 3:
+	if r >= 4:
+		world_event.emit("¡%s! %s" % [String(GameData.SEALS[r]["name"]).to_upper(), eq(piece)["name"]])
+		toast("Una pieza forjada con un fragmento de los antiguos Sellos. Muy pocos cazadores han visto una.")
+	elif r == 3:
 		world_event.emit("¡Legendario! %s" % eq(piece)["name"])
 	else:
 		toast("Encontraste: %s%s" % [eq(piece)["name"], "" if r == 0 else " (%s)" % GameData.RARITY_NAMES[r].to_lower()])
@@ -780,8 +896,10 @@ func tsum(key: String) -> float:
 			t += float(n["fx"][key]) * int(talents[id])
 	if active_pet != "":
 		t += float(GameData.PETS.get(active_pet, {}).get("fx", {}).get(key, 0.0))
+	t += float(class_def().get("fx", {}).get(key, 0.0))
 	if key in GameData.EQUIP_FX:
 		t += _equip_sum(key)
+	t += _set_fx(key)
 	return t
 
 
@@ -832,11 +950,18 @@ func mitigate(raw: int) -> int:
 ## Hits a monster (or its hurtbox) with crits, skill power and life steal applied.
 func hit_monster(target: Object, base: int, is_skill: bool, source: Node2D) -> void:
 	var dmg := float(base) * (skill_power() if is_skill else 1.0)
+	if target and target.get("monster_name") != null:
+		dmg *= 1.0 + GameData.BESTIARY_DMG * bestiary_stars(String(target.get("base_name")))
 	var crit := randf() < crit_chance()
 	if crit:
 		dmg *= crit_mult()
+	var suns := seal_count(6)
+	if suns > 0:
+		dmg *= 1.0 + 0.12 * suns
 	var final := maxi(1, int(round(dmg)))
 	target.call("take_hit", final, source, crit)
+	if is_instance_valid(target) and target.has_method("apply_dot"):
+		_on_hit_effects(target, final)
 	if crit:
 		sfx("crit", 0.0, 0.06)
 		hit_stop(0.075)
@@ -1062,7 +1187,7 @@ func eq_icon(entry: String) -> String:
 
 ## Stats of an equipment entry, including forge improvements.
 func eq(entry: String) -> Dictionary:
-	var e: Dictionary = GameData.EQUIPMENT.get(eq_base(entry), {}).duplicate()
+	var e: Dictionary = GameData.equip_def(eq_base(entry)).duplicate()
 	if e.is_empty():
 		return e
 	var plus := eq_plus(entry)
@@ -1080,10 +1205,25 @@ func eq(entry: String) -> Dictionary:
 			e["hp"] = int(e.get("hp", 0)) + plus * 2
 	var rar := eq_rarity(entry)
 	e["rarity"] = rar
-	if rar == 3:   # legendary: +20 % to the piece's own stats
+	var smult: float = GameData.RARITY_STAT_MULT[rar]
+	if smult > 1.0:   # legendary and seals: more of the piece's own stats
 		for k in ["atk", "def", "hp", "mana"]:
 			if e.has(k) and int(e[k]) > 0:
-				e[k] = int(round(int(e[k]) * 1.2))
+				e[k] = int(round(int(e[k]) * smult))
+	if rar >= 4:
+		var seal: Dictionary = GameData.SEALS[rar]
+		e["name"] = "%s · %s" % [seal["short"], e["name"]]
+		e["seal"] = rar
+		e["desc"] = "%s\n%s: %s." % [seal["lore"], seal["power"], seal["power_text"]]
+	# forge: weapons wake an effect at +5, armour gains a bonus by slot
+	if plus >= 5:
+		var step := 2.0 if plus >= 10 else (1.5 if plus >= 8 else 1.0)
+		if e["slot"] == "weapon":
+			e["forge_fx"] = GameData.weapon_family(eq_base(entry))
+			e["forge_proc"] = GameData.FORGE_PROC[10 if plus >= 10 else (8 if plus >= 8 else 5)]
+		elif GameData.ARMOR_FORGE_FX.has(e["slot"]):
+			for k in GameData.ARMOR_FORGE_FX[e["slot"]]:
+				e[k] = float(e.get(k, 0.0)) + float(GameData.ARMOR_FORGE_FX[e["slot"]][k]) * step
 	var fx := eq_affixes(entry)
 	for k in fx:
 		if k in ["atk", "def", "hp", "mana"]:
@@ -1159,6 +1299,7 @@ func open_chest(id: String, tier: int, pos: Vector2) -> void:
 		add_item("eter", 1 + int(tier / 2))
 		found.append("pociones de maná")
 	spawn_popup(pos, "¡Cofre!", Color(1, 0.88, 0.4))
+	_daily_progress("chest")
 	sfx("chest", 0.0, 0.04)
 	add_renown(5 + tier * 5)
 	toast("En el cofre: %s." % ", ".join(found))
@@ -1166,6 +1307,62 @@ func open_chest(id: String, tier: int, pos: Vector2) -> void:
 
 
 # --- Skills -----------------------------------------------------------------------
+
+## The Guild's class master: the class cards, to change class.
+func open_class_menu() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 30
+	layer.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(layer)
+	var cs := Control.new()
+	cs.set_script(load("res://scripts/ui/class_select.gd"))
+	cs.set("mode", "change")
+	menu_open = true
+	get_tree().paused = true
+	cs.closed.connect(func():
+		get_tree().paused = false
+		menu_open = false
+		layer.queue_free())
+	layer.add_child(cs)
+
+
+func class_def() -> Dictionary:
+	return GameData.CLASSES.get(hero_class, GameData.CLASSES["guerrero"])
+
+
+## The six skills of the hero's class, in hotkey order.
+func class_skills() -> Array:
+	return GameData.skills_for(hero_class)
+
+
+## "" if the hero can change to `cls` now, else why not.
+func class_change_reason(cls: String) -> String:
+	if cls == hero_class:
+		return "Ya eres %s." % class_def()["name"].to_lower()
+	if int(stats.get("class_changes", 0)) > 0 and gold < GameData.CLASS_CHANGE_COST:
+		return "Necesitas %d de oro." % GameData.CLASS_CHANGE_COST
+	return ""
+
+
+func class_change_cost() -> int:
+	return 0 if int(stats.get("class_changes", 0)) == 0 else GameData.CLASS_CHANGE_COST
+
+
+## Changes the hero's class (skills learned in each class are kept for when you come back).
+func set_class(cls: String) -> bool:
+	if class_change_reason(cls) != "":
+		return false
+	gold -= class_change_cost()
+	stats["class_changes"] = int(stats.get("class_changes", 0)) + 1
+	hero_class = cls
+	recalc_stats()
+	mana = minf(mana, max_mana)
+	sfx("level_up", -2.0, 0.0)
+	toast("Ahora eres %s. %s" % [class_def()["name"].to_lower(), class_def()["perk"]])
+	look_changed.emit()
+	stats_changed.emit()
+	return true
+
 
 func skill_rank(id: String) -> int:
 	return int(skill_ranks.get(id, 0))
@@ -1347,15 +1544,22 @@ func set_stamina(v: float) -> void:
 
 func add_gold(n: int) -> void:
 	gold += n
+	if n > 0:
+		stats["gold_earned"] = int(stats.get("gold_earned", 0)) + n
+		_daily_progress("gold", "", n)
 	stats_changed.emit()
 
 
 ## The player fell: fade out and wake up at the map's safe spot with full health.
 func player_died() -> void:
-	toast("Despiertas en un lugar seguro...")
 	player_hp = max_hp
 	stamina = max_stamina
 	mana = max_mana
+	if current_dungeon != "":
+		toast("Caíste en la mazmorra. Vuelve cuando estés listo.")
+		leave_dungeon()
+		return
+	toast("Despiertas en un lugar seguro...")
 	var scene := get_tree().current_scene
 	pending_spawn = "respawn"
 	change_scene(scene.scene_file_path, 0.6)
@@ -1388,7 +1592,7 @@ func has_save() -> bool:
 
 func can_save() -> bool:
 	var p := _player()
-	return p != null and not editing and not _busy and not (p.has_method("is_dead") and p.call("is_dead"))
+	return p != null and not editing and not _busy and current_dungeon == "" and not (p.has_method("is_dead") and p.call("is_dead"))
 
 
 func save_game(auto := false) -> bool:
@@ -1411,6 +1615,9 @@ func save_game(auto := false) -> bool:
 		"has_mount": has_mount, "pets": Array(pets), "active_pet": active_pet, "tutorial_step": tutorial_step,
 		"skill_ranks": skill_ranks, "talents": talents, "attributes": attributes, "kills": kills, "quests": quest_states,
 		"play_time": play_time, "visited": visited_maps.keys(),
+		"stats": stats, "titles": titles_unlocked.keys(), "active_title": active_title, "daily": daily,
+		"waystones": waystones_unlocked.keys(), "dungeons": dungeon_records, "story_step": story_step,
+		"story_prog": story_prog, "story_ver": GameData.STORY_VERSION, "hero_class": hero_class,
 	}
 	# keep the previous save as a backup before writing the new one
 	if FileAccess.file_exists(save_path) and _read_save(save_path).size() > 0:
@@ -1456,11 +1663,36 @@ func load_game() -> bool:
 	visited_maps = {}
 	for m in d.get("visited", []):
 		visited_maps[String(m)] = true
+	waystones_unlocked = {}
+	for w in d.get("waystones", []):
+		waystones_unlocked[String(w)] = true
+	dungeon_records = d.get("dungeons", {})
+	current_dungeon = ""
+	story_step = int(d.get("story_step", 0))
+	story_prog = int(d.get("story_prog", 0))
+	hero_class = String(d.get("hero_class", "guerrero"))
+	if not GameData.CLASSES.has(hero_class):
+		hero_class = "guerrero"
+	if int(d.get("story_ver", 1)) < 2:
+		story_step = _STORY_V1_MAP[clampi(story_step, 0, _STORY_V1_MAP.size() - 1)]
+		story_prog = 0
+	story_step = clampi(story_step, 0, GameData.STORY.size())
+	stats = {"gold_earned": 0, "legendaries": 0, "dailies": 0, "best_streak": 0}
+	stats.merge(d.get("stats", {}), true)
+	titles_unlocked = {}
+	for t in d.get("titles", []):
+		titles_unlocked[String(t)] = true
+	active_title = String(d.get("active_title", ""))
+	daily = d.get("daily", {})
+	if not daily.is_empty():
+		var fresh := _fresh_daily()
+		fresh.merge(daily, true)
+		daily = fresh
 	if item_count("pocion") > GameData.POTION_MAX:
 		inventory["pocion"] = GameData.POTION_MAX
 	bag.clear()
 	for id in d.get("bag", []):
-		if GameData.EQUIPMENT.has(eq_base(String(id))):
+		if not GameData.equip_def(eq_base(String(id))).is_empty():
 			bag.append(String(id))
 	opened_chests = {}
 	for c in d.get("chests", []):
@@ -1488,7 +1720,7 @@ func load_game() -> bool:
 	equipped = {}
 	var eq_: Dictionary = d.get("equipped", {})
 	for slot in eq_:
-		if GameData.EQUIPMENT.has(eq_base(String(eq_[slot]))):
+		if not GameData.equip_def(eq_base(String(eq_[slot]))).is_empty():
 			equipped[String(slot)] = String(eq_[slot])
 	skill_ranks = _int_dict(d.get("skill_ranks", {}))
 	kills = _int_dict(d.get("kills", {}))
@@ -1626,7 +1858,13 @@ func objective_text() -> String:
 		1: return "Ve al Gremio de Cazadores, en el centro de la ciudad"
 		2: return "Acepta un pedido en el tablón del Gremio"
 		3: return "Sal a cazar a la Llanura por la puerta norte"
-	return ""
+	var s := story_current()
+	if s.is_empty():
+		return ""
+	var t := "%s: %s" % [GameData.STORY_CHAPTERS[int(s["ch"])], s["text"]]
+	if s.has("n"):
+		t += " (%d/%d)" % [story_prog, int(s["n"])]
+	return t
 
 
 func advance_tutorial(to_step: int) -> void:
@@ -1645,11 +1883,16 @@ func tip(id: String, text: String) -> void:
 
 ## Lines an NPC says instead of its usual ones (story moments). Empty = default.
 func npc_override(npc_name: String) -> PackedStringArray:
+	var st := story_current()
+	if not st.is_empty() and st["kind"] == "talk" and npc_name.contains(String(st["target"])) and tutorial_step >= 4:
+		var said := PackedStringArray(st.get("lines", []))
+		_story_advance()
+		return said
 	if npc_name.contains("Ysolde") and tutorial_step <= 1:
 		advance_tutorial(2)
 		toast("Obtienes: Licencia de cazador (rango E)")
 		return PackedStringArray([
-			"Así que tú eres el nuevo cazador. Toma, tu licencia: rango E, como todos al empezar.",
+			"Así que tú eres el nuevo cazador. ¿A tu edad? Bueno, la licencia no pregunta los años. Rango E, como todos al empezar.",
 			"Cumple pedidos y contratos, caza y gana renombre. Con renombre tu licencia sube: D, C, B, A... y cada rango trae su recompensa.",
 			"Y con la experiencia también cambia tu porte: en el nivel 10, 20, 30... Los veteranos se reconocen de lejos. El tablón está a ambos lados del salón.",
 		])
@@ -1845,3 +2088,1014 @@ func save_settings() -> void:
 	for key in settings.keys():
 		cfg.set_value("settings", key, settings[key])
 	cfg.save(SETTINGS_PATH)
+
+# =============================================================================
+# Every day: login streak, daily tasks, the weekly task and the quarry of the day
+# =============================================================================
+
+signal daily_changed
+signal daily_reward_ready
+signal achievement_unlocked(title: String)
+
+## Lifetime counters for achievements.
+var stats := {"gold_earned": 0, "legendaries": 0, "dailies": 0, "best_streak": 0}
+var titles_unlocked := {}
+var active_title := ""
+var daily := {}
+var _daily_check_left := 0.0
+var _ach_check_left := 1.0
+
+
+func _fresh_daily() -> Dictionary:
+	return {"day": "", "last": "", "streak": 0, "tasks": [], "bonus": false, "weekly": {}, "week": -1, "reward_pending": false, "prey": ""}
+
+
+static func today_key() -> String:
+	return Time.get_date_string_from_system()
+
+
+static func day_index(key: String) -> int:
+	if key == "":
+		return -999
+	return int(Time.get_unix_time_from_datetime_string(key + "T12:00:00") / 86400.0)
+
+
+## Called whenever the hero is in the world: on a new day, roll the tasks and the quarry, advance the streak.
+func check_new_day() -> void:
+	if daily.is_empty():
+		daily = _fresh_daily()
+	var today := today_key()
+	if daily["day"] == today:
+		return
+	var gap := day_index(today) - day_index(String(daily["last"]))
+	daily["streak"] = int(daily["streak"]) + 1 if gap == 1 else 1
+	stats["best_streak"] = maxi(int(stats.get("best_streak", 0)), int(daily["streak"]))
+	daily["last"] = today
+	daily["day"] = today
+	daily["prey"] = _roll_prey()
+	daily["tasks"] = _roll_daily_tasks()
+	daily["bonus"] = false
+	daily["reward_pending"] = true
+	var week := int((day_index(today) + 3) / 7)
+	if int(daily["week"]) != week:
+		daily["week"] = week
+		daily["weekly"] = _roll_weekly()
+	daily_changed.emit()
+	daily_reward_ready.emit()
+
+
+## Creatures you can hunt at your level (by their zone level).
+func _huntable(include_far := false) -> Array:
+	var out: Array = []
+	for b in GameData.BESTIARY:
+		if b.get("boss", false):
+			continue
+		var r: Array = GameData.MON_LEVELS.get(b["name"], [1, 1])
+		if int(r[0]) <= level + (5 if include_far else 2) and int(r[1]) >= level - 10:
+			out.append(b["name"])
+	if out.is_empty():
+		out = ["Limo", "Goblin"]
+	return out
+
+
+func _roll_prey() -> String:
+	var pool := _huntable()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = day_index(today_key()) * 7907 + 3
+	return pool[rng.randi_range(0, pool.size() - 1)]
+
+
+func _task_reward(weight: float) -> Dictionary:
+	return {"gold": int((40 + 9 * level) * weight), "renown": int((6 + level / 3.0) * weight), "sxp": int((8 + level / 2.0) * weight)}
+
+
+func _roll_daily_tasks() -> Array:
+	var tasks: Array = []
+	var prey: String = daily.get("prey", "Limo")
+	tasks.append({"kind": "prey", "of": prey, "n": 8, "p": 0, "claimed": false, "text": "Caza 8 × %s (presa del día)" % prey}.merged(_task_reward(1.2)))
+	var pool := _huntable()
+	pool.erase(prey)
+	var other: String = pool.pick_random() if pool.size() > 0 else prey
+	var n := 15 + level / 2
+	tasks.append({"kind": "kill", "of": other, "n": n, "p": 0, "claimed": false, "text": "Derrota %d × %s" % [n, other]}.merged(_task_reward(1.0)))
+	if level >= 12 and randf() < 0.3:
+		tasks.append({"kind": "dungeon", "n": 1, "p": 0, "claimed": false, "text": "Supera una mazmorra de oleadas"}.merged(_task_reward(1.6)))
+		return tasks
+	match randi() % 3:
+		0:
+			var k := 40 + level
+			tasks.append({"kind": "kill_any", "n": k, "p": 0, "claimed": false, "text": "Derrota %d monstruos de cualquier tipo" % k}.merged(_task_reward(1.0)))
+		1:
+			tasks.append({"kind": "chest", "n": 2, "p": 0, "claimed": false, "text": "Abre 2 cofres"}.merged(_task_reward(1.1)))
+		_:
+			var g := 300 + 40 * level
+			tasks.append({"kind": "gold", "n": g, "p": 0, "claimed": false, "text": "Gana %d de oro" % g}.merged(_task_reward(0.9)))
+	return tasks
+
+
+func _roll_weekly() -> Dictionary:
+	var w: Dictionary
+	match randi() % 3:
+		0:
+			w = {"kind": "kill_any", "n": 500 + level * 6, "text": "Derrota %d monstruos esta semana" % (500 + level * 6)}
+		1:
+			w = {"kind": "boss", "n": 4, "text": "Derrota 4 jefes esta semana (colosales incluidos)"}
+		_:
+			w = {"kind": "daily", "n": 12, "text": "Completa 12 tareas diarias esta semana"}
+	w.merge({"p": 0, "claimed": false})
+	return w.merged(_task_reward(6.0))
+
+
+func _daily_progress(kind: String, of := "", amount := 1) -> void:
+	if daily.is_empty():
+		return
+	for t in daily.get("tasks", []):
+		if t["claimed"] or int(t["p"]) >= int(t["n"]):
+			continue
+		if t["kind"] == kind and (not t.has("of") or t["of"] == of):
+			t["p"] = mini(int(t["p"]) + amount, int(t["n"]))
+			if int(t["p"]) >= int(t["n"]):
+				toast("Tarea diaria cumplida: %s. Cóbrala en el diario (O)." % t["text"])
+				sfx("ui_open", 0.0, 0.0)
+	var wk: Dictionary = daily.get("weekly", {})
+	if not wk.is_empty() and not wk["claimed"] and wk["kind"] == kind and int(wk["p"]) < int(wk["n"]):
+		wk["p"] = mini(int(wk["p"]) + amount, int(wk["n"]))
+		if int(wk["p"]) >= int(wk["n"]):
+			toast("¡Tarea semanal cumplida! Cóbrala en el diario (O).")
+	daily_changed.emit()
+
+
+func _pay(r: Dictionary) -> void:
+	add_gold(int(r.get("gold", 0)))
+	skill_xp += int(r.get("sxp", 0))
+	add_renown(int(r.get("renown", 0)))
+
+
+func claim_daily(i: int) -> bool:
+	var tasks: Array = daily.get("tasks", [])
+	if i < 0 or i >= tasks.size():
+		return false
+	var t: Dictionary = tasks[i]
+	if t["claimed"] or int(t["p"]) < int(t["n"]):
+		return false
+	t["claimed"] = true
+	_pay(t)
+	stats["dailies"] = int(stats.get("dailies", 0)) + 1
+	_daily_progress("daily")
+	sfx("quest", 0.0, 0.0)
+	toast("Tarea cobrada: %d de oro, %d de renombre." % [t["gold"], t["renown"]])
+	daily_changed.emit()
+	return true
+
+
+func daily_bonus_ready() -> bool:
+	if daily.get("bonus", true):
+		return false
+	for t in daily.get("tasks", []):
+		if not t["claimed"]:
+			return false
+	return not daily.get("tasks", []).is_empty()
+
+
+## All three tasks of the day done: the Guild's chest (a piece with good odds).
+func claim_daily_bonus() -> bool:
+	if not daily_bonus_ready():
+		return false
+	daily["bonus"] = true
+	var piece := make_piece(level + 2, 2.0)
+	if piece != "":
+		bag.append(piece)
+		announce_piece(piece, _player().global_position + Vector2(0, -30) if _player() else Vector2.ZERO)
+	add_gold(100 + 20 * level)
+	sfx("chest", 0.0, 0.0)
+	daily_changed.emit()
+	return true
+
+
+func claim_weekly() -> bool:
+	var wk: Dictionary = daily.get("weekly", {})
+	if wk.is_empty() or wk["claimed"] or int(wk["p"]) < int(wk["n"]):
+		return false
+	wk["claimed"] = true
+	_pay(wk)
+	var piece := make_piece(level + 4, 4.0)
+	while piece != "" and eq_rarity(piece) < 2:
+		piece = make_piece(level + 4, 4.0)
+	if piece != "":
+		bag.append(piece)
+		announce_piece(piece, _player().global_position + Vector2(0, -30) if _player() else Vector2.ZERO)
+	sfx("level_up", 0.0, 0.0)
+	daily_changed.emit()
+	return true
+
+
+func streak_day() -> int:
+	return (int(daily.get("streak", 1)) - 1) % GameData.STREAK_REWARDS.size()
+
+
+## Reward for playing today (the streak's day; day 7 is the big one).
+func claim_streak_reward() -> bool:
+	if not daily.get("reward_pending", false):
+		return false
+	daily["reward_pending"] = false
+	var r: Dictionary = GameData.STREAK_REWARDS[streak_day()]
+	var got: Array[String] = []
+	var g := int(r.get("gold", 0)) + 10 * level
+	add_gold(g)
+	got.append("%d de oro" % g)
+	if r.has("eter"):
+		add_item("eter", int(r["eter"]))
+		got.append("%d pociones de maná" % int(r["eter"]))
+	if r.has("piece"):
+		var piece := make_piece(level + 1, float(r["piece"]))
+		if piece != "":
+			bag.append(piece)
+			got.append(eq(piece)["name"])
+			if eq_rarity(piece) >= 2:
+				announce_piece(piece, _player().global_position + Vector2(0, -30) if _player() else Vector2.ZERO)
+	sfx("loot_rare", 0.0, 0.0)
+	toast("Recompensa del día %d: %s." % [int(daily["streak"]), ", ".join(got)])
+	daily_changed.emit()
+	return true
+
+
+func is_prey(mon_name: String) -> bool:
+	return not daily.is_empty() and daily.get("prey", "") == mon_name
+
+
+# =============================================================================
+# Bestiary
+# =============================================================================
+
+func bestiary_entry(mon_name: String) -> Dictionary:
+	for b in GameData.BESTIARY:
+		if b["name"] == mon_name:
+			return b
+	return {}
+
+
+## Stars (0-3) on a creature's page.
+func bestiary_stars(mon_name: String) -> int:
+	var b := bestiary_entry(mon_name)
+	if b.is_empty():
+		return 0
+	var tiers: Array = GameData.BESTIARY_BOSS_TIERS if b.get("boss", false) else GameData.BESTIARY_TIERS
+	var k := int(kills.get(mon_name, 0))
+	var s := 0
+	for t in tiers:
+		if k >= int(t):
+			s += 1
+	return s
+
+
+func bestiary_next(mon_name: String) -> int:
+	var b := bestiary_entry(mon_name)
+	var tiers: Array = GameData.BESTIARY_BOSS_TIERS if b.get("boss", false) else GameData.BESTIARY_TIERS
+	var k := int(kills.get(mon_name, 0))
+	for t in tiers:
+		if k < int(t):
+			return int(t)
+	return -1
+
+
+func _bestiary_after_kill(mon_name: String, stars_before: int) -> void:
+	var s := bestiary_stars(mon_name)
+	if s > stars_before:
+		sfx("quest", 0.0, 0.0)
+		add_renown(10 * s)
+		world_event.emit("Bestiario: %s %s" % [mon_name, "★".repeat(s)])
+		toast("Ahora haces +%d %% de daño y ganas +%d %% de oro contra %s." % [int(GameData.BESTIARY_DMG * 100 * s), int(GameData.BESTIARY_GOLD * 100 * s), mon_name])
+
+
+# =============================================================================
+# Achievements & titles
+# =============================================================================
+
+func achievement_progress(a: Dictionary) -> int:
+	match String(a["kind"]):
+		"kills":
+			var t := 0
+			for k in kills:
+				t += int(kills[k])
+			return t
+		"kill":
+			return int(kills.get(a["of"], 0))
+		"bosses":
+			var b := 0
+			for n in GameData.BOSSES:
+				if int(kills.get(n, 0)) > 0:
+					b += 1
+			return b
+		"level":
+			return level
+		"rank":
+			return 1 if rank_at_least(a["of"]) else 0
+		"maps":
+			return visited_maps.size()
+		"legendary":
+			return int(stats.get("legendaries", 0))
+		"chests":
+			return opened_chests.size()
+		"pets":
+			return pets.size()
+		"streak":
+			return int(stats.get("best_streak", 0))
+		"bestiary":
+			var c := 0
+			for b in GameData.BESTIARY:
+				if bestiary_stars(b["name"]) > 0:
+					c += 1
+			return c
+		"gold":
+			return int(stats.get("gold_earned", 0))
+		"forge":
+			var best := 0
+			for e in equipped.values() + Array(bag):
+				best = maxi(best, eq_plus(String(e)))
+			return best
+		"dailies":
+			return int(stats.get("dailies", 0))
+		"dungeons":
+			var c := 0
+			for id in dungeon_records:
+				if id != "eclipse":
+					c += 1
+			return c
+		"heroic":
+			var h := 0
+			for id in dungeon_records:
+				if bool(dungeon_records[id].get("heroic", false)):
+					h += 1
+			return h
+		"waystones":
+			return waystones_unlocked.size()
+		"story":
+			return 1 if bool(stats.get("story_done", false)) else 0
+		"seals":
+			return int(stats.get("seals", 0))
+		"tower":
+			return tower_best()
+		"legend":
+			return int(stats.get("legend_level", 0))
+	return 0
+
+
+func achievement_goal(a: Dictionary) -> int:
+	return 1 if a["kind"] == "rank" else int(a["n"])
+
+
+func check_achievements() -> void:
+	for a in GameData.ACHIEVEMENTS:
+		if titles_unlocked.has(a["id"]):
+			continue
+		if achievement_progress(a) >= achievement_goal(a):
+			titles_unlocked[a["id"]] = true
+			if active_title == "":
+				active_title = a["title"]
+			sfx("loot_epic", 0.0, 0.0)
+			world_event.emit("¡Logro! «%s»" % a["title"])
+			toast("Nuevo título: «%s». Elígelo en el bestiario (B), pestaña Logros." % a["title"])
+			achievement_unlocked.emit(a["title"])
+
+
+func set_title(id: String) -> void:
+	for a in GameData.ACHIEVEMENTS:
+		if a["id"] == id and titles_unlocked.has(id):
+			active_title = a["title"]
+			stats_changed.emit()
+
+
+# =============================================================================
+# Rune stones (teleports)
+# =============================================================================
+
+func waystone_def(id: String) -> Dictionary:
+	for w in GameData.WAYSTONES:
+		if w["id"] == id:
+			return w
+	return {}
+
+
+func is_waystone_unlocked(id: String) -> bool:
+	return waystones_unlocked.has(id)
+
+
+func unlock_waystone(id: String) -> void:
+	if waystones_unlocked.has(id):
+		return
+	waystones_unlocked[id] = true
+	var w := waystone_def(id)
+	sfx("level_up", -2.0, 0.0)
+	shake(2.0, 0.3)
+	world_event.emit("Piedra rúnica despertada: %s" % w.get("name", ""))
+	if waystones_unlocked.size() == 1:
+		toast("Despierta más piedras rúnicas y podrás viajar entre ellas al instante (E sobre una piedra).")
+	else:
+		toast("Piedras rúnicas despiertas: %d / %d. Pulsa E sobre una para viajar." % [waystones_unlocked.size(), GameData.WAYSTONES.size()])
+	stats_changed.emit()
+
+
+## Travels to an awake stone: a flash, and you appear next to it (in another region if needed).
+func teleport_to(id: String) -> void:
+	var w := waystone_def(id)
+	if w.is_empty() or not is_waystone_unlocked(id) or _busy:
+		return
+	sfx("skill", 0.0, 0.0)
+	var target := (w["pos"] as Vector2) * 16.0 + Vector2(0, 20)
+	for st in get_tree().get_nodes_in_group("waystones"):
+		if st.get("stone_id") == id:
+			target = (st as Node2D).global_position + Vector2(0, 20)
+	if map_file() == w["map"]:
+		var p := _player()
+		if p == null:
+			return
+		_busy = true
+		var tween := create_tween()
+		tween.tween_property(_fade_rect, "modulate:a", 1.0, 0.25)
+		await tween.finished
+		p.global_position = target
+		var world := get_tree().get_first_node_in_group("world")
+		if world and world.has_method("is_walkable") and not world.is_walkable(target):
+			var free: Vector2 = world.call("_walkable_in", Rect2(target - Vector2(32, 32), Vector2(64, 64)))
+			if free != Vector2.INF:
+				p.global_position = free
+		p.reset_physics_interpolation()
+		var cam := p.get_node_or_null("Camera2D") as Camera2D
+		if cam:
+			cam.reset_smoothing()
+		for pet in get_tree().get_nodes_in_group("pets"):
+			(pet as Node2D).global_position = target + Vector2(-16, 6)
+			pet.reset_physics_interpolation()
+		tween = create_tween()
+		tween.tween_property(_fade_rect, "modulate:a", 0.0, 0.3)
+		await tween.finished
+		_busy = false
+		return
+	pending_spawn = ""
+	pending_position = target
+	pending_waystone = id
+	change_scene("res://scenes/world/" + String(w["map"]), 0.3)
+
+
+# =============================================================================
+# Seals, forge effects and sets
+# =============================================================================
+
+## Extra chance of seal pieces (the story's ending raises it).
+func seal_luck() -> float:
+	return 1.5 if bool(stats.get("story_done", false)) else 1.0
+
+
+## How many pieces of a seal tier (4 SOS, 5 SOM, 6 SOSUN) the hero wears.
+func seal_count(tier: int) -> int:
+	var n := 0
+	for slot in equipped:
+		if eq_rarity(String(equipped[slot])) == tier:
+			n += 1
+	return n
+
+
+## Pieces of each set worn.
+func set_counts() -> Dictionary:
+	var out := {}
+	for slot in equipped:
+		var d := GameData.equip_def(eq_base(String(equipped[slot])))
+		if d.has("set"):
+			out[d["set"]] = int(out.get(d["set"], 0)) + 1
+	return out
+
+
+func _set_fx(key: String) -> float:
+	var t := 0.0
+	var counts := set_counts()
+	for sid in counts:
+		var sdef: Dictionary = GameData.SETS.get(sid, {})
+		if int(counts[sid]) >= 2:
+			t += float(sdef.get("2", {}).get(key, 0.0))
+		if int(counts[sid]) >= 4:
+			t += float(sdef.get("4", {}).get(key, 0.0))
+	return t
+
+
+## A piece of a set: one of its four, with a rarity roll (never common).
+func make_set_piece(set_id: String, luck := 1.0) -> String:
+	var sdef: Dictionary = GameData.SETS.get(set_id, {})
+	if sdef.is_empty():
+		return ""
+	var base: String = sdef["pieces"].pick_random()
+	var rar := maxi(1, _roll_rarity(luck + tsum("loot")))
+	var keys: Array = GameData.AFFIXES.keys()
+	keys.shuffle()
+	var lv := int(GameData.equip_def(base)["level"])
+	var parts: Array[String] = []
+	for k in keys.slice(0, int(GameData.RARITY_AFFIX_COUNT[rar])):
+		var a: Array = GameData.AFFIXES[k]
+		var v := (randf_range(float(a[0]), float(a[1])) + lv * randf_range(float(a[2]), float(a[3]))) * float(GameData.RARITY_AFFIX_MULT[rar])
+		parts.append(("%s=%d" % [k, maxi(1, int(round(v)))]) if k in ["atk", "def", "hp", "mana"] else ("%s=%.3f" % [k, v]))
+	return "%s@%d:%s" % [base, rar, ",".join(parts)]
+
+
+func _on_hit_effects(target: Node, dmg: int) -> void:
+	var p := _player()
+	var w: String = String(equipped.get("weapon", ""))
+	if w != "":
+		var e := eq(w)
+		if e.has("forge_fx") and randf() < float(e["forge_proc"]):
+			_forge_proc(String(e["forge_fx"]), target, dmg)
+	# Star seal: a falling star on the enemy
+	var stars := seal_count(4)
+	if stars > 0 and randf() < 0.12 * stars:
+		_star_fall((target as Node2D).global_position, int(dmg * 1.5) + attack())
+	# Moon seal: the tide gives back life and mana
+	var moons := seal_count(5)
+	if moons > 0 and randf() < 0.1 * moons and p:
+		heal_player(maxi(1, int(max_hp * 0.04)))
+		mana = minf(mana + max_mana * 0.06, max_mana)
+		spawn_popup(p.global_position + Vector2(0, -40), "Marea lunar", GameData.RARITY_COLORS[5])
+	# Sun seal: sets the enemy on fire
+	var suns := seal_count(6)
+	if suns > 0 and randf() < 0.2 * suns:
+		target.call("apply_dot", "sol", maxi(1, int(dmg * 0.4)), 3.0, Color(1, 0.85, 0.3))
+
+
+func _forge_proc(fam: String, target: Node, dmg: int) -> void:
+	var t := target as Node2D
+	var col: Color = GameData.FORGE_EFFECTS[fam]["color"]
+	match fam:
+		"llama":
+			target.call("apply_dot", "llama", maxi(1, int(dmg * 0.6)), 3.0, col)
+		"veneno":
+			target.call("apply_dot", "veneno", maxi(1, int(dmg * 0.45)), 4.0, col)
+		"desgarro":
+			target.call("apply_dot", "desgarro", maxi(1, int(dmg * 0.7)), 2.5, col)
+		"aturdir":
+			target.call("stun", 0.9)
+			spawn_popup(t.global_position + Vector2(0, -30), "¡Aturdido!", col)
+		"perforar":
+			target.call("dot_tick", maxi(1, int(dmg * 0.6)), col, "¡Perfora!")
+		"doble":
+			get_tree().create_timer(0.12).timeout.connect(func():
+				if is_instance_valid(target) and int(target.get("hp")) > 0:
+					target.call("dot_tick", maxi(1, int(dmg * 0.5)), col, "x2"))
+		"drenar":
+			heal_player(maxi(1, int(dmg * 0.15)))
+			spawn_popup(t.global_position + Vector2(0, -30), "Siega", col)
+		"viento", "rayo":
+			var hops := 1 if fam == "viento" else 2
+			var from := t.global_position
+			for m in get_tree().get_nodes_in_group("monsters"):
+				if hops <= 0:
+					break
+				if m == target or int(m.get("hp")) <= 0 or (m as Node2D).global_position.distance_to(from) > 70.0:
+					continue
+				_zap(from, (m as Node2D).global_position, col)
+				m.call("dot_tick", maxi(1, int(dmg * (0.5 if fam == "viento" else 0.4))), col, "")
+				hops -= 1
+	if fam in ["llama", "veneno", "desgarro"]:
+		spawn_popup(t.global_position + Vector2(0, -30), GameData.FORGE_EFFECTS[fam]["name"], col)
+
+
+func _zap(a: Vector2, b: Vector2, col: Color) -> void:
+	var l := Line2D.new()
+	l.width = 1.5
+	l.default_color = col
+	var pts := PackedVector2Array([a + Vector2(0, -10)])
+	for i in range(1, 5):
+		pts.append(a.lerp(b, i / 5.0) + Vector2(randf_range(-4, 4), randf_range(-14, -6)))
+	pts.append(b + Vector2(0, -10))
+	l.points = pts
+	l.z_index = 5
+	get_tree().current_scene.add_child(l)
+	var tw := l.create_tween()
+	tw.tween_property(l, "modulate:a", 0.0, 0.25)
+	tw.tween_callback(l.queue_free)
+
+
+func _star_fall(at: Vector2, dmg: int) -> void:
+	var fx := Node2D.new()
+	fx.set_script(load("res://scripts/fx/star_fall.gd"))
+	fx.position = at
+	get_tree().current_scene.add_child(fx)
+	await get_tree().create_timer(0.35).timeout
+	sfx("crit", -4.0, 0.1)
+	shake(2.0, 0.15)
+	for m in get_tree().get_nodes_in_group("monsters"):
+		if int(m.get("hp")) > 0 and (m as Node2D).global_position.distance_to(at) < 44.0:
+			m.call("dot_tick", dmg, GameData.RARITY_COLORS[4], "")
+
+
+## Description lines for a piece: its forge effect and its set (with what is active right now).
+func gear_extra_text(entry: String) -> String:
+	var e := eq(entry)
+	var lines: Array[String] = []
+	if e.has("forge_fx"):
+		var fx: Dictionary = GameData.FORGE_EFFECTS[e["forge_fx"]]
+		lines.append("%s (+%d): %d %% de probabilidad, %s." % [fx["name"], int(e["plus"]), int(round(float(e["forge_proc"]) * 100)), fx["text"]])
+	elif e.get("slot", "") == "weapon" and int(e.get("plus", 0)) < 5:
+		var fam := GameData.weapon_family(eq_base(entry))
+		lines.append("Al llegar a +5 despierta: %s (%s)." % [GameData.FORGE_EFFECTS[fam]["name"], GameData.FORGE_EFFECTS[fam]["text"]])
+	if e.has("set"):
+		var sdef: Dictionary = GameData.SETS[e["set"]]
+		var n := int(set_counts().get(e["set"], 0))
+		lines.append("Set %s (%d/4 puestas)" % [sdef["name"], n])
+		lines.append("  2 piezas: %s%s" % [sdef["2_text"], "  ✓" if n >= 2 else ""])
+		lines.append("  4 piezas: %s%s" % [sdef["4_text"], "  ✓" if n >= 4 else ""])
+	return "\n".join(lines)
+
+
+# =============================================================================
+# Wave dungeons
+# =============================================================================
+
+func dungeon_def(id: String) -> Dictionary:
+	if id == GameData.TOWER_ID:
+		return tower_def(maxi(tower_floor, tower_checkpoint()))
+	return GameData.DUNGEONS.get(id, {})
+
+
+# --- The Abyss Tower ---------------------------------------------------------------------------
+
+func tower_best() -> int:
+	return int(stats.get("tower_best", 0))
+
+
+## Every ten floors a checkpoint: the climb starts from the last one reached.
+func tower_checkpoint() -> int:
+	return maxi(1, (tower_best() / 10) * 10 + 1)
+
+
+## One floor of the tower: its arena (the five themes in turn), the monsters of that theme, a boss every
+## five floors, and a level that keeps going up.
+func tower_def(f: int) -> Dictionary:
+	var d: Dictionary = GameData.DUNGEONS[GameData.TOWER_ID].duplicate()
+	var theme: String = GameData.TOWER_THEMES[(f - 1) % GameData.TOWER_THEMES.size()]
+	for id in GameData.DUNGEONS:
+		var o: Dictionary = GameData.DUNGEONS[id]
+		if o["theme"] == theme and not o.has("tower"):
+			d["pool"] = o["pool"]
+			d["set"] = o["set"]
+	d["theme"] = theme
+	d["floor"] = f
+	d["level"] = 60 + 2 * f
+	d["boss"] = GameData.TOWER_BOSSES[(f / 5 - 1) % GameData.TOWER_BOSSES.size()] if f % 5 == 0 else ""
+	d["name"] = "Torre del Abismo · Piso %d" % f
+	return d
+
+
+## Climb on: the next floor (another arena, stronger monsters).
+func tower_next() -> void:
+	if current_dungeon != GameData.TOWER_ID:
+		return
+	tower_floor += 1
+	sfx("skill", 0.0, 0.0)
+	pending_spawn = "start"
+	change_scene("res://scenes/dungeons/%s.tscn" % tower_def(tower_floor)["theme"], 0.4)
+
+
+## Waves in the current dungeon.
+func dungeon_waves() -> int:
+	return GameData.TOWER_WAVES if current_dungeon == GameData.TOWER_ID else GameData.DUNGEON_WAVES
+
+
+## "" if you can go in, otherwise why not.
+func dungeon_block_reason(id: String, heroic: bool) -> String:
+	var d := dungeon_def(id)
+	if d.is_empty():
+		return "No existe."
+	if d.has("story") and story_chapter() < int(d["story"]):
+		return "Un sello mágico cierra el paso. Sigue la historia."
+	if d.has("tower"):
+		if heroic:
+			return "La Torre no tiene modo heroico: cada piso es más duro que el anterior."
+		if story_chapter() < 8 and level < GameData.TOWER_LEVEL:
+			return "La Torre solo se abre a quien terminó la historia o llegó al nivel %d." % GameData.TOWER_LEVEL
+	if heroic and not dungeon_records.has(id):
+		return "Primero supera la mazmorra en modo normal."
+	return ""
+
+
+func enter_dungeon(id: String, heroic: bool) -> void:
+	var d := dungeon_def(id)
+	if d.is_empty() or dungeon_block_reason(id, heroic) != "":
+		return
+	var p := _player()
+	dungeon_return = {"map": map_file(), "x": p.global_position.x if p else 0.0, "y": (p.global_position.y + 24.0) if p else 0.0}
+	current_dungeon = id
+	dungeon_heroic = heroic
+	if d.has("tower"):
+		tower_floor = tower_checkpoint()
+		d = tower_def(tower_floor)
+	sfx("skill", 0.0, 0.0)
+	pending_spawn = "start"
+	change_scene("res://scenes/dungeons/%s.tscn" % d["theme"], 0.4)
+
+
+func leave_dungeon() -> void:
+	current_dungeon = ""
+	tower_floor = 0
+	if dungeon_return.is_empty():
+		pending_spawn = "start"
+		change_scene("res://scenes/world/world.tscn", 0.4)
+		return
+	pending_spawn = ""
+	pending_position = Vector2(float(dungeon_return["x"]), float(dungeon_return["y"]))
+	change_scene("res://scenes/world/" + String(dungeon_return["map"]), 0.4)
+
+
+## Level of the dungeon's monsters (heroic: eight more).
+func dungeon_level() -> int:
+	return int(dungeon_def(current_dungeon).get("level", level)) + (8 if dungeon_heroic else 0)
+
+
+static func dungeon_rank(secs: float, hits: int) -> String:
+	for r in GameData.DUNGEON_RANKS:
+		if secs <= float(r[1]) and hits <= int(r[2]):
+			return r[0]
+	return "C"
+
+
+## The dungeon is cleared: the chest pays out. Returns what you got, for the victory panel.
+func dungeon_rewards(rank: String, secs: float) -> Array[String]:
+	var d := dungeon_def(current_dungeon)
+	var lv := dungeon_level()
+	var first := not dungeon_records.has(current_dungeon)
+	var rank_luck: float = {"S": 1.5, "A": 1.0, "B": 0.5, "C": 0.0}.get(rank, 0.0)
+	var mult := (1.6 if dungeon_heroic else 1.0) * (1.0 + rank_luck * 0.2)
+	var tower := d.has("tower")
+	if tower:
+		first = int(d["floor"]) > tower_best()
+		mult *= 1.0 + int(d["floor"]) * 0.04
+		rank_luck += minf(3.0, int(d["floor"]) * 0.05)
+	var got: Array[String] = []
+	var g := int((40 + lv * 15) * mult * (2.0 if first else 1.0))
+	add_gold(g)
+	got.append("%d de oro" % g)
+	add_renown(30 + (25 if dungeon_heroic else 0) + (40 if first else 0))
+	skill_xp += 20 + lv
+	var pieces: Array[String] = []
+	pieces.append(make_set_piece(String(d["set"]), 1.5 + (1.5 if dungeon_heroic else 0.0)))
+	pieces.append(make_piece(lv + 3, 2.0 + rank_luck + (1.5 if dungeon_heroic else 0.0)))
+	if rank == "S" or dungeon_heroic:
+		pieces.append(make_piece(lv + 3, 2.5 + rank_luck))
+	for pc in pieces:
+		if pc != "":
+			bag.append(pc)
+			got.append(eq(pc)["name"])
+	for it in GameData.LOOT.get(String(d["boss"]), []):
+		add_item(it[0], int(it[2]) + 1)
+	if tower:
+		if first:
+			stats["tower_best"] = int(d["floor"])
+			got.append("¡Nuevo récord: piso %d!" % int(d["floor"]))
+		add_xp(lv * 25)
+		_daily_progress("dungeon")
+		check_achievements()
+		stats_changed.emit()
+		return got
+	var rec: Dictionary = dungeon_records.get(current_dungeon, {"best": "C", "time": 99999.0, "heroic": false, "clears": 0})
+	var order := ["C", "B", "A", "S"]
+	if order.find(rank) > order.find(String(rec.get("best", "C"))):
+		rec["best"] = rank
+	rec["time"] = minf(float(rec.get("time", 99999.0)), secs)
+	rec["clears"] = int(rec.get("clears", 0)) + 1
+	if dungeon_heroic:
+		rec["heroic"] = true
+	dungeon_records[current_dungeon] = rec
+	add_xp(lv * 25)
+	_daily_progress("dungeon")
+	story_event("dungeon", current_dungeon)
+	stats_changed.emit()
+	return got
+
+
+# =============================================================================
+# The story
+# =============================================================================
+
+func story_current() -> Dictionary:
+	if tutorial_step < 4 or story_step >= GameData.STORY.size():
+		return {}
+	return GameData.STORY[story_step]
+
+
+## Chapter you are in (8 once the main story is over, also during the post-game chapter).
+func story_chapter() -> int:
+	if story_step >= GameData.STORY_MAIN_STEPS:
+		return 8
+	return int(GameData.STORY[story_step]["ch"])
+
+
+## Something happened in the world: a kill, a region reached, a dungeon cleared...
+func story_event(kind: String, value: String) -> void:
+	var st := story_current()
+	if st.is_empty() or st["kind"] != kind or String(st["target"]) != value:
+		return
+	if st.has("n"):
+		story_prog += 1
+		if story_prog < int(st["n"]):
+			objective_changed.emit()
+			return
+	_story_advance()
+
+
+func _story_advance() -> void:
+	var st := story_current()
+	if st.is_empty():
+		return
+	for it in st.get("give", {}):
+		add_item(it, int(st["give"][it]))
+		toast("Obtienes: %s" % GameData.ITEMS[it]["name"])
+	var r: Dictionary = st.get("reward", {})
+	if r.has("gold"):
+		add_gold(int(r["gold"]))
+	if r.has("piece"):
+		var pc := make_piece(level + 2, float(r["piece"]))
+		if pc != "":
+			bag.append(pc)
+			var p := _player()
+			announce_piece(pc, p.global_position + Vector2(0, -30) if p else Vector2.ZERO)
+	if r.has("title"):
+		stats["story_done"] = true
+		titles_unlocked["story"] = true
+		active_title = String(r["title"])
+	var msgs: Array[String] = []
+	if st.has("done"):
+		msgs.append(String(st["done"]))
+	story_step += 1
+	story_prog = 0
+	var nxt := story_current()
+	sfx("quest", 0.0, 0.0)
+	if nxt.is_empty():
+		msgs.append("Fin de la Crónica del Quinto Viento")
+	elif int(nxt["ch"]) != int(st["ch"]):
+		msgs.append("Capítulo %d: %s" % [int(nxt["ch"]), GameData.STORY_CHAPTERS[int(nxt["ch"])]])
+	else:
+		toast("Nuevo objetivo: %s" % nxt["text"])
+	# after a conversation the banners wait for it to end instead of covering it
+	if st["kind"] == "talk" and input_locked_soon():
+		_held_msgs.append_array(msgs)
+		if not dialogue_finished.is_connected(_release_msgs):
+			dialogue_finished.connect(_release_msgs, CONNECT_ONE_SHOT)
+	else:
+		_announce(msgs)
+	objective_changed.emit()
+	stats_changed.emit()
+
+
+var _held_msgs: Array[String] = []
+
+
+func _release_msgs() -> void:
+	var m := _held_msgs.duplicate()
+	_held_msgs.clear()
+	_announce(m)
+
+
+func _announce(msgs: Array[String]) -> void:
+	for k in msgs.size():
+		if k == 0:
+			world_event.emit(msgs[k])
+		else:
+			get_tree().create_timer(4.2 * k).timeout.connect(world_event.emit.bind(msgs[k]))
+
+
+## A talk step advances from inside npc_override, just before the dialogue box opens.
+func input_locked_soon() -> bool:
+	return is_inside_tree() and get_tree().current_scene != null and get_tree().current_scene.get_node_or_null("HUD") != null
+
+
+## Where the current objective is, if it is in this region (for the minimap marker and the arrow).
+func story_target_here() -> Vector2:
+	var st := story_current()
+	if st.is_empty() or not st.has("pos") or String(st.get("map", "")) != map_file():
+		return Vector2.INF
+	return (st["pos"] as Vector2) * 16.0
+
+
+## Regions joined by roads and doors (for guiding the hero toward an objective in another region).
+const _REGION_LINKS := [["world.tscn", "field.tscn"], ["field.tscn", "forest.tscn"], ["field.tscn", "desert.tscn"],
+	["desert.tscn", "aurelia.tscn"], ["forest.tscn", "snowforest.tscn"], ["snowforest.tscn", "snowvillage.tscn"], ["world.tscn", "guild_1f.tscn"],
+	["aurelia.tscn", "ocaso.tscn"]]
+
+
+## The next region on the way from `from` to `to` ("" if there is no way).
+static func _next_region(from: String, to: String) -> String:
+	if from == to:
+		return to
+	var prev := {from: ""}
+	var queue := [from]
+	while not queue.is_empty():
+		var cur: String = queue.pop_front()
+		for l in _REGION_LINKS:
+			for k in 2:
+				if l[k] == cur and not prev.has(l[1 - k]):
+					prev[l[1 - k]] = cur
+					queue.append(l[1 - k])
+	if not prev.has(to):
+		return ""
+	var step := to
+	while prev[step] != from:
+		step = prev[step]
+	return step
+
+
+## Where the minimap's objective star goes: the objective itself if it is in this region,
+## otherwise the exit or door that leads toward it. INF when there is nothing to show.
+func objective_marker() -> Vector2:
+	var st := story_current()
+	if st.is_empty() or current_dungeon != "":
+		return Vector2.INF
+	var here := map_file()
+	var target_map := String(st.get("map", ""))
+	if target_map == here:
+		return (st["pos"] as Vector2) * 16.0 if st.has("pos") else Vector2.INF
+	var hop := _next_region(here, target_map)
+	if hop == "":
+		return Vector2.INF
+	var scene := get_tree().current_scene
+	for n in scene.get_children():
+		if n is Area2D and String(n.get("target_scene")).get_file() == hop:
+			return (n as Node2D).global_position
+	return Vector2.INF
+
+
+# --- Region card shown while travelling between regions -------------------------------------------
+var _card: Control
+var _card_pic: TextureRect
+var _card_name: Label
+var _card_sub: Label
+var _card_tip: Label
+const CARD_TIPS := ["Cada ★ del bestiario da más daño y oro contra esa criatura.", "Las armas a +5 despiertan un efecto especial.",
+	"Las mazmorras dan piezas de set: con 2 y 4 piezas se activan sus bonus.", "Las piezas de Sello (SOS, SOM, SOSUN) son las más raras de Valdoria.",
+	"Despierta las piedras rúnicas para viajar desde el mapamundi (N).", "En el diario (O) te esperan tareas y la presa del día.",
+	"La estrella dorada del minimapa marca tu próximo objetivo.", "El modo heroico de las mazmorras paga mejor... y duele más."]
+
+
+func _build_region_card() -> void:
+	_card = VBoxContainer.new()
+	_card.set_anchors_preset(Control.PRESET_CENTER)
+	_card.custom_minimum_size = Vector2(240, 0)
+	_card.position = Vector2(-120, -70)
+	_card.add_theme_constant_override("separation", 4)
+	_card.modulate.a = 0.0
+	_card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_fade_layer.add_child(_card)
+	_card_pic = TextureRect.new()
+	_card_pic.custom_minimum_size = Vector2(240, 80)
+	_card_pic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_card_pic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_card_pic.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_card.add_child(_card_pic)
+	_card_name = Label.new()
+	_card_name.add_theme_font_size_override("font_size", 16)
+	_card_name.add_theme_color_override("font_color", Color(1, 0.86, 0.5))
+	_card_name.add_theme_constant_override("outline_size", 5)
+	_card_name.add_theme_color_override("font_outline_color", Color(0.1, 0.05, 0.03))
+	_card_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_card.add_child(_card_name)
+	var line := ColorRect.new()
+	line.color = Color(0.85, 0.65, 0.3, 0.7)
+	line.custom_minimum_size = Vector2(240, 1)
+	_card.add_child(line)
+	_card_sub = Label.new()
+	_card_sub.add_theme_font_size_override("font_size", 8)
+	_card_sub.add_theme_color_override("font_color", Color(0.9, 0.85, 0.75))
+	_card_sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_card.add_child(_card_sub)
+	_card_tip = Label.new()
+	_card_tip.add_theme_font_size_override("font_size", 7)
+	_card_tip.add_theme_color_override("font_color", Color(0.7, 0.65, 0.55))
+	_card_tip.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_card_tip.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_card_tip.custom_minimum_size = Vector2(240, 0)
+	_card.add_child(_card_tip)
+
+
+## Fills and shows the card when `path` is another region or a dungeon; false otherwise.
+func _show_region_card(path: String) -> bool:
+	var file := path.get_file()
+	var cur := get_tree().current_scene
+	if cur and cur.scene_file_path.get_file() == file:
+		return false
+	var name_ := ""
+	var pic := ""
+	var sub := ""
+	for r in GameData.WORLD_MAP:
+		if r["file"] == file:
+			name_ = r["name"]
+			pic = r["pic"]
+			var lv: Array = GameData.MAP_LEVELS.get(file, [])
+			sub = ("Monstruos de nivel %d a %d" % [lv[0], lv[1]]) if lv.size() == 2 else "Ciudad · zona segura"
+	if path.contains("/dungeons/") and current_dungeon != "":
+		var d := dungeon_def(current_dungeon)
+		name_ = d.get("name", "Mazmorra")
+		pic = "res://resources/world/minimap_dungeon_%s.png" % d.get("theme", "crypt")
+		sub = "Mazmorra · nivel %d%s" % [dungeon_level(), " · heroico" if dungeon_heroic else ""]
+	if name_ == "":
+		return false
+	_card_pic.texture = load(pic) if ResourceLoader.exists(pic) else null
+	_card_name.text = name_
+	_card_sub.text = sub
+	_card_tip.text = CARD_TIPS.pick_random()
+	_card.modulate.a = 1.0
+	return true

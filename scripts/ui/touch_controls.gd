@@ -3,7 +3,7 @@ extends CanvasLayer
 ##  - floating joystick on the left half (push it to the edge to run),
 ##  - Attack and Talk buttons on the right,
 ##  - the HUD action bar becomes tappable (potion and skills 1-6),
-##  - Menu, Map and Pause buttons under the portrait.
+##  - Menu, Map, Pause, World map, Diary and Bestiary buttons under the portrait.
 
 const DEAD := 0.22
 const RUN_AT := 0.92
@@ -56,6 +56,9 @@ func _buttons() -> Dictionary:
 		"menu": [Vector2(18, 64), 11.0],
 		"map": [Vector2(44, 64), 11.0],
 		"pause": [Vector2(70, 64), 11.0],
+		"world_map": [Vector2(96, 64), 11.0],
+		"daily": [Vector2(122, 64), 11.0],
+		"codex": [Vector2(148, 64), 11.0],
 		"target": [Vector2(v.x - 86, v.y - 64), 11.0],
 	}
 	if Game.has_mount:
@@ -222,6 +225,12 @@ func _draw_controls() -> void:
 				_text(c + Vector2(0, 2), "Mapa", 5, Color(1, 0.92, 0.7))
 			"pause":
 				_text(c + Vector2(0, 2), "II", 7, Color(1, 0.92, 0.7))
+			"world_map":
+				_text(c + Vector2(0, 2), "Mundo", 5, Color(1, 0.92, 0.7))
+			"daily":
+				_text(c + Vector2(0, 2), "Diario", 5, Color(1, 0.92, 0.7))
+			"codex":
+				_text(c + Vector2(0, 2), "Bestia.", 5, Color(1, 0.92, 0.7))
 			"target":
 				_root.draw_arc(c, 5.0, 0, TAU, 16, Color(1, 0.45, 0.35), 1.5)
 				_root.draw_line(c - Vector2(8, 0), c + Vector2(8, 0), Color(1, 0.45, 0.35), 1.0)

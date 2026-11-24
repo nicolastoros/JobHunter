@@ -206,8 +206,9 @@ collide = false
 position = Vector2(144, 169)
 frames = ExtResource("8_actor_3b4d")
 sprite_offset = Vector2(0, -17)
-npc_name = "Espadachín veterano"
-lines = PackedStringArray("Golpea, retrocede, golpea. Así de simple.")
+npc_name = "Aldric, maestro de clases"
+lines = PackedStringArray("Espada, arco o bastón: cada camino tiene su disciplina.")
+opens = "class"
 
 [node name="Actor4" parent="Entities" instance=ExtResource("4_actor")]
 position = Vector2(248, 137)

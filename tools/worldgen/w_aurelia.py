@@ -44,7 +44,7 @@ def build():
     g = Graph()
 
     # ---- road from the west gate out to the desert edge
-    road = rect_cells(0, AVE_Y[0], CX0, AVE_Y[1])
+    road = rect_cells(0, AVE_Y[0], CX0, AVE_Y[1]) | rect_cells(CX1, AVE_Y[0], AW, AVE_Y[1])   # and east, to the Twilight Wastes
     autotile(w, "road", road, RD, WT.ROAD_NINE, WT.ROAD_INNER, center_variants=[(2, 2)] * 3)
     w.blocked |= road
 
@@ -90,6 +90,12 @@ def build():
         for y in (24, 30):
             prop(w, rng.choice(["tree_round", "tree_oak2", "tree_bushy"]), 100 + side * 16, y)
     fountain(w, 98, 58, 101, 60)
+    # the archivist of Aurelia (story)
+    img = MARKET_NPC + "Character_citizens_animation/Citizen4_Idle_with_shadow.png"
+    actor(w, "archivist", 108 * T, 62 * T, img, (0, 0, 32, 32), [(i * 32, 0, 150) for i in range(12)],
+          talk=("Archivista Leandra", ["Los archivos de Aurelia guardan la historia de los primeros cazadores.",
+                                       "Si algún día encuentras algo de los antiguos Sellos, tráemelo."]),
+          bubble=["Los archivos nunca mienten.", "Mil años de historia..."])
     # the processional way: rows of trees in planters and banners from the plaza up to the palace
     for y in range(48, 66, 6):
         for x in (91, 108):
@@ -175,7 +181,7 @@ def build():
             x += gp
 
     blocks = [((17, 52), (27, 39, 51, 63, 76)), ((58, 94), (27, 39, 51, 63, 76)), ((106, 141), (27, 39, 51, 63, 76)),
-              ((148, 183), (27, 39, 51, 63, 76)), ((17, 52), (95,)), ((58, 94), (95, 107, 119, 131)), ((148, 183), (95,))]
+              ((148, 183), (27, 39, 51, 63, 76)), ((17, 52), (95,)), ((58, 74), (95, 107, 119, 131)), ((148, 183), (95,))]   # the market starts at x 74
     for (xa, xb), rows in blocks:
         for base in rows:
             a_, b_ = xa, xb
@@ -221,7 +227,7 @@ def build():
     for _ in range(60):
         x, y = rng.choice([(rng.uniform(2, 12), rng.uniform(2, 146)), (rng.uniform(188, 198), rng.uniform(2, 146)),
                            (rng.uniform(2, 198), rng.uniform(2, 11)), (rng.uniform(2, 198), rng.uniform(142, 148))])
-        if not (AVE_Y[0] - 2 <= y <= AVE_Y[1] + 2 and x < 14):
+        if not (AVE_Y[0] - 2 <= y <= AVE_Y[1] + 2 and (x < 14 or x > 184)):
             prop(w, rng.choice(["tr_palm", "tr_fan", "rock_big", "tree_bushy", "tr_palm"]), x, y)
     w.graph = g
     return w
@@ -238,9 +244,10 @@ AURELIA_CFG = dict(
     minimap="res://resources/world/minimap_aurelia.png", title="Aurelia, la Ciudad Dorada", hunters=6,
     preview_layers=["water", "water_fx", "ground", "ground_overlay", "road", "detail", "water_city", "rim", "coast", "dock", "dock_fx", "fence", "walls", "towers"],
     zones=ZONES,
-    exits=[dict(name="WestExit", pos=(18, 82.5 * 16), size=(24, 6 * 16), scene="res://scenes/world/desert.tscn", spawn="east", dir="left")],
-    spawns={"west": (6 * 16, 82.5 * 16), "respawn": (99.5 * 16, 95 * 16), "start": (6 * 16, 82.5 * 16)},
-    left_gap=AVE_Y,
+    exits=[dict(name="WestExit", pos=(18, 82.5 * 16), size=(24, 6 * 16), scene="res://scenes/world/desert.tscn", spawn="east", dir="left"),
+           dict(name="EastExit", pos=(AW * 16 - 18, 82.5 * 16), size=(24, 6 * 16), scene="res://scenes/world/ocaso.tscn", spawn="west", dir="right")],
+    spawns={"west": (6 * 16, 82.5 * 16), "respawn": (99.5 * 16, 95 * 16), "start": (6 * 16, 82.5 * 16), "east": (AW * 16 - 6 * 16, 82.5 * 16)},
+    left_gap=AVE_Y, right_gap=AVE_Y,
 )
 
 if __name__ == "__main__":

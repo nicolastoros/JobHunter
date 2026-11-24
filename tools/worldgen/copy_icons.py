@@ -17,6 +17,26 @@ EQUIP = {
     "espada_ignea": ("ic_weapon_icons01/Icons/icon_2_06.png"),
     "hoja_marina": ("ic_weapon_icons01/Icons/icon_2_08.png"),
     "espada_alba": ("ic_weapon_icons01/Icons/icon_2_18.png"),
+    "set_guardia_helmet": ("ic_armor_icons01/Icons/Icons_6_04.png"),
+    "set_guardia_chest": ("ic_armor_icons01/Icons/Icons_6_13.png"),
+    "set_guardia_gloves": ("ic_armor_icons01/Icons/Icons_6_22.png"),
+    "set_guardia_boots": ("ic_armor_icons01/Icons/Icons_6_32.png"),
+    "set_sombra_helmet": ("ic_armor_icons01/Icons/Icons_6_08.png"),
+    "set_sombra_chest": ("ic_armor_icons01/Icons/Icons_6_19.png"),
+    "set_sombra_gloves": ("ic_armor_icons01/Icons/Icons_6_29.png"),
+    "set_sombra_boots": ("ic_armor_icons01/Icons/Icons_6_39.png"),
+    "set_sol_helmet": ("ic_armor_icons01/Icons/Icons_6_07.png"),
+    "set_sol_chest": ("ic_armor_icons01/Icons/Icons_6_17.png"),
+    "set_sol_gloves": ("ic_armor_icons01/Icons/Icons_6_27.png"),
+    "set_sol_boots": ("ic_armor_icons01/Icons/Icons_6_36.png"),
+    "set_invierno_helmet": ("ic_armor_icons01/Icons/Icons_6_48.png"),
+    "set_invierno_chest": ("ic_armor_icons01/Icons/Icons_6_58.png"),
+    "set_invierno_gloves": ("ic_armor_icons01/Icons/Icons_6_68.png"),
+    "set_invierno_boots": ("ic_armor_icons01/Icons/Icons_6_78.png"),
+    "set_eclipse_helmet": ("ic_armor_icons01/Icons/Icons_6_09.png"),
+    "set_eclipse_chest": ("ic_armor_icons01/Icons/Icons_6_59.png"),
+    "set_eclipse_gloves": ("ic_armor_icons01/Icons/Icons_6_30.png"),
+    "set_eclipse_boots": ("ic_armor_icons01/Icons/Icons_6_79.png"),
     "daga_bronce": ("ic_weapon_icons03/Icons/Icon_4_01.png"),
     "daga_sombra": ("ic_weapon_icons03/Icons/Icon_4_04.png"),
     "colmillo_dunas": ("ic_weapon_icons03/Icons/Icon_4_07.png"),
@@ -65,6 +85,11 @@ ITEM_ICONS = {
     "colmillo_chacal": "ic_rpg_hunting_icons/PNG/without background/19.png",
     "acido": "ic_rpg_craft_resources/PNG/Without background/50.png",
     "tesoro_sol": "ic_rpg_craft_resources/PNG/Without background/30.png",
+    "escarcha": "ic_rpg_craft_resources/PNG/Without background/8.png",
+    "corazon_hielo": "ic_rpg_craft_resources/PNG/Without background/21.png",
+    "piel_lobo": "ic_rpg_hunting_icons/PNG/without background/33.png",
+    "pelaje_yeti": "ic_rpg_hunting_icons/PNG/without background/36.png",
+    "carne": "ic_rpg_hunting_icons/PNG/without background/1.png",
 }
 SKILLS = {"giro": 26, "embestida": 24, "grito": 41, "respiro": 50, "onda": 34, "tajo": 5}
 
@@ -84,6 +109,21 @@ def main():
         canvas = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
         canvas.alpha_composite(im, ((32 - im.width) // 2, (32 - im.height) // 2))
         canvas.save(os.path.join(out, "items", k + ".png"))
+    # the Eclipse relics: recoloured to a dark violet
+    import colorsys
+    for k in [k for k in EQUIP if k.startswith("set_eclipse_")]:
+        path = os.path.join(out, "equip", k + ".png")
+        im = Image.open(path).convert("RGBA")
+        px = im.load()
+        for y in range(im.height):
+            for x in range(im.width):
+                r, g, b_, a = px[x, y]
+                if a:
+                    h, s_, v = colorsys.rgb_to_hsv(r / 255, g / 255, b_ / 255)
+                    if s_ > 0.15:
+                        nr, ng, nb = colorsys.hsv_to_rgb(0.76, min(1.0, s_ * 1.1), v * 0.9)
+                        px[x, y] = (int(nr * 255), int(ng * 255), int(nb * 255), a)
+        im.save(path)
     for k, n in SKILLS.items():
         im = Image.open(os.path.join(RAW, "ic_rpg_splash_icons/PNG/%d.png" % n)).convert("RGBA")
         im.resize((48, 48), Image.LANCZOS).save(os.path.join(out, "skills", k + ".png"))

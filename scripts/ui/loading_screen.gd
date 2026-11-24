@@ -8,7 +8,8 @@ const DIRS := ["res://resources/sprite_frames/monsters", "res://resources/sprite
 const FIRST := ["res://scenes/ui/main_menu.tscn", "res://scenes/ui/hud.tscn", "res://scenes/ui/pause_menu.tscn",
 	"res://scenes/characters/player.tscn", "res://scenes/monsters/monster.tscn", "res://scenes/npc/hunter.tscn",
 	"res://scenes/objects/chest.tscn"]
-const MAPS := ["res://scenes/world/world.tscn", "res://scenes/world/field.tscn", "res://scenes/world/forest.tscn", "res://scenes/world/desert.tscn", "res://scenes/world/aurelia.tscn"]
+const MAPS := ["res://scenes/world/world.tscn", "res://scenes/world/field.tscn", "res://scenes/world/forest.tscn", "res://scenes/world/desert.tscn", "res://scenes/world/aurelia.tscn", "res://scenes/world/snowforest.tscn", "res://scenes/world/snowvillage.tscn", "res://scenes/world/ocaso.tscn",
+	"res://scenes/dungeons/crypt.tscn", "res://scenes/dungeons/forest.tscn", "res://scenes/dungeons/sand.tscn", "res://scenes/dungeons/ice.tscn", "res://scenes/dungeons/eclipse.tscn"]
 const TIPS := ["Las pociones se rellenan en la ciudad y en los refugios del mapa.",
 	"Tab fija una presa; la rueda del ratón cambia de presa.",
 	"Kara, la herrera, mejora tu equipo y compra lo que no necesites.",
@@ -19,6 +20,13 @@ const TIPS := ["Las pociones se rellenan en la ciudad y en los refugios del mapa
 	"Llanura: niveles 1-16. Bosque Profundo: 16-32. Desierto de Ámbar: 30-50.",
 	"Al este del desierto se alza Aurelia, la Ciudad Dorada.",
 	"Pulsa N para ver el mapamundi.",
+	"Cada región esconde un portal a una mazmorra de oleadas. ¡Busca el rango S!",
+	"Las piezas de Sello (SOS < SOM < SOSUN) son más raras que las legendarias.",
+	"Las armas mejoradas a +5 despiertan un efecto especial en la forja.",
+	"Reúne 2 y 4 piezas de un set para activar sus bonus.",
+	"La Maestra Ysolde tiene algo que contarte sobre las Ruinas Antiguas...",
+	"Relee la historia en el bestiario (B), pestaña Crónica.",
+	"Al norte del Bosque Profundo, el Bosque Nevado esconde a Villa Escarcha.",
 	"Busca botín raro (azul), épico (morado) y legendario (dorado): traen bonus extra.",
 	"Las rachas de caza dan más renombre en el Gremio.",
 	"En el establo de las granjas hay compañeros que te ayudan a cazar."]
@@ -121,7 +129,7 @@ func _load_all() -> void:
 
 static func _what(path: String) -> String:
 	if path.contains("/world/"):
-		return {"world.tscn": "Valdoria", "field.tscn": "la Llanura", "forest.tscn": "el Bosque Profundo", "desert.tscn": "el Desierto de Ámbar", "aurelia.tscn": "Aurelia"}.get(path.get_file(), "el mundo")
+		return {"world.tscn": "Valdoria", "field.tscn": "la Llanura", "forest.tscn": "el Bosque Profundo", "desert.tscn": "el Desierto de Ámbar", "aurelia.tscn": "Aurelia", "snowforest.tscn": "el Bosque Nevado", "snowvillage.tscn": "Villa Escarcha", "ocaso.tscn": "el Páramo del Ocaso"}.get(path.get_file(), "el mundo")
 	if path.contains("monsters"):
 		return "monstruos"
 	if path.contains("interiors"):
